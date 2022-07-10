@@ -1,0 +1,55 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="projectLand">
+      <h2 data-cy="projectLandDetailsHeading"><span jhiTranslate="jhipsterApp.projectLand.detail.title">Project Land</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ projectLand.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.projectLand.remarks">Remarks</span></dt>
+        <dd>
+          <span>{{ projectLand.remarks }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.projectLand.documents">Documents</span></dt>
+        <dd>
+          <div *ngIf="projectLand.documents">
+            <a (click)="openFile(projectLand.documents, projectLand.documentsContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ projectLand.documentsContentType }}, {{ byteSize(projectLand.documents) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.projectLand.hissaType">Hissa Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterApp.HissaType.' + projectLand.hissaType }}">{{ projectLand.hissaType }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.projectLand.land">Land</span></dt>
+        <dd>
+          <div *ngIf="projectLand.land">
+            <a [routerLink]="['/land', projectLand.land?.id, 'view']">{{ projectLand.land?.khasraNumber }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.projectLand.project">Project</span></dt>
+        <dd>
+          <div *ngIf="projectLand.project">
+            <a [routerLink]="['/project', projectLand.project?.id, 'view']">{{ projectLand.project?.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/project-land', projectLand.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

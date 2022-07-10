@@ -1,0 +1,158 @@
+<div>
+  <h2 id="page-heading" data-cy="PaymentAdviceHeading">
+    <span jhiTranslate="jhipsterApp.paymentAdvice.home.title">Payment Advices</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterApp.paymentAdvice.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-payment-advice"
+        [routerLink]="['/payment-advice/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterApp.paymentAdvice.home.createLabel"> Create a new Payment Advice </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="paymentAdvices?.length === 0">
+    <span jhiTranslate="jhipsterApp.paymentAdvice.home.notFound">No paymentAdvices found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="paymentAdvices && paymentAdvices.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="accountHolderName">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderName">Account Holder Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="paymentAmount">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.paymentAmount">Payment Amount</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="bankName">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.bankName">Bank Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="accountNumber">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.accountNumber">Account Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="ifscCode">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.ifscCode">Ifsc Code</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="checkNumber">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.checkNumber">Check Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="micrCode">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.micrCode">Micr Code</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="paymentAdviceType">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.paymentAdviceType">Payment Advice Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="referenceNumber">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.referenceNumber">Reference Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="paymentStatus">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.paymentStatus">Payment Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="hisssaType">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.hisssaType">Hisssa Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="landCompensation.id">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.landCompensation">Land Compensation</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="projectLand.id">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let paymentAdvice of paymentAdvices; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/payment-advice', paymentAdvice.id, 'view']">{{ paymentAdvice.id }}</a>
+          </td>
+          <td>{{ paymentAdvice.accountHolderName }}</td>
+          <td>{{ paymentAdvice.paymentAmount }}</td>
+          <td>{{ paymentAdvice.bankName }}</td>
+          <td>{{ paymentAdvice.accountNumber }}</td>
+          <td>{{ paymentAdvice.ifscCode }}</td>
+          <td>{{ paymentAdvice.checkNumber }}</td>
+          <td>{{ paymentAdvice.micrCode }}</td>
+          <td jhiTranslate="{{ 'jhipsterApp.PaymentAdviceType.' + paymentAdvice.paymentAdviceType }}">
+            {{ paymentAdvice.paymentAdviceType }}
+          </td>
+          <td>{{ paymentAdvice.referenceNumber }}</td>
+          <td jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + paymentAdvice.paymentStatus }}">{{ paymentAdvice.paymentStatus }}</td>
+          <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + paymentAdvice.hisssaType }}">{{ paymentAdvice.hisssaType }}</td>
+          <td>
+            <div *ngIf="paymentAdvice.landCompensation">
+              <a [routerLink]="['/land-compensation', paymentAdvice.landCompensation?.id, 'view']">{{
+                paymentAdvice.landCompensation?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="paymentAdvice.projectLand">
+              <a [routerLink]="['/project-land', paymentAdvice.projectLand?.id, 'view']">{{ paymentAdvice.projectLand?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/payment-advice', paymentAdvice.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/payment-advice', paymentAdvice.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(paymentAdvice)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="paymentAdvices && paymentAdvices.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

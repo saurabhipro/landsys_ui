@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="notificationTemplate">
+      <h2 data-cy="notificationTemplateDetailsHeading">
+        <span jhiTranslate="jhipsterApp.notificationTemplate.detail.title">Notification Template</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ notificationTemplate.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.notificationTemplate.name">Name</span></dt>
+        <dd>
+          <span>{{ notificationTemplate.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.notificationTemplate.templateText">Template Text</span></dt>
+        <dd>
+          <span>{{ notificationTemplate.templateText }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.notificationTemplate.defaultUse">Default Use</span></dt>
+        <dd>
+          <span>{{ notificationTemplate.defaultUse }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.notificationTemplate.file">File</span></dt>
+        <dd>
+          <div *ngIf="notificationTemplate.file">
+            <a (click)="openFile(notificationTemplate.file, notificationTemplate.fileContentType)" jhiTranslate="entity.action.open"
+              >open</a
+            >
+            {{ notificationTemplate.fileContentType }}, {{ byteSize(notificationTemplate.file) }}
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/notification-template', notificationTemplate.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,177 @@
+<div>
+  <h2 id="page-heading" data-cy="LandCompensationHeading">
+    <span jhiTranslate="jhipsterApp.landCompensation.home.title">Land Compensations</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterApp.landCompensation.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-land-compensation"
+        [routerLink]="['/land-compensation/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterApp.landCompensation.home.createLabel"> Create a new Land Compensation </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="landCompensations?.length === 0">
+    <span jhiTranslate="jhipsterApp.landCompensation.home.notFound">No landCompensations found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="landCompensations && landCompensations.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="hissaType">
+            <span jhiTranslate="jhipsterApp.landCompensation.hissaType">Hissa Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="area">
+            <span jhiTranslate="jhipsterApp.landCompensation.area">Area</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="sharePercentage">
+            <span jhiTranslate="jhipsterApp.landCompensation.sharePercentage">Share Percentage</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="landMarketValue">
+            <span jhiTranslate="jhipsterApp.landCompensation.landMarketValue">Land Market Value</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="structuralCompensation">
+            <span jhiTranslate="jhipsterApp.landCompensation.structuralCompensation">Structural Compensation</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="horticultureCompensation">
+            <span jhiTranslate="jhipsterApp.landCompensation.horticultureCompensation">Horticulture Compensation</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="forestCompensation">
+            <span jhiTranslate="jhipsterApp.landCompensation.forestCompensation">Forest Compensation</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="solatiumMoney">
+            <span jhiTranslate="jhipsterApp.landCompensation.solatiumMoney">Solatium Money</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="additionalCompensation">
+            <span jhiTranslate="jhipsterApp.landCompensation.additionalCompensation">Additional Compensation</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <span jhiTranslate="jhipsterApp.landCompensation.status">Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="orderDate">
+            <span jhiTranslate="jhipsterApp.landCompensation.orderDate">Order Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="paymentDate">
+            <span jhiTranslate="jhipsterApp.landCompensation.paymentDate">Payment Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="paymentAmount">
+            <span jhiTranslate="jhipsterApp.landCompensation.paymentAmount">Payment Amount</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="transactionId">
+            <span jhiTranslate="jhipsterApp.landCompensation.transactionId">Transaction Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="khatedar.id">
+            <span jhiTranslate="jhipsterApp.landCompensation.khatedar">Khatedar</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="survey.id">
+            <span jhiTranslate="jhipsterApp.landCompensation.survey">Survey</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="projectLand.id">
+            <span jhiTranslate="jhipsterApp.landCompensation.projectLand">Project Land</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let landCompensation of landCompensations; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/land-compensation', landCompensation.id, 'view']">{{ landCompensation.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + landCompensation.hissaType }}">{{ landCompensation.hissaType }}</td>
+          <td>{{ landCompensation.area }}</td>
+          <td>{{ landCompensation.sharePercentage }}</td>
+          <td>{{ landCompensation.landMarketValue }}</td>
+          <td>{{ landCompensation.structuralCompensation }}</td>
+          <td>{{ landCompensation.horticultureCompensation }}</td>
+          <td>{{ landCompensation.forestCompensation }}</td>
+          <td>{{ landCompensation.solatiumMoney }}</td>
+          <td>{{ landCompensation.additionalCompensation }}</td>
+          <td>{{ landCompensation.status }}</td>
+          <td>{{ landCompensation.orderDate | formatMediumDatetime }}</td>
+          <td>{{ landCompensation.paymentDate | formatMediumDatetime }}</td>
+          <td>{{ landCompensation.paymentAmount }}</td>
+          <td>{{ landCompensation.transactionId }}</td>
+          <td>
+            <div *ngIf="landCompensation.khatedar">
+              <a [routerLink]="['/khatedar', landCompensation.khatedar?.id, 'view']">{{ landCompensation.khatedar?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="landCompensation.survey">
+              <a [routerLink]="['/survey', landCompensation.survey?.id, 'view']">{{ landCompensation.survey?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="landCompensation.projectLand">
+              <a [routerLink]="['/project-land', landCompensation.projectLand?.id, 'view']">{{ landCompensation.projectLand?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/land-compensation', landCompensation.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/land-compensation', landCompensation.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(landCompensation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="landCompensations && landCompensations.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

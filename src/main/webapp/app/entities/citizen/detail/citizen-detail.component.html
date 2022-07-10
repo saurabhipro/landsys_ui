@@ -1,0 +1,106 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="citizen">
+      <h2 data-cy="citizenDetailsHeading"><span jhiTranslate="jhipsterApp.citizen.detail.title">Citizen</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ citizen.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.citizen.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="citizen.photo">
+            <a (click)="openFile(citizen.photo, citizen.photoContentType)">
+              <img [src]="'data:' + citizen.photoContentType + ';base64,' + citizen.photo" style="max-width: 100%" alt="citizen image" />
+            </a>
+            {{ citizen.photoContentType }}, {{ byteSize(citizen.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.citizen.name">Name</span></dt>
+        <dd>
+          <span>{{ citizen.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.citizen.address">Address</span></dt>
+        <dd>
+          <span>{{ citizen.address }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.citizen.accountNumber">Account Number</span></dt>
+        <dd>
+          <span>{{ citizen.accountNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.citizen.fatherName">Father Name</span></dt>
+        <dd>
+          <span>{{ citizen.fatherName }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.citizen.spouseName">Spouse Name</span></dt>
+        <dd>
+          <span>{{ citizen.spouseName }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.citizen.successorName">Successor Name</span></dt>
+        <dd>
+          <span>{{ citizen.successorName }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.citizen.aadhar">Aadhar</span></dt>
+        <dd>
+          <span>{{ citizen.aadhar }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.citizen.pan">Pan</span></dt>
+        <dd>
+          <span>{{ citizen.pan }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.citizen.aadharImage">Aadhar Image</span></dt>
+        <dd>
+          <div *ngIf="citizen.aadharImage">
+            <a (click)="openFile(citizen.aadharImage, citizen.aadharImageContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ citizen.aadharImageContentType }}, {{ byteSize(citizen.aadharImage) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.citizen.panImage">Pan Image</span></dt>
+        <dd>
+          <div *ngIf="citizen.panImage">
+            <a (click)="openFile(citizen.panImage, citizen.panImageContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ citizen.panImageContentType }}, {{ byteSize(citizen.panImage) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.citizen.accountNo">Account No</span></dt>
+        <dd>
+          <span>{{ citizen.accountNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.citizen.accNoImage">Acc No Image</span></dt>
+        <dd>
+          <div *ngIf="citizen.accNoImage">
+            <a (click)="openFile(citizen.accNoImage, citizen.accNoImageContentType)">
+              <img
+                [src]="'data:' + citizen.accNoImageContentType + ';base64,' + citizen.accNoImage"
+                style="max-width: 100%"
+                alt="citizen image"
+              />
+            </a>
+            {{ citizen.accNoImageContentType }}, {{ byteSize(citizen.accNoImage) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.citizen.bankBranch">Bank Branch</span></dt>
+        <dd>
+          <div *ngIf="citizen.bankBranch">
+            <a [routerLink]="['/bank-branch', citizen.bankBranch?.id, 'view']">{{ citizen.bankBranch?.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/citizen', citizen.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

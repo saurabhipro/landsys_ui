@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="khatedar">
+      <h2 data-cy="khatedarDetailsHeading"><span jhiTranslate="jhipsterApp.khatedar.detail.title">Khatedar</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ khatedar.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.khatedar.caseFileNo">Case File No</span></dt>
+        <dd>
+          <span>{{ khatedar.caseFileNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.khatedar.remarks">Remarks</span></dt>
+        <dd>
+          <span>{{ khatedar.remarks }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.khatedar.noticeFile">Notice File</span></dt>
+        <dd>
+          <div *ngIf="khatedar.noticeFile">
+            <a (click)="openFile(khatedar.noticeFile, khatedar.noticeFileContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ khatedar.noticeFileContentType }}, {{ byteSize(khatedar.noticeFile) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.khatedar.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterApp.KhatedayStatus.' + khatedar.status }}">{{ khatedar.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.khatedar.citizen">Citizen</span></dt>
+        <dd>
+          <div *ngIf="khatedar.citizen">
+            <a [routerLink]="['/citizen', khatedar.citizen?.id, 'view']">{{ khatedar.citizen?.name }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.khatedar.projectLand">Project Land</span></dt>
+        <dd>
+          <div *ngIf="khatedar.projectLand">
+            <a [routerLink]="['/project-land', khatedar.projectLand?.id, 'view']">{{ khatedar.projectLand?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/khatedar', khatedar.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

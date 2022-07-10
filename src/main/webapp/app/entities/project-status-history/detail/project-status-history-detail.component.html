@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="projectStatusHistory">
+      <h2 data-cy="projectStatusHistoryDetailsHeading">
+        <span jhiTranslate="jhipsterApp.projectStatusHistory.detail.title">Project Status History</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ projectStatusHistory.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.projectStatusHistory.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterApp.ProjectStatus.' + projectStatusHistory.status }}">{{ projectStatusHistory.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.projectStatusHistory.when">When</span></dt>
+        <dd>
+          <span>{{ projectStatusHistory.when | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.projectStatusHistory.remarks">Remarks</span></dt>
+        <dd>
+          <span>{{ projectStatusHistory.remarks }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/project-status-history', projectStatusHistory.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

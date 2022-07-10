@@ -1,0 +1,333 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-land-compensation-heading"
+        data-cy="LandCompensationCreateUpdateHeading"
+        jhiTranslate="jhipsterApp.landCompensation.home.createOrEditLabel"
+      >
+        Create or edit a Land Compensation
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.hissaType" for="field_hissaType">Hissa Type</label>
+          <select class="form-control" name="hissaType" formControlName="hissaType" id="field_hissaType" data-cy="hissaType">
+            <option [ngValue]="null">{{ 'jhipsterApp.HissaType.null' | translate }}</option>
+            <option *ngFor="let hissaType of hissaTypeValues" [value]="hissaType">
+              {{ 'jhipsterApp.HissaType.' + hissaType | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('hissaType')!.invalid && (editForm.get('hissaType')!.dirty || editForm.get('hissaType')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('hissaType')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.area" for="field_area">Area</label>
+          <input type="number" class="form-control" name="area" id="field_area" data-cy="area" formControlName="area" />
+          <div *ngIf="editForm.get('area')!.invalid && (editForm.get('area')!.dirty || editForm.get('area')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('area')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('area')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.sharePercentage" for="field_sharePercentage"
+            >Share Percentage</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="sharePercentage"
+            id="field_sharePercentage"
+            data-cy="sharePercentage"
+            formControlName="sharePercentage"
+          />
+          <div
+            *ngIf="
+              editForm.get('sharePercentage')!.invalid &&
+              (editForm.get('sharePercentage')!.dirty || editForm.get('sharePercentage')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('sharePercentage')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('sharePercentage')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.landMarketValue" for="field_landMarketValue"
+            >Land Market Value</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="landMarketValue"
+            id="field_landMarketValue"
+            data-cy="landMarketValue"
+            formControlName="landMarketValue"
+          />
+          <div
+            *ngIf="
+              editForm.get('landMarketValue')!.invalid &&
+              (editForm.get('landMarketValue')!.dirty || editForm.get('landMarketValue')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('landMarketValue')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('landMarketValue')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.structuralCompensation" for="field_structuralCompensation"
+            >Structural Compensation</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="structuralCompensation"
+            id="field_structuralCompensation"
+            data-cy="structuralCompensation"
+            formControlName="structuralCompensation"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipsterApp.landCompensation.horticultureCompensation"
+            for="field_horticultureCompensation"
+            >Horticulture Compensation</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="horticultureCompensation"
+            id="field_horticultureCompensation"
+            data-cy="horticultureCompensation"
+            formControlName="horticultureCompensation"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.forestCompensation" for="field_forestCompensation"
+            >Forest Compensation</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="forestCompensation"
+            id="field_forestCompensation"
+            data-cy="forestCompensation"
+            formControlName="forestCompensation"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.solatiumMoney" for="field_solatiumMoney"
+            >Solatium Money</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="solatiumMoney"
+            id="field_solatiumMoney"
+            data-cy="solatiumMoney"
+            formControlName="solatiumMoney"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.additionalCompensation" for="field_additionalCompensation"
+            >Additional Compensation</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="additionalCompensation"
+            id="field_additionalCompensation"
+            data-cy="additionalCompensation"
+            formControlName="additionalCompensation"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.status" for="field_status">Status</label>
+          <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.orderDate" for="field_orderDate">Order Date</label>
+          <div class="d-flex">
+            <input
+              id="field_orderDate"
+              data-cy="orderDate"
+              type="datetime-local"
+              class="form-control"
+              name="orderDate"
+              formControlName="orderDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.paymentDate" for="field_paymentDate">Payment Date</label>
+          <div class="d-flex">
+            <input
+              id="field_paymentDate"
+              data-cy="paymentDate"
+              type="datetime-local"
+              class="form-control"
+              name="paymentDate"
+              formControlName="paymentDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.paymentAmount" for="field_paymentAmount"
+            >Payment Amount</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="paymentAmount"
+            id="field_paymentAmount"
+            data-cy="paymentAmount"
+            formControlName="paymentAmount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.transactionId" for="field_transactionId"
+            >Transaction Id</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="transactionId"
+            id="field_transactionId"
+            data-cy="transactionId"
+            formControlName="transactionId"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.khatedar" for="field_khatedar">Khatedar</label>
+          <select class="form-control" id="field_khatedar" data-cy="khatedar" name="khatedar" formControlName="khatedar">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="khatedarOption.id === editForm.get('khatedar')!.value?.id ? editForm.get('khatedar')!.value : khatedarOption"
+              *ngFor="let khatedarOption of khatedarsSharedCollection; trackBy: trackKhatedarById"
+            >
+              {{ khatedarOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.survey" for="field_survey">Survey</label>
+          <select class="form-control" id="field_survey" data-cy="survey" name="survey" formControlName="survey">
+            <option *ngIf="!editForm.get('survey')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="surveyOption.id === editForm.get('survey')!.value?.id ? editForm.get('survey')!.value : surveyOption"
+              *ngFor="let surveyOption of surveysSharedCollection; trackBy: trackSurveyById"
+            >
+              {{ surveyOption.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['survey'])!.invalid && (editForm.get(['survey'])!.dirty || editForm.get(['survey'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['survey'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.projectLand" for="field_projectLand">Project Land</label>
+          <select class="form-control" id="field_projectLand" data-cy="projectLand" name="projectLand" formControlName="projectLand">
+            <option *ngIf="!editForm.get('projectLand')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                projectLandOption.id === editForm.get('projectLand')!.value?.id ? editForm.get('projectLand')!.value : projectLandOption
+              "
+              *ngFor="let projectLandOption of projectLandsSharedCollection; trackBy: trackProjectLandById"
+            >
+              {{ projectLandOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['projectLand'])!.invalid && (editForm.get(['projectLand'])!.dirty || editForm.get(['projectLand'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['projectLand'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

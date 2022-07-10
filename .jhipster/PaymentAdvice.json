@@ -1,0 +1,87 @@
+{
+  "applications": "*",
+  "changelogDate": "20220710092110",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_payment_advice",
+  "fields": [
+    {
+      "fieldName": "accountHolderName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "paymentAmount",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "bankName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "accountNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ifscCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "checkNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "micrCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "paymentAdviceType",
+      "fieldType": "PaymentAdviceType",
+      "fieldValues": "ONLINE,CHECQUE,OTHER"
+    },
+    {
+      "fieldName": "referenceNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "paymentStatus",
+      "fieldType": "PaymentStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "PENDING,APPROVED,PAID"
+    },
+    {
+      "fieldName": "hisssaType",
+      "fieldType": "HissaType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SINGLE_OWNER (Single Owner),JOINT_OWNER (Joint Owner),DIVIDED (divided)"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "PaymentAdvice",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "landCompensation",
+      "otherEntityRelationshipName": "paymentAdvice",
+      "ownerSide": true,
+      "relationshipName": "landCompensation",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "projectLand",
+      "otherEntityRelationshipName": "paymentAdvice",
+      "relationshipName": "projectLand",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceImpl"
+}

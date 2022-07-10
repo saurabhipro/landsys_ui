@@ -1,0 +1,11 @@
+{
+  "jhipsterApp": {
+    "KhatedayStatus": {
+      "null": "",
+      "SURVEYCREATED": "SURVEYCREATED",
+      "COMPENSATIONCREATED": "COMPENSATIONCREATED",
+      "AWARDGENERATED": "AWARDGENERATED",
+      "PAYMENTDONE": "PAYMENTDONE"
+    }
+  }
+}

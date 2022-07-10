@@ -1,0 +1,38 @@
+{
+  "jhipsterApp": {
+    "citizen": {
+      "home": {
+        "title": "Citizens",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Citizen बनाएँ",
+        "createOrEditLabel": "Citizen बनाएँ या संपादित करें",
+        "notFound": "No Citizens found"
+      },
+      "created": "एक नया Citizen [identifier: {{ param }}] तैयार है",
+      "updated": "एक Citizen [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Citizen [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Citizen [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Citizen"
+      },
+      "id": "ID",
+      "photo": "Photo",
+      "name": "Name",
+      "address": "Address",
+      "accountNumber": "Account Number",
+      "fatherName": "Father Name",
+      "spouseName": "Spouse Name",
+      "successorName": "Successor Name",
+      "aadhar": "Aadhar",
+      "pan": "Pan",
+      "aadharImage": "Aadhar Image",
+      "panImage": "Pan Image",
+      "accountNo": "Account No",
+      "accNoImage": "Acc No Image",
+      "khatedar": "Khatedar",
+      "bankBranch": "Bank Branch"
+    }
+  }
+}

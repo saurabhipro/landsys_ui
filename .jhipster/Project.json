@@ -1,0 +1,55 @@
+{
+  "applications": "*",
+  "changelogDate": "20220710092100",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_project",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "budget",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "approver1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "approver2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "approver3",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Project",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "projectLand",
+      "otherEntityRelationshipName": "project",
+      "relationshipName": "projectLand",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

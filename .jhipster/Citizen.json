@@ -1,0 +1,93 @@
+{
+  "applications": "*",
+  "changelogDate": "20220710092107",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_citizen",
+  "fields": [
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "accountNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fatherName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "spouseName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "successorName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "aadhar",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "pan",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "aadharImage",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "panImage",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "accountNo",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "accNoImage",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Citizen",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "khatedar",
+      "otherEntityRelationshipName": "citizen",
+      "relationshipName": "khatedar",
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "bankBranch",
+      "otherEntityRelationshipName": "citizen",
+      "relationshipName": "bankBranch",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "projectStatusHistory": {
+      "home": {
+        "title": "Project Status Histories",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Project Status History",
+        "createOrEditLabel": "Create or edit a Project Status History",
+        "notFound": "No Project Status Histories found"
+      },
+      "created": "A new Project Status History is created with identifier {{ param }}",
+      "updated": "A Project Status History is updated with identifier {{ param }}",
+      "deleted": "A Project Status History is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Project Status History {{ id }}?"
+      },
+      "detail": {
+        "title": "Project Status History"
+      },
+      "id": "ID",
+      "status": "Status",
+      "when": "When",
+      "remarks": "Remarks"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "landType": {
+      "home": {
+        "title": "LandTypes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Land Type बनाएँ",
+        "createOrEditLabel": "Land Type बनाएँ या संपादित करें",
+        "notFound": "No Land Types found"
+      },
+      "created": "एक नया Land Type [identifier: {{ param }}] तैयार है",
+      "updated": "एक Land Type [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Land Type [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Land Type [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Land Type"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "land": "Land"
+    }
+  }
+}

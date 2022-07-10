@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "projectStatusHistory": {
+      "home": {
+        "title": "ProjectStatusHistories",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Project Status History बनाएँ",
+        "createOrEditLabel": "Project Status History बनाएँ या संपादित करें",
+        "notFound": "No Project Status Histories found"
+      },
+      "created": "एक नया Project Status History [identifier: {{ param }}] तैयार है",
+      "updated": "एक Project Status History [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Project Status History [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Project Status History [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Project Status History"
+      },
+      "id": "ID",
+      "status": "Status",
+      "when": "When",
+      "remarks": "Remarks"
+    }
+  }
+}

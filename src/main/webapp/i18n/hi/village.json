@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "village": {
+      "home": {
+        "title": "Villages",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Village बनाएँ",
+        "createOrEditLabel": "Village बनाएँ या संपादित करें",
+        "notFound": "No Villages found"
+      },
+      "created": "एक नया Village [identifier: {{ param }}] तैयार है",
+      "updated": "एक Village [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Village [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Village [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Village"
+      },
+      "id": "ID",
+      "name": "Name",
+      "land": "Land",
+      "subDistrict": "Sub District"
+    }
+  }
+}

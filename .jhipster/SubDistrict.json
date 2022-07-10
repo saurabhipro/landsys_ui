@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20220710092055",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_sub_district",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SubDistrict",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "village",
+      "otherEntityRelationshipName": "subDistrict",
+      "relationshipName": "village",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "district",
+      "otherEntityRelationshipName": "subDistrict",
+      "relationshipName": "district",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceImpl"
+}

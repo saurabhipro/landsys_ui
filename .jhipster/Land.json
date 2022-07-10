@@ -1,0 +1,93 @@
+{
+  "applications": "*",
+  "changelogDate": "20220710092059",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_land",
+  "fields": [
+    {
+      "fieldName": "ulpin",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "khasraNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "area",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "landMarketValue",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "structuralValue",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "horticultureValue",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "forestValue",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "distanceFromCity",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "totalLandValue",
+      "fieldType": "Double"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Land",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "state",
+      "otherEntityRelationshipName": "land",
+      "ownerSide": true,
+      "relationshipName": "state",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "projectLand",
+      "otherEntityRelationshipName": "land",
+      "ownerSide": false,
+      "relationshipName": "projectLand",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "village",
+      "otherEntityRelationshipName": "land",
+      "relationshipName": "village",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "landType",
+      "otherEntityRelationshipName": "land",
+      "relationshipName": "landType",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "unit",
+      "otherEntityRelationshipName": "land",
+      "relationshipName": "unit",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

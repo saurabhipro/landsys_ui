@@ -1,0 +1,155 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-khatedar-heading" data-cy="KhatedarCreateUpdateHeading" jhiTranslate="jhipsterApp.khatedar.home.createOrEditLabel">
+        Create or edit a Khatedar
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.khatedar.caseFileNo" for="field_caseFileNo">Case File No</label>
+          <input
+            type="text"
+            class="form-control"
+            name="caseFileNo"
+            id="field_caseFileNo"
+            data-cy="caseFileNo"
+            formControlName="caseFileNo"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.khatedar.remarks" for="field_remarks">Remarks</label>
+          <input type="text" class="form-control" name="remarks" id="field_remarks" data-cy="remarks" formControlName="remarks" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.khatedar.noticeFile" for="field_noticeFile">Notice File</label>
+          <div>
+            <div *ngIf="editForm.get('noticeFile')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('noticeFile')!.value, editForm.get('noticeFileContentType')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('noticeFileContentType')!.value }}, {{ byteSize(editForm.get('noticeFile')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ noticeFile: null }); editForm.patchValue({ noticeFileContentType: null })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_noticeFile"
+              data-cy="noticeFile"
+              (change)="setFileData($event, 'noticeFile', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="noticeFile"
+            id="field_noticeFile"
+            data-cy="noticeFile"
+            formControlName="noticeFile"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="noticeFileContentType"
+            id="field_noticeFileContentType"
+            formControlName="noticeFileContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.khatedar.status" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'jhipsterApp.KhatedayStatus.null' | translate }}</option>
+            <option *ngFor="let khatedayStatus of khatedayStatusValues" [value]="khatedayStatus">
+              {{ 'jhipsterApp.KhatedayStatus.' + khatedayStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.khatedar.citizen" for="field_citizen">Citizen</label>
+          <select class="form-control" id="field_citizen" data-cy="citizen" name="citizen" formControlName="citizen">
+            <option *ngIf="!editForm.get('citizen')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="citizenOption.id === editForm.get('citizen')!.value?.id ? editForm.get('citizen')!.value : citizenOption"
+              *ngFor="let citizenOption of citizensSharedCollection; trackBy: trackCitizenById"
+            >
+              {{ citizenOption.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['citizen'])!.invalid && (editForm.get(['citizen'])!.dirty || editForm.get(['citizen'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['citizen'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.khatedar.projectLand" for="field_projectLand">Project Land</label>
+          <select class="form-control" id="field_projectLand" data-cy="projectLand" name="projectLand" formControlName="projectLand">
+            <option *ngIf="!editForm.get('projectLand')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                projectLandOption.id === editForm.get('projectLand')!.value?.id ? editForm.get('projectLand')!.value : projectLandOption
+              "
+              *ngFor="let projectLandOption of projectLandsSharedCollection; trackBy: trackProjectLandById"
+            >
+              {{ projectLandOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['projectLand'])!.invalid && (editForm.get(['projectLand'])!.dirty || editForm.get(['projectLand'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['projectLand'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

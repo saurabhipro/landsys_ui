@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "state": {
+      "home": {
+        "title": "States",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया State बनाएँ",
+        "createOrEditLabel": "State बनाएँ या संपादित करें",
+        "notFound": "No States found"
+      },
+      "created": "एक नया State [identifier: {{ param }}] तैयार है",
+      "updated": "एक State [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "State [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "State [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "State"
+      },
+      "id": "ID",
+      "name": "Name",
+      "district": "District",
+      "land": "Land"
+    }
+  }
+}

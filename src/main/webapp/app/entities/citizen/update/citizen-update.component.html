@@ -1,0 +1,322 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-citizen-heading" data-cy="CitizenCreateUpdateHeading" jhiTranslate="jhipsterApp.citizen.home.createOrEditLabel">
+        Create or edit a Citizen
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.citizen.photo" for="field_photo">Photo</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('photoContentType')!.value + ';base64,' + editForm.get('photo')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('photo')!.value"
+              alt="citizen image"
+            />
+            <div *ngIf="editForm.get('photo')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start">{{ editForm.get('photoContentType')!.value }}, {{ byteSize(editForm.get('photo')!.value) }}</span>
+              <button
+                type="button"
+                (click)="clearInputImage('photo', 'photoContentType', 'file_photo')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_photo"
+              data-cy="photo"
+              (change)="setFileData($event, 'photo', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="photo" id="field_photo" data-cy="photo" formControlName="photo" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="photoContentType"
+            id="field_photoContentType"
+            formControlName="photoContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.citizen.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.citizen.address" for="field_address">Address</label>
+          <input type="text" class="form-control" name="address" id="field_address" data-cy="address" formControlName="address" />
+          <div *ngIf="editForm.get('address')!.invalid && (editForm.get('address')!.dirty || editForm.get('address')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('address')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.citizen.accountNumber" for="field_accountNumber">Account Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="accountNumber"
+            id="field_accountNumber"
+            data-cy="accountNumber"
+            formControlName="accountNumber"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.citizen.fatherName" for="field_fatherName">Father Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="fatherName"
+            id="field_fatherName"
+            data-cy="fatherName"
+            formControlName="fatherName"
+          />
+          <div *ngIf="editForm.get('fatherName')!.invalid && (editForm.get('fatherName')!.dirty || editForm.get('fatherName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('fatherName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.citizen.spouseName" for="field_spouseName">Spouse Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="spouseName"
+            id="field_spouseName"
+            data-cy="spouseName"
+            formControlName="spouseName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.citizen.successorName" for="field_successorName">Successor Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="successorName"
+            id="field_successorName"
+            data-cy="successorName"
+            formControlName="successorName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.citizen.aadhar" for="field_aadhar">Aadhar</label>
+          <input type="text" class="form-control" name="aadhar" id="field_aadhar" data-cy="aadhar" formControlName="aadhar" />
+          <div *ngIf="editForm.get('aadhar')!.invalid && (editForm.get('aadhar')!.dirty || editForm.get('aadhar')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('aadhar')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.citizen.pan" for="field_pan">Pan</label>
+          <input type="text" class="form-control" name="pan" id="field_pan" data-cy="pan" formControlName="pan" />
+          <div *ngIf="editForm.get('pan')!.invalid && (editForm.get('pan')!.dirty || editForm.get('pan')!.touched)"></div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.citizen.aadharImage" for="field_aadharImage">Aadhar Image</label>
+          <div>
+            <div *ngIf="editForm.get('aadharImage')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('aadharImage')!.value, editForm.get('aadharImageContentType')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('aadharImageContentType')!.value }}, {{ byteSize(editForm.get('aadharImage')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ aadharImage: null }); editForm.patchValue({ aadharImageContentType: null })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_aadharImage"
+              data-cy="aadharImage"
+              (change)="setFileData($event, 'aadharImage', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="aadharImage"
+            id="field_aadharImage"
+            data-cy="aadharImage"
+            formControlName="aadharImage"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="aadharImageContentType"
+            id="field_aadharImageContentType"
+            formControlName="aadharImageContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.citizen.panImage" for="field_panImage">Pan Image</label>
+          <div>
+            <div *ngIf="editForm.get('panImage')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('panImage')!.value, editForm.get('panImageContentType')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('panImageContentType')!.value }}, {{ byteSize(editForm.get('panImage')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ panImage: null }); editForm.patchValue({ panImageContentType: null })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_panImage"
+              data-cy="panImage"
+              (change)="setFileData($event, 'panImage', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="panImage" id="field_panImage" data-cy="panImage" formControlName="panImage" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="panImageContentType"
+            id="field_panImageContentType"
+            formControlName="panImageContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.citizen.accountNo" for="field_accountNo">Account No</label>
+          <input type="text" class="form-control" name="accountNo" id="field_accountNo" data-cy="accountNo" formControlName="accountNo" />
+          <div *ngIf="editForm.get('accountNo')!.invalid && (editForm.get('accountNo')!.dirty || editForm.get('accountNo')!.touched)"></div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.citizen.accNoImage" for="field_accNoImage">Acc No Image</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('accNoImageContentType')!.value + ';base64,' + editForm.get('accNoImage')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('accNoImage')!.value"
+              alt="citizen image"
+            />
+            <div *ngIf="editForm.get('accNoImage')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('accNoImageContentType')!.value }}, {{ byteSize(editForm.get('accNoImage')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('accNoImage', 'accNoImageContentType', 'file_accNoImage')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_accNoImage"
+              data-cy="accNoImage"
+              (change)="setFileData($event, 'accNoImage', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="accNoImage"
+            id="field_accNoImage"
+            data-cy="accNoImage"
+            formControlName="accNoImage"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="accNoImageContentType"
+            id="field_accNoImageContentType"
+            formControlName="accNoImageContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.citizen.bankBranch" for="field_bankBranch">Bank Branch</label>
+          <select class="form-control" id="field_bankBranch" data-cy="bankBranch" name="bankBranch" formControlName="bankBranch">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                bankBranchOption.id === editForm.get('bankBranch')!.value?.id ? editForm.get('bankBranch')!.value : bankBranchOption
+              "
+              *ngFor="let bankBranchOption of bankBranchesSharedCollection; trackBy: trackBankBranchById"
+            >
+              {{ bankBranchOption.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

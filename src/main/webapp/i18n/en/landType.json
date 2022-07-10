@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "landType": {
+      "home": {
+        "title": "Land Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Land Type",
+        "createOrEditLabel": "Create or edit a Land Type",
+        "notFound": "No Land Types found"
+      },
+      "created": "A new Land Type is created with identifier {{ param }}",
+      "updated": "A Land Type is updated with identifier {{ param }}",
+      "deleted": "A Land Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Land Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Land Type"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "land": "Land"
+    }
+  }
+}

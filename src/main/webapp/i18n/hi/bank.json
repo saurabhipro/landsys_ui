@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "bank": {
+      "home": {
+        "title": "Banks",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Bank बनाएँ",
+        "createOrEditLabel": "Bank बनाएँ या संपादित करें",
+        "notFound": "No Banks found"
+      },
+      "created": "एक नया Bank [identifier: {{ param }}] तैयार है",
+      "updated": "एक Bank [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Bank [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Bank [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Bank"
+      },
+      "id": "ID",
+      "name": "Name",
+      "code": "Code",
+      "bankName": "Bank Name"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "applications": "*",
+  "changelogDate": "20220710092103",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_notification_template",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "templateText",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "defaultUse",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "file",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "NotificationTemplate",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

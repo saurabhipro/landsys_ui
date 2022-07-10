@@ -1,0 +1,46 @@
+{
+  "applications": "*",
+  "changelogDate": "20220710092106",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_bank_branch",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ifsc",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "BankBranch",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "citizen",
+      "otherEntityRelationshipName": "bankBranch",
+      "relationshipName": "citizen",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "bank",
+      "otherEntityRelationshipName": "bankName",
+      "relationshipName": "bank",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceImpl"
+}

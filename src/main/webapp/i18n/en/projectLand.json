@@ -1,0 +1,32 @@
+{
+  "jhipsterApp": {
+    "projectLand": {
+      "home": {
+        "title": "Project Lands",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Project Land",
+        "createOrEditLabel": "Create or edit a Project Land",
+        "notFound": "No Project Lands found"
+      },
+      "created": "A new Project Land is created with identifier {{ param }}",
+      "updated": "A Project Land is updated with identifier {{ param }}",
+      "deleted": "A Project Land is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Project Land {{ id }}?"
+      },
+      "detail": {
+        "title": "Project Land"
+      },
+      "id": "ID",
+      "remarks": "Remarks",
+      "documents": "Documents",
+      "hissaType": "Hissa Type",
+      "land": "Land",
+      "khatedar": "Khatedar",
+      "survey": "Survey",
+      "landCompensation": "Land Compensation",
+      "paymentAdvice": "Payment Advice",
+      "project": "Project"
+    }
+  }
+}

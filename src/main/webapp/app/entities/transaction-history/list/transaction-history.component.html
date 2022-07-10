@@ -1,0 +1,162 @@
+<div>
+  <h2 id="page-heading" data-cy="TransactionHistoryHeading">
+    <span jhiTranslate="jhipsterApp.transactionHistory.home.title">Transaction Histories</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterApp.transactionHistory.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-transaction-history"
+        [routerLink]="['/transaction-history/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterApp.transactionHistory.home.createLabel"> Create a new Transaction History </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="transactionHistories?.length === 0">
+    <span jhiTranslate="jhipsterApp.transactionHistory.home.notFound">No transactionHistories found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="transactionHistories && transactionHistories.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="projectName">
+            <span jhiTranslate="jhipsterApp.transactionHistory.projectName">Project Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="khasraNumber">
+            <span jhiTranslate="jhipsterApp.transactionHistory.khasraNumber">Khasra Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="state">
+            <span jhiTranslate="jhipsterApp.transactionHistory.state">State</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="citizenName">
+            <span jhiTranslate="jhipsterApp.transactionHistory.citizenName">Citizen Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="citizenAadhar">
+            <span jhiTranslate="jhipsterApp.transactionHistory.citizenAadhar">Citizen Aadhar</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="surveyerName">
+            <span jhiTranslate="jhipsterApp.transactionHistory.surveyerName">Surveyer Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="landValue">
+            <span jhiTranslate="jhipsterApp.transactionHistory.landValue">Land Value</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="paymentAmount">
+            <span jhiTranslate="jhipsterApp.transactionHistory.paymentAmount">Payment Amount</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="accountNumber">
+            <span jhiTranslate="jhipsterApp.transactionHistory.accountNumber">Account Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="bankName">
+            <span jhiTranslate="jhipsterApp.transactionHistory.bankName">Bank Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="transactionId">
+            <span jhiTranslate="jhipsterApp.transactionHistory.transactionId">Transaction Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="transactionType">
+            <span jhiTranslate="jhipsterApp.transactionHistory.transactionType">Transaction Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="eventType">
+            <span jhiTranslate="jhipsterApp.transactionHistory.eventType">Event Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="eventStatus">
+            <span jhiTranslate="jhipsterApp.transactionHistory.eventStatus">Event Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="approver1">
+            <span jhiTranslate="jhipsterApp.transactionHistory.approver1">Approver 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="approver2">
+            <span jhiTranslate="jhipsterApp.transactionHistory.approver2">Approver 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="approver3">
+            <span jhiTranslate="jhipsterApp.transactionHistory.approver3">Approver 3</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transactionHistory of transactionHistories; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/transaction-history', transactionHistory.id, 'view']">{{ transactionHistory.id }}</a>
+          </td>
+          <td>{{ transactionHistory.projectName }}</td>
+          <td>{{ transactionHistory.khasraNumber }}</td>
+          <td>{{ transactionHistory.state }}</td>
+          <td>{{ transactionHistory.citizenName }}</td>
+          <td>{{ transactionHistory.citizenAadhar }}</td>
+          <td>{{ transactionHistory.surveyerName }}</td>
+          <td>{{ transactionHistory.landValue }}</td>
+          <td>{{ transactionHistory.paymentAmount }}</td>
+          <td>{{ transactionHistory.accountNumber }}</td>
+          <td>{{ transactionHistory.bankName }}</td>
+          <td>{{ transactionHistory.transactionId }}</td>
+          <td>{{ transactionHistory.transactionType }}</td>
+          <td>{{ transactionHistory.eventType }}</td>
+          <td>{{ transactionHistory.eventStatus }}</td>
+          <td>{{ transactionHistory.approver1 }}</td>
+          <td>{{ transactionHistory.approver2 }}</td>
+          <td>{{ transactionHistory.approver3 }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/transaction-history', transactionHistory.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/transaction-history', transactionHistory.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(transactionHistory)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="transactionHistories && transactionHistories.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

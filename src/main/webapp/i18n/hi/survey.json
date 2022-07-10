@@ -1,0 +1,37 @@
+{
+  "jhipsterApp": {
+    "survey": {
+      "home": {
+        "title": "Surveys",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Survey बनाएँ",
+        "createOrEditLabel": "Survey बनाएँ या संपादित करें",
+        "notFound": "No Surveys found"
+      },
+      "created": "एक नया Survey [identifier: {{ param }}] तैयार है",
+      "updated": "एक Survey [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Survey [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Survey [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Survey"
+      },
+      "id": "ID",
+      "surveyor": "Surveyor",
+      "hissaType": "Hissa Type",
+      "sharePercentage": "Share Percentage",
+      "area": "Area",
+      "landMarketValue": "Land Market Value",
+      "structuralValue": "Structural Value",
+      "horticultureValue": "Horticulture Value",
+      "forestValue": "Forest Value",
+      "distanceFromCity": "Distance From City",
+      "remarks": "Remarks",
+      "status": "Status",
+      "landCompensation": "Land Compensation",
+      "khatedar": "Khatedar",
+      "projectLand": "Project Land"
+    }
+  }
+}

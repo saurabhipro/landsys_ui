@@ -1,0 +1,36 @@
+{
+  "jhipsterApp": {
+    "paymentAdvice": {
+      "home": {
+        "title": "Payment Advices",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Payment Advice",
+        "createOrEditLabel": "Create or edit a Payment Advice",
+        "notFound": "No Payment Advices found"
+      },
+      "created": "A new Payment Advice is created with identifier {{ param }}",
+      "updated": "A Payment Advice is updated with identifier {{ param }}",
+      "deleted": "A Payment Advice is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Payment Advice {{ id }}?"
+      },
+      "detail": {
+        "title": "Payment Advice"
+      },
+      "id": "ID",
+      "accountHolderName": "Account Holder Name",
+      "paymentAmount": "Payment Amount",
+      "bankName": "Bank Name",
+      "accountNumber": "Account Number",
+      "ifscCode": "Ifsc Code",
+      "checkNumber": "Check Number",
+      "micrCode": "Micr Code",
+      "paymentAdviceType": "Payment Advice Type",
+      "referenceNumber": "Reference Number",
+      "paymentStatus": "Payment Status",
+      "hisssaType": "Hisssa Type",
+      "landCompensation": "Land Compensation",
+      "projectLand": "Project Land"
+    }
+  }
+}

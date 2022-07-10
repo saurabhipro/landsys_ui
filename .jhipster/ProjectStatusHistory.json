@@ -1,0 +1,29 @@
+{
+  "applications": "*",
+  "changelogDate": "20220710092101",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_project_status_history",
+  "fields": [
+    {
+      "fieldName": "status",
+      "fieldType": "ProjectStatus",
+      "fieldValues": "NEW,INPROGRESS,COMPLETED"
+    },
+    {
+      "fieldName": "when",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "remarks",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ProjectStatusHistory",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

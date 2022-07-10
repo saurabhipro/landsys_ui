@@ -1,0 +1,37 @@
+{
+  "jhipsterApp": {
+    "land": {
+      "home": {
+        "title": "Lands",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Land बनाएँ",
+        "createOrEditLabel": "Land बनाएँ या संपादित करें",
+        "notFound": "No Lands found"
+      },
+      "created": "एक नया Land [identifier: {{ param }}] तैयार है",
+      "updated": "एक Land [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Land [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Land [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Land"
+      },
+      "id": "ID",
+      "ulpin": "Ulpin",
+      "khasraNumber": "Khasra Number",
+      "area": "Area",
+      "landMarketValue": "Land Market Value",
+      "structuralValue": "Structural Value",
+      "horticultureValue": "Horticulture Value",
+      "forestValue": "Forest Value",
+      "distanceFromCity": "Distance From City",
+      "totalLandValue": "Total Land Value",
+      "state": "State",
+      "projectLand": "Project Land",
+      "village": "Village",
+      "landType": "Land Type",
+      "unit": "Unit"
+    }
+  }
+}

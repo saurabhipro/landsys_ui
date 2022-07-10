@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="paymentAdvice">
+      <h2 data-cy="paymentAdviceDetailsHeading"><span jhiTranslate="jhipsterApp.paymentAdvice.detail.title">Payment Advice</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ paymentAdvice.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderName">Account Holder Name</span></dt>
+        <dd>
+          <span>{{ paymentAdvice.accountHolderName }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.paymentAmount">Payment Amount</span></dt>
+        <dd>
+          <span>{{ paymentAdvice.paymentAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.bankName">Bank Name</span></dt>
+        <dd>
+          <span>{{ paymentAdvice.bankName }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.accountNumber">Account Number</span></dt>
+        <dd>
+          <span>{{ paymentAdvice.accountNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.ifscCode">Ifsc Code</span></dt>
+        <dd>
+          <span>{{ paymentAdvice.ifscCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.checkNumber">Check Number</span></dt>
+        <dd>
+          <span>{{ paymentAdvice.checkNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.micrCode">Micr Code</span></dt>
+        <dd>
+          <span>{{ paymentAdvice.micrCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.paymentAdviceType">Payment Advice Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterApp.PaymentAdviceType.' + paymentAdvice.paymentAdviceType }}">{{
+            paymentAdvice.paymentAdviceType
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.referenceNumber">Reference Number</span></dt>
+        <dd>
+          <span>{{ paymentAdvice.referenceNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.paymentStatus">Payment Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + paymentAdvice.paymentStatus }}">{{ paymentAdvice.paymentStatus }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.hisssaType">Hisssa Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterApp.HissaType.' + paymentAdvice.hisssaType }}">{{ paymentAdvice.hisssaType }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.landCompensation">Land Compensation</span></dt>
+        <dd>
+          <div *ngIf="paymentAdvice.landCompensation">
+            <a [routerLink]="['/land-compensation', paymentAdvice.landCompensation?.id, 'view']">{{
+              paymentAdvice.landCompensation?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</span></dt>
+        <dd>
+          <div *ngIf="paymentAdvice.projectLand">
+            <a [routerLink]="['/project-land', paymentAdvice.projectLand?.id, 'view']">{{ paymentAdvice.projectLand?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/payment-advice', paymentAdvice.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

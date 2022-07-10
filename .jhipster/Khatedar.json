@@ -1,0 +1,62 @@
+{
+  "applications": "*",
+  "changelogDate": "20220710092108",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_khatedar",
+  "fields": [
+    {
+      "fieldName": "caseFileNo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "remarks",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "noticeFile",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "KhatedayStatus",
+      "fieldValues": "SURVEYCREATED,COMPENSATIONCREATED,AWARDGENERATED,PAYMENTDONE"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Khatedar",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "survey",
+      "otherEntityRelationshipName": "khatedar",
+      "relationshipName": "survey",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "landCompensation",
+      "otherEntityRelationshipName": "khatedar",
+      "relationshipName": "landCompensation",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "citizen",
+      "otherEntityRelationshipName": "khatedar",
+      "relationshipName": "citizen",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "projectLand",
+      "otherEntityRelationshipName": "khatedar",
+      "relationshipName": "projectLand",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceImpl"
+}

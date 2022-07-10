@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="project">
+      <h2 data-cy="projectDetailsHeading"><span jhiTranslate="jhipsterApp.project.detail.title">Project</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ project.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.project.name">Name</span></dt>
+        <dd>
+          <span>{{ project.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.project.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ project.startDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.project.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ project.endDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.project.budget">Budget</span></dt>
+        <dd>
+          <span>{{ project.budget }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.project.approver1">Approver 1</span></dt>
+        <dd>
+          <span>{{ project.approver1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.project.approver2">Approver 2</span></dt>
+        <dd>
+          <span>{{ project.approver2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.project.approver3">Approver 3</span></dt>
+        <dd>
+          <span>{{ project.approver3 }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/project', project.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

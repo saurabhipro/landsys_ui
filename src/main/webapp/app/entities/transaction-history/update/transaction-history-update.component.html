@@ -1,0 +1,263 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-transaction-history-heading"
+        data-cy="TransactionHistoryCreateUpdateHeading"
+        jhiTranslate="jhipsterApp.transactionHistory.home.createOrEditLabel"
+      >
+        Create or edit a Transaction History
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.projectName" for="field_projectName">Project Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="projectName"
+            id="field_projectName"
+            data-cy="projectName"
+            formControlName="projectName"
+          />
+          <div *ngIf="editForm.get('projectName')!.invalid && (editForm.get('projectName')!.dirty || editForm.get('projectName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('projectName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.khasraNumber" for="field_khasraNumber"
+            >Khasra Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="khasraNumber"
+            id="field_khasraNumber"
+            data-cy="khasraNumber"
+            formControlName="khasraNumber"
+          />
+          <div
+            *ngIf="editForm.get('khasraNumber')!.invalid && (editForm.get('khasraNumber')!.dirty || editForm.get('khasraNumber')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('khasraNumber')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.state" for="field_state">State</label>
+          <input type="text" class="form-control" name="state" id="field_state" data-cy="state" formControlName="state" />
+          <div *ngIf="editForm.get('state')!.invalid && (editForm.get('state')!.dirty || editForm.get('state')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('state')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.citizenName" for="field_citizenName">Citizen Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="citizenName"
+            id="field_citizenName"
+            data-cy="citizenName"
+            formControlName="citizenName"
+          />
+          <div *ngIf="editForm.get('citizenName')!.invalid && (editForm.get('citizenName')!.dirty || editForm.get('citizenName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('citizenName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.citizenAadhar" for="field_citizenAadhar"
+            >Citizen Aadhar</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="citizenAadhar"
+            id="field_citizenAadhar"
+            data-cy="citizenAadhar"
+            formControlName="citizenAadhar"
+          />
+          <div
+            *ngIf="
+              editForm.get('citizenAadhar')!.invalid && (editForm.get('citizenAadhar')!.dirty || editForm.get('citizenAadhar')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('citizenAadhar')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.surveyerName" for="field_surveyerName"
+            >Surveyer Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="surveyerName"
+            id="field_surveyerName"
+            data-cy="surveyerName"
+            formControlName="surveyerName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.landValue" for="field_landValue">Land Value</label>
+          <input type="text" class="form-control" name="landValue" id="field_landValue" data-cy="landValue" formControlName="landValue" />
+          <div *ngIf="editForm.get('landValue')!.invalid && (editForm.get('landValue')!.dirty || editForm.get('landValue')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('landValue')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.paymentAmount" for="field_paymentAmount"
+            >Payment Amount</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="paymentAmount"
+            id="field_paymentAmount"
+            data-cy="paymentAmount"
+            formControlName="paymentAmount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.accountNumber" for="field_accountNumber"
+            >Account Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="accountNumber"
+            id="field_accountNumber"
+            data-cy="accountNumber"
+            formControlName="accountNumber"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.bankName" for="field_bankName">Bank Name</label>
+          <input type="text" class="form-control" name="bankName" id="field_bankName" data-cy="bankName" formControlName="bankName" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.transactionId" for="field_transactionId"
+            >Transaction Id</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="transactionId"
+            id="field_transactionId"
+            data-cy="transactionId"
+            formControlName="transactionId"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.transactionType" for="field_transactionType"
+            >Transaction Type</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="transactionType"
+            id="field_transactionType"
+            data-cy="transactionType"
+            formControlName="transactionType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.eventType" for="field_eventType">Event Type</label>
+          <input type="text" class="form-control" name="eventType" id="field_eventType" data-cy="eventType" formControlName="eventType" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.eventStatus" for="field_eventStatus">Event Status</label>
+          <input
+            type="text"
+            class="form-control"
+            name="eventStatus"
+            id="field_eventStatus"
+            data-cy="eventStatus"
+            formControlName="eventStatus"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.approver1" for="field_approver1">Approver 1</label>
+          <input type="text" class="form-control" name="approver1" id="field_approver1" data-cy="approver1" formControlName="approver1" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.approver2" for="field_approver2">Approver 2</label>
+          <input type="text" class="form-control" name="approver2" id="field_approver2" data-cy="approver2" formControlName="approver2" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.approver3" for="field_approver3">Approver 3</label>
+          <input type="text" class="form-control" name="approver3" id="field_approver3" data-cy="approver3" formControlName="approver3" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

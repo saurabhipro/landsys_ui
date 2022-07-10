@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="land">
+      <h2 data-cy="landDetailsHeading"><span jhiTranslate="jhipsterApp.land.detail.title">Land</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ land.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.land.ulpin">Ulpin</span></dt>
+        <dd>
+          <span>{{ land.ulpin }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.land.khasraNumber">Khasra Number</span></dt>
+        <dd>
+          <span>{{ land.khasraNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.land.area">Area</span></dt>
+        <dd>
+          <span>{{ land.area }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.land.landMarketValue">Land Market Value</span></dt>
+        <dd>
+          <span>{{ land.landMarketValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.land.structuralValue">Structural Value</span></dt>
+        <dd>
+          <span>{{ land.structuralValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.land.horticultureValue">Horticulture Value</span></dt>
+        <dd>
+          <span>{{ land.horticultureValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.land.forestValue">Forest Value</span></dt>
+        <dd>
+          <span>{{ land.forestValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.land.distanceFromCity">Distance From City</span></dt>
+        <dd>
+          <span>{{ land.distanceFromCity }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.land.totalLandValue">Total Land Value</span></dt>
+        <dd>
+          <span>{{ land.totalLandValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.land.state">State</span></dt>
+        <dd>
+          <div *ngIf="land.state">
+            <a [routerLink]="['/state', land.state?.id, 'view']">{{ land.state?.name }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.land.village">Village</span></dt>
+        <dd>
+          <div *ngIf="land.village">
+            <a [routerLink]="['/village', land.village?.id, 'view']">{{ land.village?.name }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.land.landType">Land Type</span></dt>
+        <dd>
+          <div *ngIf="land.landType">
+            <a [routerLink]="['/land-type', land.landType?.id, 'view']">{{ land.landType?.name }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.land.unit">Unit</span></dt>
+        <dd>
+          <div *ngIf="land.unit">
+            <a [routerLink]="['/unit', land.unit?.id, 'view']">{{ land.unit?.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/land', land.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

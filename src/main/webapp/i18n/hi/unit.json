@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "unit": {
+      "home": {
+        "title": "Units",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Unit बनाएँ",
+        "createOrEditLabel": "Unit बनाएँ या संपादित करें",
+        "notFound": "No Units found"
+      },
+      "created": "एक नया Unit [identifier: {{ param }}] तैयार है",
+      "updated": "एक Unit [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Unit [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Unit [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Unit"
+      },
+      "id": "ID",
+      "name": "Name",
+      "conversionFactor": "Conversion Factor",
+      "land": "Land"
+    }
+  }
+}

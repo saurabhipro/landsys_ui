@@ -1,0 +1,84 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="survey">
+      <h2 data-cy="surveyDetailsHeading"><span jhiTranslate="jhipsterApp.survey.detail.title">Survey</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ survey.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.surveyor">Surveyor</span></dt>
+        <dd>
+          <span>{{ survey.surveyor }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.hissaType">Hissa Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterApp.HissaType.' + survey.hissaType }}">{{ survey.hissaType }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.sharePercentage">Share Percentage</span></dt>
+        <dd>
+          <span>{{ survey.sharePercentage }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.area">Area</span></dt>
+        <dd>
+          <span>{{ survey.area }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.landMarketValue">Land Market Value</span></dt>
+        <dd>
+          <span>{{ survey.landMarketValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.structuralValue">Structural Value</span></dt>
+        <dd>
+          <span>{{ survey.structuralValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.horticultureValue">Horticulture Value</span></dt>
+        <dd>
+          <span>{{ survey.horticultureValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.forestValue">Forest Value</span></dt>
+        <dd>
+          <span>{{ survey.forestValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.distanceFromCity">Distance From City</span></dt>
+        <dd>
+          <span>{{ survey.distanceFromCity }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.remarks">Remarks</span></dt>
+        <dd>
+          <span>{{ survey.remarks }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.status">Status</span></dt>
+        <dd>
+          <span>{{ survey.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.khatedar">Khatedar</span></dt>
+        <dd>
+          <div *ngIf="survey.khatedar">
+            <a [routerLink]="['/khatedar', survey.khatedar?.id, 'view']">{{ survey.khatedar?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.projectLand">Project Land</span></dt>
+        <dd>
+          <div *ngIf="survey.projectLand">
+            <a [routerLink]="['/project-land', survey.projectLand?.id, 'view']">{{ survey.projectLand?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/survey', survey.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

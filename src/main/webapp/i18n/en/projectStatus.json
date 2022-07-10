@@ -1,0 +1,10 @@
+{
+  "jhipsterApp": {
+    "ProjectStatus": {
+      "null": "",
+      "NEW": "NEW",
+      "INPROGRESS": "INPROGRESS",
+      "COMPLETED": "COMPLETED"
+    }
+  }
+}

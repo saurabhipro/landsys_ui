@@ -1,0 +1,98 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="transactionHistory">
+      <h2 data-cy="transactionHistoryDetailsHeading">
+        <span jhiTranslate="jhipsterApp.transactionHistory.detail.title">Transaction History</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ transactionHistory.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.projectName">Project Name</span></dt>
+        <dd>
+          <span>{{ transactionHistory.projectName }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.khasraNumber">Khasra Number</span></dt>
+        <dd>
+          <span>{{ transactionHistory.khasraNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.state">State</span></dt>
+        <dd>
+          <span>{{ transactionHistory.state }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.citizenName">Citizen Name</span></dt>
+        <dd>
+          <span>{{ transactionHistory.citizenName }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.citizenAadhar">Citizen Aadhar</span></dt>
+        <dd>
+          <span>{{ transactionHistory.citizenAadhar }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.surveyerName">Surveyer Name</span></dt>
+        <dd>
+          <span>{{ transactionHistory.surveyerName }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.landValue">Land Value</span></dt>
+        <dd>
+          <span>{{ transactionHistory.landValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.paymentAmount">Payment Amount</span></dt>
+        <dd>
+          <span>{{ transactionHistory.paymentAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.accountNumber">Account Number</span></dt>
+        <dd>
+          <span>{{ transactionHistory.accountNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.bankName">Bank Name</span></dt>
+        <dd>
+          <span>{{ transactionHistory.bankName }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.transactionId">Transaction Id</span></dt>
+        <dd>
+          <span>{{ transactionHistory.transactionId }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.transactionType">Transaction Type</span></dt>
+        <dd>
+          <span>{{ transactionHistory.transactionType }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.eventType">Event Type</span></dt>
+        <dd>
+          <span>{{ transactionHistory.eventType }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.eventStatus">Event Status</span></dt>
+        <dd>
+          <span>{{ transactionHistory.eventStatus }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.approver1">Approver 1</span></dt>
+        <dd>
+          <span>{{ transactionHistory.approver1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.approver2">Approver 2</span></dt>
+        <dd>
+          <span>{{ transactionHistory.approver2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.transactionHistory.approver3">Approver 3</span></dt>
+        <dd>
+          <span>{{ transactionHistory.approver3 }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/transaction-history', transactionHistory.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

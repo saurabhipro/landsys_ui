@@ -1,0 +1,106 @@
+{
+  "applications": "*",
+  "changelogDate": "20220710092109",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "land_compensation",
+  "fields": [
+    {
+      "fieldName": "hissaType",
+      "fieldType": "HissaType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SINGLE_OWNER (Single Owner),JOINT_OWNER (Joint Owner),DIVIDED (divided)"
+    },
+    {
+      "fieldName": "area",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sharePercentage",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "landMarketValue",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "structuralCompensation",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "horticultureCompensation",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "forestCompensation",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "solatiumMoney",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "additionalCompensation",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "orderDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "paymentDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "paymentAmount",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "transactionId",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "LandCompensation",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "paymentAdvice",
+      "otherEntityRelationshipName": "landCompensation",
+      "ownerSide": false,
+      "relationshipName": "paymentAdvice",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "khatedar",
+      "otherEntityRelationshipName": "landCompensation",
+      "relationshipName": "khatedar",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "survey",
+      "otherEntityRelationshipName": "landCompensation",
+      "relationshipName": "survey",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "projectLand",
+      "otherEntityRelationshipName": "landCompensation",
+      "relationshipName": "projectLand",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceImpl"
+}

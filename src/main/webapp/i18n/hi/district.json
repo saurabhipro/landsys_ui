@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "district": {
+      "home": {
+        "title": "Districts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया District बनाएँ",
+        "createOrEditLabel": "District बनाएँ या संपादित करें",
+        "notFound": "No Districts found"
+      },
+      "created": "एक नया District [identifier: {{ param }}] तैयार है",
+      "updated": "एक District [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "District [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "District [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "District"
+      },
+      "id": "ID",
+      "name": "Name",
+      "subDistrict": "Sub District",
+      "state": "State"
+    }
+  }
+}

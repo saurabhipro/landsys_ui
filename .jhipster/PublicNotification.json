@@ -1,0 +1,25 @@
+{
+  "applications": "*",
+  "changelogDate": "20220710092104",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_public_notification",
+  "fields": [
+    {
+      "fieldName": "date",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "file",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PublicNotification",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,33 @@
+{
+  "applications": "*",
+  "changelogDate": "20220710092105",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_bank",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Bank",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "bankBranch",
+      "otherEntityRelationshipName": "bank",
+      "relationshipName": "bankName",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

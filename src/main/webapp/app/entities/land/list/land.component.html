@@ -1,0 +1,146 @@
+<div>
+  <h2 id="page-heading" data-cy="LandHeading">
+    <span jhiTranslate="jhipsterApp.land.home.title">Lands</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterApp.land.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-land"
+        [routerLink]="['/land/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterApp.land.home.createLabel"> Create a new Land </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="lands?.length === 0">
+    <span jhiTranslate="jhipsterApp.land.home.notFound">No lands found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="lands && lands.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="ulpin"><span jhiTranslate="jhipsterApp.land.ulpin">Ulpin</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="khasraNumber">
+            <span jhiTranslate="jhipsterApp.land.khasraNumber">Khasra Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="area"><span jhiTranslate="jhipsterApp.land.area">Area</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="landMarketValue">
+            <span jhiTranslate="jhipsterApp.land.landMarketValue">Land Market Value</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="structuralValue">
+            <span jhiTranslate="jhipsterApp.land.structuralValue">Structural Value</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="horticultureValue">
+            <span jhiTranslate="jhipsterApp.land.horticultureValue">Horticulture Value</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="forestValue">
+            <span jhiTranslate="jhipsterApp.land.forestValue">Forest Value</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="distanceFromCity">
+            <span jhiTranslate="jhipsterApp.land.distanceFromCity">Distance From City</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="totalLandValue">
+            <span jhiTranslate="jhipsterApp.land.totalLandValue">Total Land Value</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="state.name">
+            <span jhiTranslate="jhipsterApp.land.state">State</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="village.name">
+            <span jhiTranslate="jhipsterApp.land.village">Village</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="landType.name">
+            <span jhiTranslate="jhipsterApp.land.landType">Land Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="unit.name"><span jhiTranslate="jhipsterApp.land.unit">Unit</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let land of lands; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/land', land.id, 'view']">{{ land.id }}</a>
+          </td>
+          <td>{{ land.ulpin }}</td>
+          <td>{{ land.khasraNumber }}</td>
+          <td>{{ land.area }}</td>
+          <td>{{ land.landMarketValue }}</td>
+          <td>{{ land.structuralValue }}</td>
+          <td>{{ land.horticultureValue }}</td>
+          <td>{{ land.forestValue }}</td>
+          <td>{{ land.distanceFromCity }}</td>
+          <td>{{ land.totalLandValue }}</td>
+          <td>
+            <div *ngIf="land.state">
+              <a [routerLink]="['/state', land.state?.id, 'view']">{{ land.state?.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="land.village">
+              <a [routerLink]="['/village', land.village?.id, 'view']">{{ land.village?.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="land.landType">
+              <a [routerLink]="['/land-type', land.landType?.id, 'view']">{{ land.landType?.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="land.unit">
+              <a [routerLink]="['/unit', land.unit?.id, 'view']">{{ land.unit?.name }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/land', land.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/land', land.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(land)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="lands && lands.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

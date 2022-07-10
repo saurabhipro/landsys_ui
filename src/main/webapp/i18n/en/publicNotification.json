@@ -1,0 +1,25 @@
+{
+  "jhipsterApp": {
+    "publicNotification": {
+      "home": {
+        "title": "Public Notifications",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Public Notification",
+        "createOrEditLabel": "Create or edit a Public Notification",
+        "notFound": "No Public Notifications found"
+      },
+      "created": "A new Public Notification is created with identifier {{ param }}",
+      "updated": "A Public Notification is updated with identifier {{ param }}",
+      "deleted": "A Public Notification is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Public Notification {{ id }}?"
+      },
+      "detail": {
+        "title": "Public Notification"
+      },
+      "id": "ID",
+      "date": "Date",
+      "file": "File"
+    }
+  }
+}

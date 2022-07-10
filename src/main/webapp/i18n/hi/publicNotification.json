@@ -1,0 +1,25 @@
+{
+  "jhipsterApp": {
+    "publicNotification": {
+      "home": {
+        "title": "PublicNotifications",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Public Notification बनाएँ",
+        "createOrEditLabel": "Public Notification बनाएँ या संपादित करें",
+        "notFound": "No Public Notifications found"
+      },
+      "created": "एक नया Public Notification [identifier: {{ param }}] तैयार है",
+      "updated": "एक Public Notification [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Public Notification [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Public Notification [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Public Notification"
+      },
+      "id": "ID",
+      "date": "Date",
+      "file": "File"
+    }
+  }
+}

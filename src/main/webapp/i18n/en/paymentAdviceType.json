@@ -1,0 +1,10 @@
+{
+  "jhipsterApp": {
+    "PaymentAdviceType": {
+      "null": "",
+      "ONLINE": "ONLINE",
+      "CHECQUE": "CHECQUE",
+      "OTHER": "OTHER"
+    }
+  }
+}

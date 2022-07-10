@@ -1,0 +1,90 @@
+{
+  "applications": "*",
+  "changelogDate": "20220710092113",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_transaction_history",
+  "fields": [
+    {
+      "fieldName": "projectName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "khasraNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "state",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "citizenName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "citizenAadhar",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "surveyerName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "landValue",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "paymentAmount",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "accountNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bankName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "transactionId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "transactionType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "eventType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "eventStatus",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "approver1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "approver2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "approver3",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "TransactionHistory",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

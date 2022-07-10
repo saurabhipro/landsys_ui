@@ -1,0 +1,40 @@
+{
+  "jhipsterApp": {
+    "transactionHistory": {
+      "home": {
+        "title": "Transaction Histories",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Transaction History",
+        "createOrEditLabel": "Create or edit a Transaction History",
+        "notFound": "No Transaction Histories found"
+      },
+      "created": "A new Transaction History is created with identifier {{ param }}",
+      "updated": "A Transaction History is updated with identifier {{ param }}",
+      "deleted": "A Transaction History is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Transaction History {{ id }}?"
+      },
+      "detail": {
+        "title": "Transaction History"
+      },
+      "id": "ID",
+      "projectName": "Project Name",
+      "khasraNumber": "Khasra Number",
+      "state": "State",
+      "citizenName": "Citizen Name",
+      "citizenAadhar": "Citizen Aadhar",
+      "surveyerName": "Surveyer Name",
+      "landValue": "Land Value",
+      "paymentAmount": "Payment Amount",
+      "accountNumber": "Account Number",
+      "bankName": "Bank Name",
+      "transactionId": "Transaction Id",
+      "transactionType": "Transaction Type",
+      "eventType": "Event Type",
+      "eventStatus": "Event Status",
+      "approver1": "Approver 1",
+      "approver2": "Approver 2",
+      "approver3": "Approver 3"
+    }
+  }
+}

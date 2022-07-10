@@ -1,0 +1,132 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-project-land-heading"
+        data-cy="ProjectLandCreateUpdateHeading"
+        jhiTranslate="jhipsterApp.projectLand.home.createOrEditLabel"
+      >
+        Create or edit a Project Land
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.projectLand.remarks" for="field_remarks">Remarks</label>
+          <input type="text" class="form-control" name="remarks" id="field_remarks" data-cy="remarks" formControlName="remarks" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.projectLand.documents" for="field_documents">Documents</label>
+          <div>
+            <div *ngIf="editForm.get('documents')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('documents')!.value, editForm.get('documentsContentType')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('documentsContentType')!.value }}, {{ byteSize(editForm.get('documents')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ documents: null }); editForm.patchValue({ documentsContentType: null })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_documents"
+              data-cy="documents"
+              (change)="setFileData($event, 'documents', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="documents" id="field_documents" data-cy="documents" formControlName="documents" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="documentsContentType"
+            id="field_documentsContentType"
+            formControlName="documentsContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.projectLand.hissaType" for="field_hissaType">Hissa Type</label>
+          <select class="form-control" name="hissaType" formControlName="hissaType" id="field_hissaType" data-cy="hissaType">
+            <option [ngValue]="null">{{ 'jhipsterApp.HissaType.null' | translate }}</option>
+            <option *ngFor="let hissaType of hissaTypeValues" [value]="hissaType">
+              {{ 'jhipsterApp.HissaType.' + hissaType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.projectLand.land" for="field_land">Land</label>
+          <select class="form-control" id="field_land" data-cy="land" name="land" formControlName="land">
+            <option *ngIf="editForm.get(['land'])!.value == null" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="landOption.id === editForm.get('land')!.value?.id ? editForm.get('land')!.value : landOption"
+              *ngFor="let landOption of landsCollection; trackBy: trackLandById"
+            >
+              {{ landOption.khasraNumber }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['land'])!.invalid && (editForm.get(['land'])!.dirty || editForm.get(['land'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['land'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.projectLand.project" for="field_project">Project</label>
+          <select class="form-control" id="field_project" data-cy="project" name="project" formControlName="project">
+            <option *ngIf="!editForm.get('project')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="projectOption.id === editForm.get('project')!.value?.id ? editForm.get('project')!.value : projectOption"
+              *ngFor="let projectOption of projectsSharedCollection; trackBy: trackProjectById"
+            >
+              {{ projectOption.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['project'])!.invalid && (editForm.get(['project'])!.dirty || editForm.get(['project'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['project'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

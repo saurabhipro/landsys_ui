@@ -1,0 +1,28 @@
+{
+  "jhipsterApp": {
+    "bankBranch": {
+      "home": {
+        "title": "BankBranches",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Bank Branch बनाएँ",
+        "createOrEditLabel": "Bank Branch बनाएँ या संपादित करें",
+        "notFound": "No Bank Branches found"
+      },
+      "created": "एक नया Bank Branch [identifier: {{ param }}] तैयार है",
+      "updated": "एक Bank Branch [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Bank Branch [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Bank Branch [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Bank Branch"
+      },
+      "id": "ID",
+      "name": "Name",
+      "ifsc": "Ifsc",
+      "address": "Address",
+      "citizen": "Citizen",
+      "bank": "Bank"
+    }
+  }
+}

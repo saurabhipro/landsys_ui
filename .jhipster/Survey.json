@@ -1,0 +1,86 @@
+{
+  "applications": "*",
+  "changelogDate": "20220710092111",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_survey",
+  "fields": [
+    {
+      "fieldName": "surveyor",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "hissaType",
+      "fieldType": "HissaType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SINGLE_OWNER (Single Owner),JOINT_OWNER (Joint Owner),DIVIDED (divided)"
+    },
+    {
+      "fieldName": "sharePercentage",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "area",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "landMarketValue",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "structuralValue",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "horticultureValue",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "forestValue",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "distanceFromCity",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "remarks",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Survey",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "landCompensation",
+      "otherEntityRelationshipName": "survey",
+      "relationshipName": "landCompensation",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "khatedar",
+      "otherEntityRelationshipName": "survey",
+      "relationshipName": "khatedar",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "projectLand",
+      "otherEntityRelationshipName": "survey",
+      "relationshipName": "projectLand",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,36 @@
+{
+  "jhipsterApp": {
+    "paymentAdvice": {
+      "home": {
+        "title": "PaymentAdvices",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Payment Advice बनाएँ",
+        "createOrEditLabel": "Payment Advice बनाएँ या संपादित करें",
+        "notFound": "No Payment Advices found"
+      },
+      "created": "एक नया Payment Advice [identifier: {{ param }}] तैयार है",
+      "updated": "एक Payment Advice [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Payment Advice [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Payment Advice [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Payment Advice"
+      },
+      "id": "ID",
+      "accountHolderName": "Account Holder Name",
+      "paymentAmount": "Payment Amount",
+      "bankName": "Bank Name",
+      "accountNumber": "Account Number",
+      "ifscCode": "Ifsc Code",
+      "checkNumber": "Check Number",
+      "micrCode": "Micr Code",
+      "paymentAdviceType": "Payment Advice Type",
+      "referenceNumber": "Reference Number",
+      "paymentStatus": "Payment Status",
+      "hisssaType": "Hisssa Type",
+      "landCompensation": "Land Compensation",
+      "projectLand": "Project Land"
+    }
+  }
+}

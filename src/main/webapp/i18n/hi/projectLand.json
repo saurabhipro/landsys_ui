@@ -1,0 +1,32 @@
+{
+  "jhipsterApp": {
+    "projectLand": {
+      "home": {
+        "title": "ProjectLands",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Project Land बनाएँ",
+        "createOrEditLabel": "Project Land बनाएँ या संपादित करें",
+        "notFound": "No Project Lands found"
+      },
+      "created": "एक नया Project Land [identifier: {{ param }}] तैयार है",
+      "updated": "एक Project Land [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Project Land [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Project Land [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Project Land"
+      },
+      "id": "ID",
+      "remarks": "Remarks",
+      "documents": "Documents",
+      "hissaType": "Hissa Type",
+      "land": "Land",
+      "khatedar": "Khatedar",
+      "survey": "Survey",
+      "landCompensation": "Land Compensation",
+      "paymentAdvice": "Payment Advice",
+      "project": "Project"
+    }
+  }
+}

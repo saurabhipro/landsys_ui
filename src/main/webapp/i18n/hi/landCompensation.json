@@ -1,0 +1,41 @@
+{
+  "jhipsterApp": {
+    "landCompensation": {
+      "home": {
+        "title": "LandCompensations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Land Compensation बनाएँ",
+        "createOrEditLabel": "Land Compensation बनाएँ या संपादित करें",
+        "notFound": "No Land Compensations found"
+      },
+      "created": "एक नया Land Compensation [identifier: {{ param }}] तैयार है",
+      "updated": "एक Land Compensation [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Land Compensation [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Land Compensation [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Land Compensation"
+      },
+      "id": "ID",
+      "hissaType": "Hissa Type",
+      "area": "Area",
+      "sharePercentage": "Share Percentage",
+      "landMarketValue": "Land Market Value",
+      "structuralCompensation": "Structural Compensation",
+      "horticultureCompensation": "Horticulture Compensation",
+      "forestCompensation": "Forest Compensation",
+      "solatiumMoney": "Solatium Money",
+      "additionalCompensation": "Additional Compensation",
+      "status": "Status",
+      "orderDate": "Order Date",
+      "paymentDate": "Payment Date",
+      "paymentAmount": "Payment Amount",
+      "transactionId": "Transaction Id",
+      "paymentAdvice": "Payment Advice",
+      "khatedar": "Khatedar",
+      "survey": "Survey",
+      "projectLand": "Project Land"
+    }
+  }
+}
