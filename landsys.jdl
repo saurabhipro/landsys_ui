@@ -218,6 +218,16 @@ entity PaymentAdvice(landsys_Payment_Advice) {
     hissaType HissaType required
 }
 
+
+entity PaymentFile(landsys_payment_file) {
+	paymentFileId               Double required
+    totalPaymentAmount          Double required
+	paymentFileDate           	LocalDate
+	paymentStatus	 			PaymentStatus required
+    bankName                    String
+    ifscCode                    String
+}
+
 entity PaymentFileRecon(landsys_payment_file_recon) {
 	primaryHolderName			String required
     paymentAmount               Double required
