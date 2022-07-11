@@ -299,12 +299,13 @@ relationship ManyToOne {
 	Land{unit(name) required} to  Unit{land(khasraNumber) required}
 	Land{LandType(name) required} to LandType{land(khasraNumber) required}
 	SubDistrict{district(name) required} to District{subDistrict required}
-	BankBranch{bank(name)} to Bank{bankName required}
-	State{district} to District{state(name) required}
-    Village{subDistrict(name)} to SubDistrict{village required}
- 	Citizen{bankBranch(name)}  to BankBranch{citizen required}
+	BankBranch{bank(name) required} to Bank{bankName required}
+	State{district required} to District{state(name) required}
+    Village{subDistrict(name) required} to SubDistrict{village required}
+ 	Citizen{bankBranch(name) required}  to BankBranch{citizen required}
 	Khatedar{noticeStatusInfo} to NoticeStatusInfo{khatedar required}
 	ProjectLand{noticeStatusInfo} to NoticeStatusInfo{projectLand required}
+    PaymentAdvice{paymentFile required} to PaymentFile{paymentAdvice required}
 }
 
 paginate * with pagination
