@@ -21,8 +21,7 @@
       "otherEntityName": "subDistrict",
       "otherEntityRelationshipName": "district",
       "relationshipName": "subDistrict",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
     },
     {
       "otherEntityField": "name",

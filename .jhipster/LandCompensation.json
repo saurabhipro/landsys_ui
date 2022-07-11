@@ -74,26 +74,28 @@
       "otherEntityName": "khatedar",
       "otherEntityRelationshipName": "landCompensation",
       "relationshipName": "khatedar",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "survey",
       "otherEntityRelationshipName": "landCompensation",
       "relationshipName": "survey",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "projectLand",
       "otherEntityRelationshipName": "landCompensation",
       "relationshipName": "projectLand",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "paymentAdvice",
       "otherEntityRelationshipName": "landCompensation",
       "relationshipName": "paymentAdvice",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

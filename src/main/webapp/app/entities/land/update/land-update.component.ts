@@ -40,9 +40,9 @@ export class LandUpdateComponent implements OnInit {
     distanceFromCity: [],
     totalLandValue: [],
     state: [],
-    village: [],
-    unit: [],
-    landType: [],
+    village: [null, Validators.required],
+    unit: [null, Validators.required],
+    landType: [null, Validators.required],
   });
 
   constructor(

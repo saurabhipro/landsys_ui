@@ -36,8 +36,8 @@ export class ProjectLandUpdateComponent implements OnInit {
     documents: [],
     documentsContentType: [],
     hissaType: [],
-    project: [],
-    land: [],
+    project: [null, Validators.required],
+    land: [null, Validators.required],
     noticeStatusInfo: [],
   });
 

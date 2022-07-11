@@ -74,14 +74,14 @@
       "otherEntityName": "projectLand",
       "otherEntityRelationshipName": "survey",
       "relationshipName": "projectLand",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "landCompensation",
       "otherEntityRelationshipName": "survey",
       "relationshipName": "landCompensation",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

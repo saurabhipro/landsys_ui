@@ -12,11 +12,11 @@ export interface IKhatedar {
   noticeFileContentType?: string | null;
   noticeFile?: string | null;
   status?: KhatedarStatus | null;
-  citizen?: ICitizen | null;
-  projectLand?: IProjectLand | null;
+  citizen?: ICitizen;
+  projectLand?: IProjectLand;
   noticeStatusInfo?: INoticeStatusInfo | null;
   survey?: ISurvey;
-  landCompensations?: ILandCompensation[];
+  landCompensations?: ILandCompensation[] | null;
 }
 
 export class Khatedar implements IKhatedar {
@@ -27,11 +27,11 @@ export class Khatedar implements IKhatedar {
     public noticeFileContentType?: string | null,
     public noticeFile?: string | null,
     public status?: KhatedarStatus | null,
-    public citizen?: ICitizen | null,
-    public projectLand?: IProjectLand | null,
+    public citizen?: ICitizen,
+    public projectLand?: IProjectLand,
     public noticeStatusInfo?: INoticeStatusInfo | null,
     public survey?: ISurvey,
-    public landCompensations?: ILandCompensation[]
+    public landCompensations?: ILandCompensation[] | null
   ) {}
 }
 

@@ -22,7 +22,8 @@
       "otherEntityName": "district",
       "otherEntityRelationshipName": "subDistrict",
       "relationshipName": "district",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "village",

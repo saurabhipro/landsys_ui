@@ -13,13 +13,13 @@ export interface IProjectLand {
   documentsContentType?: string | null;
   documents?: string | null;
   hissaType?: HissaType | null;
-  project?: IProject | null;
-  land?: ILand | null;
+  project?: IProject;
+  land?: ILand;
   noticeStatusInfo?: INoticeStatusInfo | null;
-  khatedars?: IKhatedar[];
-  surveys?: ISurvey[];
-  landCompensations?: ILandCompensation[];
-  paymentAdvices?: IPaymentAdvice[];
+  khatedars?: IKhatedar[] | null;
+  surveys?: ISurvey[] | null;
+  landCompensations?: ILandCompensation[] | null;
+  paymentAdvices?: IPaymentAdvice[] | null;
 }
 
 export class ProjectLand implements IProjectLand {
@@ -29,13 +29,13 @@ export class ProjectLand implements IProjectLand {
     public documentsContentType?: string | null,
     public documents?: string | null,
     public hissaType?: HissaType | null,
-    public project?: IProject | null,
-    public land?: ILand | null,
+    public project?: IProject,
+    public land?: ILand,
     public noticeStatusInfo?: INoticeStatusInfo | null,
-    public khatedars?: IKhatedar[],
-    public surveys?: ISurvey[],
-    public landCompensations?: ILandCompensation[],
-    public paymentAdvices?: IPaymentAdvice[]
+    public khatedars?: IKhatedar[] | null,
+    public surveys?: ISurvey[] | null,
+    public landCompensations?: ILandCompensation[] | null,
+    public paymentAdvices?: IPaymentAdvice[] | null
   ) {}
 }
 

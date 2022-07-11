@@ -48,8 +48,7 @@
       "otherEntityName": "projectLand",
       "otherEntityRelationshipName": "project",
       "relationshipName": "projectLand",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

@@ -18,8 +18,8 @@ export interface ISurvey {
   remarks?: string | null;
   status?: SurveyStatus | null;
   khatedar?: IKhatedar | null;
-  projectLand?: IProjectLand | null;
-  landCompensations?: ILandCompensation[];
+  projectLand?: IProjectLand;
+  landCompensations?: ILandCompensation[] | null;
 }
 
 export class Survey implements ISurvey {
@@ -37,8 +37,8 @@ export class Survey implements ISurvey {
     public remarks?: string | null,
     public status?: SurveyStatus | null,
     public khatedar?: IKhatedar | null,
-    public projectLand?: IProjectLand | null,
-    public landCompensations?: ILandCompensation[]
+    public projectLand?: IProjectLand,
+    public landCompensations?: ILandCompensation[] | null
   ) {}
 }
 

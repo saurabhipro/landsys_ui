@@ -16,10 +16,10 @@ export interface ILand {
   distanceFromCity?: string | null;
   totalLandValue?: number | null;
   state?: IState | null;
-  village?: IVillage | null;
-  unit?: IUnit | null;
-  landType?: ILandType | null;
-  projectLands?: IProjectLand[];
+  village?: IVillage;
+  unit?: IUnit;
+  landType?: ILandType;
+  projectLands?: IProjectLand[] | null;
 }
 
 export class Land implements ILand {
@@ -35,10 +35,10 @@ export class Land implements ILand {
     public distanceFromCity?: string | null,
     public totalLandValue?: number | null,
     public state?: IState | null,
-    public village?: IVillage | null,
-    public unit?: IUnit | null,
-    public landType?: ILandType | null,
-    public projectLands?: IProjectLand[]
+    public village?: IVillage,
+    public unit?: IUnit,
+    public landType?: ILandType,
+    public projectLands?: IProjectLand[] | null
   ) {}
 }
 

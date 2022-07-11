@@ -18,8 +18,8 @@ export interface IPaymentAdvice {
   referenceNumber?: string | null;
   paymentStatus?: PaymentStatus;
   hissaType?: HissaType;
-  projectLand?: IProjectLand | null;
-  landCompensation?: ILandCompensation | null;
+  projectLand?: IProjectLand;
+  landCompensation?: ILandCompensation;
   paymentFileRecon?: IPaymentFileRecon;
 }
 
@@ -37,8 +37,8 @@ export class PaymentAdvice implements IPaymentAdvice {
     public referenceNumber?: string | null,
     public paymentStatus?: PaymentStatus,
     public hissaType?: HissaType,
-    public projectLand?: IProjectLand | null,
-    public landCompensation?: ILandCompensation | null,
+    public projectLand?: IProjectLand,
+    public landCompensation?: ILandCompensation,
     public paymentFileRecon?: IPaymentFileRecon
   ) {}
 }

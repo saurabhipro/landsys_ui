@@ -37,8 +37,8 @@ export class KhatedarUpdateComponent implements OnInit {
     noticeFile: [],
     noticeFileContentType: [],
     status: [],
-    citizen: [],
-    projectLand: [],
+    citizen: [null, Validators.required],
+    projectLand: [null, Validators.required],
     noticeStatusInfo: [],
   });
 

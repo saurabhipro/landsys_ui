@@ -62,28 +62,30 @@
       "otherEntityName": "village",
       "otherEntityRelationshipName": "land",
       "relationshipName": "village",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityField": "name",
       "otherEntityName": "unit",
       "otherEntityRelationshipName": "land",
       "relationshipName": "unit",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityField": "name",
       "otherEntityName": "landType",
       "otherEntityRelationshipName": "land",
       "relationshipName": "landType",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "projectLand",
       "otherEntityRelationshipName": "land",
       "relationshipName": "projectLand",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

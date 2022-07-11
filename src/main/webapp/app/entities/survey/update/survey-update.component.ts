@@ -40,7 +40,7 @@ export class SurveyUpdateComponent implements OnInit {
     remarks: [],
     status: [],
     khatedar: [],
-    projectLand: [],
+    projectLand: [null, Validators.required],
   });
 
   constructor(

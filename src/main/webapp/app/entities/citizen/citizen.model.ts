@@ -21,7 +21,7 @@ export interface ICitizen {
   accNoImageContentType?: string | null;
   accNoImage?: string | null;
   bankBranch?: IBankBranch | null;
-  khatedars?: IKhatedar[];
+  khatedars?: IKhatedar[] | null;
 }
 
 export class Citizen implements ICitizen {
@@ -45,7 +45,7 @@ export class Citizen implements ICitizen {
     public accNoImageContentType?: string | null,
     public accNoImage?: string | null,
     public bankBranch?: IBankBranch | null,
-    public khatedars?: IKhatedar[]
+    public khatedars?: IKhatedar[] | null
   ) {}
 }
 

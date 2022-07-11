@@ -103,8 +103,8 @@ entity Citizen(landsys_citizen) {
     accountNo String unique
     accNoImage  ImageBlob
  }
- 
-enum KhatedarStatus {    
+
+enum KhatedarStatus {
     PENDING_FOR_SURVEY,
     SURVEY_CREATED,
     PENDING_FOR_COMPENSATION,
@@ -118,7 +118,7 @@ entity Khatedar(landsys_khatedar) {
     caseFileNo String
     remarks String
     noticeFile  AnyBlob
-    status KhatedarStatus 
+    status KhatedarStatus
 }
 
 
@@ -206,13 +206,13 @@ entity LandCompensation(land_Compensation) {
 
 entity PaymentAdvice(landsys_Payment_Advice) {
 	accountHolderName			String required
-    paymentAmount               Double required 
+    paymentAmount               Double required
 	bankName			 		String required
 	accountNumber				String required
 	ifscCode			 		String required
 	checkNumber			 		String
 	micrCode			 		String
-	paymentAdviceType			PaymentAdviceType 
+	paymentAdviceType			PaymentAdviceType
 	referenceNumber		     	String unique
 	paymentStatus	 			PaymentStatus required
     hissaType HissaType required
@@ -220,7 +220,7 @@ entity PaymentAdvice(landsys_Payment_Advice) {
 
 entity PaymentFileRecon(landsys_payment_file_recon) {
 	primaryHolderName			String required
-    paymentAmount               Double required 
+    paymentAmount               Double required
 	paymentDate              	LocalDate
 	utrNumber                  String required
 	referenceNumber		     	String unique
@@ -267,28 +267,28 @@ entity TransactionHistory(landsys_transaction_history)
     approver3 String
 }
 
-relationship OneToOne {	
-    Land{state(name)} to State{land(khasraNumber) required} 
+relationship OneToOne {
+    Land{state(name)} to State{land(khasraNumber) required}
 	Survey{khatedar} to Khatedar{survey required}
 	PaymentFileRecon{paymentAdvice} to PaymentAdvice{paymentFileRecon required}
 }
 
 
 relationship ManyToOne {
-    ProjectLand{project(name)} to Project{projectLand required}
-	ProjectLand{land(khasraNumber)} to Land{projectLand required}
-	Khatedar{citizen(name)} to Citizen{khatedar required}
-	Khatedar{projectLand} to ProjectLand{khatedar required}
-	Survey{projectLand} to ProjectLand{survey required}
-	LandCompensation{khatedar} to Khatedar{landCompensation required}
-	LandCompensation{survey} to  Survey{landCompensation required}
-	LandCompensation{projectLand} to  ProjectLand{landCompensation required}
-	PaymentAdvice{projectLand} to ProjectLand{paymentAdvice required} 
-	PaymentAdvice{landCompensation} to LandCompensation{paymentAdvice required}
-	Land{village(name)} to Village{land(khasraNumber) required}
-	Land{unit(name)} to  Unit{land(khasraNumber) required}
-	Land{LandType(name)} to LandType{land(khasraNumber) required}
-	SubDistrict{district(name)} to District{subDistrict required}
+    ProjectLand{project(name) required} to Project{projectLand }
+	ProjectLand{land(khasraNumber) required} to Land{projectLand }
+	Khatedar{citizen(name) required} to Citizen{khatedar}
+	Khatedar{projectLand required} to ProjectLand{khatedar}
+	Survey{projectLand required} to ProjectLand{survey}
+	LandCompensation{khatedar required} to Khatedar{landCompensation}
+	LandCompensation{survey required} to  Survey{landCompensation}
+	LandCompensation{projectLand required} to  ProjectLand{landCompensation}
+	PaymentAdvice{projectLand required} to ProjectLand{paymentAdvice}
+	PaymentAdvice{landCompensation required} to LandCompensation{paymentAdvice}
+	Land{village(name) required} to Village{land(khasraNumber)}
+	Land{unit(name) required} to  Unit{land(khasraNumber)}
+	Land{LandType(name) required} to LandType{land(khasraNumber)}
+	SubDistrict{district(name) required} to District{subDistrict}
 	BankBranch{bank(name)} to Bank{bankName required}
 	State{district} to District{state(name) required}
     Village{subDistrict(name)} to SubDistrict{village required}

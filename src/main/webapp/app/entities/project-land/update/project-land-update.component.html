@@ -74,7 +74,7 @@
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.projectLand.project" for="field_project">Project</label>
           <select class="form-control" id="field_project" data-cy="project" name="project" formControlName="project">
-            <option [ngValue]="null"></option>
+            <option *ngIf="!editForm.get('project')!.value" [ngValue]="null" selected></option>
             <option
               [ngValue]="projectOption.id === editForm.get('project')!.value?.id ? editForm.get('project')!.value : projectOption"
               *ngFor="let projectOption of projectsSharedCollection; trackBy: trackProjectById"
@@ -83,11 +83,20 @@
             </option>
           </select>
         </div>
+        <div *ngIf="editForm.get(['project'])!.invalid && (editForm.get(['project'])!.dirty || editForm.get(['project'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['project'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.projectLand.land" for="field_land">Land</label>
           <select class="form-control" id="field_land" data-cy="land" name="land" formControlName="land">
-            <option [ngValue]="null"></option>
+            <option *ngIf="!editForm.get('land')!.value" [ngValue]="null" selected></option>
             <option
               [ngValue]="landOption.id === editForm.get('land')!.value?.id ? editForm.get('land')!.value : landOption"
               *ngFor="let landOption of landsSharedCollection; trackBy: trackLandById"
@@ -95,6 +104,11 @@
               {{ landOption.khasraNumber }}
             </option>
           </select>
+        </div>
+        <div *ngIf="editForm.get(['land'])!.invalid && (editForm.get(['land'])!.dirty || editForm.get(['land'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['land'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
         </div>
 
         <div class="row mb-3">

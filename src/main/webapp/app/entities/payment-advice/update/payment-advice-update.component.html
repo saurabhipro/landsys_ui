@@ -236,7 +236,7 @@
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.projectLand" for="field_projectLand">Project Land</label>
           <select class="form-control" id="field_projectLand" data-cy="projectLand" name="projectLand" formControlName="projectLand">
-            <option [ngValue]="null"></option>
+            <option *ngIf="!editForm.get('projectLand')!.value" [ngValue]="null" selected></option>
             <option
               [ngValue]="
                 projectLandOption.id === editForm.get('projectLand')!.value?.id ? editForm.get('projectLand')!.value : projectLandOption
@@ -246,6 +246,17 @@
               {{ projectLandOption.id }}
             </option>
           </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['projectLand'])!.invalid && (editForm.get(['projectLand'])!.dirty || editForm.get(['projectLand'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['projectLand'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
         </div>
 
         <div class="row mb-3">
@@ -259,7 +270,7 @@
             name="landCompensation"
             formControlName="landCompensation"
           >
-            <option [ngValue]="null"></option>
+            <option *ngIf="!editForm.get('landCompensation')!.value" [ngValue]="null" selected></option>
             <option
               [ngValue]="
                 landCompensationOption.id === editForm.get('landCompensation')!.value?.id
@@ -271,6 +282,20 @@
               {{ landCompensationOption.id }}
             </option>
           </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['landCompensation'])!.invalid &&
+            (editForm.get(['landCompensation'])!.dirty || editForm.get(['landCompensation'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['landCompensation'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
         </div>
       </div>
 

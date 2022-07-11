@@ -85,8 +85,7 @@
       "otherEntityName": "khatedar",
       "otherEntityRelationshipName": "citizen",
       "relationshipName": "khatedar",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

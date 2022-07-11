@@ -21,10 +21,10 @@ export interface ILandCompensation {
   orderDate?: dayjs.Dayjs | null;
   paymentAmount?: number | null;
   transactionId?: string | null;
-  khatedar?: IKhatedar | null;
-  survey?: ISurvey | null;
-  projectLand?: IProjectLand | null;
-  paymentAdvices?: IPaymentAdvice[];
+  khatedar?: IKhatedar;
+  survey?: ISurvey;
+  projectLand?: IProjectLand;
+  paymentAdvices?: IPaymentAdvice[] | null;
 }
 
 export class LandCompensation implements ILandCompensation {
@@ -43,10 +43,10 @@ export class LandCompensation implements ILandCompensation {
     public orderDate?: dayjs.Dayjs | null,
     public paymentAmount?: number | null,
     public transactionId?: string | null,
-    public khatedar?: IKhatedar | null,
-    public survey?: ISurvey | null,
-    public projectLand?: IProjectLand | null,
-    public paymentAdvices?: IPaymentAdvice[]
+    public khatedar?: IKhatedar,
+    public survey?: ISurvey,
+    public projectLand?: IProjectLand,
+    public paymentAdvices?: IPaymentAdvice[] | null
   ) {}
 }
 

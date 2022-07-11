@@ -41,8 +41,8 @@ export class PaymentAdviceUpdateComponent implements OnInit {
     referenceNumber: [null, []],
     paymentStatus: [null, [Validators.required]],
     hissaType: [null, [Validators.required]],
-    projectLand: [],
-    landCompensation: [],
+    projectLand: [null, Validators.required],
+    landCompensation: [null, Validators.required],
   });
 
   constructor(

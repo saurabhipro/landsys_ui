@@ -44,9 +44,9 @@ export class LandCompensationUpdateComponent implements OnInit {
     orderDate: [],
     paymentAmount: [],
     transactionId: [],
-    khatedar: [],
-    survey: [],
-    projectLand: [],
+    khatedar: [null, Validators.required],
+    survey: [null, Validators.required],
+    projectLand: [null, Validators.required],
   });
 
   constructor(

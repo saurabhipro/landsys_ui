@@ -31,14 +31,16 @@
       "otherEntityName": "project",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "project",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityField": "khasraNumber",
       "otherEntityName": "land",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "land",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "noticeStatusInfo",
@@ -50,29 +52,25 @@
       "otherEntityName": "khatedar",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "khatedar",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
     },
     {
       "otherEntityName": "survey",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "survey",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
     },
     {
       "otherEntityName": "landCompensation",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "landCompensation",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
     },
     {
       "otherEntityName": "paymentAdvice",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "paymentAdvice",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

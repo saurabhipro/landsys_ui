@@ -35,13 +35,15 @@
       "otherEntityName": "citizen",
       "otherEntityRelationshipName": "khatedar",
       "relationshipName": "citizen",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "projectLand",
       "otherEntityRelationshipName": "khatedar",
       "relationshipName": "projectLand",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "noticeStatusInfo",
@@ -61,8 +63,7 @@
       "otherEntityName": "landCompensation",
       "otherEntityRelationshipName": "khatedar",
       "relationshipName": "landCompensation",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

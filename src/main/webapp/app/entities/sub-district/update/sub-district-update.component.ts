@@ -22,7 +22,7 @@ export class SubDistrictUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
-    district: [],
+    district: [null, Validators.required],
   });
 
   constructor(

@@ -71,13 +71,15 @@
       "otherEntityName": "projectLand",
       "otherEntityRelationshipName": "paymentAdvice",
       "relationshipName": "projectLand",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "landCompensation",
       "otherEntityRelationshipName": "paymentAdvice",
       "relationshipName": "landCompensation",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "paymentFileRecon",

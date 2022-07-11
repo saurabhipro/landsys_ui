@@ -27,8 +27,7 @@
       "otherEntityName": "land",
       "otherEntityRelationshipName": "unit",
       "relationshipName": "land",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"
