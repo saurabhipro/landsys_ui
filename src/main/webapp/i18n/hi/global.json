@@ -25,11 +25,10 @@
         "khatedar": "Khatedar",
         "landCompensation": "Land Compensation",
         "paymentAdvice": "Payment Advice",
-        "survey": "Survey",
-        "noticeStatus": "Notice Status",
-        "transactionHistory": "Transaction History",
         "paymentFileRecon": "Payment File Recon",
+        "survey": "Survey",
         "noticeStatusInfo": "Notice Status Info",
+        "transactionHistory": "Transaction History",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

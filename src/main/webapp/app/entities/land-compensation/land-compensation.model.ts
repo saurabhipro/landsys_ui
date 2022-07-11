@@ -24,7 +24,7 @@ export interface ILandCompensation {
   khatedar?: IKhatedar;
   survey?: ISurvey;
   projectLand?: IProjectLand;
-  paymentAdvices?: IPaymentAdvice[] | null;
+  paymentAdvices?: IPaymentAdvice[];
 }
 
 export class LandCompensation implements ILandCompensation {
@@ -46,7 +46,7 @@ export class LandCompensation implements ILandCompensation {
     public khatedar?: IKhatedar,
     public survey?: ISurvey,
     public projectLand?: IProjectLand,
-    public paymentAdvices?: IPaymentAdvice[] | null
+    public paymentAdvices?: IPaymentAdvice[]
   ) {}
 }
 

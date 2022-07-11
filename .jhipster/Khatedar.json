@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220710092108",
+  "changelogDate": "20220711181318",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_khatedar",
@@ -63,7 +63,8 @@
       "otherEntityName": "landCompensation",
       "otherEntityRelationshipName": "khatedar",
       "relationshipName": "landCompensation",
-      "relationshipType": "one-to-many"
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
     }
   ],
   "service": "serviceImpl"

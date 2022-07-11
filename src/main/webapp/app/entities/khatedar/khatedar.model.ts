@@ -16,7 +16,7 @@ export interface IKhatedar {
   projectLand?: IProjectLand;
   noticeStatusInfo?: INoticeStatusInfo | null;
   survey?: ISurvey;
-  landCompensations?: ILandCompensation[] | null;
+  landCompensations?: ILandCompensation[];
 }
 
 export class Khatedar implements IKhatedar {
@@ -31,7 +31,7 @@ export class Khatedar implements IKhatedar {
     public projectLand?: IProjectLand,
     public noticeStatusInfo?: INoticeStatusInfo | null,
     public survey?: ISurvey,
-    public landCompensations?: ILandCompensation[] | null
+    public landCompensations?: ILandCompensation[]
   ) {}
 }
 

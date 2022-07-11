@@ -19,7 +19,7 @@ export interface ILand {
   village?: IVillage;
   unit?: IUnit;
   landType?: ILandType;
-  projectLands?: IProjectLand[] | null;
+  projectLands?: IProjectLand[];
 }
 
 export class Land implements ILand {
@@ -38,7 +38,7 @@ export class Land implements ILand {
     public village?: IVillage,
     public unit?: IUnit,
     public landType?: ILandType,
-    public projectLands?: IProjectLand[] | null
+    public projectLands?: IProjectLand[]
   ) {}
 }
 

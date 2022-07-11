@@ -95,29 +95,24 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./payment-advice/payment-advice.module').then(m => m.PaymentAdviceModule),
       },
       {
-        path: 'survey',
-        data: { pageTitle: 'jhipsterApp.survey.home.title' },
-        loadChildren: () => import('./survey/survey.module').then(m => m.SurveyModule),
-      },
-      {
-        path: 'notice-status',
-        data: { pageTitle: 'jhipsterApp.noticeStatus.home.title' },
-        loadChildren: () => import('./notice-status/notice-status.module').then(m => m.NoticeStatusModule),
-      },
-      {
-        path: 'transaction-history',
-        data: { pageTitle: 'jhipsterApp.transactionHistory.home.title' },
-        loadChildren: () => import('./transaction-history/transaction-history.module').then(m => m.TransactionHistoryModule),
-      },
-      {
         path: 'payment-file-recon',
         data: { pageTitle: 'jhipsterApp.paymentFileRecon.home.title' },
         loadChildren: () => import('./payment-file-recon/payment-file-recon.module').then(m => m.PaymentFileReconModule),
       },
       {
+        path: 'survey',
+        data: { pageTitle: 'jhipsterApp.survey.home.title' },
+        loadChildren: () => import('./survey/survey.module').then(m => m.SurveyModule),
+      },
+      {
         path: 'notice-status-info',
         data: { pageTitle: 'jhipsterApp.noticeStatusInfo.home.title' },
         loadChildren: () => import('./notice-status-info/notice-status-info.module').then(m => m.NoticeStatusInfoModule),
+      },
+      {
+        path: 'transaction-history',
+        data: { pageTitle: 'jhipsterApp.transactionHistory.home.title' },
+        loadChildren: () => import('./transaction-history/transaction-history.module').then(m => m.TransactionHistoryModule),
       },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),

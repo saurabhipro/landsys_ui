@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220710092054",
+  "changelogDate": "20220711181304",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_district",
@@ -21,7 +21,8 @@
       "otherEntityName": "subDistrict",
       "otherEntityRelationshipName": "district",
       "relationshipName": "subDistrict",
-      "relationshipType": "one-to-many"
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityField": "name",

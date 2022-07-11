@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220710092111",
+  "changelogDate": "20220711181322",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_survey",
@@ -81,7 +81,8 @@
       "otherEntityName": "landCompensation",
       "otherEntityRelationshipName": "survey",
       "relationshipName": "landCompensation",
-      "relationshipType": "one-to-many"
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
     }
   ],
   "service": "serviceImpl"

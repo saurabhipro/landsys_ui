@@ -16,10 +16,10 @@ export interface IProjectLand {
   project?: IProject;
   land?: ILand;
   noticeStatusInfo?: INoticeStatusInfo | null;
-  khatedars?: IKhatedar[] | null;
-  surveys?: ISurvey[] | null;
-  landCompensations?: ILandCompensation[] | null;
-  paymentAdvices?: IPaymentAdvice[] | null;
+  khatedars?: IKhatedar[];
+  surveys?: ISurvey[];
+  landCompensations?: ILandCompensation[];
+  paymentAdvices?: IPaymentAdvice[];
 }
 
 export class ProjectLand implements IProjectLand {
@@ -32,10 +32,10 @@ export class ProjectLand implements IProjectLand {
     public project?: IProject,
     public land?: ILand,
     public noticeStatusInfo?: INoticeStatusInfo | null,
-    public khatedars?: IKhatedar[] | null,
-    public surveys?: ISurvey[] | null,
-    public landCompensations?: ILandCompensation[] | null,
-    public paymentAdvices?: IPaymentAdvice[] | null
+    public khatedars?: IKhatedar[],
+    public surveys?: ISurvey[],
+    public landCompensations?: ILandCompensation[],
+    public paymentAdvices?: IPaymentAdvice[]
   ) {}
 }
 

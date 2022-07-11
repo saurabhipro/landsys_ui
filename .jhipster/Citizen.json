@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220710092107",
+  "changelogDate": "20220711181317",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_citizen",
@@ -85,7 +85,8 @@
       "otherEntityName": "khatedar",
       "otherEntityRelationshipName": "citizen",
       "relationshipName": "khatedar",
-      "relationshipType": "one-to-many"
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
     }
   ],
   "service": "serviceImpl"

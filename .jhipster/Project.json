@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220710092100",
+  "changelogDate": "20220711181310",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_project",
@@ -48,7 +48,8 @@
       "otherEntityName": "projectLand",
       "otherEntityRelationshipName": "project",
       "relationshipName": "projectLand",
-      "relationshipType": "one-to-many"
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
     }
   ],
   "service": "serviceImpl"

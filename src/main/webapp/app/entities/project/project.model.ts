@@ -10,7 +10,7 @@ export interface IProject {
   approver1?: string | null;
   approver2?: string | null;
   approver3?: string | null;
-  projectLands?: IProjectLand[] | null;
+  projectLands?: IProjectLand[];
 }
 
 export class Project implements IProject {
@@ -23,7 +23,7 @@ export class Project implements IProject {
     public approver1?: string | null,
     public approver2?: string | null,
     public approver3?: string | null,
-    public projectLands?: IProjectLand[] | null
+    public projectLands?: IProjectLand[]
   ) {}
 }
 

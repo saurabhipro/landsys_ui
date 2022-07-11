@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220710092106",
+  "changelogDate": "20220711181316",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_bank_branch",
