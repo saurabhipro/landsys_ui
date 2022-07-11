@@ -61,8 +61,8 @@
             <a [routerLink]="['/project', project.id, 'view']">{{ project.id }}</a>
           </td>
           <td>{{ project.name }}</td>
-          <td>{{ project.startDate | formatMediumDatetime }}</td>
-          <td>{{ project.endDate | formatMediumDatetime }}</td>
+          <td>{{ project.startDate | formatMediumDate }}</td>
+          <td>{{ project.endDate | formatMediumDate }}</td>
           <td>{{ project.budget }}</td>
           <td>{{ project.approver1 }}</td>
           <td>{{ project.approver2 }}</td>

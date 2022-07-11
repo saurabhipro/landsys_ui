@@ -5,9 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
-import dayjs from 'dayjs/esm';
-import { DATE_TIME_FORMAT } from 'app/config/input.constants';
-
 import { ILandCompensation, LandCompensation } from '../land-compensation.model';
 import { LandCompensationService } from '../service/land-compensation.service';
 import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
@@ -17,6 +14,7 @@ import { SurveyService } from 'app/entities/survey/service/survey.service';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
+import { CompensationStatus } from 'app/entities/enumerations/compensation-status.model';
 
 @Component({
   selector: 'jhi-land-compensation-update',
@@ -25,6 +23,7 @@ import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 export class LandCompensationUpdateComponent implements OnInit {
   isSaving = false;
   hissaTypeValues = Object.keys(HissaType);
+  compensationStatusValues = Object.keys(CompensationStatus);
 
   khatedarsSharedCollection: IKhatedar[] = [];
   surveysSharedCollection: ISurvey[] = [];
@@ -43,12 +42,11 @@ export class LandCompensationUpdateComponent implements OnInit {
     additionalCompensation: [],
     status: [],
     orderDate: [],
-    paymentDate: [],
     paymentAmount: [],
     transactionId: [],
     khatedar: [],
-    survey: [null, Validators.required],
-    projectLand: [null, Validators.required],
+    survey: [],
+    projectLand: [],
   });
 
   constructor(
@@ -62,12 +60,6 @@ export class LandCompensationUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ landCompensation }) => {
-      if (landCompensation.id === undefined) {
-        const today = dayjs().startOf('day');
-        landCompensation.orderDate = today;
-        landCompensation.paymentDate = today;
-      }
-
       this.updateForm(landCompensation);
 
       this.loadRelationshipsOptions();
@@ -132,8 +124,7 @@ export class LandCompensationUpdateComponent implements OnInit {
       solatiumMoney: landCompensation.solatiumMoney,
       additionalCompensation: landCompensation.additionalCompensation,
       status: landCompensation.status,
-      orderDate: landCompensation.orderDate ? landCompensation.orderDate.format(DATE_TIME_FORMAT) : null,
-      paymentDate: landCompensation.paymentDate ? landCompensation.paymentDate.format(DATE_TIME_FORMAT) : null,
+      orderDate: landCompensation.orderDate,
       paymentAmount: landCompensation.paymentAmount,
       transactionId: landCompensation.transactionId,
       khatedar: landCompensation.khatedar,
@@ -194,10 +185,7 @@ export class LandCompensationUpdateComponent implements OnInit {
       solatiumMoney: this.editForm.get(['solatiumMoney'])!.value,
       additionalCompensation: this.editForm.get(['additionalCompensation'])!.value,
       status: this.editForm.get(['status'])!.value,
-      orderDate: this.editForm.get(['orderDate'])!.value ? dayjs(this.editForm.get(['orderDate'])!.value, DATE_TIME_FORMAT) : undefined,
-      paymentDate: this.editForm.get(['paymentDate'])!.value
-        ? dayjs(this.editForm.get(['paymentDate'])!.value, DATE_TIME_FORMAT)
-        : undefined,
+      orderDate: this.editForm.get(['orderDate'])!.value,
       paymentAmount: this.editForm.get(['paymentAmount'])!.value,
       transactionId: this.editForm.get(['transactionId'])!.value,
       khatedar: this.editForm.get(['khatedar'])!.value,

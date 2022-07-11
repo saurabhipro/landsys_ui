@@ -1,3 +1,5 @@
+import { EventStatus } from 'app/entities/enumerations/event-status.model';
+
 export interface ITransactionHistory {
   id?: number;
   projectName?: string;
@@ -13,7 +15,7 @@ export interface ITransactionHistory {
   transactionId?: string | null;
   transactionType?: string | null;
   eventType?: string | null;
-  eventStatus?: string | null;
+  eventStatus?: EventStatus | null;
   approver1?: string | null;
   approver2?: string | null;
   approver3?: string | null;
@@ -35,7 +37,7 @@ export class TransactionHistory implements ITransactionHistory {
     public transactionId?: string | null,
     public transactionType?: string | null,
     public eventType?: string | null,
-    public eventStatus?: string | null,
+    public eventStatus?: EventStatus | null,
     public approver1?: string | null,
     public approver2?: string | null,
     public approver3?: string | null

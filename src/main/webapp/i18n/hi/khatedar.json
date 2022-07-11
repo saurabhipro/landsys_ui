@@ -22,10 +22,11 @@
       "remarks": "Remarks",
       "noticeFile": "Notice File",
       "status": "Status",
-      "survey": "Survey",
-      "landCompensation": "Land Compensation",
       "citizen": "Citizen",
-      "projectLand": "Project Land"
+      "projectLand": "Project Land",
+      "noticeStatusInfo": "Notice Status Info",
+      "survey": "Survey",
+      "landCompensation": "Land Compensation"
     }
   }
 }

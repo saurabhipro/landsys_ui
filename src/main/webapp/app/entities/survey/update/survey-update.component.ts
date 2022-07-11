@@ -12,6 +12,7 @@ import { KhatedarService } from 'app/entities/khatedar/service/khatedar.service'
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
+import { SurveyStatus } from 'app/entities/enumerations/survey-status.model';
 
 @Component({
   selector: 'jhi-survey-update',
@@ -20,8 +21,9 @@ import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 export class SurveyUpdateComponent implements OnInit {
   isSaving = false;
   hissaTypeValues = Object.keys(HissaType);
+  surveyStatusValues = Object.keys(SurveyStatus);
 
-  khatedarsSharedCollection: IKhatedar[] = [];
+  khatedarsCollection: IKhatedar[] = [];
   projectLandsSharedCollection: IProjectLand[] = [];
 
   editForm = this.fb.group({
@@ -37,7 +39,7 @@ export class SurveyUpdateComponent implements OnInit {
     distanceFromCity: [],
     remarks: [],
     status: [],
-    khatedar: [null, Validators.required],
+    khatedar: [],
     projectLand: [],
   });
 
@@ -116,7 +118,7 @@ export class SurveyUpdateComponent implements OnInit {
       projectLand: survey.projectLand,
     });
 
-    this.khatedarsSharedCollection = this.khatedarService.addKhatedarToCollectionIfMissing(this.khatedarsSharedCollection, survey.khatedar);
+    this.khatedarsCollection = this.khatedarService.addKhatedarToCollectionIfMissing(this.khatedarsCollection, survey.khatedar);
     this.projectLandsSharedCollection = this.projectLandService.addProjectLandToCollectionIfMissing(
       this.projectLandsSharedCollection,
       survey.projectLand
@@ -125,14 +127,14 @@ export class SurveyUpdateComponent implements OnInit {
 
   protected loadRelationshipsOptions(): void {
     this.khatedarService
-      .query()
+      .query({ 'surveyId.specified': 'false' })
       .pipe(map((res: HttpResponse<IKhatedar[]>) => res.body ?? []))
       .pipe(
         map((khatedars: IKhatedar[]) =>
           this.khatedarService.addKhatedarToCollectionIfMissing(khatedars, this.editForm.get('khatedar')!.value)
         )
       )
-      .subscribe((khatedars: IKhatedar[]) => (this.khatedarsSharedCollection = khatedars));
+      .subscribe((khatedars: IKhatedar[]) => (this.khatedarsCollection = khatedars));
 
     this.projectLandService
       .query()

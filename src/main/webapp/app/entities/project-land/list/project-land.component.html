@@ -42,11 +42,14 @@
           <th scope="col" jhiSortBy="hissaType">
             <span jhiTranslate="jhipsterApp.projectLand.hissaType">Hissa Type</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="project.name">
+            <span jhiTranslate="jhipsterApp.projectLand.project">Project</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="land.khasraNumber">
             <span jhiTranslate="jhipsterApp.projectLand.land">Land</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="project.name">
-            <span jhiTranslate="jhipsterApp.projectLand.project">Project</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="noticeStatusInfo.id">
+            <span jhiTranslate="jhipsterApp.projectLand.noticeStatusInfo">Notice Status Info</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -68,13 +71,18 @@
           </td>
           <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + projectLand.hissaType }}">{{ projectLand.hissaType }}</td>
           <td>
+            <div *ngIf="projectLand.project">
+              <a [routerLink]="['/project', projectLand.project?.id, 'view']">{{ projectLand.project?.name }}</a>
+            </div>
+          </td>
+          <td>
             <div *ngIf="projectLand.land">
               <a [routerLink]="['/land', projectLand.land?.id, 'view']">{{ projectLand.land?.khasraNumber }}</a>
             </div>
           </td>
           <td>
-            <div *ngIf="projectLand.project">
-              <a [routerLink]="['/project', projectLand.project?.id, 'view']">{{ projectLand.project?.name }}</a>
+            <div *ngIf="projectLand.noticeStatusInfo">
+              <a [routerLink]="['/notice-status-info', projectLand.noticeStatusInfo?.id, 'view']">{{ projectLand.noticeStatusInfo?.id }}</a>
             </div>
           </td>
           <td class="text-end">

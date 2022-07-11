@@ -28,6 +28,8 @@
         "survey": "Survey",
         "noticeStatus": "Notice Status",
         "transactionHistory": "Transaction History",
+        "paymentFileRecon": "Payment File Recon",
+        "noticeStatusInfo": "Notice Status Info",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

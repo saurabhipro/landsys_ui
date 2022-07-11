@@ -7,10 +7,10 @@ import { finalize, map } from 'rxjs/operators';
 
 import { IPaymentAdvice, PaymentAdvice } from '../payment-advice.model';
 import { PaymentAdviceService } from '../service/payment-advice.service';
-import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
-import { LandCompensationService } from 'app/entities/land-compensation/service/land-compensation.service';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
+import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
+import { LandCompensationService } from 'app/entities/land-compensation/service/land-compensation.service';
 import { PaymentAdviceType } from 'app/entities/enumerations/payment-advice-type.model';
 import { PaymentStatus } from 'app/entities/enumerations/payment-status.model';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
@@ -25,8 +25,8 @@ export class PaymentAdviceUpdateComponent implements OnInit {
   paymentStatusValues = Object.keys(PaymentStatus);
   hissaTypeValues = Object.keys(HissaType);
 
-  landCompensationsCollection: ILandCompensation[] = [];
   projectLandsSharedCollection: IProjectLand[] = [];
+  landCompensationsSharedCollection: ILandCompensation[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -40,15 +40,15 @@ export class PaymentAdviceUpdateComponent implements OnInit {
     paymentAdviceType: [],
     referenceNumber: [null, []],
     paymentStatus: [null, [Validators.required]],
-    hisssaType: [null, [Validators.required]],
-    landCompensation: [null, Validators.required],
-    projectLand: [null, Validators.required],
+    hissaType: [null, [Validators.required]],
+    projectLand: [],
+    landCompensation: [],
   });
 
   constructor(
     protected paymentAdviceService: PaymentAdviceService,
-    protected landCompensationService: LandCompensationService,
     protected projectLandService: ProjectLandService,
+    protected landCompensationService: LandCompensationService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -75,11 +75,11 @@ export class PaymentAdviceUpdateComponent implements OnInit {
     }
   }
 
-  trackLandCompensationById(_index: number, item: ILandCompensation): number {
+  trackProjectLandById(_index: number, item: IProjectLand): number {
     return item.id!;
   }
 
-  trackProjectLandById(_index: number, item: IProjectLand): number {
+  trackLandCompensationById(_index: number, item: ILandCompensation): number {
     return item.id!;
   }
 
@@ -115,35 +115,22 @@ export class PaymentAdviceUpdateComponent implements OnInit {
       paymentAdviceType: paymentAdvice.paymentAdviceType,
       referenceNumber: paymentAdvice.referenceNumber,
       paymentStatus: paymentAdvice.paymentStatus,
-      hisssaType: paymentAdvice.hisssaType,
-      landCompensation: paymentAdvice.landCompensation,
+      hissaType: paymentAdvice.hissaType,
       projectLand: paymentAdvice.projectLand,
+      landCompensation: paymentAdvice.landCompensation,
     });
 
-    this.landCompensationsCollection = this.landCompensationService.addLandCompensationToCollectionIfMissing(
-      this.landCompensationsCollection,
-      paymentAdvice.landCompensation
-    );
     this.projectLandsSharedCollection = this.projectLandService.addProjectLandToCollectionIfMissing(
       this.projectLandsSharedCollection,
       paymentAdvice.projectLand
     );
+    this.landCompensationsSharedCollection = this.landCompensationService.addLandCompensationToCollectionIfMissing(
+      this.landCompensationsSharedCollection,
+      paymentAdvice.landCompensation
+    );
   }
 
   protected loadRelationshipsOptions(): void {
-    this.landCompensationService
-      .query({ 'paymentAdviceId.specified': 'false' })
-      .pipe(map((res: HttpResponse<ILandCompensation[]>) => res.body ?? []))
-      .pipe(
-        map((landCompensations: ILandCompensation[]) =>
-          this.landCompensationService.addLandCompensationToCollectionIfMissing(
-            landCompensations,
-            this.editForm.get('landCompensation')!.value
-          )
-        )
-      )
-      .subscribe((landCompensations: ILandCompensation[]) => (this.landCompensationsCollection = landCompensations));
-
     this.projectLandService
       .query()
       .pipe(map((res: HttpResponse<IProjectLand[]>) => res.body ?? []))
@@ -153,6 +140,19 @@ export class PaymentAdviceUpdateComponent implements OnInit {
         )
       )
       .subscribe((projectLands: IProjectLand[]) => (this.projectLandsSharedCollection = projectLands));
+
+    this.landCompensationService
+      .query()
+      .pipe(map((res: HttpResponse<ILandCompensation[]>) => res.body ?? []))
+      .pipe(
+        map((landCompensations: ILandCompensation[]) =>
+          this.landCompensationService.addLandCompensationToCollectionIfMissing(
+            landCompensations,
+            this.editForm.get('landCompensation')!.value
+          )
+        )
+      )
+      .subscribe((landCompensations: ILandCompensation[]) => (this.landCompensationsSharedCollection = landCompensations));
   }
 
   protected createFromForm(): IPaymentAdvice {
@@ -169,9 +169,9 @@ export class PaymentAdviceUpdateComponent implements OnInit {
       paymentAdviceType: this.editForm.get(['paymentAdviceType'])!.value,
       referenceNumber: this.editForm.get(['referenceNumber'])!.value,
       paymentStatus: this.editForm.get(['paymentStatus'])!.value,
-      hisssaType: this.editForm.get(['hisssaType'])!.value,
-      landCompensation: this.editForm.get(['landCompensation'])!.value,
+      hissaType: this.editForm.get(['hissaType'])!.value,
       projectLand: this.editForm.get(['projectLand'])!.value,
+      landCompensation: this.editForm.get(['landCompensation'])!.value,
     };
   }
 }

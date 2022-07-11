@@ -20,8 +20,8 @@
     },
     {
       "fieldName": "status",
-      "fieldType": "KhatedayStatus",
-      "fieldValues": "SURVEYCREATED,COMPENSATIONCREATED,AWARDGENERATED,PAYMENTDONE"
+      "fieldType": "KhatedarStatus",
+      "fieldValues": "PENDING_FOR_SURVEY,SURVEY_CREATED,PENDING_FOR_COMPENSATION,COMPENSATION_CREATED,PENDING_FOR_PAYMENT,PAYMENT_DONE,CLOSED"
     }
   ],
   "fluentMethods": true,
@@ -31,30 +31,37 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "survey",
-      "otherEntityRelationshipName": "khatedar",
-      "relationshipName": "survey",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityName": "landCompensation",
-      "otherEntityRelationshipName": "khatedar",
-      "relationshipName": "landCompensation",
-      "relationshipType": "one-to-many"
-    },
-    {
       "otherEntityField": "name",
       "otherEntityName": "citizen",
       "otherEntityRelationshipName": "khatedar",
       "relationshipName": "citizen",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": "required"
+      "relationshipType": "many-to-one"
     },
     {
       "otherEntityName": "projectLand",
       "otherEntityRelationshipName": "khatedar",
       "relationshipName": "projectLand",
-      "relationshipType": "many-to-one",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "noticeStatusInfo",
+      "otherEntityRelationshipName": "khatedar",
+      "relationshipName": "noticeStatusInfo",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "survey",
+      "otherEntityRelationshipName": "khatedar",
+      "ownerSide": false,
+      "relationshipName": "survey",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "landCompensation",
+      "otherEntityRelationshipName": "khatedar",
+      "relationshipName": "landCompensation",
+      "relationshipType": "one-to-many",
       "relationshipValidateRules": "required"
     }
   ],

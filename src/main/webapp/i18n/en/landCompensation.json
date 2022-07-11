@@ -29,13 +29,12 @@
       "additionalCompensation": "Additional Compensation",
       "status": "Status",
       "orderDate": "Order Date",
-      "paymentDate": "Payment Date",
       "paymentAmount": "Payment Amount",
       "transactionId": "Transaction Id",
-      "paymentAdvice": "Payment Advice",
       "khatedar": "Khatedar",
       "survey": "Survey",
-      "projectLand": "Project Land"
+      "projectLand": "Project Land",
+      "paymentAdvice": "Payment Advice"
     }
   }
 }

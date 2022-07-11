@@ -18,17 +18,17 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "village",
-      "otherEntityRelationshipName": "subDistrict",
-      "relationshipName": "village",
-      "relationshipType": "one-to-many"
-    },
-    {
       "otherEntityField": "name",
       "otherEntityName": "district",
       "otherEntityRelationshipName": "subDistrict",
       "relationshipName": "district",
-      "relationshipType": "many-to-one",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "village",
+      "otherEntityRelationshipName": "subDistrict",
+      "relationshipName": "village",
+      "relationshipType": "one-to-many",
       "relationshipValidateRules": "required"
     }
   ],

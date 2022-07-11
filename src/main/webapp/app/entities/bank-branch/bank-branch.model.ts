@@ -1,13 +1,13 @@
-import { ICitizen } from 'app/entities/citizen/citizen.model';
 import { IBank } from 'app/entities/bank/bank.model';
+import { ICitizen } from 'app/entities/citizen/citizen.model';
 
 export interface IBankBranch {
   id?: number;
   name?: string;
   ifsc?: string;
   address?: string;
-  citizens?: ICitizen[] | null;
-  bank?: IBank;
+  bank?: IBank | null;
+  citizens?: ICitizen[];
 }
 
 export class BankBranch implements IBankBranch {
@@ -16,8 +16,8 @@ export class BankBranch implements IBankBranch {
     public name?: string,
     public ifsc?: string,
     public address?: string,
-    public citizens?: ICitizen[] | null,
-    public bank?: IBank
+    public bank?: IBank | null,
+    public citizens?: ICitizen[]
   ) {}
 }
 

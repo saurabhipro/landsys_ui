@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import dayjs from 'dayjs/esm';
 
-import { DATE_TIME_FORMAT } from 'app/config/input.constants';
+import { DATE_FORMAT } from 'app/config/input.constants';
 import { ProjectStatus } from 'app/entities/enumerations/project-status.model';
 import { IProjectStatusHistory, ProjectStatusHistory } from '../project-status-history.model';
 
@@ -36,7 +36,7 @@ describe('ProjectStatusHistory Service', () => {
     it('should find an element', () => {
       const returnedFromService = Object.assign(
         {
-          when: currentDate.format(DATE_TIME_FORMAT),
+          when: currentDate.format(DATE_FORMAT),
         },
         elemDefault
       );
@@ -52,7 +52,7 @@ describe('ProjectStatusHistory Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 0,
-          when: currentDate.format(DATE_TIME_FORMAT),
+          when: currentDate.format(DATE_FORMAT),
         },
         elemDefault
       );
@@ -76,7 +76,7 @@ describe('ProjectStatusHistory Service', () => {
         {
           id: 1,
           status: 'BBBBBB',
-          when: currentDate.format(DATE_TIME_FORMAT),
+          when: currentDate.format(DATE_FORMAT),
           remarks: 'BBBBBB',
         },
         elemDefault
@@ -99,7 +99,7 @@ describe('ProjectStatusHistory Service', () => {
     it('should partial update a ProjectStatusHistory', () => {
       const patchObject = Object.assign(
         {
-          when: currentDate.format(DATE_TIME_FORMAT),
+          when: currentDate.format(DATE_FORMAT),
           remarks: 'BBBBBB',
         },
         new ProjectStatusHistory()
@@ -126,7 +126,7 @@ describe('ProjectStatusHistory Service', () => {
         {
           id: 1,
           status: 'BBBBBB',
-          when: currentDate.format(DATE_TIME_FORMAT),
+          when: currentDate.format(DATE_FORMAT),
           remarks: 'BBBBBB',
         },
         elemDefault

@@ -30,7 +30,7 @@
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.subDistrict.district" for="field_district">District</label>
           <select class="form-control" id="field_district" data-cy="district" name="district" formControlName="district">
-            <option *ngIf="!editForm.get('district')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="null"></option>
             <option
               [ngValue]="districtOption.id === editForm.get('district')!.value?.id ? editForm.get('district')!.value : districtOption"
               *ngFor="let districtOption of districtsSharedCollection; trackBy: trackDistrictById"
@@ -38,15 +38,6 @@
               {{ districtOption.name }}
             </option>
           </select>
-        </div>
-        <div *ngIf="editForm.get(['district'])!.invalid && (editForm.get(['district'])!.dirty || editForm.get(['district'])!.touched)">
-          <small
-            class="form-text text-danger"
-            *ngIf="editForm.get(['district'])?.errors?.required"
-            jhiTranslate="entity.validation.required"
-          >
-            This field is required.
-          </small>
         </div>
       </div>
 

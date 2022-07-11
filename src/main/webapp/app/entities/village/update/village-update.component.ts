@@ -22,7 +22,7 @@ export class VillageUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
-    subDistrict: [null, Validators.required],
+    subDistrict: [],
   });
 
   constructor(

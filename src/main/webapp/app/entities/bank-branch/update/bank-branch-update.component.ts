@@ -24,7 +24,7 @@ export class BankBranchUpdateComponent implements OnInit {
     name: [null, [Validators.required]],
     ifsc: [null, [Validators.required]],
     address: [null, [Validators.required]],
-    bank: [null, Validators.required],
+    bank: [],
   });
 
   constructor(

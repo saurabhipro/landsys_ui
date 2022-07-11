@@ -47,7 +47,7 @@
           <td>
             <a [routerLink]="['/public-notification', publicNotification.id, 'view']">{{ publicNotification.id }}</a>
           </td>
-          <td>{{ publicNotification.date | formatMediumDatetime }}</td>
+          <td>{{ publicNotification.date | formatMediumDate }}</td>
           <td>
             <a
               *ngIf="publicNotification.file"

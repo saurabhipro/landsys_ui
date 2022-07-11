@@ -10,10 +10,12 @@ import { ProjectLandService } from '../service/project-land.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
 import { EventManager, EventWithContent } from 'app/core/util/event-manager.service';
 import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
-import { ILand } from 'app/entities/land/land.model';
-import { LandService } from 'app/entities/land/service/land.service';
 import { IProject } from 'app/entities/project/project.model';
 import { ProjectService } from 'app/entities/project/service/project.service';
+import { ILand } from 'app/entities/land/land.model';
+import { LandService } from 'app/entities/land/service/land.service';
+import { INoticeStatusInfo } from 'app/entities/notice-status-info/notice-status-info.model';
+import { NoticeStatusInfoService } from 'app/entities/notice-status-info/service/notice-status-info.service';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 
 @Component({
@@ -24,8 +26,9 @@ export class ProjectLandUpdateComponent implements OnInit {
   isSaving = false;
   hissaTypeValues = Object.keys(HissaType);
 
-  landsCollection: ILand[] = [];
   projectsSharedCollection: IProject[] = [];
+  landsSharedCollection: ILand[] = [];
+  noticeStatusInfosSharedCollection: INoticeStatusInfo[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -33,16 +36,18 @@ export class ProjectLandUpdateComponent implements OnInit {
     documents: [],
     documentsContentType: [],
     hissaType: [],
-    land: [null, Validators.required],
-    project: [null, Validators.required],
+    project: [],
+    land: [],
+    noticeStatusInfo: [],
   });
 
   constructor(
     protected dataUtils: DataUtils,
     protected eventManager: EventManager,
     protected projectLandService: ProjectLandService,
-    protected landService: LandService,
     protected projectService: ProjectService,
+    protected landService: LandService,
+    protected noticeStatusInfoService: NoticeStatusInfoService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -84,11 +89,15 @@ export class ProjectLandUpdateComponent implements OnInit {
     }
   }
 
+  trackProjectById(_index: number, item: IProject): number {
+    return item.id!;
+  }
+
   trackLandById(_index: number, item: ILand): number {
     return item.id!;
   }
 
-  trackProjectById(_index: number, item: IProject): number {
+  trackNoticeStatusInfoById(_index: number, item: INoticeStatusInfo): number {
     return item.id!;
   }
 
@@ -118,21 +127,20 @@ export class ProjectLandUpdateComponent implements OnInit {
       documents: projectLand.documents,
       documentsContentType: projectLand.documentsContentType,
       hissaType: projectLand.hissaType,
-      land: projectLand.land,
       project: projectLand.project,
+      land: projectLand.land,
+      noticeStatusInfo: projectLand.noticeStatusInfo,
     });
 
-    this.landsCollection = this.landService.addLandToCollectionIfMissing(this.landsCollection, projectLand.land);
     this.projectsSharedCollection = this.projectService.addProjectToCollectionIfMissing(this.projectsSharedCollection, projectLand.project);
+    this.landsSharedCollection = this.landService.addLandToCollectionIfMissing(this.landsSharedCollection, projectLand.land);
+    this.noticeStatusInfosSharedCollection = this.noticeStatusInfoService.addNoticeStatusInfoToCollectionIfMissing(
+      this.noticeStatusInfosSharedCollection,
+      projectLand.noticeStatusInfo
+    );
   }
 
   protected loadRelationshipsOptions(): void {
-    this.landService
-      .query({ filter: 'projectland-is-null' })
-      .pipe(map((res: HttpResponse<ILand[]>) => res.body ?? []))
-      .pipe(map((lands: ILand[]) => this.landService.addLandToCollectionIfMissing(lands, this.editForm.get('land')!.value)))
-      .subscribe((lands: ILand[]) => (this.landsCollection = lands));
-
     this.projectService
       .query()
       .pipe(map((res: HttpResponse<IProject[]>) => res.body ?? []))
@@ -140,6 +148,25 @@ export class ProjectLandUpdateComponent implements OnInit {
         map((projects: IProject[]) => this.projectService.addProjectToCollectionIfMissing(projects, this.editForm.get('project')!.value))
       )
       .subscribe((projects: IProject[]) => (this.projectsSharedCollection = projects));
+
+    this.landService
+      .query()
+      .pipe(map((res: HttpResponse<ILand[]>) => res.body ?? []))
+      .pipe(map((lands: ILand[]) => this.landService.addLandToCollectionIfMissing(lands, this.editForm.get('land')!.value)))
+      .subscribe((lands: ILand[]) => (this.landsSharedCollection = lands));
+
+    this.noticeStatusInfoService
+      .query()
+      .pipe(map((res: HttpResponse<INoticeStatusInfo[]>) => res.body ?? []))
+      .pipe(
+        map((noticeStatusInfos: INoticeStatusInfo[]) =>
+          this.noticeStatusInfoService.addNoticeStatusInfoToCollectionIfMissing(
+            noticeStatusInfos,
+            this.editForm.get('noticeStatusInfo')!.value
+          )
+        )
+      )
+      .subscribe((noticeStatusInfos: INoticeStatusInfo[]) => (this.noticeStatusInfosSharedCollection = noticeStatusInfos));
   }
 
   protected createFromForm(): IProjectLand {
@@ -150,8 +177,9 @@ export class ProjectLandUpdateComponent implements OnInit {
       documentsContentType: this.editForm.get(['documentsContentType'])!.value,
       documents: this.editForm.get(['documents'])!.value,
       hissaType: this.editForm.get(['hissaType'])!.value,
-      land: this.editForm.get(['land'])!.value,
       project: this.editForm.get(['project'])!.value,
+      land: this.editForm.get(['land'])!.value,
+      noticeStatusInfo: this.editForm.get(['noticeStatusInfo'])!.value,
     };
   }
 }

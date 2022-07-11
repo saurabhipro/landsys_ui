@@ -88,7 +88,7 @@
           <td>{{ survey.forestValue }}</td>
           <td>{{ survey.distanceFromCity }}</td>
           <td>{{ survey.remarks }}</td>
-          <td>{{ survey.status }}</td>
+          <td jhiTranslate="{{ 'jhipsterApp.SurveyStatus.' + survey.status }}">{{ survey.status }}</td>
           <td>
             <div *ngIf="survey.khatedar">
               <a [routerLink]="['/khatedar', survey.khatedar?.id, 'view']">{{ survey.khatedar?.id }}</a>

@@ -4,11 +4,11 @@ export interface IBank {
   id?: number;
   name?: string;
   code?: string;
-  bankNames?: IBankBranch[] | null;
+  bankNames?: IBankBranch[];
 }
 
 export class Bank implements IBank {
-  constructor(public id?: number, public name?: string, public code?: string, public bankNames?: IBankBranch[] | null) {}
+  constructor(public id?: number, public name?: string, public code?: string, public bankNames?: IBankBranch[]) {}
 }
 
 export function getBankIdentifier(bank: IBank): number | undefined {

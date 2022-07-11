@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import dayjs from 'dayjs/esm';
 
 import { isPresent } from 'app/core/util/operators';
+import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { ILandCompensation, getLandCompensationIdentifier } from '../land-compensation.model';
@@ -84,15 +85,13 @@ export class LandCompensationService {
 
   protected convertDateFromClient(landCompensation: ILandCompensation): ILandCompensation {
     return Object.assign({}, landCompensation, {
-      orderDate: landCompensation.orderDate?.isValid() ? landCompensation.orderDate.toJSON() : undefined,
-      paymentDate: landCompensation.paymentDate?.isValid() ? landCompensation.paymentDate.toJSON() : undefined,
+      orderDate: landCompensation.orderDate?.isValid() ? landCompensation.orderDate.format(DATE_FORMAT) : undefined,
     });
   }
 
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
     if (res.body) {
       res.body.orderDate = res.body.orderDate ? dayjs(res.body.orderDate) : undefined;
-      res.body.paymentDate = res.body.paymentDate ? dayjs(res.body.paymentDate) : undefined;
     }
     return res;
   }
@@ -101,7 +100,6 @@ export class LandCompensationService {
     if (res.body) {
       res.body.forEach((landCompensation: ILandCompensation) => {
         landCompensation.orderDate = landCompensation.orderDate ? dayjs(landCompensation.orderDate) : undefined;
-        landCompensation.paymentDate = landCompensation.paymentDate ? dayjs(landCompensation.paymentDate) : undefined;
       });
     }
     return res;

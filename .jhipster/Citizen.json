@@ -75,18 +75,18 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "khatedar",
-      "otherEntityRelationshipName": "citizen",
-      "relationshipName": "khatedar",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
-    },
-    {
       "otherEntityField": "name",
       "otherEntityName": "bankBranch",
       "otherEntityRelationshipName": "citizen",
       "relationshipName": "bankBranch",
       "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "khatedar",
+      "otherEntityRelationshipName": "citizen",
+      "relationshipName": "khatedar",
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
     }
   ],
   "service": "serviceImpl"

@@ -5,9 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
-import dayjs from 'dayjs/esm';
-import { DATE_TIME_FORMAT } from 'app/config/input.constants';
-
 import { IProject, Project } from '../project.model';
 import { ProjectService } from '../service/project.service';
 
@@ -33,12 +30,6 @@ export class ProjectUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ project }) => {
-      if (project.id === undefined) {
-        const today = dayjs().startOf('day');
-        project.startDate = today;
-        project.endDate = today;
-      }
-
       this.updateForm(project);
     });
   }
@@ -80,8 +71,8 @@ export class ProjectUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: project.id,
       name: project.name,
-      startDate: project.startDate ? project.startDate.format(DATE_TIME_FORMAT) : null,
-      endDate: project.endDate ? project.endDate.format(DATE_TIME_FORMAT) : null,
+      startDate: project.startDate,
+      endDate: project.endDate,
       budget: project.budget,
       approver1: project.approver1,
       approver2: project.approver2,
@@ -94,8 +85,8 @@ export class ProjectUpdateComponent implements OnInit {
       ...new Project(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
-      startDate: this.editForm.get(['startDate'])!.value ? dayjs(this.editForm.get(['startDate'])!.value, DATE_TIME_FORMAT) : undefined,
-      endDate: this.editForm.get(['endDate'])!.value ? dayjs(this.editForm.get(['endDate'])!.value, DATE_TIME_FORMAT) : undefined,
+      startDate: this.editForm.get(['startDate'])!.value,
+      endDate: this.editForm.get(['endDate'])!.value,
       budget: this.editForm.get(['budget'])!.value,
       approver1: this.editForm.get(['approver1'])!.value,
       approver2: this.editForm.get(['approver2'])!.value,

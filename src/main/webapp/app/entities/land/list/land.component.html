@@ -62,10 +62,10 @@
           <th scope="col" jhiSortBy="village.name">
             <span jhiTranslate="jhipsterApp.land.village">Village</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="unit.name"><span jhiTranslate="jhipsterApp.land.unit">Unit</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="landType.name">
             <span jhiTranslate="jhipsterApp.land.landType">Land Type</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="unit.name"><span jhiTranslate="jhipsterApp.land.unit">Unit</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -94,13 +94,13 @@
             </div>
           </td>
           <td>
-            <div *ngIf="land.landType">
-              <a [routerLink]="['/land-type', land.landType?.id, 'view']">{{ land.landType?.name }}</a>
+            <div *ngIf="land.unit">
+              <a [routerLink]="['/unit', land.unit?.id, 'view']">{{ land.unit?.name }}</a>
             </div>
           </td>
           <td>
-            <div *ngIf="land.unit">
-              <a [routerLink]="['/unit', land.unit?.id, 'view']">{{ land.unit?.name }}</a>
+            <div *ngIf="land.landType">
+              <a [routerLink]="['/land-type', land.landType?.id, 'view']">{{ land.landType?.name }}</a>
             </div>
           </td>
           <td class="text-end">

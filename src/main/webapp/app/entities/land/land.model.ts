@@ -1,8 +1,8 @@
 import { IState } from 'app/entities/state/state.model';
-import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { IVillage } from 'app/entities/village/village.model';
-import { ILandType } from 'app/entities/land-type/land-type.model';
 import { IUnit } from 'app/entities/unit/unit.model';
+import { ILandType } from 'app/entities/land-type/land-type.model';
+import { IProjectLand } from 'app/entities/project-land/project-land.model';
 
 export interface ILand {
   id?: number;
@@ -16,10 +16,10 @@ export interface ILand {
   distanceFromCity?: string | null;
   totalLandValue?: number | null;
   state?: IState | null;
-  projectLand?: IProjectLand;
-  village?: IVillage;
-  landType?: ILandType;
+  village?: IVillage | null;
   unit?: IUnit | null;
+  landType?: ILandType | null;
+  projectLands?: IProjectLand[];
 }
 
 export class Land implements ILand {
@@ -35,10 +35,10 @@ export class Land implements ILand {
     public distanceFromCity?: string | null,
     public totalLandValue?: number | null,
     public state?: IState | null,
-    public projectLand?: IProjectLand,
-    public village?: IVillage,
-    public landType?: ILandType,
-    public unit?: IUnit | null
+    public village?: IVillage | null,
+    public unit?: IUnit | null,
+    public landType?: ILandType | null,
+    public projectLands?: IProjectLand[]
   ) {}
 }
 

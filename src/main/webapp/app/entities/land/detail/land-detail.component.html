@@ -62,16 +62,16 @@
             <a [routerLink]="['/village', land.village?.id, 'view']">{{ land.village?.name }}</a>
           </div>
         </dd>
-        <dt><span jhiTranslate="jhipsterApp.land.landType">Land Type</span></dt>
-        <dd>
-          <div *ngIf="land.landType">
-            <a [routerLink]="['/land-type', land.landType?.id, 'view']">{{ land.landType?.name }}</a>
-          </div>
-        </dd>
         <dt><span jhiTranslate="jhipsterApp.land.unit">Unit</span></dt>
         <dd>
           <div *ngIf="land.unit">
             <a [routerLink]="['/unit', land.unit?.id, 'view']">{{ land.unit?.name }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.land.landType">Land Type</span></dt>
+        <dd>
+          <div *ngIf="land.landType">
+            <a [routerLink]="['/land-type', land.landType?.id, 'view']">{{ land.landType?.name }}</a>
           </div>
         </dd>
       </dl>

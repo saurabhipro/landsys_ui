@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import dayjs from 'dayjs/esm';
 
 import { isPresent } from 'app/core/util/operators';
+import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IPublicNotification, getPublicNotificationIdentifier } from '../public-notification.model';
@@ -84,7 +85,7 @@ export class PublicNotificationService {
 
   protected convertDateFromClient(publicNotification: IPublicNotification): IPublicNotification {
     return Object.assign({}, publicNotification, {
-      date: publicNotification.date?.isValid() ? publicNotification.date.toJSON() : undefined,
+      date: publicNotification.date?.isValid() ? publicNotification.date.format(DATE_FORMAT) : undefined,
     });
   }
 

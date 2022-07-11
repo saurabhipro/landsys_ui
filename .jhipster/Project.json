@@ -12,12 +12,12 @@
     },
     {
       "fieldName": "startDate",
-      "fieldType": "Instant",
+      "fieldType": "LocalDate",
       "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "endDate",
-      "fieldType": "Instant",
+      "fieldType": "LocalDate",
       "fieldValidateRules": ["required"]
     },
     {
@@ -48,7 +48,8 @@
       "otherEntityName": "projectLand",
       "otherEntityRelationshipName": "project",
       "relationshipName": "projectLand",
-      "relationshipType": "one-to-many"
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
     }
   ],
   "service": "serviceImpl"

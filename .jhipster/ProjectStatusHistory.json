@@ -12,7 +12,7 @@
     },
     {
       "fieldName": "when",
-      "fieldType": "Instant"
+      "fieldType": "LocalDate"
     },
     {
       "fieldName": "remarks",

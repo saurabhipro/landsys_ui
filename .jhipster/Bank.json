@@ -26,7 +26,8 @@
       "otherEntityName": "bankBranch",
       "otherEntityRelationshipName": "bank",
       "relationshipName": "bankName",
-      "relationshipType": "one-to-many"
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
     }
   ],
   "service": "serviceImpl"

@@ -12,10 +12,10 @@ import { IState } from 'app/entities/state/state.model';
 import { StateService } from 'app/entities/state/service/state.service';
 import { IVillage } from 'app/entities/village/village.model';
 import { VillageService } from 'app/entities/village/service/village.service';
-import { ILandType } from 'app/entities/land-type/land-type.model';
-import { LandTypeService } from 'app/entities/land-type/service/land-type.service';
 import { IUnit } from 'app/entities/unit/unit.model';
 import { UnitService } from 'app/entities/unit/service/unit.service';
+import { ILandType } from 'app/entities/land-type/land-type.model';
+import { LandTypeService } from 'app/entities/land-type/service/land-type.service';
 
 import { LandUpdateComponent } from './land-update.component';
 
@@ -26,8 +26,8 @@ describe('Land Management Update Component', () => {
   let landService: LandService;
   let stateService: StateService;
   let villageService: VillageService;
-  let landTypeService: LandTypeService;
   let unitService: UnitService;
+  let landTypeService: LandTypeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -51,8 +51,8 @@ describe('Land Management Update Component', () => {
     landService = TestBed.inject(LandService);
     stateService = TestBed.inject(StateService);
     villageService = TestBed.inject(VillageService);
-    landTypeService = TestBed.inject(LandTypeService);
     unitService = TestBed.inject(UnitService);
+    landTypeService = TestBed.inject(LandTypeService);
 
     comp = fixture.componentInstance;
   });
@@ -95,25 +95,6 @@ describe('Land Management Update Component', () => {
       expect(comp.villagesSharedCollection).toEqual(expectedCollection);
     });
 
-    it('Should call LandType query and add missing value', () => {
-      const land: ILand = { id: 456 };
-      const landType: ILandType = { id: 50627 };
-      land.landType = landType;
-
-      const landTypeCollection: ILandType[] = [{ id: 29205 }];
-      jest.spyOn(landTypeService, 'query').mockReturnValue(of(new HttpResponse({ body: landTypeCollection })));
-      const additionalLandTypes = [landType];
-      const expectedCollection: ILandType[] = [...additionalLandTypes, ...landTypeCollection];
-      jest.spyOn(landTypeService, 'addLandTypeToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ land });
-      comp.ngOnInit();
-
-      expect(landTypeService.query).toHaveBeenCalled();
-      expect(landTypeService.addLandTypeToCollectionIfMissing).toHaveBeenCalledWith(landTypeCollection, ...additionalLandTypes);
-      expect(comp.landTypesSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should call Unit query and add missing value', () => {
       const land: ILand = { id: 456 };
       const unit: IUnit = { id: 38164 };
@@ -133,16 +114,35 @@ describe('Land Management Update Component', () => {
       expect(comp.unitsSharedCollection).toEqual(expectedCollection);
     });
 
+    it('Should call LandType query and add missing value', () => {
+      const land: ILand = { id: 456 };
+      const landType: ILandType = { id: 50627 };
+      land.landType = landType;
+
+      const landTypeCollection: ILandType[] = [{ id: 29205 }];
+      jest.spyOn(landTypeService, 'query').mockReturnValue(of(new HttpResponse({ body: landTypeCollection })));
+      const additionalLandTypes = [landType];
+      const expectedCollection: ILandType[] = [...additionalLandTypes, ...landTypeCollection];
+      jest.spyOn(landTypeService, 'addLandTypeToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ land });
+      comp.ngOnInit();
+
+      expect(landTypeService.query).toHaveBeenCalled();
+      expect(landTypeService.addLandTypeToCollectionIfMissing).toHaveBeenCalledWith(landTypeCollection, ...additionalLandTypes);
+      expect(comp.landTypesSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const land: ILand = { id: 456 };
       const state: IState = { id: 14797 };
       land.state = state;
       const village: IVillage = { id: 43848 };
       land.village = village;
-      const landType: ILandType = { id: 32417 };
-      land.landType = landType;
       const unit: IUnit = { id: 45002 };
       land.unit = unit;
+      const landType: ILandType = { id: 32417 };
+      land.landType = landType;
 
       activatedRoute.data = of({ land });
       comp.ngOnInit();
@@ -150,8 +150,8 @@ describe('Land Management Update Component', () => {
       expect(comp.editForm.value).toEqual(expect.objectContaining(land));
       expect(comp.statesCollection).toContain(state);
       expect(comp.villagesSharedCollection).toContain(village);
-      expect(comp.landTypesSharedCollection).toContain(landType);
       expect(comp.unitsSharedCollection).toContain(unit);
+      expect(comp.landTypesSharedCollection).toContain(landType);
     });
   });
 
@@ -236,18 +236,18 @@ describe('Land Management Update Component', () => {
       });
     });
 
-    describe('trackLandTypeById', () => {
-      it('Should return tracked LandType primary key', () => {
-        const entity = { id: 123 };
-        const trackResult = comp.trackLandTypeById(0, entity);
-        expect(trackResult).toEqual(entity.id);
-      });
-    });
-
     describe('trackUnitById', () => {
       it('Should return tracked Unit primary key', () => {
         const entity = { id: 123 };
         const trackResult = comp.trackUnitById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
+    describe('trackLandTypeById', () => {
+      it('Should return tracked LandType primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackLandTypeById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

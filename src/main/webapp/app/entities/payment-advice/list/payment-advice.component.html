@@ -63,14 +63,14 @@
           <th scope="col" jhiSortBy="paymentStatus">
             <span jhiTranslate="jhipsterApp.paymentAdvice.paymentStatus">Payment Status</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="hisssaType">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.hisssaType">Hisssa Type</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="landCompensation.id">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.landCompensation">Land Compensation</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="hissaType">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.hissaType">Hissa Type</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="projectLand.id">
             <span jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="landCompensation.id">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.landCompensation">Land Compensation</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -92,17 +92,17 @@
           </td>
           <td>{{ paymentAdvice.referenceNumber }}</td>
           <td jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + paymentAdvice.paymentStatus }}">{{ paymentAdvice.paymentStatus }}</td>
-          <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + paymentAdvice.hisssaType }}">{{ paymentAdvice.hisssaType }}</td>
+          <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + paymentAdvice.hissaType }}">{{ paymentAdvice.hissaType }}</td>
+          <td>
+            <div *ngIf="paymentAdvice.projectLand">
+              <a [routerLink]="['/project-land', paymentAdvice.projectLand?.id, 'view']">{{ paymentAdvice.projectLand?.id }}</a>
+            </div>
+          </td>
           <td>
             <div *ngIf="paymentAdvice.landCompensation">
               <a [routerLink]="['/land-compensation', paymentAdvice.landCompensation?.id, 'view']">{{
                 paymentAdvice.landCompensation?.id
               }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="paymentAdvice.projectLand">
-              <a [routerLink]="['/project-land', paymentAdvice.projectLand?.id, 'view']">{{ paymentAdvice.projectLand?.id }}</a>
             </div>
           </td>
           <td class="text-end">

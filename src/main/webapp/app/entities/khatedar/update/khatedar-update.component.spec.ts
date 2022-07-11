@@ -12,6 +12,8 @@ import { ICitizen } from 'app/entities/citizen/citizen.model';
 import { CitizenService } from 'app/entities/citizen/service/citizen.service';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
+import { INoticeStatusInfo } from 'app/entities/notice-status-info/notice-status-info.model';
+import { NoticeStatusInfoService } from 'app/entities/notice-status-info/service/notice-status-info.service';
 
 import { KhatedarUpdateComponent } from './khatedar-update.component';
 
@@ -22,6 +24,7 @@ describe('Khatedar Management Update Component', () => {
   let khatedarService: KhatedarService;
   let citizenService: CitizenService;
   let projectLandService: ProjectLandService;
+  let noticeStatusInfoService: NoticeStatusInfoService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -45,6 +48,7 @@ describe('Khatedar Management Update Component', () => {
     khatedarService = TestBed.inject(KhatedarService);
     citizenService = TestBed.inject(CitizenService);
     projectLandService = TestBed.inject(ProjectLandService);
+    noticeStatusInfoService = TestBed.inject(NoticeStatusInfoService);
 
     comp = fixture.componentInstance;
   });
@@ -88,12 +92,36 @@ describe('Khatedar Management Update Component', () => {
       expect(comp.projectLandsSharedCollection).toEqual(expectedCollection);
     });
 
+    it('Should call NoticeStatusInfo query and add missing value', () => {
+      const khatedar: IKhatedar = { id: 456 };
+      const noticeStatusInfo: INoticeStatusInfo = { id: 84141 };
+      khatedar.noticeStatusInfo = noticeStatusInfo;
+
+      const noticeStatusInfoCollection: INoticeStatusInfo[] = [{ id: 43057 }];
+      jest.spyOn(noticeStatusInfoService, 'query').mockReturnValue(of(new HttpResponse({ body: noticeStatusInfoCollection })));
+      const additionalNoticeStatusInfos = [noticeStatusInfo];
+      const expectedCollection: INoticeStatusInfo[] = [...additionalNoticeStatusInfos, ...noticeStatusInfoCollection];
+      jest.spyOn(noticeStatusInfoService, 'addNoticeStatusInfoToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ khatedar });
+      comp.ngOnInit();
+
+      expect(noticeStatusInfoService.query).toHaveBeenCalled();
+      expect(noticeStatusInfoService.addNoticeStatusInfoToCollectionIfMissing).toHaveBeenCalledWith(
+        noticeStatusInfoCollection,
+        ...additionalNoticeStatusInfos
+      );
+      expect(comp.noticeStatusInfosSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const khatedar: IKhatedar = { id: 456 };
       const citizen: ICitizen = { id: 17296 };
       khatedar.citizen = citizen;
       const projectLand: IProjectLand = { id: 84080 };
       khatedar.projectLand = projectLand;
+      const noticeStatusInfo: INoticeStatusInfo = { id: 92685 };
+      khatedar.noticeStatusInfo = noticeStatusInfo;
 
       activatedRoute.data = of({ khatedar });
       comp.ngOnInit();
@@ -101,6 +129,7 @@ describe('Khatedar Management Update Component', () => {
       expect(comp.editForm.value).toEqual(expect.objectContaining(khatedar));
       expect(comp.citizensSharedCollection).toContain(citizen);
       expect(comp.projectLandsSharedCollection).toContain(projectLand);
+      expect(comp.noticeStatusInfosSharedCollection).toContain(noticeStatusInfo);
     });
   });
 
@@ -181,6 +210,14 @@ describe('Khatedar Management Update Component', () => {
       it('Should return tracked ProjectLand primary key', () => {
         const entity = { id: 123 };
         const trackResult = comp.trackProjectLandById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
+    describe('trackNoticeStatusInfoById', () => {
+      it('Should return tracked NoticeStatusInfo primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackNoticeStatusInfoById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

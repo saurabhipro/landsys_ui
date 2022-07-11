@@ -31,8 +31,8 @@
       "panImage": "Pan Image",
       "accountNo": "Account No",
       "accNoImage": "Acc No Image",
-      "khatedar": "Khatedar",
-      "bankBranch": "Bank Branch"
+      "bankBranch": "Bank Branch",
+      "khatedar": "Khatedar"
     }
   }
 }

@@ -2,8 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import dayjs from 'dayjs/esm';
 
-import { DATE_TIME_FORMAT } from 'app/config/input.constants';
+import { DATE_FORMAT } from 'app/config/input.constants';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
+import { CompensationStatus } from 'app/entities/enumerations/compensation-status.model';
 import { ILandCompensation, LandCompensation } from '../land-compensation.model';
 
 import { LandCompensationService } from './land-compensation.service';
@@ -35,9 +36,8 @@ describe('LandCompensation Service', () => {
       forestCompensation: 0,
       solatiumMoney: 0,
       additionalCompensation: 0,
-      status: 'AAAAAAA',
+      status: CompensationStatus.OPEN,
       orderDate: currentDate,
-      paymentDate: currentDate,
       paymentAmount: 0,
       transactionId: 'AAAAAAA',
     };
@@ -47,8 +47,7 @@ describe('LandCompensation Service', () => {
     it('should find an element', () => {
       const returnedFromService = Object.assign(
         {
-          orderDate: currentDate.format(DATE_TIME_FORMAT),
-          paymentDate: currentDate.format(DATE_TIME_FORMAT),
+          orderDate: currentDate.format(DATE_FORMAT),
         },
         elemDefault
       );
@@ -64,8 +63,7 @@ describe('LandCompensation Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 0,
-          orderDate: currentDate.format(DATE_TIME_FORMAT),
-          paymentDate: currentDate.format(DATE_TIME_FORMAT),
+          orderDate: currentDate.format(DATE_FORMAT),
         },
         elemDefault
       );
@@ -73,7 +71,6 @@ describe('LandCompensation Service', () => {
       const expected = Object.assign(
         {
           orderDate: currentDate,
-          paymentDate: currentDate,
         },
         returnedFromService
       );
@@ -99,8 +96,7 @@ describe('LandCompensation Service', () => {
           solatiumMoney: 1,
           additionalCompensation: 1,
           status: 'BBBBBB',
-          orderDate: currentDate.format(DATE_TIME_FORMAT),
-          paymentDate: currentDate.format(DATE_TIME_FORMAT),
+          orderDate: currentDate.format(DATE_FORMAT),
           paymentAmount: 1,
           transactionId: 'BBBBBB',
         },
@@ -110,7 +106,6 @@ describe('LandCompensation Service', () => {
       const expected = Object.assign(
         {
           orderDate: currentDate,
-          paymentDate: currentDate,
         },
         returnedFromService
       );
@@ -130,7 +125,7 @@ describe('LandCompensation Service', () => {
           forestCompensation: 1,
           additionalCompensation: 1,
           status: 'BBBBBB',
-          orderDate: currentDate.format(DATE_TIME_FORMAT),
+          orderDate: currentDate.format(DATE_FORMAT),
         },
         new LandCompensation()
       );
@@ -140,7 +135,6 @@ describe('LandCompensation Service', () => {
       const expected = Object.assign(
         {
           orderDate: currentDate,
-          paymentDate: currentDate,
         },
         returnedFromService
       );
@@ -166,8 +160,7 @@ describe('LandCompensation Service', () => {
           solatiumMoney: 1,
           additionalCompensation: 1,
           status: 'BBBBBB',
-          orderDate: currentDate.format(DATE_TIME_FORMAT),
-          paymentDate: currentDate.format(DATE_TIME_FORMAT),
+          orderDate: currentDate.format(DATE_FORMAT),
           paymentAmount: 1,
           transactionId: 'BBBBBB',
         },
@@ -177,7 +170,6 @@ describe('LandCompensation Service', () => {
       const expected = Object.assign(
         {
           orderDate: currentDate,
-          paymentDate: currentDate,
         },
         returnedFromService
       );
@@ -227,7 +219,7 @@ describe('LandCompensation Service', () => {
       });
 
       it('should add only unique LandCompensation to an array', () => {
-        const landCompensationArray: ILandCompensation[] = [{ id: 123 }, { id: 456 }, { id: 32508 }];
+        const landCompensationArray: ILandCompensation[] = [{ id: 123 }, { id: 456 }, { id: 32169 }];
         const landCompensationCollection: ILandCompensation[] = [{ id: 123 }];
         expectedResult = service.addLandCompensationToCollectionIfMissing(landCompensationCollection, ...landCompensationArray);
         expect(expectedResult).toHaveLength(3);

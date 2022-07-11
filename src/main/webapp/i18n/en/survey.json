@@ -29,9 +29,9 @@
       "distanceFromCity": "Distance From City",
       "remarks": "Remarks",
       "status": "Status",
-      "landCompensation": "Land Compensation",
       "khatedar": "Khatedar",
-      "projectLand": "Project Land"
+      "projectLand": "Project Land",
+      "landCompensation": "Land Compensation"
     }
   }
 }

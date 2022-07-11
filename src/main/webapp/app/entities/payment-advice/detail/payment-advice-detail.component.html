@@ -56,9 +56,15 @@
         <dd>
           <span jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + paymentAdvice.paymentStatus }}">{{ paymentAdvice.paymentStatus }}</span>
         </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.hisssaType">Hisssa Type</span></dt>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.hissaType">Hissa Type</span></dt>
         <dd>
-          <span jhiTranslate="{{ 'jhipsterApp.HissaType.' + paymentAdvice.hisssaType }}">{{ paymentAdvice.hisssaType }}</span>
+          <span jhiTranslate="{{ 'jhipsterApp.HissaType.' + paymentAdvice.hissaType }}">{{ paymentAdvice.hissaType }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</span></dt>
+        <dd>
+          <div *ngIf="paymentAdvice.projectLand">
+            <a [routerLink]="['/project-land', paymentAdvice.projectLand?.id, 'view']">{{ paymentAdvice.projectLand?.id }}</a>
+          </div>
         </dd>
         <dt><span jhiTranslate="jhipsterApp.paymentAdvice.landCompensation">Land Compensation</span></dt>
         <dd>
@@ -66,12 +72,6 @@
             <a [routerLink]="['/land-compensation', paymentAdvice.landCompensation?.id, 'view']">{{
               paymentAdvice.landCompensation?.id
             }}</a>
-          </div>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</span></dt>
-        <dd>
-          <div *ngIf="paymentAdvice.projectLand">
-            <a [routerLink]="['/project-land', paymentAdvice.projectLand?.id, 'view']">{{ paymentAdvice.projectLand?.id }}</a>
           </div>
         </dd>
       </dl>

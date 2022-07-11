@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import dayjs from 'dayjs/esm';
 
-import { DATE_TIME_FORMAT } from 'app/config/input.constants';
+import { DATE_FORMAT } from 'app/config/input.constants';
 import { IProject, Project } from '../project.model';
 
 import { ProjectService } from './project.service';
@@ -39,8 +39,8 @@ describe('Project Service', () => {
     it('should find an element', () => {
       const returnedFromService = Object.assign(
         {
-          startDate: currentDate.format(DATE_TIME_FORMAT),
-          endDate: currentDate.format(DATE_TIME_FORMAT),
+          startDate: currentDate.format(DATE_FORMAT),
+          endDate: currentDate.format(DATE_FORMAT),
         },
         elemDefault
       );
@@ -56,8 +56,8 @@ describe('Project Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 0,
-          startDate: currentDate.format(DATE_TIME_FORMAT),
-          endDate: currentDate.format(DATE_TIME_FORMAT),
+          startDate: currentDate.format(DATE_FORMAT),
+          endDate: currentDate.format(DATE_FORMAT),
         },
         elemDefault
       );
@@ -82,8 +82,8 @@ describe('Project Service', () => {
         {
           id: 1,
           name: 'BBBBBB',
-          startDate: currentDate.format(DATE_TIME_FORMAT),
-          endDate: currentDate.format(DATE_TIME_FORMAT),
+          startDate: currentDate.format(DATE_FORMAT),
+          endDate: currentDate.format(DATE_FORMAT),
           budget: 1,
           approver1: 'BBBBBB',
           approver2: 'BBBBBB',
@@ -140,8 +140,8 @@ describe('Project Service', () => {
         {
           id: 1,
           name: 'BBBBBB',
-          startDate: currentDate.format(DATE_TIME_FORMAT),
-          endDate: currentDate.format(DATE_TIME_FORMAT),
+          startDate: currentDate.format(DATE_FORMAT),
+          endDate: currentDate.format(DATE_FORMAT),
           budget: 1,
           approver1: 'BBBBBB',
           approver2: 'BBBBBB',

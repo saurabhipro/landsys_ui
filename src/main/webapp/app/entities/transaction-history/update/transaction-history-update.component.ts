@@ -7,6 +7,7 @@ import { finalize } from 'rxjs/operators';
 
 import { ITransactionHistory, TransactionHistory } from '../transaction-history.model';
 import { TransactionHistoryService } from '../service/transaction-history.service';
+import { EventStatus } from 'app/entities/enumerations/event-status.model';
 
 @Component({
   selector: 'jhi-transaction-history-update',
@@ -14,6 +15,7 @@ import { TransactionHistoryService } from '../service/transaction-history.servic
 })
 export class TransactionHistoryUpdateComponent implements OnInit {
   isSaving = false;
+  eventStatusValues = Object.keys(EventStatus);
 
   editForm = this.fb.group({
     id: [],

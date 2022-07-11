@@ -21,12 +21,13 @@
       "remarks": "Remarks",
       "documents": "Documents",
       "hissaType": "Hissa Type",
+      "project": "Project",
       "land": "Land",
+      "noticeStatusInfo": "Notice Status Info",
       "khatedar": "Khatedar",
       "survey": "Survey",
       "landCompensation": "Land Compensation",
-      "paymentAdvice": "Payment Advice",
-      "project": "Project"
+      "paymentAdvice": "Payment Advice"
     }
   }
 }

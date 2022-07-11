@@ -55,7 +55,7 @@
       "fieldValues": "PENDING,APPROVED,PAID"
     },
     {
-      "fieldName": "hisssaType",
+      "fieldName": "hissaType",
       "fieldType": "HissaType",
       "fieldValidateRules": ["required"],
       "fieldValues": "SINGLE_OWNER (Single Owner),JOINT_OWNER (Joint Owner),DIVIDED (divided)"
@@ -68,18 +68,23 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "landCompensation",
-      "otherEntityRelationshipName": "paymentAdvice",
-      "ownerSide": true,
-      "relationshipName": "landCompensation",
-      "relationshipType": "one-to-one",
-      "relationshipValidateRules": "required"
-    },
-    {
       "otherEntityName": "projectLand",
       "otherEntityRelationshipName": "paymentAdvice",
       "relationshipName": "projectLand",
-      "relationshipType": "many-to-one",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "landCompensation",
+      "otherEntityRelationshipName": "paymentAdvice",
+      "relationshipName": "landCompensation",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "paymentFileRecon",
+      "otherEntityRelationshipName": "paymentAdvice",
+      "ownerSide": false,
+      "relationshipName": "paymentFileRecon",
+      "relationshipType": "one-to-one",
       "relationshipValidateRules": "required"
     }
   ],

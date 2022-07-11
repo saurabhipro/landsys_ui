@@ -29,16 +29,18 @@
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.projectStatusHistory.when" for="field_when">When</label>
-          <div class="d-flex">
+          <div class="input-group">
             <input
               id="field_when"
               data-cy="when"
-              type="datetime-local"
+              type="text"
               class="form-control"
               name="when"
+              ngbDatepicker
+              #whenDp="ngbDatepicker"
               formControlName="when"
-              placeholder="YYYY-MM-DD HH:mm"
             />
+            <button type="button" class="btn btn-secondary" (click)="whenDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
           </div>
         </div>
 

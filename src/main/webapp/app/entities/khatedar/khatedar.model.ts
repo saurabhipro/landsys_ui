@@ -1,8 +1,9 @@
-import { ISurvey } from 'app/entities/survey/survey.model';
-import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
 import { ICitizen } from 'app/entities/citizen/citizen.model';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
-import { KhatedayStatus } from 'app/entities/enumerations/khateday-status.model';
+import { INoticeStatusInfo } from 'app/entities/notice-status-info/notice-status-info.model';
+import { ISurvey } from 'app/entities/survey/survey.model';
+import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
+import { KhatedarStatus } from 'app/entities/enumerations/khatedar-status.model';
 
 export interface IKhatedar {
   id?: number;
@@ -10,11 +11,12 @@ export interface IKhatedar {
   remarks?: string | null;
   noticeFileContentType?: string | null;
   noticeFile?: string | null;
-  status?: KhatedayStatus | null;
-  surveys?: ISurvey[] | null;
-  landCompensations?: ILandCompensation[] | null;
-  citizen?: ICitizen;
-  projectLand?: IProjectLand;
+  status?: KhatedarStatus | null;
+  citizen?: ICitizen | null;
+  projectLand?: IProjectLand | null;
+  noticeStatusInfo?: INoticeStatusInfo | null;
+  survey?: ISurvey;
+  landCompensations?: ILandCompensation[];
 }
 
 export class Khatedar implements IKhatedar {
@@ -24,11 +26,12 @@ export class Khatedar implements IKhatedar {
     public remarks?: string | null,
     public noticeFileContentType?: string | null,
     public noticeFile?: string | null,
-    public status?: KhatedayStatus | null,
-    public surveys?: ISurvey[] | null,
-    public landCompensations?: ILandCompensation[] | null,
-    public citizen?: ICitizen,
-    public projectLand?: IProjectLand
+    public status?: KhatedarStatus | null,
+    public citizen?: ICitizen | null,
+    public projectLand?: IProjectLand | null,
+    public noticeStatusInfo?: INoticeStatusInfo | null,
+    public survey?: ISurvey,
+    public landCompensations?: ILandCompensation[]
   ) {}
 }
 

@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import dayjs from 'dayjs/esm';
 
 import { isPresent } from 'app/core/util/operators';
+import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IProject, getProjectIdentifier } from '../project.model';
@@ -75,8 +76,8 @@ export class ProjectService {
 
   protected convertDateFromClient(project: IProject): IProject {
     return Object.assign({}, project, {
-      startDate: project.startDate?.isValid() ? project.startDate.toJSON() : undefined,
-      endDate: project.endDate?.isValid() ? project.endDate.toJSON() : undefined,
+      startDate: project.startDate?.isValid() ? project.startDate.format(DATE_FORMAT) : undefined,
+      endDate: project.endDate?.isValid() ? project.endDate.format(DATE_FORMAT) : undefined,
     });
   }
 

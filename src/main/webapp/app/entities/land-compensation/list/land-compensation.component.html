@@ -69,9 +69,6 @@
           <th scope="col" jhiSortBy="orderDate">
             <span jhiTranslate="jhipsterApp.landCompensation.orderDate">Order Date</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="paymentDate">
-            <span jhiTranslate="jhipsterApp.landCompensation.paymentDate">Payment Date</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col" jhiSortBy="paymentAmount">
             <span jhiTranslate="jhipsterApp.landCompensation.paymentAmount">Payment Amount</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -104,9 +101,8 @@
           <td>{{ landCompensation.forestCompensation }}</td>
           <td>{{ landCompensation.solatiumMoney }}</td>
           <td>{{ landCompensation.additionalCompensation }}</td>
-          <td>{{ landCompensation.status }}</td>
-          <td>{{ landCompensation.orderDate | formatMediumDatetime }}</td>
-          <td>{{ landCompensation.paymentDate | formatMediumDatetime }}</td>
+          <td jhiTranslate="{{ 'jhipsterApp.CompensationStatus.' + landCompensation.status }}">{{ landCompensation.status }}</td>
+          <td>{{ landCompensation.orderDate | formatMediumDate }}</td>
           <td>{{ landCompensation.paymentAmount }}</td>
           <td>{{ landCompensation.transactionId }}</td>
           <td>

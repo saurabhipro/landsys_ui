@@ -21,8 +21,8 @@
       "name": "Name",
       "ifsc": "Ifsc",
       "address": "Address",
-      "citizen": "Citizen",
-      "bank": "Bank"
+      "bank": "Bank",
+      "citizen": "Citizen"
     }
   }
 }

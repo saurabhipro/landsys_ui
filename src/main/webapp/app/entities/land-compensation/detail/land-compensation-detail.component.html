@@ -54,15 +54,11 @@
         </dd>
         <dt><span jhiTranslate="jhipsterApp.landCompensation.status">Status</span></dt>
         <dd>
-          <span>{{ landCompensation.status }}</span>
+          <span jhiTranslate="{{ 'jhipsterApp.CompensationStatus.' + landCompensation.status }}">{{ landCompensation.status }}</span>
         </dd>
         <dt><span jhiTranslate="jhipsterApp.landCompensation.orderDate">Order Date</span></dt>
         <dd>
-          <span>{{ landCompensation.orderDate | formatMediumDatetime }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.paymentDate">Payment Date</span></dt>
-        <dd>
-          <span>{{ landCompensation.paymentDate | formatMediumDatetime }}</span>
+          <span>{{ landCompensation.orderDate | formatMediumDate }}</span>
         </dd>
         <dt><span jhiTranslate="jhipsterApp.landCompensation.paymentAmount">Payment Amount</span></dt>
         <dd>

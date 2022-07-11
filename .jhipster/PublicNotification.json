@@ -7,7 +7,7 @@
   "fields": [
     {
       "fieldName": "date",
-      "fieldType": "Instant"
+      "fieldType": "LocalDate"
     },
     {
       "fieldName": "file",

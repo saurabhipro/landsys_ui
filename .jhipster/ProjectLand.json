@@ -27,45 +27,51 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "name",
+      "otherEntityName": "project",
+      "otherEntityRelationshipName": "projectLand",
+      "relationshipName": "project",
+      "relationshipType": "many-to-one"
+    },
+    {
       "otherEntityField": "khasraNumber",
       "otherEntityName": "land",
       "otherEntityRelationshipName": "projectLand",
-      "ownerSide": true,
       "relationshipName": "land",
-      "relationshipType": "one-to-one",
-      "relationshipValidateRules": "required"
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "noticeStatusInfo",
+      "otherEntityRelationshipName": "projectLand",
+      "relationshipName": "noticeStatusInfo",
+      "relationshipType": "many-to-one"
     },
     {
       "otherEntityName": "khatedar",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "khatedar",
-      "relationshipType": "one-to-many"
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "survey",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "survey",
-      "relationshipType": "one-to-many"
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "landCompensation",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "landCompensation",
-      "relationshipType": "one-to-many"
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "paymentAdvice",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "paymentAdvice",
       "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
-    },
-    {
-      "otherEntityField": "name",
-      "otherEntityName": "project",
-      "otherEntityRelationshipName": "projectLand",
-      "relationshipName": "project",
-      "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
     }
   ],

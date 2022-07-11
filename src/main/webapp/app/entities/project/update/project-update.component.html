@@ -25,16 +25,18 @@
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.project.startDate" for="field_startDate">Start Date</label>
-          <div class="d-flex">
+          <div class="input-group">
             <input
               id="field_startDate"
               data-cy="startDate"
-              type="datetime-local"
+              type="text"
               class="form-control"
               name="startDate"
+              ngbDatepicker
+              #startDateDp="ngbDatepicker"
               formControlName="startDate"
-              placeholder="YYYY-MM-DD HH:mm"
             />
+            <button type="button" class="btn btn-secondary" (click)="startDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
           </div>
           <div *ngIf="editForm.get('startDate')!.invalid && (editForm.get('startDate')!.dirty || editForm.get('startDate')!.touched)">
             <small
@@ -44,28 +46,23 @@
             >
               This field is required.
             </small>
-            <small
-              class="form-text text-danger"
-              [hidden]="!editForm.get('startDate')?.errors?.ZonedDateTimelocal"
-              jhiTranslate="entity.validation.ZonedDateTimelocal"
-            >
-              This field should be a date and time.
-            </small>
           </div>
         </div>
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.project.endDate" for="field_endDate">End Date</label>
-          <div class="d-flex">
+          <div class="input-group">
             <input
               id="field_endDate"
               data-cy="endDate"
-              type="datetime-local"
+              type="text"
               class="form-control"
               name="endDate"
+              ngbDatepicker
+              #endDateDp="ngbDatepicker"
               formControlName="endDate"
-              placeholder="YYYY-MM-DD HH:mm"
             />
+            <button type="button" class="btn btn-secondary" (click)="endDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
           </div>
           <div *ngIf="editForm.get('endDate')!.invalid && (editForm.get('endDate')!.dirty || editForm.get('endDate')!.touched)">
             <small
@@ -74,13 +71,6 @@
               jhiTranslate="entity.validation.required"
             >
               This field is required.
-            </small>
-            <small
-              class="form-text text-danger"
-              [hidden]="!editForm.get('endDate')?.errors?.ZonedDateTimelocal"
-              jhiTranslate="entity.validation.ZonedDateTimelocal"
-            >
-              This field should be a date and time.
             </small>
           </div>
         </div>

@@ -1,5 +1,6 @@
-import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
+import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
+import { IPaymentFileRecon } from 'app/entities/payment-file-recon/payment-file-recon.model';
 import { PaymentAdviceType } from 'app/entities/enumerations/payment-advice-type.model';
 import { PaymentStatus } from 'app/entities/enumerations/payment-status.model';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
@@ -16,9 +17,10 @@ export interface IPaymentAdvice {
   paymentAdviceType?: PaymentAdviceType | null;
   referenceNumber?: string | null;
   paymentStatus?: PaymentStatus;
-  hisssaType?: HissaType;
-  landCompensation?: ILandCompensation;
-  projectLand?: IProjectLand;
+  hissaType?: HissaType;
+  projectLand?: IProjectLand | null;
+  landCompensation?: ILandCompensation | null;
+  paymentFileRecon?: IPaymentFileRecon;
 }
 
 export class PaymentAdvice implements IPaymentAdvice {
@@ -34,9 +36,10 @@ export class PaymentAdvice implements IPaymentAdvice {
     public paymentAdviceType?: PaymentAdviceType | null,
     public referenceNumber?: string | null,
     public paymentStatus?: PaymentStatus,
-    public hisssaType?: HissaType,
-    public landCompensation?: ILandCompensation,
-    public projectLand?: IProjectLand
+    public hissaType?: HissaType,
+    public projectLand?: IProjectLand | null,
+    public landCompensation?: ILandCompensation | null,
+    public paymentFileRecon?: IPaymentFileRecon
   ) {}
 }
 

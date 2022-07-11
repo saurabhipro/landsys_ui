@@ -109,6 +109,16 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'jhipsterApp.transactionHistory.home.title' },
         loadChildren: () => import('./transaction-history/transaction-history.module').then(m => m.TransactionHistoryModule),
       },
+      {
+        path: 'payment-file-recon',
+        data: { pageTitle: 'jhipsterApp.paymentFileRecon.home.title' },
+        loadChildren: () => import('./payment-file-recon/payment-file-recon.module').then(m => m.PaymentFileReconModule),
+      },
+      {
+        path: 'notice-status-info',
+        data: { pageTitle: 'jhipsterApp.noticeStatusInfo.home.title' },
+        loadChildren: () => import('./notice-status-info/notice-status-info.module').then(m => m.NoticeStatusInfoModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

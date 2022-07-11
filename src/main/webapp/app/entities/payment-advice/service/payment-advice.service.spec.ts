@@ -34,7 +34,7 @@ describe('PaymentAdvice Service', () => {
       paymentAdviceType: PaymentAdviceType.ONLINE,
       referenceNumber: 'AAAAAAA',
       paymentStatus: PaymentStatus.PENDING,
-      hisssaType: HissaType.SINGLE_OWNER,
+      hissaType: HissaType.SINGLE_OWNER,
     };
   });
 
@@ -80,7 +80,7 @@ describe('PaymentAdvice Service', () => {
           paymentAdviceType: 'BBBBBB',
           referenceNumber: 'BBBBBB',
           paymentStatus: 'BBBBBB',
-          hisssaType: 'BBBBBB',
+          hissaType: 'BBBBBB',
         },
         elemDefault
       );
@@ -133,7 +133,7 @@ describe('PaymentAdvice Service', () => {
           paymentAdviceType: 'BBBBBB',
           referenceNumber: 'BBBBBB',
           paymentStatus: 'BBBBBB',
-          hisssaType: 'BBBBBB',
+          hissaType: 'BBBBBB',
         },
         elemDefault
       );

@@ -5,9 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
-import dayjs from 'dayjs/esm';
-import { DATE_TIME_FORMAT } from 'app/config/input.constants';
-
 import { IPublicNotification, PublicNotification } from '../public-notification.model';
 import { PublicNotificationService } from '../service/public-notification.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
@@ -38,11 +35,6 @@ export class PublicNotificationUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ publicNotification }) => {
-      if (publicNotification.id === undefined) {
-        const today = dayjs().startOf('day');
-        publicNotification.date = today;
-      }
-
       this.updateForm(publicNotification);
     });
   }
@@ -98,7 +90,7 @@ export class PublicNotificationUpdateComponent implements OnInit {
   protected updateForm(publicNotification: IPublicNotification): void {
     this.editForm.patchValue({
       id: publicNotification.id,
-      date: publicNotification.date ? publicNotification.date.format(DATE_TIME_FORMAT) : null,
+      date: publicNotification.date,
       file: publicNotification.file,
       fileContentType: publicNotification.fileContentType,
     });
@@ -108,7 +100,7 @@ export class PublicNotificationUpdateComponent implements OnInit {
     return {
       ...new PublicNotification(),
       id: this.editForm.get(['id'])!.value,
-      date: this.editForm.get(['date'])!.value ? dayjs(this.editForm.get(['date'])!.value, DATE_TIME_FORMAT) : undefined,
+      date: this.editForm.get(['date'])!.value,
       fileContentType: this.editForm.get(['fileContentType'])!.value,
       file: this.editForm.get(['file'])!.value,
     };

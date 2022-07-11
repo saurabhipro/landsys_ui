@@ -31,7 +31,7 @@
         </dd>
         <dt><span jhiTranslate="jhipsterApp.khatedar.status">Status</span></dt>
         <dd>
-          <span jhiTranslate="{{ 'jhipsterApp.KhatedayStatus.' + khatedar.status }}">{{ khatedar.status }}</span>
+          <span jhiTranslate="{{ 'jhipsterApp.KhatedarStatus.' + khatedar.status }}">{{ khatedar.status }}</span>
         </dd>
         <dt><span jhiTranslate="jhipsterApp.khatedar.citizen">Citizen</span></dt>
         <dd>
@@ -43,6 +43,12 @@
         <dd>
           <div *ngIf="khatedar.projectLand">
             <a [routerLink]="['/project-land', khatedar.projectLand?.id, 'view']">{{ khatedar.projectLand?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.khatedar.noticeStatusInfo">Notice Status Info</span></dt>
+        <dd>
+          <div *ngIf="khatedar.noticeStatusInfo">
+            <a [routerLink]="['/notice-status-info', khatedar.noticeStatusInfo?.id, 'view']">{{ khatedar.noticeStatusInfo?.id }}</a>
           </div>
         </dd>
       </dl>

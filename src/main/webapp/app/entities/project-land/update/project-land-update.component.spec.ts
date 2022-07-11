@@ -8,10 +8,12 @@ import { of, Subject, from } from 'rxjs';
 
 import { ProjectLandService } from '../service/project-land.service';
 import { IProjectLand, ProjectLand } from '../project-land.model';
-import { ILand } from 'app/entities/land/land.model';
-import { LandService } from 'app/entities/land/service/land.service';
 import { IProject } from 'app/entities/project/project.model';
 import { ProjectService } from 'app/entities/project/service/project.service';
+import { ILand } from 'app/entities/land/land.model';
+import { LandService } from 'app/entities/land/service/land.service';
+import { INoticeStatusInfo } from 'app/entities/notice-status-info/notice-status-info.model';
+import { NoticeStatusInfoService } from 'app/entities/notice-status-info/service/notice-status-info.service';
 
 import { ProjectLandUpdateComponent } from './project-land-update.component';
 
@@ -20,8 +22,9 @@ describe('ProjectLand Management Update Component', () => {
   let fixture: ComponentFixture<ProjectLandUpdateComponent>;
   let activatedRoute: ActivatedRoute;
   let projectLandService: ProjectLandService;
-  let landService: LandService;
   let projectService: ProjectService;
+  let landService: LandService;
+  let noticeStatusInfoService: NoticeStatusInfoService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -43,31 +46,14 @@ describe('ProjectLand Management Update Component', () => {
     fixture = TestBed.createComponent(ProjectLandUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
     projectLandService = TestBed.inject(ProjectLandService);
-    landService = TestBed.inject(LandService);
     projectService = TestBed.inject(ProjectService);
+    landService = TestBed.inject(LandService);
+    noticeStatusInfoService = TestBed.inject(NoticeStatusInfoService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call land query and add missing value', () => {
-      const projectLand: IProjectLand = { id: 456 };
-      const land: ILand = { id: 15678 };
-      projectLand.land = land;
-
-      const landCollection: ILand[] = [{ id: 63661 }];
-      jest.spyOn(landService, 'query').mockReturnValue(of(new HttpResponse({ body: landCollection })));
-      const expectedCollection: ILand[] = [land, ...landCollection];
-      jest.spyOn(landService, 'addLandToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ projectLand });
-      comp.ngOnInit();
-
-      expect(landService.query).toHaveBeenCalled();
-      expect(landService.addLandToCollectionIfMissing).toHaveBeenCalledWith(landCollection, land);
-      expect(comp.landsCollection).toEqual(expectedCollection);
-    });
-
     it('Should call Project query and add missing value', () => {
       const projectLand: IProjectLand = { id: 456 };
       const project: IProject = { id: 84181 };
@@ -87,19 +73,63 @@ describe('ProjectLand Management Update Component', () => {
       expect(comp.projectsSharedCollection).toEqual(expectedCollection);
     });
 
+    it('Should call Land query and add missing value', () => {
+      const projectLand: IProjectLand = { id: 456 };
+      const land: ILand = { id: 15678 };
+      projectLand.land = land;
+
+      const landCollection: ILand[] = [{ id: 63661 }];
+      jest.spyOn(landService, 'query').mockReturnValue(of(new HttpResponse({ body: landCollection })));
+      const additionalLands = [land];
+      const expectedCollection: ILand[] = [...additionalLands, ...landCollection];
+      jest.spyOn(landService, 'addLandToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ projectLand });
+      comp.ngOnInit();
+
+      expect(landService.query).toHaveBeenCalled();
+      expect(landService.addLandToCollectionIfMissing).toHaveBeenCalledWith(landCollection, ...additionalLands);
+      expect(comp.landsSharedCollection).toEqual(expectedCollection);
+    });
+
+    it('Should call NoticeStatusInfo query and add missing value', () => {
+      const projectLand: IProjectLand = { id: 456 };
+      const noticeStatusInfo: INoticeStatusInfo = { id: 50222 };
+      projectLand.noticeStatusInfo = noticeStatusInfo;
+
+      const noticeStatusInfoCollection: INoticeStatusInfo[] = [{ id: 77840 }];
+      jest.spyOn(noticeStatusInfoService, 'query').mockReturnValue(of(new HttpResponse({ body: noticeStatusInfoCollection })));
+      const additionalNoticeStatusInfos = [noticeStatusInfo];
+      const expectedCollection: INoticeStatusInfo[] = [...additionalNoticeStatusInfos, ...noticeStatusInfoCollection];
+      jest.spyOn(noticeStatusInfoService, 'addNoticeStatusInfoToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ projectLand });
+      comp.ngOnInit();
+
+      expect(noticeStatusInfoService.query).toHaveBeenCalled();
+      expect(noticeStatusInfoService.addNoticeStatusInfoToCollectionIfMissing).toHaveBeenCalledWith(
+        noticeStatusInfoCollection,
+        ...additionalNoticeStatusInfos
+      );
+      expect(comp.noticeStatusInfosSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const projectLand: IProjectLand = { id: 456 };
-      const land: ILand = { id: 6691 };
-      projectLand.land = land;
       const project: IProject = { id: 92901 };
       projectLand.project = project;
+      const land: ILand = { id: 6691 };
+      projectLand.land = land;
+      const noticeStatusInfo: INoticeStatusInfo = { id: 97324 };
+      projectLand.noticeStatusInfo = noticeStatusInfo;
 
       activatedRoute.data = of({ projectLand });
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(projectLand));
-      expect(comp.landsCollection).toContain(land);
       expect(comp.projectsSharedCollection).toContain(project);
+      expect(comp.landsSharedCollection).toContain(land);
+      expect(comp.noticeStatusInfosSharedCollection).toContain(noticeStatusInfo);
     });
   });
 
@@ -168,6 +198,14 @@ describe('ProjectLand Management Update Component', () => {
   });
 
   describe('Tracking relationships identifiers', () => {
+    describe('trackProjectById', () => {
+      it('Should return tracked Project primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackProjectById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
     describe('trackLandById', () => {
       it('Should return tracked Land primary key', () => {
         const entity = { id: 123 };
@@ -176,10 +214,10 @@ describe('ProjectLand Management Update Component', () => {
       });
     });
 
-    describe('trackProjectById', () => {
-      it('Should return tracked Project primary key', () => {
+    describe('trackNoticeStatusInfoById', () => {
+      it('Should return tracked NoticeStatusInfo primary key', () => {
         const entity = { id: 123 };
-        const trackResult = comp.trackProjectById(0, entity);
+        const trackResult = comp.trackNoticeStatusInfoById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

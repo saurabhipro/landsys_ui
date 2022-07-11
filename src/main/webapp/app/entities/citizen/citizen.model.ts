@@ -1,5 +1,5 @@
-import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
 import { IBankBranch } from 'app/entities/bank-branch/bank-branch.model';
+import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
 
 export interface ICitizen {
   id?: number;
@@ -20,8 +20,8 @@ export interface ICitizen {
   accountNo?: string | null;
   accNoImageContentType?: string | null;
   accNoImage?: string | null;
-  khatedars?: IKhatedar[];
   bankBranch?: IBankBranch | null;
+  khatedars?: IKhatedar[];
 }
 
 export class Citizen implements ICitizen {
@@ -44,8 +44,8 @@ export class Citizen implements ICitizen {
     public accountNo?: string | null,
     public accNoImageContentType?: string | null,
     public accNoImage?: string | null,
-    public khatedars?: IKhatedar[],
-    public bankBranch?: IBankBranch | null
+    public bankBranch?: IBankBranch | null,
+    public khatedars?: IKhatedar[]
   ) {}
 }
 

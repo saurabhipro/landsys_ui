@@ -21,7 +21,7 @@
       "otherEntityName": "district",
       "otherEntityRelationshipName": "state",
       "relationshipName": "district",
-      "relationshipType": "one-to-many"
+      "relationshipType": "many-to-one"
     },
     {
       "otherEntityField": "khasraNumber",

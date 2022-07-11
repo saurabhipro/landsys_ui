@@ -58,28 +58,11 @@
       "relationshipType": "one-to-one"
     },
     {
-      "otherEntityName": "projectLand",
-      "otherEntityRelationshipName": "land",
-      "ownerSide": false,
-      "relationshipName": "projectLand",
-      "relationshipType": "one-to-one",
-      "relationshipValidateRules": "required"
-    },
-    {
       "otherEntityField": "name",
       "otherEntityName": "village",
       "otherEntityRelationshipName": "land",
       "relationshipName": "village",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": "required"
-    },
-    {
-      "otherEntityField": "name",
-      "otherEntityName": "landType",
-      "otherEntityRelationshipName": "land",
-      "relationshipName": "landType",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": "required"
+      "relationshipType": "many-to-one"
     },
     {
       "otherEntityField": "name",
@@ -87,6 +70,20 @@
       "otherEntityRelationshipName": "land",
       "relationshipName": "unit",
       "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "landType",
+      "otherEntityRelationshipName": "land",
+      "relationshipName": "landType",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "projectLand",
+      "otherEntityRelationshipName": "land",
+      "relationshipName": "projectLand",
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
     }
   ],
   "service": "serviceImpl"

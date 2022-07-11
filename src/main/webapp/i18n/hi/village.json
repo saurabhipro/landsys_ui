@@ -19,8 +19,8 @@
       },
       "id": "ID",
       "name": "Name",
-      "land": "Land",
-      "subDistrict": "Sub District"
+      "subDistrict": "Sub District",
+      "land": "Land"
     }
   }
 }

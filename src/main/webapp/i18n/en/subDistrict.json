@@ -19,8 +19,8 @@
       },
       "id": "ID",
       "name": "Name",
-      "village": "Village",
-      "district": "District"
+      "district": "District",
+      "village": "Village"
     }
   }
 }

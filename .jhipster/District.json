@@ -21,14 +21,15 @@
       "otherEntityName": "subDistrict",
       "otherEntityRelationshipName": "district",
       "relationshipName": "subDistrict",
-      "relationshipType": "one-to-many"
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityField": "name",
       "otherEntityName": "state",
       "otherEntityRelationshipName": "district",
       "relationshipName": "state",
-      "relationshipType": "many-to-one",
+      "relationshipType": "one-to-many",
       "relationshipValidateRules": "required"
     }
   ],

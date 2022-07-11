@@ -51,7 +51,7 @@
             <a [routerLink]="['/project-status-history', projectStatusHistory.id, 'view']">{{ projectStatusHistory.id }}</a>
           </td>
           <td jhiTranslate="{{ 'jhipsterApp.ProjectStatus.' + projectStatusHistory.status }}">{{ projectStatusHistory.status }}</td>
-          <td>{{ projectStatusHistory.when | formatMediumDatetime }}</td>
+          <td>{{ projectStatusHistory.when | formatMediumDate }}</td>
           <td>{{ projectStatusHistory.remarks }}</td>
           <td class="text-end">
             <div class="btn-group">

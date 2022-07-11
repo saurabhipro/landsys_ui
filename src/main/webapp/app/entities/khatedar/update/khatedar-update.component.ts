@@ -14,7 +14,9 @@ import { ICitizen } from 'app/entities/citizen/citizen.model';
 import { CitizenService } from 'app/entities/citizen/service/citizen.service';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
-import { KhatedayStatus } from 'app/entities/enumerations/khateday-status.model';
+import { INoticeStatusInfo } from 'app/entities/notice-status-info/notice-status-info.model';
+import { NoticeStatusInfoService } from 'app/entities/notice-status-info/service/notice-status-info.service';
+import { KhatedarStatus } from 'app/entities/enumerations/khatedar-status.model';
 
 @Component({
   selector: 'jhi-khatedar-update',
@@ -22,10 +24,11 @@ import { KhatedayStatus } from 'app/entities/enumerations/khateday-status.model'
 })
 export class KhatedarUpdateComponent implements OnInit {
   isSaving = false;
-  khatedayStatusValues = Object.keys(KhatedayStatus);
+  khatedarStatusValues = Object.keys(KhatedarStatus);
 
   citizensSharedCollection: ICitizen[] = [];
   projectLandsSharedCollection: IProjectLand[] = [];
+  noticeStatusInfosSharedCollection: INoticeStatusInfo[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -34,8 +37,9 @@ export class KhatedarUpdateComponent implements OnInit {
     noticeFile: [],
     noticeFileContentType: [],
     status: [],
-    citizen: [null, Validators.required],
-    projectLand: [null, Validators.required],
+    citizen: [],
+    projectLand: [],
+    noticeStatusInfo: [],
   });
 
   constructor(
@@ -44,6 +48,7 @@ export class KhatedarUpdateComponent implements OnInit {
     protected khatedarService: KhatedarService,
     protected citizenService: CitizenService,
     protected projectLandService: ProjectLandService,
+    protected noticeStatusInfoService: NoticeStatusInfoService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -93,6 +98,10 @@ export class KhatedarUpdateComponent implements OnInit {
     return item.id!;
   }
 
+  trackNoticeStatusInfoById(_index: number, item: INoticeStatusInfo): number {
+    return item.id!;
+  }
+
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IKhatedar>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
@@ -122,12 +131,17 @@ export class KhatedarUpdateComponent implements OnInit {
       status: khatedar.status,
       citizen: khatedar.citizen,
       projectLand: khatedar.projectLand,
+      noticeStatusInfo: khatedar.noticeStatusInfo,
     });
 
     this.citizensSharedCollection = this.citizenService.addCitizenToCollectionIfMissing(this.citizensSharedCollection, khatedar.citizen);
     this.projectLandsSharedCollection = this.projectLandService.addProjectLandToCollectionIfMissing(
       this.projectLandsSharedCollection,
       khatedar.projectLand
+    );
+    this.noticeStatusInfosSharedCollection = this.noticeStatusInfoService.addNoticeStatusInfoToCollectionIfMissing(
+      this.noticeStatusInfosSharedCollection,
+      khatedar.noticeStatusInfo
     );
   }
 
@@ -149,6 +163,19 @@ export class KhatedarUpdateComponent implements OnInit {
         )
       )
       .subscribe((projectLands: IProjectLand[]) => (this.projectLandsSharedCollection = projectLands));
+
+    this.noticeStatusInfoService
+      .query()
+      .pipe(map((res: HttpResponse<INoticeStatusInfo[]>) => res.body ?? []))
+      .pipe(
+        map((noticeStatusInfos: INoticeStatusInfo[]) =>
+          this.noticeStatusInfoService.addNoticeStatusInfoToCollectionIfMissing(
+            noticeStatusInfos,
+            this.editForm.get('noticeStatusInfo')!.value
+          )
+        )
+      )
+      .subscribe((noticeStatusInfos: INoticeStatusInfo[]) => (this.noticeStatusInfosSharedCollection = noticeStatusInfos));
   }
 
   protected createFromForm(): IKhatedar {
@@ -162,6 +189,7 @@ export class KhatedarUpdateComponent implements OnInit {
       status: this.editForm.get(['status'])!.value,
       citizen: this.editForm.get(['citizen'])!.value,
       projectLand: this.editForm.get(['projectLand'])!.value,
+      noticeStatusInfo: this.editForm.get(['noticeStatusInfo'])!.value,
     };
   }
 }

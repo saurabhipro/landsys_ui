@@ -51,6 +51,9 @@
           <th scope="col" jhiSortBy="projectLand.id">
             <span jhiTranslate="jhipsterApp.khatedar.projectLand">Project Land</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="noticeStatusInfo.id">
+            <span jhiTranslate="jhipsterApp.khatedar.noticeStatusInfo">Notice Status Info</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -70,7 +73,7 @@
             >
             <span *ngIf="khatedar.noticeFile">{{ khatedar.noticeFileContentType }}, {{ byteSize(khatedar.noticeFile) }}</span>
           </td>
-          <td jhiTranslate="{{ 'jhipsterApp.KhatedayStatus.' + khatedar.status }}">{{ khatedar.status }}</td>
+          <td jhiTranslate="{{ 'jhipsterApp.KhatedarStatus.' + khatedar.status }}">{{ khatedar.status }}</td>
           <td>
             <div *ngIf="khatedar.citizen">
               <a [routerLink]="['/citizen', khatedar.citizen?.id, 'view']">{{ khatedar.citizen?.name }}</a>
@@ -79,6 +82,11 @@
           <td>
             <div *ngIf="khatedar.projectLand">
               <a [routerLink]="['/project-land', khatedar.projectLand?.id, 'view']">{{ khatedar.projectLand?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="khatedar.noticeStatusInfo">
+              <a [routerLink]="['/notice-status-info', khatedar.noticeStatusInfo?.id, 'view']">{{ khatedar.noticeStatusInfo?.id }}</a>
             </div>
           </td>
           <td class="text-end">

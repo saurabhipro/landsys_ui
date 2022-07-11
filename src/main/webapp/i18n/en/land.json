@@ -28,10 +28,10 @@
       "distanceFromCity": "Distance From City",
       "totalLandValue": "Total Land Value",
       "state": "State",
-      "projectLand": "Project Land",
       "village": "Village",
+      "unit": "Unit",
       "landType": "Land Type",
-      "unit": "Unit"
+      "projectLand": "Project Land"
     }
   }
 }

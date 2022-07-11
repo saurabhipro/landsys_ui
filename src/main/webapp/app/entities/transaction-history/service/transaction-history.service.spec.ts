@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
+import { EventStatus } from 'app/entities/enumerations/event-status.model';
 import { ITransactionHistory, TransactionHistory } from '../transaction-history.model';
 
 import { TransactionHistoryService } from './transaction-history.service';
@@ -34,7 +35,7 @@ describe('TransactionHistory Service', () => {
       transactionId: 'AAAAAAA',
       transactionType: 'AAAAAAA',
       eventType: 'AAAAAAA',
-      eventStatus: 'AAAAAAA',
+      eventStatus: EventStatus.NEW,
       approver1: 'AAAAAAA',
       approver2: 'AAAAAAA',
       approver3: 'AAAAAAA',

@@ -28,9 +28,10 @@
       "paymentAdviceType": "Payment Advice Type",
       "referenceNumber": "Reference Number",
       "paymentStatus": "Payment Status",
-      "hisssaType": "Hisssa Type",
+      "hissaType": "Hissa Type",
+      "projectLand": "Project Land",
       "landCompensation": "Land Compensation",
-      "projectLand": "Project Land"
+      "paymentFileRecon": "Payment File Recon"
     }
   }
 }

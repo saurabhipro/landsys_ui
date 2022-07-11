@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
+import { SurveyStatus } from 'app/entities/enumerations/survey-status.model';
 import { ISurvey, Survey } from '../survey.model';
 
 import { SurveyService } from './survey.service';
@@ -32,7 +33,7 @@ describe('Survey Service', () => {
       forestValue: 0,
       distanceFromCity: 0,
       remarks: 'AAAAAAA',
-      status: 'AAAAAAA',
+      status: SurveyStatus.OPEN,
     };
   });
 

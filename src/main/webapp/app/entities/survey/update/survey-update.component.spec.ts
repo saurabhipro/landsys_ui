@@ -50,23 +50,22 @@ describe('Survey Management Update Component', () => {
   });
 
   describe('ngOnInit', () => {
-    it('Should call Khatedar query and add missing value', () => {
+    it('Should call khatedar query and add missing value', () => {
       const survey: ISurvey = { id: 456 };
       const khatedar: IKhatedar = { id: 23713 };
       survey.khatedar = khatedar;
 
       const khatedarCollection: IKhatedar[] = [{ id: 82235 }];
       jest.spyOn(khatedarService, 'query').mockReturnValue(of(new HttpResponse({ body: khatedarCollection })));
-      const additionalKhatedars = [khatedar];
-      const expectedCollection: IKhatedar[] = [...additionalKhatedars, ...khatedarCollection];
+      const expectedCollection: IKhatedar[] = [khatedar, ...khatedarCollection];
       jest.spyOn(khatedarService, 'addKhatedarToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ survey });
       comp.ngOnInit();
 
       expect(khatedarService.query).toHaveBeenCalled();
-      expect(khatedarService.addKhatedarToCollectionIfMissing).toHaveBeenCalledWith(khatedarCollection, ...additionalKhatedars);
-      expect(comp.khatedarsSharedCollection).toEqual(expectedCollection);
+      expect(khatedarService.addKhatedarToCollectionIfMissing).toHaveBeenCalledWith(khatedarCollection, khatedar);
+      expect(comp.khatedarsCollection).toEqual(expectedCollection);
     });
 
     it('Should call ProjectLand query and add missing value', () => {
@@ -99,7 +98,7 @@ describe('Survey Management Update Component', () => {
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(survey));
-      expect(comp.khatedarsSharedCollection).toContain(khatedar);
+      expect(comp.khatedarsCollection).toContain(khatedar);
       expect(comp.projectLandsSharedCollection).toContain(projectLand);
     });
   });

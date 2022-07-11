@@ -217,14 +217,12 @@
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.transactionHistory.eventStatus" for="field_eventStatus">Event Status</label>
-          <input
-            type="text"
-            class="form-control"
-            name="eventStatus"
-            id="field_eventStatus"
-            data-cy="eventStatus"
-            formControlName="eventStatus"
-          />
+          <select class="form-control" name="eventStatus" formControlName="eventStatus" id="field_eventStatus" data-cy="eventStatus">
+            <option [ngValue]="null">{{ 'jhipsterApp.EventStatus.null' | translate }}</option>
+            <option *ngFor="let eventStatus of eventStatusValues" [value]="eventStatus">
+              {{ 'jhipsterApp.EventStatus.' + eventStatus | translate }}
+            </option>
+          </select>
         </div>
 
         <div class="row mb-3">

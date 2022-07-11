@@ -79,9 +79,9 @@
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.khatedar.status" for="field_status">Status</label>
           <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
-            <option [ngValue]="null">{{ 'jhipsterApp.KhatedayStatus.null' | translate }}</option>
-            <option *ngFor="let khatedayStatus of khatedayStatusValues" [value]="khatedayStatus">
-              {{ 'jhipsterApp.KhatedayStatus.' + khatedayStatus | translate }}
+            <option [ngValue]="null">{{ 'jhipsterApp.KhatedarStatus.null' | translate }}</option>
+            <option *ngFor="let khatedarStatus of khatedarStatusValues" [value]="khatedarStatus">
+              {{ 'jhipsterApp.KhatedarStatus.' + khatedarStatus | translate }}
             </option>
           </select>
         </div>
@@ -89,7 +89,7 @@
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.khatedar.citizen" for="field_citizen">Citizen</label>
           <select class="form-control" id="field_citizen" data-cy="citizen" name="citizen" formControlName="citizen">
-            <option *ngIf="!editForm.get('citizen')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="null"></option>
             <option
               [ngValue]="citizenOption.id === editForm.get('citizen')!.value?.id ? editForm.get('citizen')!.value : citizenOption"
               *ngFor="let citizenOption of citizensSharedCollection; trackBy: trackCitizenById"
@@ -98,20 +98,11 @@
             </option>
           </select>
         </div>
-        <div *ngIf="editForm.get(['citizen'])!.invalid && (editForm.get(['citizen'])!.dirty || editForm.get(['citizen'])!.touched)">
-          <small
-            class="form-text text-danger"
-            *ngIf="editForm.get(['citizen'])?.errors?.required"
-            jhiTranslate="entity.validation.required"
-          >
-            This field is required.
-          </small>
-        </div>
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.khatedar.projectLand" for="field_projectLand">Project Land</label>
           <select class="form-control" id="field_projectLand" data-cy="projectLand" name="projectLand" formControlName="projectLand">
-            <option *ngIf="!editForm.get('projectLand')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="null"></option>
             <option
               [ngValue]="
                 projectLandOption.id === editForm.get('projectLand')!.value?.id ? editForm.get('projectLand')!.value : projectLandOption
@@ -122,16 +113,30 @@
             </option>
           </select>
         </div>
-        <div
-          *ngIf="editForm.get(['projectLand'])!.invalid && (editForm.get(['projectLand'])!.dirty || editForm.get(['projectLand'])!.touched)"
-        >
-          <small
-            class="form-text text-danger"
-            *ngIf="editForm.get(['projectLand'])?.errors?.required"
-            jhiTranslate="entity.validation.required"
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.khatedar.noticeStatusInfo" for="field_noticeStatusInfo"
+            >Notice Status Info</label
           >
-            This field is required.
-          </small>
+          <select
+            class="form-control"
+            id="field_noticeStatusInfo"
+            data-cy="noticeStatusInfo"
+            name="noticeStatusInfo"
+            formControlName="noticeStatusInfo"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                noticeStatusInfoOption.id === editForm.get('noticeStatusInfo')!.value?.id
+                  ? editForm.get('noticeStatusInfo')!.value
+                  : noticeStatusInfoOption
+              "
+              *ngFor="let noticeStatusInfoOption of noticeStatusInfosSharedCollection; trackBy: trackNoticeStatusInfoById"
+            >
+              {{ noticeStatusInfoOption.id }}
+            </option>
+          </select>
         </div>
       </div>
 

@@ -5,9 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
-import dayjs from 'dayjs/esm';
-import { DATE_TIME_FORMAT } from 'app/config/input.constants';
-
 import { IProjectStatusHistory, ProjectStatusHistory } from '../project-status-history.model';
 import { ProjectStatusHistoryService } from '../service/project-status-history.service';
 import { ProjectStatus } from 'app/entities/enumerations/project-status.model';
@@ -35,11 +32,6 @@ export class ProjectStatusHistoryUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ projectStatusHistory }) => {
-      if (projectStatusHistory.id === undefined) {
-        const today = dayjs().startOf('day');
-        projectStatusHistory.when = today;
-      }
-
       this.updateForm(projectStatusHistory);
     });
   }
@@ -81,7 +73,7 @@ export class ProjectStatusHistoryUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: projectStatusHistory.id,
       status: projectStatusHistory.status,
-      when: projectStatusHistory.when ? projectStatusHistory.when.format(DATE_TIME_FORMAT) : null,
+      when: projectStatusHistory.when,
       remarks: projectStatusHistory.remarks,
     });
   }
@@ -91,7 +83,7 @@ export class ProjectStatusHistoryUpdateComponent implements OnInit {
       ...new ProjectStatusHistory(),
       id: this.editForm.get(['id'])!.value,
       status: this.editForm.get(['status'])!.value,
-      when: this.editForm.get(['when'])!.value ? dayjs(this.editForm.get(['when'])!.value, DATE_TIME_FORMAT) : undefined,
+      when: this.editForm.get(['when'])!.value,
       remarks: this.editForm.get(['remarks'])!.value,
     };
   }

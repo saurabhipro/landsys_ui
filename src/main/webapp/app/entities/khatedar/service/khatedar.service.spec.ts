@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { KhatedayStatus } from 'app/entities/enumerations/khateday-status.model';
+import { KhatedarStatus } from 'app/entities/enumerations/khatedar-status.model';
 import { IKhatedar, Khatedar } from '../khatedar.model';
 
 import { KhatedarService } from './khatedar.service';
@@ -26,7 +26,7 @@ describe('Khatedar Service', () => {
       remarks: 'AAAAAAA',
       noticeFileContentType: 'image/png',
       noticeFile: 'AAAAAAA',
-      status: KhatedayStatus.SURVEYCREATED,
+      status: KhatedarStatus.PENDING_FOR_SURVEY,
     };
   });
 

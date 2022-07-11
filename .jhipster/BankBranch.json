@@ -28,17 +28,17 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "citizen",
-      "otherEntityRelationshipName": "bankBranch",
-      "relationshipName": "citizen",
-      "relationshipType": "one-to-many"
-    },
-    {
       "otherEntityField": "name",
       "otherEntityName": "bank",
       "otherEntityRelationshipName": "bankName",
       "relationshipName": "bank",
-      "relationshipType": "many-to-one",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "citizen",
+      "otherEntityRelationshipName": "bankBranch",
+      "relationshipName": "citizen",
+      "relationshipType": "one-to-many",
       "relationshipValidateRules": "required"
     }
   ],

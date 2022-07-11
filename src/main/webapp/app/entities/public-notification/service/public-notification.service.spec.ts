@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import dayjs from 'dayjs/esm';
 
-import { DATE_TIME_FORMAT } from 'app/config/input.constants';
+import { DATE_FORMAT } from 'app/config/input.constants';
 import { IPublicNotification, PublicNotification } from '../public-notification.model';
 
 import { PublicNotificationService } from './public-notification.service';
@@ -35,7 +35,7 @@ describe('PublicNotification Service', () => {
     it('should find an element', () => {
       const returnedFromService = Object.assign(
         {
-          date: currentDate.format(DATE_TIME_FORMAT),
+          date: currentDate.format(DATE_FORMAT),
         },
         elemDefault
       );
@@ -51,7 +51,7 @@ describe('PublicNotification Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 0,
-          date: currentDate.format(DATE_TIME_FORMAT),
+          date: currentDate.format(DATE_FORMAT),
         },
         elemDefault
       );
@@ -74,7 +74,7 @@ describe('PublicNotification Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 1,
-          date: currentDate.format(DATE_TIME_FORMAT),
+          date: currentDate.format(DATE_FORMAT),
           file: 'BBBBBB',
         },
         elemDefault
@@ -117,7 +117,7 @@ describe('PublicNotification Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 1,
-          date: currentDate.format(DATE_TIME_FORMAT),
+          date: currentDate.format(DATE_FORMAT),
           file: 'BBBBBB',
         },
         elemDefault
