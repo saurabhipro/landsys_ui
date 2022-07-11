@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20220711170627",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_notice_status",
+  "fields": [
+    {
+      "fieldName": "status",
+      "fieldType": "NoticeStatus",
+      "fieldValues": "SENT,ACCEPTED"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "NoticeStatusInfo",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "khatedar",
+      "otherEntityRelationshipName": "noticeStatusInfo",
+      "relationshipName": "khatedar",
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "projectLand",
+      "otherEntityRelationshipName": "noticeStatusInfo",
+      "relationshipName": "projectLand",
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,9 @@
+{
+  "jhipsterApp": {
+    "CompensationStatus": {
+      "null": "",
+      "OPEN": "OPEN",
+      "CLOSED": "CLOSED"
+    }
+  }
+}

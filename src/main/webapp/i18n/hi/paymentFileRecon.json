@@ -1,0 +1,30 @@
+{
+  "jhipsterApp": {
+    "paymentFileRecon": {
+      "home": {
+        "title": "PaymentFileRecons",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Payment File Recon बनाएँ",
+        "createOrEditLabel": "Payment File Recon बनाएँ या संपादित करें",
+        "notFound": "No Payment File Recons found"
+      },
+      "created": "एक नया Payment File Recon [identifier: {{ param }}] तैयार है",
+      "updated": "एक Payment File Recon [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Payment File Recon [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Payment File Recon [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Payment File Recon"
+      },
+      "id": "ID",
+      "primaryHolderName": "Primary Holder Name",
+      "paymentAmount": "Payment Amount",
+      "paymentDate": "Payment Date",
+      "utrNumber": "Utr Number",
+      "referenceNumber": "Reference Number",
+      "paymentStatus": "Payment Status",
+      "paymentAdvice": "Payment Advice"
+    }
+  }
+}

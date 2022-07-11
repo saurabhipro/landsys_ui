@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "noticeStatusInfo": {
+      "home": {
+        "title": "NoticeStatusInfos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Notice Status Info बनाएँ",
+        "createOrEditLabel": "Notice Status Info बनाएँ या संपादित करें",
+        "notFound": "No Notice Status Infos found"
+      },
+      "created": "एक नया Notice Status Info [identifier: {{ param }}] तैयार है",
+      "updated": "एक Notice Status Info [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Notice Status Info [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Notice Status Info [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Notice Status Info"
+      },
+      "id": "ID",
+      "status": "Status",
+      "khatedar": "Khatedar",
+      "projectLand": "Project Land"
+    }
+  }
+}

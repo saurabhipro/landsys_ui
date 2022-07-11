@@ -1,0 +1,126 @@
+<div>
+  <h2 id="page-heading" data-cy="PaymentFileReconHeading">
+    <span jhiTranslate="jhipsterApp.paymentFileRecon.home.title">Payment File Recons</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterApp.paymentFileRecon.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-payment-file-recon"
+        [routerLink]="['/payment-file-recon/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterApp.paymentFileRecon.home.createLabel"> Create a new Payment File Recon </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="paymentFileRecons?.length === 0">
+    <span jhiTranslate="jhipsterApp.paymentFileRecon.home.notFound">No paymentFileRecons found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="paymentFileRecons && paymentFileRecons.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="primaryHolderName">
+            <span jhiTranslate="jhipsterApp.paymentFileRecon.primaryHolderName">Primary Holder Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="paymentAmount">
+            <span jhiTranslate="jhipsterApp.paymentFileRecon.paymentAmount">Payment Amount</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="paymentDate">
+            <span jhiTranslate="jhipsterApp.paymentFileRecon.paymentDate">Payment Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="utrNumber">
+            <span jhiTranslate="jhipsterApp.paymentFileRecon.utrNumber">Utr Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="referenceNumber">
+            <span jhiTranslate="jhipsterApp.paymentFileRecon.referenceNumber">Reference Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="paymentStatus">
+            <span jhiTranslate="jhipsterApp.paymentFileRecon.paymentStatus">Payment Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="paymentAdvice.id">
+            <span jhiTranslate="jhipsterApp.paymentFileRecon.paymentAdvice">Payment Advice</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let paymentFileRecon of paymentFileRecons; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/payment-file-recon', paymentFileRecon.id, 'view']">{{ paymentFileRecon.id }}</a>
+          </td>
+          <td>{{ paymentFileRecon.primaryHolderName }}</td>
+          <td>{{ paymentFileRecon.paymentAmount }}</td>
+          <td>{{ paymentFileRecon.paymentDate | formatMediumDate }}</td>
+          <td>{{ paymentFileRecon.utrNumber }}</td>
+          <td>{{ paymentFileRecon.referenceNumber }}</td>
+          <td jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + paymentFileRecon.paymentStatus }}">{{ paymentFileRecon.paymentStatus }}</td>
+          <td>
+            <div *ngIf="paymentFileRecon.paymentAdvice">
+              <a [routerLink]="['/payment-advice', paymentFileRecon.paymentAdvice?.id, 'view']">{{ paymentFileRecon.paymentAdvice?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/payment-file-recon', paymentFileRecon.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/payment-file-recon', paymentFileRecon.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(paymentFileRecon)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="paymentFileRecons && paymentFileRecons.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

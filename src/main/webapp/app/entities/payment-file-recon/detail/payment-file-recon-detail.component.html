@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="paymentFileRecon">
+      <h2 data-cy="paymentFileReconDetailsHeading">
+        <span jhiTranslate="jhipsterApp.paymentFileRecon.detail.title">Payment File Recon</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ paymentFileRecon.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFileRecon.primaryHolderName">Primary Holder Name</span></dt>
+        <dd>
+          <span>{{ paymentFileRecon.primaryHolderName }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFileRecon.paymentAmount">Payment Amount</span></dt>
+        <dd>
+          <span>{{ paymentFileRecon.paymentAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFileRecon.paymentDate">Payment Date</span></dt>
+        <dd>
+          <span>{{ paymentFileRecon.paymentDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFileRecon.utrNumber">Utr Number</span></dt>
+        <dd>
+          <span>{{ paymentFileRecon.utrNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFileRecon.referenceNumber">Reference Number</span></dt>
+        <dd>
+          <span>{{ paymentFileRecon.referenceNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFileRecon.paymentStatus">Payment Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + paymentFileRecon.paymentStatus }}">{{
+            paymentFileRecon.paymentStatus
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFileRecon.paymentAdvice">Payment Advice</span></dt>
+        <dd>
+          <div *ngIf="paymentFileRecon.paymentAdvice">
+            <a [routerLink]="['/payment-advice', paymentFileRecon.paymentAdvice?.id, 'view']">{{ paymentFileRecon.paymentAdvice?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/payment-file-recon', paymentFileRecon.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+{
+  "jhipsterApp": {
+    "SurveyStatus": {
+      "null": "",
+      "OPEN": "OPEN",
+      "CLOSED": "CLOSED"
+    }
+  }
+}

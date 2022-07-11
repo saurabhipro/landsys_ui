@@ -1,0 +1,23 @@
+{
+  "jhipsterApp": {
+    "EventStatus": {
+      "null": "",
+      "NEW": "NEW",
+      "OPEN": "OPEN",
+      "IN_PROGRESS": "IN_PROGRESS",
+      "PENDING": "PENDING",
+      "COMPLETED": "COMPLETED",
+      "SENT": "SENT",
+      "ACCEPTED": "ACCEPTED",
+      "APPROVED": "APPROVED",
+      "PAID": "PAID",
+      "PENDING_FOR_SURVEY": "PENDING_FOR_SURVEY",
+      "SURVEY_CREATED": "SURVEY_CREATED",
+      "PENDING_FOR_COMPENSATION": "PENDING_FOR_COMPENSATION",
+      "COMPENSATION_CREATED": "COMPENSATION_CREATED",
+      "PENDING_FOR_PAYMENT": "PENDING_FOR_PAYMENT",
+      "PAYMENT_DONE": "PAYMENT_DONE",
+      "CLOSED": "CLOSED"
+    }
+  }
+}
