@@ -1,0 +1,30 @@
+{
+  "jhipsterApp": {
+    "paymentFile": {
+      "home": {
+        "title": "PaymentFiles",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Payment File बनाएँ",
+        "createOrEditLabel": "Payment File बनाएँ या संपादित करें",
+        "notFound": "No Payment Files found"
+      },
+      "created": "एक नया Payment File [identifier: {{ param }}] तैयार है",
+      "updated": "एक Payment File [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Payment File [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Payment File [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Payment File"
+      },
+      "id": "ID",
+      "paymentFileId": "Payment File Id",
+      "totalPaymentAmount": "Total Payment Amount",
+      "paymentFileDate": "Payment File Date",
+      "paymentStatus": "Payment Status",
+      "bankName": "Bank Name",
+      "ifscCode": "Ifsc Code",
+      "paymentAdvice": "Payment Advice"
+    }
+  }
+}

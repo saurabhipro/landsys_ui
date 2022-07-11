@@ -50,7 +50,7 @@
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.bankBranch.bank" for="field_bank">Bank</label>
           <select class="form-control" id="field_bank" data-cy="bank" name="bank" formControlName="bank">
-            <option [ngValue]="null"></option>
+            <option *ngIf="!editForm.get('bank')!.value" [ngValue]="null" selected></option>
             <option
               [ngValue]="bankOption.id === editForm.get('bank')!.value?.id ? editForm.get('bank')!.value : bankOption"
               *ngFor="let bankOption of banksSharedCollection; trackBy: trackBankById"
@@ -58,6 +58,11 @@
               {{ bankOption.name }}
             </option>
           </select>
+        </div>
+        <div *ngIf="editForm.get(['bank'])!.invalid && (editForm.get(['bank'])!.dirty || editForm.get(['bank'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['bank'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
         </div>
       </div>
 

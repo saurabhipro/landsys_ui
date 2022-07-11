@@ -289,7 +289,7 @@
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.citizen.bankBranch" for="field_bankBranch">Bank Branch</label>
           <select class="form-control" id="field_bankBranch" data-cy="bankBranch" name="bankBranch" formControlName="bankBranch">
-            <option [ngValue]="null"></option>
+            <option *ngIf="!editForm.get('bankBranch')!.value" [ngValue]="null" selected></option>
             <option
               [ngValue]="
                 bankBranchOption.id === editForm.get('bankBranch')!.value?.id ? editForm.get('bankBranch')!.value : bankBranchOption
@@ -299,6 +299,17 @@
               {{ bankBranchOption.name }}
             </option>
           </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['bankBranch'])!.invalid && (editForm.get(['bankBranch'])!.dirty || editForm.get(['bankBranch'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['bankBranch'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
         </div>
       </div>
 

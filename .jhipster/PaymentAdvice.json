@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220711181320",
+  "changelogDate": "20220711192111",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_payment_advice",
@@ -78,6 +78,13 @@
       "otherEntityName": "landCompensation",
       "otherEntityRelationshipName": "paymentAdvice",
       "relationshipName": "landCompensation",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "paymentFile",
+      "otherEntityRelationshipName": "paymentAdvice",
+      "relationshipName": "paymentFile",
       "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
     },

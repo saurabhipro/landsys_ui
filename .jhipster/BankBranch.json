@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220711181316",
+  "changelogDate": "20220711192107",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_bank_branch",
@@ -32,7 +32,8 @@
       "otherEntityName": "bank",
       "otherEntityRelationshipName": "bankName",
       "relationshipName": "bank",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "citizen",

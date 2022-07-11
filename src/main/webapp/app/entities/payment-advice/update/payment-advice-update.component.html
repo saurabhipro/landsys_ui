@@ -297,6 +297,32 @@
             This field is required.
           </small>
         </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.paymentFile" for="field_paymentFile">Payment File</label>
+          <select class="form-control" id="field_paymentFile" data-cy="paymentFile" name="paymentFile" formControlName="paymentFile">
+            <option *ngIf="!editForm.get('paymentFile')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                paymentFileOption.id === editForm.get('paymentFile')!.value?.id ? editForm.get('paymentFile')!.value : paymentFileOption
+              "
+              *ngFor="let paymentFileOption of paymentFilesSharedCollection; trackBy: trackPaymentFileById"
+            >
+              {{ paymentFileOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['paymentFile'])!.invalid && (editForm.get(['paymentFile'])!.dirty || editForm.get(['paymentFile'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['paymentFile'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
       </div>
 
       <div>

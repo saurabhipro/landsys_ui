@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220711181309",
+  "changelogDate": "20220711192100",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_land",

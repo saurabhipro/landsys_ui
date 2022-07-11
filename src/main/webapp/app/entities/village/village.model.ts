@@ -4,12 +4,12 @@ import { ILand } from 'app/entities/land/land.model';
 export interface IVillage {
   id?: number;
   name?: string;
-  subDistrict?: ISubDistrict | null;
+  subDistrict?: ISubDistrict;
   lands?: ILand[];
 }
 
 export class Village implements IVillage {
-  constructor(public id?: number, public name?: string, public subDistrict?: ISubDistrict | null, public lands?: ILand[]) {}
+  constructor(public id?: number, public name?: string, public subDistrict?: ISubDistrict, public lands?: ILand[]) {}
 }
 
 export function getVillageIdentifier(village: IVillage): number | undefined {

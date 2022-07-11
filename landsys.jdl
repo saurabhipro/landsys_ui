@@ -311,4 +311,5 @@ relationship ManyToOne {
 paginate * with pagination
 service all with serviceImpl
 dto all with mapstruct
-filter Citizen , Survey , LandCompensation , Project , Khatedar, PaymentFileRecon, NoticeStatusInfo, PaymentAdvice , TransactionHistory
+filter Citizen , Survey , LandCompensation , Project , Khatedar, PaymentFileRecon, NoticeStatusInfo, PaymentAdvice , TransactionHistory,
+PaymentFile

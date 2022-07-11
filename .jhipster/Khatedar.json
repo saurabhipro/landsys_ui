@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220711181318",
+  "changelogDate": "20220711192109",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_khatedar",

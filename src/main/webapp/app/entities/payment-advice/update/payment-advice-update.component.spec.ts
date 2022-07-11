@@ -12,6 +12,8 @@ import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
 import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
 import { LandCompensationService } from 'app/entities/land-compensation/service/land-compensation.service';
+import { IPaymentFile } from 'app/entities/payment-file/payment-file.model';
+import { PaymentFileService } from 'app/entities/payment-file/service/payment-file.service';
 
 import { PaymentAdviceUpdateComponent } from './payment-advice-update.component';
 
@@ -22,6 +24,7 @@ describe('PaymentAdvice Management Update Component', () => {
   let paymentAdviceService: PaymentAdviceService;
   let projectLandService: ProjectLandService;
   let landCompensationService: LandCompensationService;
+  let paymentFileService: PaymentFileService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -45,6 +48,7 @@ describe('PaymentAdvice Management Update Component', () => {
     paymentAdviceService = TestBed.inject(PaymentAdviceService);
     projectLandService = TestBed.inject(ProjectLandService);
     landCompensationService = TestBed.inject(LandCompensationService);
+    paymentFileService = TestBed.inject(PaymentFileService);
 
     comp = fixture.componentInstance;
   });
@@ -91,12 +95,33 @@ describe('PaymentAdvice Management Update Component', () => {
       expect(comp.landCompensationsSharedCollection).toEqual(expectedCollection);
     });
 
+    it('Should call PaymentFile query and add missing value', () => {
+      const paymentAdvice: IPaymentAdvice = { id: 456 };
+      const paymentFile: IPaymentFile = { id: 70240 };
+      paymentAdvice.paymentFile = paymentFile;
+
+      const paymentFileCollection: IPaymentFile[] = [{ id: 48561 }];
+      jest.spyOn(paymentFileService, 'query').mockReturnValue(of(new HttpResponse({ body: paymentFileCollection })));
+      const additionalPaymentFiles = [paymentFile];
+      const expectedCollection: IPaymentFile[] = [...additionalPaymentFiles, ...paymentFileCollection];
+      jest.spyOn(paymentFileService, 'addPaymentFileToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ paymentAdvice });
+      comp.ngOnInit();
+
+      expect(paymentFileService.query).toHaveBeenCalled();
+      expect(paymentFileService.addPaymentFileToCollectionIfMissing).toHaveBeenCalledWith(paymentFileCollection, ...additionalPaymentFiles);
+      expect(comp.paymentFilesSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const paymentAdvice: IPaymentAdvice = { id: 456 };
       const projectLand: IProjectLand = { id: 91548 };
       paymentAdvice.projectLand = projectLand;
       const landCompensation: ILandCompensation = { id: 47210 };
       paymentAdvice.landCompensation = landCompensation;
+      const paymentFile: IPaymentFile = { id: 93619 };
+      paymentAdvice.paymentFile = paymentFile;
 
       activatedRoute.data = of({ paymentAdvice });
       comp.ngOnInit();
@@ -104,6 +129,7 @@ describe('PaymentAdvice Management Update Component', () => {
       expect(comp.editForm.value).toEqual(expect.objectContaining(paymentAdvice));
       expect(comp.projectLandsSharedCollection).toContain(projectLand);
       expect(comp.landCompensationsSharedCollection).toContain(landCompensation);
+      expect(comp.paymentFilesSharedCollection).toContain(paymentFile);
     });
   });
 
@@ -184,6 +210,14 @@ describe('PaymentAdvice Management Update Component', () => {
       it('Should return tracked LandCompensation primary key', () => {
         const entity = { id: 123 };
         const trackResult = comp.trackLandCompensationById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
+    describe('trackPaymentFileById', () => {
+      it('Should return tracked PaymentFile primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackPaymentFileById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

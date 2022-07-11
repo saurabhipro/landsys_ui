@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220711181319",
+  "changelogDate": "20220711192110",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "land_compensation",

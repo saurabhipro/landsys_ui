@@ -1,0 +1,52 @@
+{
+  "applications": "*",
+  "changelogDate": "20220711192112",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_payment_file",
+  "fields": [
+    {
+      "fieldName": "paymentFileId",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "totalPaymentAmount",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "paymentFileDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "paymentStatus",
+      "fieldType": "PaymentStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "PENDING,APPROVED,PAID"
+    },
+    {
+      "fieldName": "bankName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ifscCode",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "PaymentFile",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "paymentAdvice",
+      "otherEntityRelationshipName": "paymentFile",
+      "relationshipName": "paymentAdvice",
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220711181317",
+  "changelogDate": "20220711192108",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_citizen",
@@ -79,7 +79,8 @@
       "otherEntityName": "bankBranch",
       "otherEntityRelationshipName": "citizen",
       "relationshipName": "bankBranch",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "khatedar",

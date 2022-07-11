@@ -6,7 +6,7 @@ export interface IBankBranch {
   name?: string;
   ifsc?: string;
   address?: string;
-  bank?: IBank | null;
+  bank?: IBank;
   citizens?: ICitizen[];
 }
 
@@ -16,7 +16,7 @@ export class BankBranch implements IBankBranch {
     public name?: string,
     public ifsc?: string,
     public address?: string,
-    public bank?: IBank | null,
+    public bank?: IBank,
     public citizens?: ICitizen[]
   ) {}
 }

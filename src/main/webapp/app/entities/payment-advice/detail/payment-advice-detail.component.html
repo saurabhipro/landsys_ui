@@ -74,6 +74,12 @@
             }}</a>
           </div>
         </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.paymentFile">Payment File</span></dt>
+        <dd>
+          <div *ngIf="paymentAdvice.paymentFile">
+            <a [routerLink]="['/payment-file', paymentAdvice.paymentFile?.id, 'view']">{{ paymentAdvice.paymentFile?.id }}</a>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

@@ -72,6 +72,9 @@
           <th scope="col" jhiSortBy="landCompensation.id">
             <span jhiTranslate="jhipsterApp.paymentAdvice.landCompensation">Land Compensation</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="paymentFile.id">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.paymentFile">Payment File</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -103,6 +106,11 @@
               <a [routerLink]="['/land-compensation', paymentAdvice.landCompensation?.id, 'view']">{{
                 paymentAdvice.landCompensation?.id
               }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="paymentAdvice.paymentFile">
+              <a [routerLink]="['/payment-file', paymentAdvice.paymentFile?.id, 'view']">{{ paymentAdvice.paymentFile?.id }}</a>
             </div>
           </td>
           <td class="text-end">

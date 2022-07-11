@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220711181306",
+  "changelogDate": "20220711192057",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_village",
@@ -22,7 +22,8 @@
       "otherEntityName": "subDistrict",
       "otherEntityRelationshipName": "village",
       "relationshipName": "subDistrict",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityField": "khasraNumber",

@@ -11,6 +11,8 @@ import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
 import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
 import { LandCompensationService } from 'app/entities/land-compensation/service/land-compensation.service';
+import { IPaymentFile } from 'app/entities/payment-file/payment-file.model';
+import { PaymentFileService } from 'app/entities/payment-file/service/payment-file.service';
 import { PaymentAdviceType } from 'app/entities/enumerations/payment-advice-type.model';
 import { PaymentStatus } from 'app/entities/enumerations/payment-status.model';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
@@ -27,6 +29,7 @@ export class PaymentAdviceUpdateComponent implements OnInit {
 
   projectLandsSharedCollection: IProjectLand[] = [];
   landCompensationsSharedCollection: ILandCompensation[] = [];
+  paymentFilesSharedCollection: IPaymentFile[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -43,12 +46,14 @@ export class PaymentAdviceUpdateComponent implements OnInit {
     hissaType: [null, [Validators.required]],
     projectLand: [null, Validators.required],
     landCompensation: [null, Validators.required],
+    paymentFile: [null, Validators.required],
   });
 
   constructor(
     protected paymentAdviceService: PaymentAdviceService,
     protected projectLandService: ProjectLandService,
     protected landCompensationService: LandCompensationService,
+    protected paymentFileService: PaymentFileService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -80,6 +85,10 @@ export class PaymentAdviceUpdateComponent implements OnInit {
   }
 
   trackLandCompensationById(_index: number, item: ILandCompensation): number {
+    return item.id!;
+  }
+
+  trackPaymentFileById(_index: number, item: IPaymentFile): number {
     return item.id!;
   }
 
@@ -118,6 +127,7 @@ export class PaymentAdviceUpdateComponent implements OnInit {
       hissaType: paymentAdvice.hissaType,
       projectLand: paymentAdvice.projectLand,
       landCompensation: paymentAdvice.landCompensation,
+      paymentFile: paymentAdvice.paymentFile,
     });
 
     this.projectLandsSharedCollection = this.projectLandService.addProjectLandToCollectionIfMissing(
@@ -127,6 +137,10 @@ export class PaymentAdviceUpdateComponent implements OnInit {
     this.landCompensationsSharedCollection = this.landCompensationService.addLandCompensationToCollectionIfMissing(
       this.landCompensationsSharedCollection,
       paymentAdvice.landCompensation
+    );
+    this.paymentFilesSharedCollection = this.paymentFileService.addPaymentFileToCollectionIfMissing(
+      this.paymentFilesSharedCollection,
+      paymentAdvice.paymentFile
     );
   }
 
@@ -153,6 +167,16 @@ export class PaymentAdviceUpdateComponent implements OnInit {
         )
       )
       .subscribe((landCompensations: ILandCompensation[]) => (this.landCompensationsSharedCollection = landCompensations));
+
+    this.paymentFileService
+      .query()
+      .pipe(map((res: HttpResponse<IPaymentFile[]>) => res.body ?? []))
+      .pipe(
+        map((paymentFiles: IPaymentFile[]) =>
+          this.paymentFileService.addPaymentFileToCollectionIfMissing(paymentFiles, this.editForm.get('paymentFile')!.value)
+        )
+      )
+      .subscribe((paymentFiles: IPaymentFile[]) => (this.paymentFilesSharedCollection = paymentFiles));
   }
 
   protected createFromForm(): IPaymentAdvice {
@@ -172,6 +196,7 @@ export class PaymentAdviceUpdateComponent implements OnInit {
       hissaType: this.editForm.get(['hissaType'])!.value,
       projectLand: this.editForm.get(['projectLand'])!.value,
       landCompensation: this.editForm.get(['landCompensation'])!.value,
+      paymentFile: this.editForm.get(['paymentFile'])!.value,
     };
   }
 }

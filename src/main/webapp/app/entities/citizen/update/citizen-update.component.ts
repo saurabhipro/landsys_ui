@@ -41,7 +41,7 @@ export class CitizenUpdateComponent implements OnInit {
     accountNo: [null, []],
     accNoImage: [],
     accNoImageContentType: [],
-    bankBranch: [],
+    bankBranch: [null, Validators.required],
   });
 
   constructor(
