@@ -8,8 +8,6 @@ import { of, Subject, from } from 'rxjs';
 
 import { SurveyService } from '../service/survey.service';
 import { ISurvey, Survey } from '../survey.model';
-import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
-import { KhatedarService } from 'app/entities/khatedar/service/khatedar.service';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
 
@@ -20,7 +18,6 @@ describe('Survey Management Update Component', () => {
   let fixture: ComponentFixture<SurveyUpdateComponent>;
   let activatedRoute: ActivatedRoute;
   let surveyService: SurveyService;
-  let khatedarService: KhatedarService;
   let projectLandService: ProjectLandService;
 
   beforeEach(() => {
@@ -43,54 +40,32 @@ describe('Survey Management Update Component', () => {
     fixture = TestBed.createComponent(SurveyUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
     surveyService = TestBed.inject(SurveyService);
-    khatedarService = TestBed.inject(KhatedarService);
     projectLandService = TestBed.inject(ProjectLandService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call khatedar query and add missing value', () => {
-      const survey: ISurvey = { id: 456 };
-      const khatedar: IKhatedar = { id: 23713 };
-      survey.khatedar = khatedar;
-
-      const khatedarCollection: IKhatedar[] = [{ id: 82235 }];
-      jest.spyOn(khatedarService, 'query').mockReturnValue(of(new HttpResponse({ body: khatedarCollection })));
-      const expectedCollection: IKhatedar[] = [khatedar, ...khatedarCollection];
-      jest.spyOn(khatedarService, 'addKhatedarToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ survey });
-      comp.ngOnInit();
-
-      expect(khatedarService.query).toHaveBeenCalled();
-      expect(khatedarService.addKhatedarToCollectionIfMissing).toHaveBeenCalledWith(khatedarCollection, khatedar);
-      expect(comp.khatedarsCollection).toEqual(expectedCollection);
-    });
-
-    it('Should call ProjectLand query and add missing value', () => {
+    it('Should call projectLand query and add missing value', () => {
       const survey: ISurvey = { id: 456 };
       const projectLand: IProjectLand = { id: 31480 };
       survey.projectLand = projectLand;
 
       const projectLandCollection: IProjectLand[] = [{ id: 58817 }];
       jest.spyOn(projectLandService, 'query').mockReturnValue(of(new HttpResponse({ body: projectLandCollection })));
-      const additionalProjectLands = [projectLand];
-      const expectedCollection: IProjectLand[] = [...additionalProjectLands, ...projectLandCollection];
+      const expectedCollection: IProjectLand[] = [projectLand, ...projectLandCollection];
       jest.spyOn(projectLandService, 'addProjectLandToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ survey });
       comp.ngOnInit();
 
       expect(projectLandService.query).toHaveBeenCalled();
-      expect(projectLandService.addProjectLandToCollectionIfMissing).toHaveBeenCalledWith(projectLandCollection, ...additionalProjectLands);
-      expect(comp.projectLandsSharedCollection).toEqual(expectedCollection);
+      expect(projectLandService.addProjectLandToCollectionIfMissing).toHaveBeenCalledWith(projectLandCollection, projectLand);
+      expect(comp.projectLandsCollection).toEqual(expectedCollection);
     });
 
     it('Should update editForm', () => {
       const survey: ISurvey = { id: 456 };
-      const khatedar: IKhatedar = { id: 28920 };
-      survey.khatedar = khatedar;
       const projectLand: IProjectLand = { id: 31685 };
       survey.projectLand = projectLand;
 
@@ -98,8 +73,7 @@ describe('Survey Management Update Component', () => {
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(survey));
-      expect(comp.khatedarsCollection).toContain(khatedar);
-      expect(comp.projectLandsSharedCollection).toContain(projectLand);
+      expect(comp.projectLandsCollection).toContain(projectLand);
     });
   });
 
@@ -168,14 +142,6 @@ describe('Survey Management Update Component', () => {
   });
 
   describe('Tracking relationships identifiers', () => {
-    describe('trackKhatedarById', () => {
-      it('Should return tracked Khatedar primary key', () => {
-        const entity = { id: 123 };
-        const trackResult = comp.trackKhatedarById(0, entity);
-        expect(trackResult).toEqual(entity.id);
-      });
-    });
-
     describe('trackProjectLandById', () => {
       it('Should return tracked ProjectLand primary key', () => {
         const entity = { id: 123 };

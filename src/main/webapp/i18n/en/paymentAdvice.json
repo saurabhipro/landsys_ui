@@ -19,6 +19,7 @@
       },
       "id": "ID",
       "accountHolderName": "Account Holder Name",
+      "accountHolderBankName": "Account Holder Bank Name",
       "paymentAmount": "Payment Amount",
       "bankName": "Bank Name",
       "accountNumber": "Account Number",
@@ -29,10 +30,14 @@
       "referenceNumber": "Reference Number",
       "paymentStatus": "Payment Status",
       "hissaType": "Hissa Type",
-      "projectLand": "Project Land",
       "landCompensation": "Land Compensation",
+      "projectLand": "Project Land",
+      "survey": "Survey",
+      "citizen": "Citizen",
       "paymentFile": "Payment File",
-      "paymentFileRecon": "Payment File Recon"
+      "paymentFileRecon": "Payment File Recon",
+      "land": "Land",
+      "paymentAdviceDetails": "Payment Advice Details"
     }
   }
 }

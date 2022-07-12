@@ -68,22 +68,16 @@
         <dd>
           <span>{{ landCompensation.transactionId }}</span>
         </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.khatedar">Khatedar</span></dt>
+        <dt><span jhiTranslate="jhipsterApp.landCompensation.projectLand">Project Land</span></dt>
         <dd>
-          <div *ngIf="landCompensation.khatedar">
-            <a [routerLink]="['/khatedar', landCompensation.khatedar?.id, 'view']">{{ landCompensation.khatedar?.id }}</a>
+          <div *ngIf="landCompensation.projectLand">
+            <a [routerLink]="['/project-land', landCompensation.projectLand?.id, 'view']">{{ landCompensation.projectLand?.id }}</a>
           </div>
         </dd>
         <dt><span jhiTranslate="jhipsterApp.landCompensation.survey">Survey</span></dt>
         <dd>
           <div *ngIf="landCompensation.survey">
             <a [routerLink]="['/survey', landCompensation.survey?.id, 'view']">{{ landCompensation.survey?.id }}</a>
-          </div>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.projectLand">Project Land</span></dt>
-        <dd>
-          <div *ngIf="landCompensation.projectLand">
-            <a [routerLink]="['/project-land', landCompensation.projectLand?.id, 'view']">{{ landCompensation.projectLand?.id }}</a>
           </div>
         </dd>
       </dl>

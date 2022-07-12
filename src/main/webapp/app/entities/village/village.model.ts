@@ -5,11 +5,11 @@ export interface IVillage {
   id?: number;
   name?: string;
   subDistrict?: ISubDistrict;
-  lands?: ILand[];
+  lands?: ILand[] | null;
 }
 
 export class Village implements IVillage {
-  constructor(public id?: number, public name?: string, public subDistrict?: ISubDistrict, public lands?: ILand[]) {}
+  constructor(public id?: number, public name?: string, public subDistrict?: ISubDistrict, public lands?: ILand[] | null) {}
 }
 
 export function getVillageIdentifier(village: IVillage): number | undefined {

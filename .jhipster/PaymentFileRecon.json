@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220711192113",
+  "changelogDate": "20220712174920",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_payment_file_recon",
@@ -47,7 +47,8 @@
       "otherEntityRelationshipName": "paymentFileRecon",
       "ownerSide": true,
       "relationshipName": "paymentAdvice",
-      "relationshipType": "one-to-one"
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
     }
   ],
   "service": "serviceImpl"

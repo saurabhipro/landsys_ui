@@ -20,6 +20,7 @@
       "id": "ID",
       "ulpin": "Ulpin",
       "khasraNumber": "Khasra Number",
+      "kahtauniKhata": "Kahtauni Khata",
       "area": "Area",
       "landMarketValue": "Land Market Value",
       "structuralValue": "Structural Value",
@@ -27,10 +28,13 @@
       "forestValue": "Forest Value",
       "distanceFromCity": "Distance From City",
       "totalLandValue": "Total Land Value",
-      "state": "State",
+      "paymentAdvice": "Payment Advice",
       "village": "Village",
       "unit": "Unit",
       "landType": "Land Type",
+      "state": "State",
+      "citizen": "Citizen",
+      "project": "Project",
       "projectLand": "Project Land"
     }
   }

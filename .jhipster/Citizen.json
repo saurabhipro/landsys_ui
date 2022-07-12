@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220711192108",
+  "changelogDate": "20220712174915",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_citizen",
@@ -19,6 +19,14 @@
       "fieldName": "address",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "mobileNo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dob",
+      "fieldType": "LocalDate"
     },
     {
       "fieldName": "accountNumber",
@@ -75,6 +83,13 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "khasraNumber",
+      "otherEntityName": "land",
+      "otherEntityRelationshipName": "citizen",
+      "relationshipName": "land",
+      "relationshipType": "one-to-many"
+    },
+    {
       "otherEntityField": "name",
       "otherEntityName": "bankBranch",
       "otherEntityRelationshipName": "citizen",
@@ -83,11 +98,16 @@
       "relationshipValidateRules": "required"
     },
     {
-      "otherEntityName": "khatedar",
+      "otherEntityName": "projectLand",
       "otherEntityRelationshipName": "citizen",
-      "relationshipName": "khatedar",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipName": "projectLand",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "paymentAdvice",
+      "otherEntityRelationshipName": "citizen",
+      "relationshipName": "paymentAdvice",
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

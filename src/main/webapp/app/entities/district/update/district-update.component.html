@@ -22,6 +22,24 @@
             </small>
           </div>
         </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.district.state" for="field_state">State</label>
+          <select class="form-control" id="field_state" data-cy="state" name="state" formControlName="state">
+            <option *ngIf="!editForm.get('state')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="stateOption.id === editForm.get('state')!.value?.id ? editForm.get('state')!.value : stateOption"
+              *ngFor="let stateOption of statesSharedCollection; trackBy: trackStateById"
+            >
+              {{ stateOption.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['state'])!.invalid && (editForm.get(['state'])!.dirty || editForm.get(['state'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['state'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
       </div>
 
       <div>

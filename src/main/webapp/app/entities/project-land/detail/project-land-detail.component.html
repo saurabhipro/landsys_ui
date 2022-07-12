@@ -29,16 +29,22 @@
         <dd>
           <span jhiTranslate="{{ 'jhipsterApp.HissaType.' + projectLand.hissaType }}">{{ projectLand.hissaType }}</span>
         </dd>
+        <dt><span jhiTranslate="jhipsterApp.projectLand.land">Land</span></dt>
+        <dd>
+          <div *ngIf="projectLand.land">
+            <a [routerLink]="['/land', projectLand.land?.id, 'view']">{{ projectLand.land?.khasraNumber }}</a>
+          </div>
+        </dd>
         <dt><span jhiTranslate="jhipsterApp.projectLand.project">Project</span></dt>
         <dd>
           <div *ngIf="projectLand.project">
             <a [routerLink]="['/project', projectLand.project?.id, 'view']">{{ projectLand.project?.name }}</a>
           </div>
         </dd>
-        <dt><span jhiTranslate="jhipsterApp.projectLand.land">Land</span></dt>
+        <dt><span jhiTranslate="jhipsterApp.projectLand.citizen">Citizen</span></dt>
         <dd>
-          <div *ngIf="projectLand.land">
-            <a [routerLink]="['/land', projectLand.land?.id, 'view']">{{ projectLand.land?.khasraNumber }}</a>
+          <div *ngIf="projectLand.citizen">
+            <a [routerLink]="['/citizen', projectLand.citizen?.id, 'view']">{{ projectLand.citizen?.name }}</a>
           </div>
         </dd>
         <dt><span jhiTranslate="jhipsterApp.projectLand.noticeStatusInfo">Notice Status Info</span></dt>

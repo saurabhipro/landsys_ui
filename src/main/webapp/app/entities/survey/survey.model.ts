@@ -1,6 +1,6 @@
-import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
+import { IPaymentAdvice } from 'app/entities/payment-advice/payment-advice.model';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 import { SurveyStatus } from 'app/entities/enumerations/survey-status.model';
 
@@ -17,9 +17,9 @@ export interface ISurvey {
   distanceFromCity?: number | null;
   remarks?: string | null;
   status?: SurveyStatus | null;
-  khatedar?: IKhatedar | null;
   projectLand?: IProjectLand;
-  landCompensations?: ILandCompensation[];
+  landCompensation?: ILandCompensation;
+  paymentAdvices?: IPaymentAdvice[] | null;
 }
 
 export class Survey implements ISurvey {
@@ -36,9 +36,9 @@ export class Survey implements ISurvey {
     public distanceFromCity?: number | null,
     public remarks?: string | null,
     public status?: SurveyStatus | null,
-    public khatedar?: IKhatedar | null,
     public projectLand?: IProjectLand,
-    public landCompensations?: ILandCompensation[]
+    public landCompensation?: ILandCompensation,
+    public paymentAdvices?: IPaymentAdvice[] | null
   ) {}
 }
 

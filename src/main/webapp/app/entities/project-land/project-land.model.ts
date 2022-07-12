@@ -1,10 +1,11 @@
-import { IProject } from 'app/entities/project/project.model';
 import { ILand } from 'app/entities/land/land.model';
+import { IProject } from 'app/entities/project/project.model';
+import { ICitizen } from 'app/entities/citizen/citizen.model';
 import { INoticeStatusInfo } from 'app/entities/notice-status-info/notice-status-info.model';
-import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
 import { ISurvey } from 'app/entities/survey/survey.model';
 import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
 import { IPaymentAdvice } from 'app/entities/payment-advice/payment-advice.model';
+import { IPaymentAdviceDetails } from 'app/entities/payment-advice-details/payment-advice-details.model';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 
 export interface IProjectLand {
@@ -13,13 +14,14 @@ export interface IProjectLand {
   documentsContentType?: string | null;
   documents?: string | null;
   hissaType?: HissaType | null;
+  land?: ILand | null;
   project?: IProject;
-  land?: ILand;
-  noticeStatusInfo?: INoticeStatusInfo | null;
-  khatedars?: IKhatedar[];
-  surveys?: ISurvey[];
-  landCompensations?: ILandCompensation[];
-  paymentAdvices?: IPaymentAdvice[];
+  citizen?: ICitizen;
+  noticeStatusInfo?: INoticeStatusInfo;
+  survey?: ISurvey | null;
+  landCompensation?: ILandCompensation | null;
+  paymentAdvices?: IPaymentAdvice[] | null;
+  paymentAdviceDetails?: IPaymentAdviceDetails[] | null;
 }
 
 export class ProjectLand implements IProjectLand {
@@ -29,13 +31,14 @@ export class ProjectLand implements IProjectLand {
     public documentsContentType?: string | null,
     public documents?: string | null,
     public hissaType?: HissaType | null,
+    public land?: ILand | null,
     public project?: IProject,
-    public land?: ILand,
-    public noticeStatusInfo?: INoticeStatusInfo | null,
-    public khatedars?: IKhatedar[],
-    public surveys?: ISurvey[],
-    public landCompensations?: ILandCompensation[],
-    public paymentAdvices?: IPaymentAdvice[]
+    public citizen?: ICitizen,
+    public noticeStatusInfo?: INoticeStatusInfo,
+    public survey?: ISurvey | null,
+    public landCompensation?: ILandCompensation | null,
+    public paymentAdvices?: IPaymentAdvice[] | null,
+    public paymentAdviceDetails?: IPaymentAdviceDetails[] | null
   ) {}
 }
 

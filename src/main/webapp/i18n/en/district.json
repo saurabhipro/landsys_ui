@@ -19,8 +19,8 @@
       },
       "id": "ID",
       "name": "Name",
-      "subDistrict": "Sub District",
-      "state": "State"
+      "state": "State",
+      "subDistrict": "Sub District"
     }
   }
 }

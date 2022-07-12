@@ -174,7 +174,7 @@
             name="paymentAdvice"
             formControlName="paymentAdvice"
           >
-            <option [ngValue]="null"></option>
+            <option *ngIf="editForm.get(['paymentAdvice'])!.value == null" [ngValue]="null" selected></option>
             <option
               [ngValue]="
                 paymentAdviceOption.id === editForm.get('paymentAdvice')!.value?.id
@@ -186,6 +186,19 @@
               {{ paymentAdviceOption.id }}
             </option>
           </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['paymentAdvice'])!.invalid && (editForm.get(['paymentAdvice'])!.dirty || editForm.get(['paymentAdvice'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['paymentAdvice'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
         </div>
       </div>
 

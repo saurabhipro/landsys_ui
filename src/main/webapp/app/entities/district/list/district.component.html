@@ -34,6 +34,9 @@
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="name"><span jhiTranslate="jhipsterApp.district.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="state.name">
+            <span jhiTranslate="jhipsterApp.district.state">State</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -43,6 +46,11 @@
             <a [routerLink]="['/district', district.id, 'view']">{{ district.id }}</a>
           </td>
           <td>{{ district.name }}</td>
+          <td>
+            <div *ngIf="district.state">
+              <a [routerLink]="['/state', district.state?.id, 'view']">{{ district.state?.name }}</a>
+            </div>
+          </td>
           <td class="text-end">
             <div class="btn-group">
               <button

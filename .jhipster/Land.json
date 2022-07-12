@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220711192100",
+  "changelogDate": "20220712174907",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_land",
@@ -13,6 +13,10 @@
       "fieldName": "khasraNumber",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "kahtauniKhata",
+      "fieldType": "String"
     },
     {
       "fieldName": "area",
@@ -50,12 +54,10 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityField": "name",
-      "otherEntityName": "state",
+      "otherEntityName": "paymentAdvice",
       "otherEntityRelationshipName": "land",
-      "ownerSide": true,
-      "relationshipName": "state",
-      "relationshipType": "one-to-one"
+      "relationshipName": "paymentAdvice",
+      "relationshipType": "one-to-many"
     },
     {
       "otherEntityField": "name",
@@ -80,6 +82,28 @@
       "relationshipName": "landType",
       "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "state",
+      "otherEntityRelationshipName": "land",
+      "relationshipName": "state",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "citizen",
+      "otherEntityRelationshipName": "land",
+      "relationshipName": "citizen",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "project",
+      "otherEntityRelationshipName": "land",
+      "relationshipName": "project",
+      "relationshipType": "many-to-one"
     },
     {
       "otherEntityName": "projectLand",

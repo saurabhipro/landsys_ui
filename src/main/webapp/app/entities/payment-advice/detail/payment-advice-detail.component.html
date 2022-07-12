@@ -18,6 +18,10 @@
         <dd>
           <span>{{ paymentAdvice.accountHolderName }}</span>
         </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderBankName">Account Holder Bank Name</span></dt>
+        <dd>
+          <span>{{ paymentAdvice.accountHolderBankName }}</span>
+        </dd>
         <dt><span jhiTranslate="jhipsterApp.paymentAdvice.paymentAmount">Payment Amount</span></dt>
         <dd>
           <span>{{ paymentAdvice.paymentAmount }}</span>
@@ -60,12 +64,6 @@
         <dd>
           <span jhiTranslate="{{ 'jhipsterApp.HissaType.' + paymentAdvice.hissaType }}">{{ paymentAdvice.hissaType }}</span>
         </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</span></dt>
-        <dd>
-          <div *ngIf="paymentAdvice.projectLand">
-            <a [routerLink]="['/project-land', paymentAdvice.projectLand?.id, 'view']">{{ paymentAdvice.projectLand?.id }}</a>
-          </div>
-        </dd>
         <dt><span jhiTranslate="jhipsterApp.paymentAdvice.landCompensation">Land Compensation</span></dt>
         <dd>
           <div *ngIf="paymentAdvice.landCompensation">
@@ -74,10 +72,34 @@
             }}</a>
           </div>
         </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</span></dt>
+        <dd>
+          <div *ngIf="paymentAdvice.projectLand">
+            <a [routerLink]="['/project-land', paymentAdvice.projectLand?.id, 'view']">{{ paymentAdvice.projectLand?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.survey">Survey</span></dt>
+        <dd>
+          <div *ngIf="paymentAdvice.survey">
+            <a [routerLink]="['/survey', paymentAdvice.survey?.id, 'view']">{{ paymentAdvice.survey?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.citizen">Citizen</span></dt>
+        <dd>
+          <div *ngIf="paymentAdvice.citizen">
+            <a [routerLink]="['/citizen', paymentAdvice.citizen?.id, 'view']">{{ paymentAdvice.citizen?.id }}</a>
+          </div>
+        </dd>
         <dt><span jhiTranslate="jhipsterApp.paymentAdvice.paymentFile">Payment File</span></dt>
         <dd>
           <div *ngIf="paymentAdvice.paymentFile">
             <a [routerLink]="['/payment-file', paymentAdvice.paymentFile?.id, 'view']">{{ paymentAdvice.paymentFile?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.land">Land</span></dt>
+        <dd>
+          <div *ngIf="paymentAdvice.land">
+            <a [routerLink]="['/land', paymentAdvice.land?.id, 'view']">{{ paymentAdvice.land?.khasraNumber }}</a>
           </div>
         </dd>
       </dl>

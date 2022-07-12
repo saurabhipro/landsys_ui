@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220711192054",
+  "changelogDate": "20220712174901",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_state",
@@ -18,20 +18,18 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "name",
       "otherEntityName": "district",
       "otherEntityRelationshipName": "state",
       "relationshipName": "district",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
     },
     {
       "otherEntityField": "khasraNumber",
       "otherEntityName": "land",
       "otherEntityRelationshipName": "state",
-      "ownerSide": false,
       "relationshipName": "land",
-      "relationshipType": "one-to-one",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

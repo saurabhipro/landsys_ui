@@ -1,15 +1,15 @@
-import { ISubDistrict } from 'app/entities/sub-district/sub-district.model';
 import { IState } from 'app/entities/state/state.model';
+import { ISubDistrict } from 'app/entities/sub-district/sub-district.model';
 
 export interface IDistrict {
   id?: number;
   name?: string;
-  subDistricts?: ISubDistrict[];
-  states?: IState[];
+  state?: IState;
+  subDistricts?: ISubDistrict[] | null;
 }
 
 export class District implements IDistrict {
-  constructor(public id?: number, public name?: string, public subDistricts?: ISubDistrict[], public states?: IState[]) {}
+  constructor(public id?: number, public name?: string, public state?: IState, public subDistricts?: ISubDistrict[] | null) {}
 }
 
 export function getDistrictIdentifier(district: IDistrict): number | undefined {

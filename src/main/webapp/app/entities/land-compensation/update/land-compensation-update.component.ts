@@ -7,12 +7,10 @@ import { finalize, map } from 'rxjs/operators';
 
 import { ILandCompensation, LandCompensation } from '../land-compensation.model';
 import { LandCompensationService } from '../service/land-compensation.service';
-import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
-import { KhatedarService } from 'app/entities/khatedar/service/khatedar.service';
-import { ISurvey } from 'app/entities/survey/survey.model';
-import { SurveyService } from 'app/entities/survey/service/survey.service';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
+import { ISurvey } from 'app/entities/survey/survey.model';
+import { SurveyService } from 'app/entities/survey/service/survey.service';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 import { CompensationStatus } from 'app/entities/enumerations/compensation-status.model';
 
@@ -25,9 +23,8 @@ export class LandCompensationUpdateComponent implements OnInit {
   hissaTypeValues = Object.keys(HissaType);
   compensationStatusValues = Object.keys(CompensationStatus);
 
-  khatedarsSharedCollection: IKhatedar[] = [];
-  surveysSharedCollection: ISurvey[] = [];
-  projectLandsSharedCollection: IProjectLand[] = [];
+  projectLandsCollection: IProjectLand[] = [];
+  surveysCollection: ISurvey[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -44,16 +41,14 @@ export class LandCompensationUpdateComponent implements OnInit {
     orderDate: [],
     paymentAmount: [],
     transactionId: [],
-    khatedar: [null, Validators.required],
-    survey: [null, Validators.required],
     projectLand: [null, Validators.required],
+    survey: [],
   });
 
   constructor(
     protected landCompensationService: LandCompensationService,
-    protected khatedarService: KhatedarService,
-    protected surveyService: SurveyService,
     protected projectLandService: ProjectLandService,
+    protected surveyService: SurveyService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -80,15 +75,11 @@ export class LandCompensationUpdateComponent implements OnInit {
     }
   }
 
-  trackKhatedarById(_index: number, item: IKhatedar): number {
+  trackProjectLandById(_index: number, item: IProjectLand): number {
     return item.id!;
   }
 
   trackSurveyById(_index: number, item: ISurvey): number {
-    return item.id!;
-  }
-
-  trackProjectLandById(_index: number, item: IProjectLand): number {
     return item.id!;
   }
 
@@ -127,48 +118,33 @@ export class LandCompensationUpdateComponent implements OnInit {
       orderDate: landCompensation.orderDate,
       paymentAmount: landCompensation.paymentAmount,
       transactionId: landCompensation.transactionId,
-      khatedar: landCompensation.khatedar,
-      survey: landCompensation.survey,
       projectLand: landCompensation.projectLand,
+      survey: landCompensation.survey,
     });
 
-    this.khatedarsSharedCollection = this.khatedarService.addKhatedarToCollectionIfMissing(
-      this.khatedarsSharedCollection,
-      landCompensation.khatedar
-    );
-    this.surveysSharedCollection = this.surveyService.addSurveyToCollectionIfMissing(this.surveysSharedCollection, landCompensation.survey);
-    this.projectLandsSharedCollection = this.projectLandService.addProjectLandToCollectionIfMissing(
-      this.projectLandsSharedCollection,
+    this.projectLandsCollection = this.projectLandService.addProjectLandToCollectionIfMissing(
+      this.projectLandsCollection,
       landCompensation.projectLand
     );
+    this.surveysCollection = this.surveyService.addSurveyToCollectionIfMissing(this.surveysCollection, landCompensation.survey);
   }
 
   protected loadRelationshipsOptions(): void {
-    this.khatedarService
-      .query()
-      .pipe(map((res: HttpResponse<IKhatedar[]>) => res.body ?? []))
-      .pipe(
-        map((khatedars: IKhatedar[]) =>
-          this.khatedarService.addKhatedarToCollectionIfMissing(khatedars, this.editForm.get('khatedar')!.value)
-        )
-      )
-      .subscribe((khatedars: IKhatedar[]) => (this.khatedarsSharedCollection = khatedars));
-
-    this.surveyService
-      .query()
-      .pipe(map((res: HttpResponse<ISurvey[]>) => res.body ?? []))
-      .pipe(map((surveys: ISurvey[]) => this.surveyService.addSurveyToCollectionIfMissing(surveys, this.editForm.get('survey')!.value)))
-      .subscribe((surveys: ISurvey[]) => (this.surveysSharedCollection = surveys));
-
     this.projectLandService
-      .query()
+      .query({ filter: 'landcompensation-is-null' })
       .pipe(map((res: HttpResponse<IProjectLand[]>) => res.body ?? []))
       .pipe(
         map((projectLands: IProjectLand[]) =>
           this.projectLandService.addProjectLandToCollectionIfMissing(projectLands, this.editForm.get('projectLand')!.value)
         )
       )
-      .subscribe((projectLands: IProjectLand[]) => (this.projectLandsSharedCollection = projectLands));
+      .subscribe((projectLands: IProjectLand[]) => (this.projectLandsCollection = projectLands));
+
+    this.surveyService
+      .query({ 'landCompensationId.specified': 'false' })
+      .pipe(map((res: HttpResponse<ISurvey[]>) => res.body ?? []))
+      .pipe(map((surveys: ISurvey[]) => this.surveyService.addSurveyToCollectionIfMissing(surveys, this.editForm.get('survey')!.value)))
+      .subscribe((surveys: ISurvey[]) => (this.surveysCollection = surveys));
   }
 
   protected createFromForm(): ILandCompensation {
@@ -188,9 +164,8 @@ export class LandCompensationUpdateComponent implements OnInit {
       orderDate: this.editForm.get(['orderDate'])!.value,
       paymentAmount: this.editForm.get(['paymentAmount'])!.value,
       transactionId: this.editForm.get(['transactionId'])!.value,
-      khatedar: this.editForm.get(['khatedar'])!.value,
-      survey: this.editForm.get(['survey'])!.value,
       projectLand: this.editForm.get(['projectLand'])!.value,
+      survey: this.editForm.get(['survey'])!.value,
     };
   }
 }

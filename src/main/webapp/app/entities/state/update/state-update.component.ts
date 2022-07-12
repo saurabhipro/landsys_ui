@@ -3,12 +3,10 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize, map } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 
 import { IState, State } from '../state.model';
 import { StateService } from '../service/state.service';
-import { IDistrict } from 'app/entities/district/district.model';
-import { DistrictService } from 'app/entities/district/service/district.service';
 
 @Component({
   selector: 'jhi-state-update',
@@ -17,26 +15,16 @@ import { DistrictService } from 'app/entities/district/service/district.service'
 export class StateUpdateComponent implements OnInit {
   isSaving = false;
 
-  districtsSharedCollection: IDistrict[] = [];
-
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
-    district: [null, Validators.required],
   });
 
-  constructor(
-    protected stateService: StateService,
-    protected districtService: DistrictService,
-    protected activatedRoute: ActivatedRoute,
-    protected fb: FormBuilder
-  ) {}
+  constructor(protected stateService: StateService, protected activatedRoute: ActivatedRoute, protected fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ state }) => {
       this.updateForm(state);
-
-      this.loadRelationshipsOptions();
     });
   }
 
@@ -52,10 +40,6 @@ export class StateUpdateComponent implements OnInit {
     } else {
       this.subscribeToSaveResponse(this.stateService.create(state));
     }
-  }
-
-  trackDistrictById(_index: number, item: IDistrict): number {
-    return item.id!;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IState>>): void {
@@ -81,22 +65,7 @@ export class StateUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: state.id,
       name: state.name,
-      district: state.district,
     });
-
-    this.districtsSharedCollection = this.districtService.addDistrictToCollectionIfMissing(this.districtsSharedCollection, state.district);
-  }
-
-  protected loadRelationshipsOptions(): void {
-    this.districtService
-      .query()
-      .pipe(map((res: HttpResponse<IDistrict[]>) => res.body ?? []))
-      .pipe(
-        map((districts: IDistrict[]) =>
-          this.districtService.addDistrictToCollectionIfMissing(districts, this.editForm.get('district')!.value)
-        )
-      )
-      .subscribe((districts: IDistrict[]) => (this.districtsSharedCollection = districts));
   }
 
   protected createFromForm(): IState {
@@ -104,7 +73,6 @@ export class StateUpdateComponent implements OnInit {
       ...new State(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
-      district: this.editForm.get(['district'])!.value,
     };
   }
 }

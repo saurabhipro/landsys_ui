@@ -20,7 +20,7 @@
       "id": "ID",
       "name": "Name",
       "code": "Code",
-      "bankName": "Bank Name"
+      "bankBranch": "Bank Branch"
     }
   }
 }

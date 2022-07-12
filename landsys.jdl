@@ -28,6 +28,7 @@ entity LandType(landsys_land_type) {
 entity Land(landsys_land) {
    ulpin String
    khasraNumber String required
+   kahtauniKhata String
    area  Double
    landMarketValue  Double
    structuralValue  Double
@@ -92,6 +93,8 @@ entity Citizen(landsys_citizen) {
     photo  ImageBlob
     name String required
     address String required
+    mobileNo String 
+    dob LocalDate
     accountNumber String
     fatherName String required
     spouseName String
@@ -102,92 +105,9 @@ entity Citizen(landsys_citizen) {
     panImage  AnyBlob
     accountNo String unique
     accNoImage  ImageBlob
+    
  }
 
-enum KhatedarStatus {
-    PENDING_FOR_SURVEY,
-    SURVEY_CREATED,
-    PENDING_FOR_COMPENSATION,
-    COMPENSATION_CREATED,
-    PENDING_FOR_PAYMENT,
-    PAYMENT_DONE,
-    CLOSED
-}
-
-entity Khatedar(landsys_khatedar) {
-    caseFileNo String
-    remarks String
-    noticeFile  AnyBlob
-    status KhatedarStatus
-}
-
-
-enum ProjectLevel {
-    ROOT ("Top Level")
-    STATE ("State Level")
-    DISTRICT ("District Level")
-    SUBDISTRICT ("SubDistrict Level")
-    VILLAGE ("Village Level")
-}
-enum EventStatus {
-	NEW
-	OPEN
-    IN_PROGRESS
-	PENDING
-    COMPLETED
-	SENT
-	ACCEPTED
-	APPROVED
-	PAID
-	PENDING_FOR_SURVEY,
-    SURVEY_CREATED,
-    PENDING_FOR_COMPENSATION,
-    COMPENSATION_CREATED,
-    PENDING_FOR_PAYMENT,
-    PAYMENT_DONE,
-    CLOSED
-}
-
-enum ProjectStatus {
-    NEW
-    INPROGRESS
-    COMPLETED
-}
-
-enum NoticeStatus {
-  SENT
-  ACCEPTED
-}
-
-enum PaymentStatus {
-  PENDING
-  APPROVED
-  PAID
-}
-enum SurveyStatus
-{
-  OPEN
-  CLOSED
-}
-enum CompensationStatus
-{
-  OPEN
-  CLOSED
-}
-
-
-enum PaymentAdviceType
-{
-  ONLINE
-  CHECQUE
-  OTHER
-}
-
-enum HissaType {
-    SINGLE_OWNER("Single Owner")
-    JOINT_OWNER("Joint Owner")
-    DIVIDED("divided")
-}
 entity LandCompensation(land_Compensation) {
     hissaType                HissaType required
     area                     Double required
@@ -205,7 +125,8 @@ entity LandCompensation(land_Compensation) {
 }
 
 entity PaymentAdvice(landsys_Payment_Advice) {
-	accountHolderName			String required
+    accountHolderName			String required
+    accountHolderBankName       String required
     paymentAmount               Double required
 	bankName			 		String required
 	accountNumber				String required
@@ -218,6 +139,10 @@ entity PaymentAdvice(landsys_Payment_Advice) {
     hissaType HissaType required
 }
 
+entity PaymentAdviceDetails(landsys_payment_advice_details) {
+    landOwners	String required
+    hissaType HissaType required
+}
 
 entity PaymentFile(landsys_payment_file) {
 	paymentFileId               Double required
@@ -277,39 +202,103 @@ entity TransactionHistory(landsys_transaction_history)
     approver3 String
 }
 
-relationship OneToOne {
-    Land{state(name)} to State{land(khasraNumber) required}
-	Survey{khatedar} to Khatedar{survey required}
-	PaymentFileRecon{paymentAdvice} to PaymentAdvice{paymentFileRecon required}
-}
-
+relationship OneToOne {    
+	Survey{projectLand required} to ProjectLand{survey}   
+    LandCompensation{projectLand required} to  ProjectLand{landCompensation}    
+    PaymentFileRecon{paymentAdvice required} to PaymentAdvice{paymentFileRecon}    
+    LandCompensation{survey} to Survey{landCompensation required}   
+    }
 
 relationship ManyToOne {
-    ProjectLand{project(name) required} to Project{projectLand required}
-	ProjectLand{land(khasraNumber) required} to Land{projectLand required}
-	Khatedar{citizen(name) required} to Citizen{khatedar required}
-	Khatedar{projectLand required} to ProjectLand{khatedar required}
-	Survey{projectLand required} to ProjectLand{survey required}
-	LandCompensation{khatedar required} to Khatedar{landCompensation required}
-	LandCompensation{survey required} to  Survey{landCompensation required}
-	LandCompensation{projectLand required} to  ProjectLand{landCompensation required}
-	PaymentAdvice{projectLand required} to ProjectLand{paymentAdvice required}
-	PaymentAdvice{landCompensation required} to LandCompensation{paymentAdvice required}
-	Land{village(name) required} to Village{land(khasraNumber) required}
-	Land{unit(name) required} to  Unit{land(khasraNumber) required}
-	Land{LandType(name) required} to LandType{land(khasraNumber) required}
-	SubDistrict{district(name) required} to District{subDistrict required}
-	BankBranch{bank(name) required} to Bank{bankName required}
-	State{district required} to District{state(name) required}
-    Village{subDistrict(name) required} to SubDistrict{village required}
- 	Citizen{bankBranch(name) required}  to BankBranch{citizen required}
-	Khatedar{noticeStatusInfo} to NoticeStatusInfo{khatedar required}
-	ProjectLand{noticeStatusInfo} to NoticeStatusInfo{projectLand required}
-    PaymentAdvice{paymentFile required} to PaymentFile{paymentAdvice required}
+    ProjectLand{land(khasraNumber) } to Land{projectLand required}
+    ProjectLand{project(name) required} to Project{projectLand}    
+    ProjectLand{citizen(name) required}  to Citizen{ProjectLand}    
+    Land{village(name) required} to Village{land(khasraNumber)}    
+	Land{unit(name) required} to  Unit{land(khasraNumber)}
+	Land{LandType(name) required} to LandType{land(khasraNumber)}	
+    SubDistrict{district(name) required} to District{subDistrict}
+	BankBranch{bank(name) required} to Bank{bankBranch}
+	District{state(name) required} to State{district(name)}
+    Village{subDistrict(name) required} to SubDistrict{village}
+    Citizen{bankBranch(name) required}  to BankBranch{citizen}  
+    Land{state(name) required} to State{land(khasraNumber)}    
+    PaymentAdvice{landCompensation required} to LandCompensation{paymentAdvice}    
+    PaymentAdvice{projectLand required} to ProjectLand{paymentAdvice}        
+    PaymentAdvice{survey required} to Survey{paymentAdvice}
+    PaymentAdvice{citizen required} to Citizen{paymentAdvice}    
+    PaymentAdviceDetails{paymentAdvice required} to PaymentAdvice{paymentAdviceDetails}
+    PaymentAdviceDetails{projectLand required} to ProjectLand{paymentAdviceDetails}       
+	ProjectLand{noticeStatusInfo required} to NoticeStatusInfo{projectLand}
+    PaymentAdvice{paymentFile} to PaymentFile{paymentAdvice required}
+}
+
+relationship OneToMany{
+   Citizen{land(khasraNumber)} to Land{citizen(name)}
+   Project{land(khasraNumber)} to Land{project(name)}
+   Land{PaymentAdvice} to PaymentAdvice{Land(khasraNumber)}  
+}
+
+enum EventStatus {
+	NEW
+	OPEN
+    IN_PROGRESS
+	PENDING
+    COMPLETED
+	SENT
+	ACCEPTED
+	APPROVED
+	PAID
+	PENDING_FOR_SURVEY,
+    SURVEY_CREATED,
+    PENDING_FOR_COMPENSATION,
+    COMPENSATION_CREATED,
+    PENDING_FOR_PAYMENT,
+    PAYMENT_DONE,
+    CLOSED
+}
+
+enum ProjectStatus {
+    NEW
+    INPROGRESS
+    COMPLETED
+}
+
+enum NoticeStatus {
+  SENT
+  ACCEPTED
+}
+
+enum PaymentStatus {
+  PENDING
+  APPROVED
+  PAID
+}
+enum SurveyStatus
+{
+  OPEN
+  CLOSED
+}
+enum CompensationStatus
+{
+  OPEN
+  CLOSED
+}
+
+enum PaymentAdviceType
+{
+  ONLINE
+  CHECQUE
+  OTHER
+}
+
+enum HissaType {
+    SINGLE_OWNER("Single Owner")
+    JOINT_OWNER("Joint Owner")
+    DIVIDED("divided")
 }
 
 paginate * with pagination
 service all with serviceImpl
 dto all with mapstruct
-filter Citizen , Survey , LandCompensation , Project , Khatedar, PaymentFileRecon, NoticeStatusInfo, PaymentAdvice , TransactionHistory,
-PaymentFile
+
+filter Citizen , Survey , LandCompensation , Project , PaymentFileRecon, NoticeStatusInfo, PaymentAdvice , TransactionHistory, PaymentFile , PaymentAdviceDetails

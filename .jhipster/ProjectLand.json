@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220711192103",
+  "changelogDate": "20220712174910",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_project_land",
@@ -27,6 +27,13 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "khasraNumber",
+      "otherEntityName": "land",
+      "otherEntityRelationshipName": "projectLand",
+      "relationshipName": "land",
+      "relationshipType": "many-to-one"
+    },
+    {
       "otherEntityField": "name",
       "otherEntityName": "project",
       "otherEntityRelationshipName": "projectLand",
@@ -35,10 +42,10 @@
       "relationshipValidateRules": "required"
     },
     {
-      "otherEntityField": "khasraNumber",
-      "otherEntityName": "land",
+      "otherEntityField": "name",
+      "otherEntityName": "citizen",
       "otherEntityRelationshipName": "projectLand",
-      "relationshipName": "land",
+      "relationshipName": "citizen",
       "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
     },
@@ -46,35 +53,34 @@
       "otherEntityName": "noticeStatusInfo",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "noticeStatusInfo",
-      "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "khatedar",
-      "otherEntityRelationshipName": "projectLand",
-      "relationshipName": "khatedar",
-      "relationshipType": "one-to-many",
+      "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "survey",
       "otherEntityRelationshipName": "projectLand",
+      "ownerSide": false,
       "relationshipName": "survey",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-one"
     },
     {
       "otherEntityName": "landCompensation",
       "otherEntityRelationshipName": "projectLand",
+      "ownerSide": false,
       "relationshipName": "landCompensation",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-one"
     },
     {
       "otherEntityName": "paymentAdvice",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "paymentAdvice",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "paymentAdviceDetails",
+      "otherEntityRelationshipName": "projectLand",
+      "relationshipName": "paymentAdviceDetails",
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

@@ -23,6 +23,7 @@ describe('Land Service', () => {
       id: 0,
       ulpin: 'AAAAAAA',
       khasraNumber: 'AAAAAAA',
+      kahtauniKhata: 'AAAAAAA',
       area: 0,
       landMarketValue: 0,
       structuralValue: 0,
@@ -67,6 +68,7 @@ describe('Land Service', () => {
           id: 1,
           ulpin: 'BBBBBB',
           khasraNumber: 'BBBBBB',
+          kahtauniKhata: 'BBBBBB',
           area: 1,
           landMarketValue: 1,
           structuralValue: 1,
@@ -91,10 +93,10 @@ describe('Land Service', () => {
       const patchObject = Object.assign(
         {
           ulpin: 'BBBBBB',
+          area: 1,
           landMarketValue: 1,
-          structuralValue: 1,
-          forestValue: 1,
-          totalLandValue: 1,
+          horticultureValue: 1,
+          distanceFromCity: 'BBBBBB',
         },
         new Land()
       );
@@ -116,6 +118,7 @@ describe('Land Service', () => {
           id: 1,
           ulpin: 'BBBBBB',
           khasraNumber: 'BBBBBB',
+          kahtauniKhata: 'BBBBBB',
           area: 1,
           landMarketValue: 1,
           structuralValue: 1,
@@ -174,7 +177,7 @@ describe('Land Service', () => {
       });
 
       it('should add only unique Land to an array', () => {
-        const landArray: ILand[] = [{ id: 123 }, { id: 456 }, { id: 9049 }];
+        const landArray: ILand[] = [{ id: 123 }, { id: 456 }, { id: 65673 }];
         const landCollection: ILand[] = [{ id: 123 }];
         expectedResult = service.addLandToCollectionIfMissing(landCollection, ...landArray);
         expect(expectedResult).toHaveLength(3);

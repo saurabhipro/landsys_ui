@@ -31,9 +31,8 @@
       "orderDate": "Order Date",
       "paymentAmount": "Payment Amount",
       "transactionId": "Transaction Id",
-      "khatedar": "Khatedar",
-      "survey": "Survey",
       "projectLand": "Project Land",
+      "survey": "Survey",
       "paymentAdvice": "Payment Advice"
     }
   }

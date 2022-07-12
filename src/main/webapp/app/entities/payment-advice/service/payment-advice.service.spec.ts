@@ -25,6 +25,7 @@ describe('PaymentAdvice Service', () => {
     elemDefault = {
       id: 0,
       accountHolderName: 'AAAAAAA',
+      accountHolderBankName: 'AAAAAAA',
       paymentAmount: 0,
       bankName: 'AAAAAAA',
       accountNumber: 'AAAAAAA',
@@ -71,6 +72,7 @@ describe('PaymentAdvice Service', () => {
         {
           id: 1,
           accountHolderName: 'BBBBBB',
+          accountHolderBankName: 'BBBBBB',
           paymentAmount: 1,
           bankName: 'BBBBBB',
           accountNumber: 'BBBBBB',
@@ -98,12 +100,12 @@ describe('PaymentAdvice Service', () => {
       const patchObject = Object.assign(
         {
           accountHolderName: 'BBBBBB',
-          paymentAmount: 1,
+          accountHolderBankName: 'BBBBBB',
+          bankName: 'BBBBBB',
           accountNumber: 'BBBBBB',
           ifscCode: 'BBBBBB',
           checkNumber: 'BBBBBB',
-          micrCode: 'BBBBBB',
-          referenceNumber: 'BBBBBB',
+          paymentAdviceType: 'BBBBBB',
         },
         new PaymentAdvice()
       );
@@ -124,6 +126,7 @@ describe('PaymentAdvice Service', () => {
         {
           id: 1,
           accountHolderName: 'BBBBBB',
+          accountHolderBankName: 'BBBBBB',
           paymentAmount: 1,
           bankName: 'BBBBBB',
           accountNumber: 'BBBBBB',
@@ -185,7 +188,7 @@ describe('PaymentAdvice Service', () => {
       });
 
       it('should add only unique PaymentAdvice to an array', () => {
-        const paymentAdviceArray: IPaymentAdvice[] = [{ id: 123 }, { id: 456 }, { id: 48777 }];
+        const paymentAdviceArray: IPaymentAdvice[] = [{ id: 123 }, { id: 456 }, { id: 31406 }];
         const paymentAdviceCollection: IPaymentAdvice[] = [{ id: 123 }];
         expectedResult = service.addPaymentAdviceToCollectionIfMissing(paymentAdviceCollection, ...paymentAdviceArray);
         expect(expectedResult).toHaveLength(3);

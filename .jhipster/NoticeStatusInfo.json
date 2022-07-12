@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220711192115",
+  "changelogDate": "20220712174922",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_notice_status",
@@ -18,18 +18,10 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "khatedar",
-      "otherEntityRelationshipName": "noticeStatusInfo",
-      "relationshipName": "khatedar",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
-    },
-    {
       "otherEntityName": "projectLand",
       "otherEntityRelationshipName": "noticeStatusInfo",
       "relationshipName": "projectLand",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

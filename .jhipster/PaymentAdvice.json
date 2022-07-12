@@ -1,12 +1,17 @@
 {
   "applications": "*",
-  "changelogDate": "20220711192111",
+  "changelogDate": "20220712174917",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_payment_advice",
   "fields": [
     {
       "fieldName": "accountHolderName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "accountHolderBankName",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
     },
@@ -68,13 +73,6 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "projectLand",
-      "otherEntityRelationshipName": "paymentAdvice",
-      "relationshipName": "projectLand",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": "required"
-    },
-    {
       "otherEntityName": "landCompensation",
       "otherEntityRelationshipName": "paymentAdvice",
       "relationshipName": "landCompensation",
@@ -82,19 +80,51 @@
       "relationshipValidateRules": "required"
     },
     {
+      "otherEntityName": "projectLand",
+      "otherEntityRelationshipName": "paymentAdvice",
+      "relationshipName": "projectLand",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "survey",
+      "otherEntityRelationshipName": "paymentAdvice",
+      "relationshipName": "survey",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "citizen",
+      "otherEntityRelationshipName": "paymentAdvice",
+      "relationshipName": "citizen",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
       "otherEntityName": "paymentFile",
       "otherEntityRelationshipName": "paymentAdvice",
       "relationshipName": "paymentFile",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": "required"
+      "relationshipType": "many-to-one"
     },
     {
       "otherEntityName": "paymentFileRecon",
       "otherEntityRelationshipName": "paymentAdvice",
       "ownerSide": false,
       "relationshipName": "paymentFileRecon",
-      "relationshipType": "one-to-one",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "khasraNumber",
+      "otherEntityName": "land",
+      "otherEntityRelationshipName": "paymentAdvice",
+      "relationshipName": "land",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "paymentAdviceDetails",
+      "otherEntityRelationshipName": "paymentAdvice",
+      "relationshipName": "paymentAdviceDetails",
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

@@ -36,6 +36,10 @@
           <th scope="col" jhiSortBy="accountHolderName">
             <span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderName">Account Holder Name</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="accountHolderBankName">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderBankName">Account Holder Bank Name</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="paymentAmount">
             <span jhiTranslate="jhipsterApp.paymentAdvice.paymentAmount">Payment Amount</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -66,14 +70,23 @@
           <th scope="col" jhiSortBy="hissaType">
             <span jhiTranslate="jhipsterApp.paymentAdvice.hissaType">Hissa Type</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="projectLand.id">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col" jhiSortBy="landCompensation.id">
             <span jhiTranslate="jhipsterApp.paymentAdvice.landCompensation">Land Compensation</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="projectLand.id">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="survey.id">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.survey">Survey</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="citizen.id">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.citizen">Citizen</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="paymentFile.id">
             <span jhiTranslate="jhipsterApp.paymentAdvice.paymentFile">Payment File</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="land.khasraNumber">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.land">Land</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -84,6 +97,7 @@
             <a [routerLink]="['/payment-advice', paymentAdvice.id, 'view']">{{ paymentAdvice.id }}</a>
           </td>
           <td>{{ paymentAdvice.accountHolderName }}</td>
+          <td>{{ paymentAdvice.accountHolderBankName }}</td>
           <td>{{ paymentAdvice.paymentAmount }}</td>
           <td>{{ paymentAdvice.bankName }}</td>
           <td>{{ paymentAdvice.accountNumber }}</td>
@@ -97,11 +111,6 @@
           <td jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + paymentAdvice.paymentStatus }}">{{ paymentAdvice.paymentStatus }}</td>
           <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + paymentAdvice.hissaType }}">{{ paymentAdvice.hissaType }}</td>
           <td>
-            <div *ngIf="paymentAdvice.projectLand">
-              <a [routerLink]="['/project-land', paymentAdvice.projectLand?.id, 'view']">{{ paymentAdvice.projectLand?.id }}</a>
-            </div>
-          </td>
-          <td>
             <div *ngIf="paymentAdvice.landCompensation">
               <a [routerLink]="['/land-compensation', paymentAdvice.landCompensation?.id, 'view']">{{
                 paymentAdvice.landCompensation?.id
@@ -109,8 +118,28 @@
             </div>
           </td>
           <td>
+            <div *ngIf="paymentAdvice.projectLand">
+              <a [routerLink]="['/project-land', paymentAdvice.projectLand?.id, 'view']">{{ paymentAdvice.projectLand?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="paymentAdvice.survey">
+              <a [routerLink]="['/survey', paymentAdvice.survey?.id, 'view']">{{ paymentAdvice.survey?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="paymentAdvice.citizen">
+              <a [routerLink]="['/citizen', paymentAdvice.citizen?.id, 'view']">{{ paymentAdvice.citizen?.id }}</a>
+            </div>
+          </td>
+          <td>
             <div *ngIf="paymentAdvice.paymentFile">
               <a [routerLink]="['/payment-file', paymentAdvice.paymentFile?.id, 'view']">{{ paymentAdvice.paymentFile?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="paymentAdvice.land">
+              <a [routerLink]="['/land', paymentAdvice.land?.id, 'view']">{{ paymentAdvice.land?.khasraNumber }}</a>
             </div>
           </td>
           <td class="text-end">

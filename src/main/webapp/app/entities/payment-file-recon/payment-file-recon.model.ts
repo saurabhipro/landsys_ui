@@ -10,7 +10,7 @@ export interface IPaymentFileRecon {
   utrNumber?: string;
   referenceNumber?: string | null;
   paymentStatus?: PaymentStatus;
-  paymentAdvice?: IPaymentAdvice | null;
+  paymentAdvice?: IPaymentAdvice;
 }
 
 export class PaymentFileRecon implements IPaymentFileRecon {
@@ -22,7 +22,7 @@ export class PaymentFileRecon implements IPaymentFileRecon {
     public utrNumber?: string,
     public referenceNumber?: string | null,
     public paymentStatus?: PaymentStatus,
-    public paymentAdvice?: IPaymentAdvice | null
+    public paymentAdvice?: IPaymentAdvice
   ) {}
 }
 

@@ -58,12 +58,6 @@
         <dd>
           <span jhiTranslate="{{ 'jhipsterApp.SurveyStatus.' + survey.status }}">{{ survey.status }}</span>
         </dd>
-        <dt><span jhiTranslate="jhipsterApp.survey.khatedar">Khatedar</span></dt>
-        <dd>
-          <div *ngIf="survey.khatedar">
-            <a [routerLink]="['/khatedar', survey.khatedar?.id, 'view']">{{ survey.khatedar?.id }}</a>
-          </div>
-        </dd>
         <dt><span jhiTranslate="jhipsterApp.survey.projectLand">Project Land</span></dt>
         <dd>
           <div *ngIf="survey.projectLand">

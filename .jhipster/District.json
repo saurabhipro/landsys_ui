@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220711192055",
+  "changelogDate": "20220712174902",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_district",
@@ -18,19 +18,18 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "subDistrict",
-      "otherEntityRelationshipName": "district",
-      "relationshipName": "subDistrict",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
-    },
-    {
       "otherEntityField": "name",
       "otherEntityName": "state",
       "otherEntityRelationshipName": "district",
       "relationshipName": "state",
-      "relationshipType": "one-to-many",
+      "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "subDistrict",
+      "otherEntityRelationshipName": "district",
+      "relationshipName": "subDistrict",
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

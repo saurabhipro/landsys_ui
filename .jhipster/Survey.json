@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220711192114",
+  "changelogDate": "20220712174921",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_survey",
@@ -64,25 +64,26 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "khatedar",
-      "otherEntityRelationshipName": "survey",
-      "ownerSide": true,
-      "relationshipName": "khatedar",
-      "relationshipType": "one-to-one"
-    },
-    {
       "otherEntityName": "projectLand",
       "otherEntityRelationshipName": "survey",
+      "ownerSide": true,
       "relationshipName": "projectLand",
-      "relationshipType": "many-to-one",
+      "relationshipType": "one-to-one",
       "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "landCompensation",
       "otherEntityRelationshipName": "survey",
+      "ownerSide": false,
       "relationshipName": "landCompensation",
-      "relationshipType": "one-to-many",
+      "relationshipType": "one-to-one",
       "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "paymentAdvice",
+      "otherEntityRelationshipName": "survey",
+      "relationshipName": "paymentAdvice",
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

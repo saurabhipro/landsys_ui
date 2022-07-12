@@ -1,5 +1,8 @@
+import dayjs from 'dayjs/esm';
+import { ILand } from 'app/entities/land/land.model';
 import { IBankBranch } from 'app/entities/bank-branch/bank-branch.model';
-import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
+import { IProjectLand } from 'app/entities/project-land/project-land.model';
+import { IPaymentAdvice } from 'app/entities/payment-advice/payment-advice.model';
 
 export interface ICitizen {
   id?: number;
@@ -7,6 +10,8 @@ export interface ICitizen {
   photo?: string | null;
   name?: string;
   address?: string;
+  mobileNo?: string | null;
+  dob?: dayjs.Dayjs | null;
   accountNumber?: string | null;
   fatherName?: string;
   spouseName?: string | null;
@@ -20,8 +25,10 @@ export interface ICitizen {
   accountNo?: string | null;
   accNoImageContentType?: string | null;
   accNoImage?: string | null;
+  lands?: ILand[] | null;
   bankBranch?: IBankBranch;
-  khatedars?: IKhatedar[];
+  projectLands?: IProjectLand[] | null;
+  paymentAdvices?: IPaymentAdvice[] | null;
 }
 
 export class Citizen implements ICitizen {
@@ -31,6 +38,8 @@ export class Citizen implements ICitizen {
     public photo?: string | null,
     public name?: string,
     public address?: string,
+    public mobileNo?: string | null,
+    public dob?: dayjs.Dayjs | null,
     public accountNumber?: string | null,
     public fatherName?: string,
     public spouseName?: string | null,
@@ -44,8 +53,10 @@ export class Citizen implements ICitizen {
     public accountNo?: string | null,
     public accNoImageContentType?: string | null,
     public accNoImage?: string | null,
+    public lands?: ILand[] | null,
     public bankBranch?: IBankBranch,
-    public khatedars?: IKhatedar[]
+    public projectLands?: IProjectLand[] | null,
+    public paymentAdvices?: IPaymentAdvice[] | null
   ) {}
 }
 

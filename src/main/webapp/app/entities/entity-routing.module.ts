@@ -80,11 +80,6 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./citizen/citizen.module').then(m => m.CitizenModule),
       },
       {
-        path: 'khatedar',
-        data: { pageTitle: 'jhipsterApp.khatedar.home.title' },
-        loadChildren: () => import('./khatedar/khatedar.module').then(m => m.KhatedarModule),
-      },
-      {
         path: 'land-compensation',
         data: { pageTitle: 'jhipsterApp.landCompensation.home.title' },
         loadChildren: () => import('./land-compensation/land-compensation.module').then(m => m.LandCompensationModule),
@@ -93,6 +88,11 @@ import { RouterModule } from '@angular/router';
         path: 'payment-advice',
         data: { pageTitle: 'jhipsterApp.paymentAdvice.home.title' },
         loadChildren: () => import('./payment-advice/payment-advice.module').then(m => m.PaymentAdviceModule),
+      },
+      {
+        path: 'payment-advice-details',
+        data: { pageTitle: 'jhipsterApp.paymentAdviceDetails.home.title' },
+        loadChildren: () => import('./payment-advice-details/payment-advice-details.module').then(m => m.PaymentAdviceDetailsModule),
       },
       {
         path: 'payment-file',

@@ -29,7 +29,7 @@ export class PaymentFileReconUpdateComponent implements OnInit {
     utrNumber: [null, [Validators.required]],
     referenceNumber: [null, []],
     paymentStatus: [null, [Validators.required]],
-    paymentAdvice: [],
+    paymentAdvice: [null, Validators.required],
   });
 
   constructor(

@@ -1,7 +1,6 @@
 import dayjs from 'dayjs/esm';
-import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
-import { ISurvey } from 'app/entities/survey/survey.model';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
+import { ISurvey } from 'app/entities/survey/survey.model';
 import { IPaymentAdvice } from 'app/entities/payment-advice/payment-advice.model';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 import { CompensationStatus } from 'app/entities/enumerations/compensation-status.model';
@@ -21,10 +20,9 @@ export interface ILandCompensation {
   orderDate?: dayjs.Dayjs | null;
   paymentAmount?: number | null;
   transactionId?: string | null;
-  khatedar?: IKhatedar;
-  survey?: ISurvey;
   projectLand?: IProjectLand;
-  paymentAdvices?: IPaymentAdvice[];
+  survey?: ISurvey | null;
+  paymentAdvices?: IPaymentAdvice[] | null;
 }
 
 export class LandCompensation implements ILandCompensation {
@@ -43,10 +41,9 @@ export class LandCompensation implements ILandCompensation {
     public orderDate?: dayjs.Dayjs | null,
     public paymentAmount?: number | null,
     public transactionId?: string | null,
-    public khatedar?: IKhatedar,
-    public survey?: ISurvey,
     public projectLand?: IProjectLand,
-    public paymentAdvices?: IPaymentAdvice[]
+    public survey?: ISurvey | null,
+    public paymentAdvices?: IPaymentAdvice[] | null
   ) {}
 }
 

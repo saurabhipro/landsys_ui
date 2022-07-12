@@ -18,12 +18,6 @@
         <dd>
           <span>{{ state.name }}</span>
         </dd>
-        <dt><span jhiTranslate="jhipsterApp.state.district">District</span></dt>
-        <dd>
-          <div *ngIf="state.district">
-            <a [routerLink]="['/district', state.district?.id, 'view']">{{ state.district?.id }}</a>
-          </div>
-        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
