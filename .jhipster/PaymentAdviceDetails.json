@@ -1,0 +1,42 @@
+{
+  "applications": "*",
+  "changelogDate": "20220712174918",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_payment_advice_details",
+  "fields": [
+    {
+      "fieldName": "landOwners",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "hissaType",
+      "fieldType": "HissaType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SINGLE_OWNER (Single Owner),JOINT_OWNER (Joint Owner),DIVIDED (divided)"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "PaymentAdviceDetails",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "paymentAdvice",
+      "otherEntityRelationshipName": "paymentAdviceDetails",
+      "relationshipName": "paymentAdvice",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "projectLand",
+      "otherEntityRelationshipName": "paymentAdviceDetails",
+      "relationshipName": "projectLand",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceImpl"
+}

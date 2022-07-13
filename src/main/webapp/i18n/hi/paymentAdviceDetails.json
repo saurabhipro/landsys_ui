@@ -1,0 +1,27 @@
+{
+  "jhipsterApp": {
+    "paymentAdviceDetails": {
+      "home": {
+        "title": "PaymentAdviceDetails",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Payment Advice Details बनाएँ",
+        "createOrEditLabel": "Payment Advice Details बनाएँ या संपादित करें",
+        "notFound": "No Payment Advice Details found"
+      },
+      "created": "एक नया Payment Advice Details [identifier: {{ param }}] तैयार है",
+      "updated": "एक Payment Advice Details [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Payment Advice Details [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Payment Advice Details [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Payment Advice Details"
+      },
+      "id": "ID",
+      "landOwners": "Land Owners",
+      "hissaType": "Hissa Type",
+      "paymentAdvice": "Payment Advice",
+      "projectLand": "Project Land"
+    }
+  }
+}

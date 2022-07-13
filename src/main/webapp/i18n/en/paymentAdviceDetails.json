@@ -1,0 +1,27 @@
+{
+  "jhipsterApp": {
+    "paymentAdviceDetails": {
+      "home": {
+        "title": "Payment Advice Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Payment Advice Details",
+        "createOrEditLabel": "Create or edit a Payment Advice Details",
+        "notFound": "No Payment Advice Details found"
+      },
+      "created": "A new Payment Advice Details is created with identifier {{ param }}",
+      "updated": "A Payment Advice Details is updated with identifier {{ param }}",
+      "deleted": "A Payment Advice Details is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Payment Advice Details {{ id }}?"
+      },
+      "detail": {
+        "title": "Payment Advice Details"
+      },
+      "id": "ID",
+      "landOwners": "Land Owners",
+      "hissaType": "Hissa Type",
+      "paymentAdvice": "Payment Advice",
+      "projectLand": "Project Land"
+    }
+  }
+}
