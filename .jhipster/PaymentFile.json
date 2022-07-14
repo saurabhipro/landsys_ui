@@ -32,6 +32,11 @@
     {
       "fieldName": "ifscCode",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "paymentMode",
+      "fieldType": "PaymentAdviceType",
+      "fieldValues": "ONLINE,CHECQUE,OTHER"
     }
   ],
   "fluentMethods": true,
@@ -41,10 +46,56 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityName": "khatedar",
+      "otherEntityRelationshipName": "paymentFile",
+      "ownerSide": true,
+      "relationshipName": "khatedar",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
       "otherEntityName": "paymentAdvice",
       "otherEntityRelationshipName": "paymentFile",
+      "ownerSide": true,
       "relationshipName": "paymentAdvice",
-      "relationshipType": "one-to-many",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "projectLand",
+      "otherEntityRelationshipName": "paymentFile",
+      "relationshipName": "projectLand",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "survey",
+      "otherEntityRelationshipName": "paymentFile",
+      "relationshipName": "survey",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "bank",
+      "otherEntityRelationshipName": "paymentFile",
+      "relationshipName": "bank",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "bankBranch",
+      "otherEntityRelationshipName": "paymentFile",
+      "relationshipName": "bankBranch",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "landCompensation",
+      "otherEntityRelationshipName": "paymentFile",
+      "relationshipName": "landCompensation",
+      "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
     }
   ],

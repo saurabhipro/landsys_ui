@@ -53,8 +53,7 @@
       "otherEntityName": "noticeStatusInfo",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "noticeStatusInfo",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": "required"
+      "relationshipType": "many-to-one"
     },
     {
       "otherEntityName": "survey",
@@ -80,6 +79,18 @@
       "otherEntityName": "paymentAdviceDetails",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "paymentAdviceDetails",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "paymentFile",
+      "otherEntityRelationshipName": "projectLand",
+      "relationshipName": "paymentFile",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "khatedar",
+      "otherEntityRelationshipName": "projectLand",
+      "relationshipName": "khatedar",
       "relationshipType": "one-to-many"
     }
   ],

@@ -39,6 +39,9 @@
           <th scope="col" jhiSortBy="area">
             <span jhiTranslate="jhipsterApp.landCompensation.area">Area</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="sharePercentage">
+            <span jhiTranslate="jhipsterApp.landCompensation.sharePercentage">Share Percentage</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="landMarketValue">
             <span jhiTranslate="jhipsterApp.landCompensation.landMarketValue">Land Market Value</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -88,6 +91,7 @@
           </td>
           <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + landCompensation.hissaType }}">{{ landCompensation.hissaType }}</td>
           <td>{{ landCompensation.area }}</td>
+          <td>{{ landCompensation.sharePercentage }}</td>
           <td>{{ landCompensation.landMarketValue }}</td>
           <td>{{ landCompensation.structuralCompensation }}</td>
           <td>{{ landCompensation.horticultureCompensation }}</td>

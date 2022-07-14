@@ -1,6 +1,7 @@
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
 import { IPaymentAdvice } from 'app/entities/payment-advice/payment-advice.model';
+import { IPaymentFile } from 'app/entities/payment-file/payment-file.model';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 import { SurveyStatus } from 'app/entities/enumerations/survey-status.model';
 
@@ -20,6 +21,7 @@ export interface ISurvey {
   projectLand?: IProjectLand;
   landCompensation?: ILandCompensation;
   paymentAdvices?: IPaymentAdvice[] | null;
+  paymentFiles?: IPaymentFile[] | null;
 }
 
 export class Survey implements ISurvey {
@@ -38,7 +40,8 @@ export class Survey implements ISurvey {
     public status?: SurveyStatus | null,
     public projectLand?: IProjectLand,
     public landCompensation?: ILandCompensation,
-    public paymentAdvices?: IPaymentAdvice[] | null
+    public paymentAdvices?: IPaymentAdvice[] | null,
+    public paymentFiles?: IPaymentFile[] | null
   ) {}
 }
 

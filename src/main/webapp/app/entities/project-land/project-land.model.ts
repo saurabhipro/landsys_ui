@@ -6,6 +6,8 @@ import { ISurvey } from 'app/entities/survey/survey.model';
 import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
 import { IPaymentAdvice } from 'app/entities/payment-advice/payment-advice.model';
 import { IPaymentAdviceDetails } from 'app/entities/payment-advice-details/payment-advice-details.model';
+import { IPaymentFile } from 'app/entities/payment-file/payment-file.model';
+import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 
 export interface IProjectLand {
@@ -17,11 +19,13 @@ export interface IProjectLand {
   land?: ILand | null;
   project?: IProject;
   citizen?: ICitizen;
-  noticeStatusInfo?: INoticeStatusInfo;
+  noticeStatusInfo?: INoticeStatusInfo | null;
   survey?: ISurvey | null;
   landCompensation?: ILandCompensation | null;
   paymentAdvices?: IPaymentAdvice[] | null;
   paymentAdviceDetails?: IPaymentAdviceDetails[] | null;
+  paymentFiles?: IPaymentFile[] | null;
+  khatedars?: IKhatedar[] | null;
 }
 
 export class ProjectLand implements IProjectLand {
@@ -34,11 +38,13 @@ export class ProjectLand implements IProjectLand {
     public land?: ILand | null,
     public project?: IProject,
     public citizen?: ICitizen,
-    public noticeStatusInfo?: INoticeStatusInfo,
+    public noticeStatusInfo?: INoticeStatusInfo | null,
     public survey?: ISurvey | null,
     public landCompensation?: ILandCompensation | null,
     public paymentAdvices?: IPaymentAdvice[] | null,
-    public paymentAdviceDetails?: IPaymentAdviceDetails[] | null
+    public paymentAdviceDetails?: IPaymentAdviceDetails[] | null,
+    public paymentFiles?: IPaymentFile[] | null,
+    public khatedars?: IKhatedar[] | null
   ) {}
 }
 

@@ -1,3 +1,10 @@
+entity Khatedar(landsys_khatedar) {
+    caseFileNo String required unique
+    remarks String required unique
+    khatedarStatus String
+}
+
+
 entity State(landsys_state) {
     name String required unique
 }
@@ -27,7 +34,7 @@ entity LandType(landsys_land_type) {
 
 entity Land(landsys_land) {
    ulpin String
-   khasraNumber String required
+   khasraNumber String unique required
    kahtauniKhata String
    area  Double
    landMarketValue  Double
@@ -93,7 +100,7 @@ entity Citizen(landsys_citizen) {
     photo  ImageBlob
     name String required
     address String required
-    mobileNo String 
+    mobileNo String
     dob LocalDate
     accountNumber String
     fatherName String required
@@ -105,7 +112,7 @@ entity Citizen(landsys_citizen) {
     panImage  AnyBlob
     accountNo String unique
     accNoImage  ImageBlob
-    
+
  }
 
 entity LandCompensation(land_Compensation) {
@@ -151,6 +158,7 @@ entity PaymentFile(landsys_payment_file) {
 	paymentStatus	 			PaymentStatus required
     bankName                    String
     ifscCode                    String
+    paymentMode PaymentAdviceType 
 }
 
 entity PaymentFileRecon(landsys_payment_file_recon) {
@@ -202,40 +210,57 @@ entity TransactionHistory(landsys_transaction_history)
     approver3 String
 }
 
-relationship OneToOne {    
-	Survey{projectLand required} to ProjectLand{survey}   
-    LandCompensation{projectLand required} to  ProjectLand{landCompensation}    
-    PaymentFileRecon{paymentAdvice required} to PaymentAdvice{paymentFileRecon}    
-    LandCompensation{survey} to Survey{landCompensation required}   
+relationship OneToOne {
+    
+    Survey{projectLand required} to ProjectLand{survey}
+    LandCompensation{projectLand required} to  ProjectLand{landCompensation}
+    PaymentFileRecon{paymentAdvice required} to PaymentAdvice{paymentFileRecon}
+    LandCompensation{survey} to Survey{landCompensation required}
+    PaymentFile{khatedar required} to Khatedar{paymentFile}
+    PaymentFile{paymentAdvice required} to PaymentAdvice{paymentFile}
     }
 
 relationship ManyToOne {
     ProjectLand{land(khasraNumber) } to Land{projectLand required}
-    ProjectLand{project(name) required} to Project{projectLand}    
-    ProjectLand{citizen(name) required}  to Citizen{ProjectLand}    
-    Land{village(name) required} to Village{land(khasraNumber)}    
+    ProjectLand{project(name) required} to Project{projectLand}
+    ProjectLand{citizen(name) required}  to Citizen{ProjectLand}
+    Land{village(name) required} to Village{land(khasraNumber)}
 	Land{unit(name) required} to  Unit{land(khasraNumber)}
-	Land{LandType(name) required} to LandType{land(khasraNumber)}	
+	Land{LandType(name) required} to LandType{land(khasraNumber)}
     SubDistrict{district(name) required} to District{subDistrict}
 	BankBranch{bank(name) required} to Bank{bankBranch}
 	District{state(name) required} to State{district(name)}
     Village{subDistrict(name) required} to SubDistrict{village}
-    Citizen{bankBranch(name) required}  to BankBranch{citizen}  
-    Land{state(name) required} to State{land(khasraNumber)}    
-    PaymentAdvice{landCompensation required} to LandCompensation{paymentAdvice}    
-    PaymentAdvice{projectLand required} to ProjectLand{paymentAdvice}        
+    Citizen{bankBranch(name)}  to BankBranch{citizen}
+    Land{state(name) required} to State{land(khasraNumber)}
+    PaymentAdvice{landCompensation required} to LandCompensation{paymentAdvice}
+    PaymentAdvice{projectLand required} to ProjectLand{paymentAdvice}
     PaymentAdvice{survey required} to Survey{paymentAdvice}
-    PaymentAdvice{citizen required} to Citizen{paymentAdvice}    
+    PaymentAdvice{citizen required} to Citizen{paymentAdvice}
     PaymentAdviceDetails{paymentAdvice required} to PaymentAdvice{paymentAdviceDetails}
-    PaymentAdviceDetails{projectLand required} to ProjectLand{paymentAdviceDetails}       
-	ProjectLand{noticeStatusInfo required} to NoticeStatusInfo{projectLand}
-    PaymentAdvice{paymentFile} to PaymentFile{paymentAdvice required}
+    PaymentAdviceDetails{projectLand required} to ProjectLand{paymentAdviceDetails}
+	ProjectLand{noticeStatusInfo} to NoticeStatusInfo{projectLand}
+    PaymentAdvice{projectLand required} to ProjectLand{paymentAdvice}    
+    PaymentFile{projectLand required} to ProjectLand{paymentFile}
+    PaymentFile{survey required} to Survey{paymentFile}
+    PaymentFile{bank(name) required} to Bank{paymentFile}
+    PaymentFile{bankBranch(name) required} to BankBranch{paymentFile}
+    PaymentFile{landCompensation required} to LandCompensation{paymentFile}
+    Khatedar{projectLand required} to ProjectLand{khatedar}
+    Khatedar{citizen required} to Citizen{khatedar}
 }
 
 relationship OneToMany{
    Citizen{land(khasraNumber)} to Land{citizen(name)}
    Project{land(khasraNumber)} to Land{project(name)}
-   Land{PaymentAdvice} to PaymentAdvice{Land(khasraNumber)}  
+   Land{PaymentAdvice} to PaymentAdvice{Land(khasraNumber)}
+   PaymentAdvice{khatedar required} to Khatedar{paymentAdvice}
+}
+
+
+enum KhatedarStatus {
+    NEW
+    SURVEY_CREATED    
 }
 
 enum EventStatus {
@@ -301,4 +326,4 @@ paginate * with pagination
 service all with serviceImpl
 dto all with mapstruct
 
-filter Citizen , Survey , LandCompensation , Project , PaymentFileRecon, NoticeStatusInfo, PaymentAdvice , TransactionHistory, PaymentFile , PaymentAdviceDetails
+filter Citizen , Khatedar , Survey , LandCompensation , Project , PaymentFileRecon, NoticeStatusInfo, PaymentAdvice , TransactionHistory, PaymentFile , PaymentAdviceDetails

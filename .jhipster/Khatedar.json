@@ -1,0 +1,58 @@
+{
+  "applications": "*",
+  "changelogDate": "20220714130521",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_khatedar",
+  "fields": [
+    {
+      "fieldName": "caseFileNo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "remarks",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "khatedarStatus",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Khatedar",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "projectLand",
+      "otherEntityRelationshipName": "khatedar",
+      "relationshipName": "projectLand",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "citizen",
+      "otherEntityRelationshipName": "khatedar",
+      "relationshipName": "citizen",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "paymentFile",
+      "otherEntityRelationshipName": "khatedar",
+      "ownerSide": false,
+      "relationshipName": "paymentFile",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "paymentAdvice",
+      "otherEntityRelationshipName": "khatedar",
+      "relationshipName": "paymentAdvice",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

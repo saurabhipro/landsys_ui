@@ -31,7 +31,8 @@
       "status": "Status",
       "projectLand": "Project Land",
       "landCompensation": "Land Compensation",
-      "paymentAdvice": "Payment Advice"
+      "paymentAdvice": "Payment Advice",
+      "paymentFile": "Payment File"
     }
   }
 }

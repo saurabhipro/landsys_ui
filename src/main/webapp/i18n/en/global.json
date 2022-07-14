@@ -30,6 +30,7 @@
         "survey": "Survey",
         "noticeStatusInfo": "Notice Status Info",
         "transactionHistory": "Transaction History",
+        "khatedar": "Khatedar",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

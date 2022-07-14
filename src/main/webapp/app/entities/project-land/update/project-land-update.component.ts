@@ -42,7 +42,7 @@ export class ProjectLandUpdateComponent implements OnInit {
     land: [],
     project: [null, Validators.required],
     citizen: [null, Validators.required],
-    noticeStatusInfo: [null, Validators.required],
+    noticeStatusInfo: [],
   });
 
   constructor(

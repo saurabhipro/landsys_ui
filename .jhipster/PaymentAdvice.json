@@ -73,6 +73,13 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityName": "khatedar",
+      "otherEntityRelationshipName": "paymentAdvice",
+      "relationshipName": "khatedar",
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
+    },
+    {
       "otherEntityName": "landCompensation",
       "otherEntityRelationshipName": "paymentAdvice",
       "relationshipName": "landCompensation",
@@ -101,16 +108,17 @@
       "relationshipValidateRules": "required"
     },
     {
-      "otherEntityName": "paymentFile",
-      "otherEntityRelationshipName": "paymentAdvice",
-      "relationshipName": "paymentFile",
-      "relationshipType": "many-to-one"
-    },
-    {
       "otherEntityName": "paymentFileRecon",
       "otherEntityRelationshipName": "paymentAdvice",
       "ownerSide": false,
       "relationshipName": "paymentFileRecon",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "paymentFile",
+      "otherEntityRelationshipName": "paymentAdvice",
+      "ownerSide": false,
+      "relationshipName": "paymentFile",
       "relationshipType": "one-to-one"
     },
     {

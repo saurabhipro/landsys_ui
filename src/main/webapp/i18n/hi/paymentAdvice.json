@@ -30,12 +30,13 @@
       "referenceNumber": "Reference Number",
       "paymentStatus": "Payment Status",
       "hissaType": "Hissa Type",
+      "khatedar": "Khatedar",
       "landCompensation": "Land Compensation",
       "projectLand": "Project Land",
       "survey": "Survey",
       "citizen": "Citizen",
-      "paymentFile": "Payment File",
       "paymentFileRecon": "Payment File Recon",
+      "paymentFile": "Payment File",
       "land": "Land",
       "paymentAdviceDetails": "Payment Advice Details"
     }

@@ -82,9 +82,6 @@
           <th scope="col" jhiSortBy="citizen.id">
             <span jhiTranslate="jhipsterApp.paymentAdvice.citizen">Citizen</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="paymentFile.id">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.paymentFile">Payment File</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col" jhiSortBy="land.khasraNumber">
             <span jhiTranslate="jhipsterApp.paymentAdvice.land">Land</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -130,11 +127,6 @@
           <td>
             <div *ngIf="paymentAdvice.citizen">
               <a [routerLink]="['/citizen', paymentAdvice.citizen?.id, 'view']">{{ paymentAdvice.citizen?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="paymentAdvice.paymentFile">
-              <a [routerLink]="['/payment-file', paymentAdvice.paymentFile?.id, 'view']">{{ paymentAdvice.paymentFile?.id }}</a>
             </div>
           </td>
           <td>

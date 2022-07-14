@@ -40,6 +40,12 @@
       "otherEntityRelationshipName": "bankBranch",
       "relationshipName": "citizen",
       "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "paymentFile",
+      "otherEntityRelationshipName": "bankBranch",
+      "relationshipName": "paymentFile",
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

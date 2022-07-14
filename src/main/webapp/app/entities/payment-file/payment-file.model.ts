@@ -1,6 +1,13 @@
 import dayjs from 'dayjs/esm';
+import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
 import { IPaymentAdvice } from 'app/entities/payment-advice/payment-advice.model';
+import { IProjectLand } from 'app/entities/project-land/project-land.model';
+import { ISurvey } from 'app/entities/survey/survey.model';
+import { IBank } from 'app/entities/bank/bank.model';
+import { IBankBranch } from 'app/entities/bank-branch/bank-branch.model';
+import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
 import { PaymentStatus } from 'app/entities/enumerations/payment-status.model';
+import { PaymentAdviceType } from 'app/entities/enumerations/payment-advice-type.model';
 
 export interface IPaymentFile {
   id?: number;
@@ -10,7 +17,14 @@ export interface IPaymentFile {
   paymentStatus?: PaymentStatus;
   bankName?: string | null;
   ifscCode?: string | null;
-  paymentAdvices?: IPaymentAdvice[];
+  paymentMode?: PaymentAdviceType | null;
+  khatedar?: IKhatedar;
+  paymentAdvice?: IPaymentAdvice;
+  projectLand?: IProjectLand;
+  survey?: ISurvey;
+  bank?: IBank;
+  bankBranch?: IBankBranch;
+  landCompensation?: ILandCompensation;
 }
 
 export class PaymentFile implements IPaymentFile {
@@ -22,7 +36,14 @@ export class PaymentFile implements IPaymentFile {
     public paymentStatus?: PaymentStatus,
     public bankName?: string | null,
     public ifscCode?: string | null,
-    public paymentAdvices?: IPaymentAdvice[]
+    public paymentMode?: PaymentAdviceType | null,
+    public khatedar?: IKhatedar,
+    public paymentAdvice?: IPaymentAdvice,
+    public projectLand?: IProjectLand,
+    public survey?: ISurvey,
+    public bank?: IBank,
+    public bankBranch?: IBankBranch,
+    public landCompensation?: ILandCompensation
   ) {}
 }
 

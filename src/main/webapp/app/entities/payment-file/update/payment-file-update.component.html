@@ -143,6 +143,201 @@
           <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.ifscCode" for="field_ifscCode">Ifsc Code</label>
           <input type="text" class="form-control" name="ifscCode" id="field_ifscCode" data-cy="ifscCode" formControlName="ifscCode" />
         </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.paymentMode" for="field_paymentMode">Payment Mode</label>
+          <select class="form-control" name="paymentMode" formControlName="paymentMode" id="field_paymentMode" data-cy="paymentMode">
+            <option [ngValue]="null">{{ 'jhipsterApp.PaymentAdviceType.null' | translate }}</option>
+            <option *ngFor="let paymentAdviceType of paymentAdviceTypeValues" [value]="paymentAdviceType">
+              {{ 'jhipsterApp.PaymentAdviceType.' + paymentAdviceType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.khatedar" for="field_khatedar">Khatedar</label>
+          <select class="form-control" id="field_khatedar" data-cy="khatedar" name="khatedar" formControlName="khatedar">
+            <option *ngIf="editForm.get(['khatedar'])!.value == null" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="khatedarOption.id === editForm.get('khatedar')!.value?.id ? editForm.get('khatedar')!.value : khatedarOption"
+              *ngFor="let khatedarOption of khatedarsCollection; trackBy: trackKhatedarById"
+            >
+              {{ khatedarOption.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['khatedar'])!.invalid && (editForm.get(['khatedar'])!.dirty || editForm.get(['khatedar'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['khatedar'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.paymentAdvice" for="field_paymentAdvice">Payment Advice</label>
+          <select
+            class="form-control"
+            id="field_paymentAdvice"
+            data-cy="paymentAdvice"
+            name="paymentAdvice"
+            formControlName="paymentAdvice"
+          >
+            <option *ngIf="editForm.get(['paymentAdvice'])!.value == null" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                paymentAdviceOption.id === editForm.get('paymentAdvice')!.value?.id
+                  ? editForm.get('paymentAdvice')!.value
+                  : paymentAdviceOption
+              "
+              *ngFor="let paymentAdviceOption of paymentAdvicesCollection; trackBy: trackPaymentAdviceById"
+            >
+              {{ paymentAdviceOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['paymentAdvice'])!.invalid && (editForm.get(['paymentAdvice'])!.dirty || editForm.get(['paymentAdvice'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['paymentAdvice'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.projectLand" for="field_projectLand">Project Land</label>
+          <select class="form-control" id="field_projectLand" data-cy="projectLand" name="projectLand" formControlName="projectLand">
+            <option *ngIf="!editForm.get('projectLand')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                projectLandOption.id === editForm.get('projectLand')!.value?.id ? editForm.get('projectLand')!.value : projectLandOption
+              "
+              *ngFor="let projectLandOption of projectLandsSharedCollection; trackBy: trackProjectLandById"
+            >
+              {{ projectLandOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['projectLand'])!.invalid && (editForm.get(['projectLand'])!.dirty || editForm.get(['projectLand'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['projectLand'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.survey" for="field_survey">Survey</label>
+          <select class="form-control" id="field_survey" data-cy="survey" name="survey" formControlName="survey">
+            <option *ngIf="!editForm.get('survey')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="surveyOption.id === editForm.get('survey')!.value?.id ? editForm.get('survey')!.value : surveyOption"
+              *ngFor="let surveyOption of surveysSharedCollection; trackBy: trackSurveyById"
+            >
+              {{ surveyOption.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['survey'])!.invalid && (editForm.get(['survey'])!.dirty || editForm.get(['survey'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['survey'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.bank" for="field_bank">Bank</label>
+          <select class="form-control" id="field_bank" data-cy="bank" name="bank" formControlName="bank">
+            <option *ngIf="!editForm.get('bank')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="bankOption.id === editForm.get('bank')!.value?.id ? editForm.get('bank')!.value : bankOption"
+              *ngFor="let bankOption of banksSharedCollection; trackBy: trackBankById"
+            >
+              {{ bankOption.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['bank'])!.invalid && (editForm.get(['bank'])!.dirty || editForm.get(['bank'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['bank'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.bankBranch" for="field_bankBranch">Bank Branch</label>
+          <select class="form-control" id="field_bankBranch" data-cy="bankBranch" name="bankBranch" formControlName="bankBranch">
+            <option *ngIf="!editForm.get('bankBranch')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                bankBranchOption.id === editForm.get('bankBranch')!.value?.id ? editForm.get('bankBranch')!.value : bankBranchOption
+              "
+              *ngFor="let bankBranchOption of bankBranchesSharedCollection; trackBy: trackBankBranchById"
+            >
+              {{ bankBranchOption.name }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['bankBranch'])!.invalid && (editForm.get(['bankBranch'])!.dirty || editForm.get(['bankBranch'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['bankBranch'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.landCompensation" for="field_landCompensation"
+            >Land Compensation</label
+          >
+          <select
+            class="form-control"
+            id="field_landCompensation"
+            data-cy="landCompensation"
+            name="landCompensation"
+            formControlName="landCompensation"
+          >
+            <option *ngIf="!editForm.get('landCompensation')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                landCompensationOption.id === editForm.get('landCompensation')!.value?.id
+                  ? editForm.get('landCompensation')!.value
+                  : landCompensationOption
+              "
+              *ngFor="let landCompensationOption of landCompensationsSharedCollection; trackBy: trackLandCompensationById"
+            >
+              {{ landCompensationOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['landCompensation'])!.invalid &&
+            (editForm.get(['landCompensation'])!.dirty || editForm.get(['landCompensation'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['landCompensation'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
       </div>
 
       <div>

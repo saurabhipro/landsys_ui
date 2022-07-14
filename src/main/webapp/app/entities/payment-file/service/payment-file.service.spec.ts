@@ -4,6 +4,7 @@ import dayjs from 'dayjs/esm';
 
 import { DATE_FORMAT } from 'app/config/input.constants';
 import { PaymentStatus } from 'app/entities/enumerations/payment-status.model';
+import { PaymentAdviceType } from 'app/entities/enumerations/payment-advice-type.model';
 import { IPaymentFile, PaymentFile } from '../payment-file.model';
 
 import { PaymentFileService } from './payment-file.service';
@@ -32,6 +33,7 @@ describe('PaymentFile Service', () => {
       paymentStatus: PaymentStatus.PENDING,
       bankName: 'AAAAAAA',
       ifscCode: 'AAAAAAA',
+      paymentMode: PaymentAdviceType.ONLINE,
     };
   });
 
@@ -84,6 +86,7 @@ describe('PaymentFile Service', () => {
           paymentStatus: 'BBBBBB',
           bankName: 'BBBBBB',
           ifscCode: 'BBBBBB',
+          paymentMode: 'BBBBBB',
         },
         elemDefault
       );
@@ -106,6 +109,7 @@ describe('PaymentFile Service', () => {
       const patchObject = Object.assign(
         {
           totalPaymentAmount: 1,
+          paymentMode: 'BBBBBB',
         },
         new PaymentFile()
       );
@@ -136,6 +140,7 @@ describe('PaymentFile Service', () => {
           paymentStatus: 'BBBBBB',
           bankName: 'BBBBBB',
           ifscCode: 'BBBBBB',
+          paymentMode: 'BBBBBB',
         },
         elemDefault
       );
@@ -192,7 +197,7 @@ describe('PaymentFile Service', () => {
       });
 
       it('should add only unique PaymentFile to an array', () => {
-        const paymentFileArray: IPaymentFile[] = [{ id: 123 }, { id: 456 }, { id: 81659 }];
+        const paymentFileArray: IPaymentFile[] = [{ id: 123 }, { id: 456 }, { id: 38661 }];
         const paymentFileCollection: IPaymentFile[] = [{ id: 123 }];
         expectedResult = service.addPaymentFileToCollectionIfMissing(paymentFileCollection, ...paymentFileArray);
         expect(expectedResult).toHaveLength(3);

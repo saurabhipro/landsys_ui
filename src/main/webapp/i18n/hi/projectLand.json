@@ -28,7 +28,9 @@
       "survey": "Survey",
       "landCompensation": "Land Compensation",
       "paymentAdvice": "Payment Advice",
-      "paymentAdviceDetails": "Payment Advice Details"
+      "paymentAdviceDetails": "Payment Advice Details",
+      "paymentFile": "Payment File",
+      "khatedar": "Khatedar"
     }
   }
 }

@@ -15,8 +15,6 @@ import { ISurvey } from 'app/entities/survey/survey.model';
 import { SurveyService } from 'app/entities/survey/service/survey.service';
 import { ICitizen } from 'app/entities/citizen/citizen.model';
 import { CitizenService } from 'app/entities/citizen/service/citizen.service';
-import { IPaymentFile } from 'app/entities/payment-file/payment-file.model';
-import { PaymentFileService } from 'app/entities/payment-file/service/payment-file.service';
 import { ILand } from 'app/entities/land/land.model';
 import { LandService } from 'app/entities/land/service/land.service';
 import { PaymentAdviceType } from 'app/entities/enumerations/payment-advice-type.model';
@@ -37,7 +35,6 @@ export class PaymentAdviceUpdateComponent implements OnInit {
   projectLandsSharedCollection: IProjectLand[] = [];
   surveysSharedCollection: ISurvey[] = [];
   citizensSharedCollection: ICitizen[] = [];
-  paymentFilesSharedCollection: IPaymentFile[] = [];
   landsSharedCollection: ILand[] = [];
 
   editForm = this.fb.group({
@@ -58,7 +55,6 @@ export class PaymentAdviceUpdateComponent implements OnInit {
     projectLand: [null, Validators.required],
     survey: [null, Validators.required],
     citizen: [null, Validators.required],
-    paymentFile: [],
     land: [],
   });
 
@@ -68,7 +64,6 @@ export class PaymentAdviceUpdateComponent implements OnInit {
     protected projectLandService: ProjectLandService,
     protected surveyService: SurveyService,
     protected citizenService: CitizenService,
-    protected paymentFileService: PaymentFileService,
     protected landService: LandService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
@@ -109,10 +104,6 @@ export class PaymentAdviceUpdateComponent implements OnInit {
   }
 
   trackCitizenById(_index: number, item: ICitizen): number {
-    return item.id!;
-  }
-
-  trackPaymentFileById(_index: number, item: IPaymentFile): number {
     return item.id!;
   }
 
@@ -158,7 +149,6 @@ export class PaymentAdviceUpdateComponent implements OnInit {
       projectLand: paymentAdvice.projectLand,
       survey: paymentAdvice.survey,
       citizen: paymentAdvice.citizen,
-      paymentFile: paymentAdvice.paymentFile,
       land: paymentAdvice.land,
     });
 
@@ -174,10 +164,6 @@ export class PaymentAdviceUpdateComponent implements OnInit {
     this.citizensSharedCollection = this.citizenService.addCitizenToCollectionIfMissing(
       this.citizensSharedCollection,
       paymentAdvice.citizen
-    );
-    this.paymentFilesSharedCollection = this.paymentFileService.addPaymentFileToCollectionIfMissing(
-      this.paymentFilesSharedCollection,
-      paymentAdvice.paymentFile
     );
     this.landsSharedCollection = this.landService.addLandToCollectionIfMissing(this.landsSharedCollection, paymentAdvice.land);
   }
@@ -220,16 +206,6 @@ export class PaymentAdviceUpdateComponent implements OnInit {
       )
       .subscribe((citizens: ICitizen[]) => (this.citizensSharedCollection = citizens));
 
-    this.paymentFileService
-      .query()
-      .pipe(map((res: HttpResponse<IPaymentFile[]>) => res.body ?? []))
-      .pipe(
-        map((paymentFiles: IPaymentFile[]) =>
-          this.paymentFileService.addPaymentFileToCollectionIfMissing(paymentFiles, this.editForm.get('paymentFile')!.value)
-        )
-      )
-      .subscribe((paymentFiles: IPaymentFile[]) => (this.paymentFilesSharedCollection = paymentFiles));
-
     this.landService
       .query()
       .pipe(map((res: HttpResponse<ILand[]>) => res.body ?? []))
@@ -257,7 +233,6 @@ export class PaymentAdviceUpdateComponent implements OnInit {
       projectLand: this.editForm.get(['projectLand'])!.value,
       survey: this.editForm.get(['survey'])!.value,
       citizen: this.editForm.get(['citizen'])!.value,
-      paymentFile: this.editForm.get(['paymentFile'])!.value,
       land: this.editForm.get(['land'])!.value,
     };
   }

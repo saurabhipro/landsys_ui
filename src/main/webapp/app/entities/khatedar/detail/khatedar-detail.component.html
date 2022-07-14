@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="khatedar">
+      <h2 data-cy="khatedarDetailsHeading"><span jhiTranslate="jhipsterApp.khatedar.detail.title">Khatedar</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ khatedar.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.khatedar.caseFileNo">Case File No</span></dt>
+        <dd>
+          <span>{{ khatedar.caseFileNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.khatedar.remarks">Remarks</span></dt>
+        <dd>
+          <span>{{ khatedar.remarks }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.khatedar.khatedarStatus">Khatedar Status</span></dt>
+        <dd>
+          <span>{{ khatedar.khatedarStatus }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.khatedar.projectLand">Project Land</span></dt>
+        <dd>
+          <div *ngIf="khatedar.projectLand">
+            <a [routerLink]="['/project-land', khatedar.projectLand?.id, 'view']">{{ khatedar.projectLand?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.khatedar.citizen">Citizen</span></dt>
+        <dd>
+          <div *ngIf="khatedar.citizen">
+            <a [routerLink]="['/citizen', khatedar.citizen?.id, 'view']">{{ khatedar.citizen?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.khatedar.paymentAdvice">Payment Advice</span></dt>
+        <dd>
+          <div *ngIf="khatedar.paymentAdvice">
+            <a [routerLink]="['/payment-advice', khatedar.paymentAdvice?.id, 'view']">{{ khatedar.paymentAdvice?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/khatedar', khatedar.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

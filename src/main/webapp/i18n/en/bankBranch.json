@@ -22,7 +22,8 @@
       "ifsc": "Ifsc",
       "address": "Address",
       "bank": "Bank",
-      "citizen": "Citizen"
+      "citizen": "Citizen",
+      "paymentFile": "Payment File"
     }
   }
 }

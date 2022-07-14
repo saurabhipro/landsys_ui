@@ -84,6 +84,12 @@
       "otherEntityRelationshipName": "survey",
       "relationshipName": "paymentAdvice",
       "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "paymentFile",
+      "otherEntityRelationshipName": "survey",
+      "relationshipName": "paymentFile",
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

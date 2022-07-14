@@ -17,6 +17,11 @@
       "fieldValidateRules": ["required"]
     },
     {
+      "fieldName": "sharePercentage",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
       "fieldName": "landMarketValue",
       "fieldType": "Double",
       "fieldValidateRules": ["required"]
@@ -84,6 +89,12 @@
       "otherEntityName": "paymentAdvice",
       "otherEntityRelationshipName": "landCompensation",
       "relationshipName": "paymentAdvice",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "paymentFile",
+      "otherEntityRelationshipName": "landCompensation",
+      "relationshipName": "paymentFile",
       "relationshipType": "one-to-many"
     }
   ],

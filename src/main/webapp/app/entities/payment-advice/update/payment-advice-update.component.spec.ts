@@ -16,8 +16,6 @@ import { ISurvey } from 'app/entities/survey/survey.model';
 import { SurveyService } from 'app/entities/survey/service/survey.service';
 import { ICitizen } from 'app/entities/citizen/citizen.model';
 import { CitizenService } from 'app/entities/citizen/service/citizen.service';
-import { IPaymentFile } from 'app/entities/payment-file/payment-file.model';
-import { PaymentFileService } from 'app/entities/payment-file/service/payment-file.service';
 import { ILand } from 'app/entities/land/land.model';
 import { LandService } from 'app/entities/land/service/land.service';
 
@@ -32,7 +30,6 @@ describe('PaymentAdvice Management Update Component', () => {
   let projectLandService: ProjectLandService;
   let surveyService: SurveyService;
   let citizenService: CitizenService;
-  let paymentFileService: PaymentFileService;
   let landService: LandService;
 
   beforeEach(() => {
@@ -59,7 +56,6 @@ describe('PaymentAdvice Management Update Component', () => {
     projectLandService = TestBed.inject(ProjectLandService);
     surveyService = TestBed.inject(SurveyService);
     citizenService = TestBed.inject(CitizenService);
-    paymentFileService = TestBed.inject(PaymentFileService);
     landService = TestBed.inject(LandService);
 
     comp = fixture.componentInstance;
@@ -145,25 +141,6 @@ describe('PaymentAdvice Management Update Component', () => {
       expect(comp.citizensSharedCollection).toEqual(expectedCollection);
     });
 
-    it('Should call PaymentFile query and add missing value', () => {
-      const paymentAdvice: IPaymentAdvice = { id: 456 };
-      const paymentFile: IPaymentFile = { id: 70240 };
-      paymentAdvice.paymentFile = paymentFile;
-
-      const paymentFileCollection: IPaymentFile[] = [{ id: 48561 }];
-      jest.spyOn(paymentFileService, 'query').mockReturnValue(of(new HttpResponse({ body: paymentFileCollection })));
-      const additionalPaymentFiles = [paymentFile];
-      const expectedCollection: IPaymentFile[] = [...additionalPaymentFiles, ...paymentFileCollection];
-      jest.spyOn(paymentFileService, 'addPaymentFileToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ paymentAdvice });
-      comp.ngOnInit();
-
-      expect(paymentFileService.query).toHaveBeenCalled();
-      expect(paymentFileService.addPaymentFileToCollectionIfMissing).toHaveBeenCalledWith(paymentFileCollection, ...additionalPaymentFiles);
-      expect(comp.paymentFilesSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should call Land query and add missing value', () => {
       const paymentAdvice: IPaymentAdvice = { id: 456 };
       const land: ILand = { id: 34955 };
@@ -193,8 +170,6 @@ describe('PaymentAdvice Management Update Component', () => {
       paymentAdvice.survey = survey;
       const citizen: ICitizen = { id: 61632 };
       paymentAdvice.citizen = citizen;
-      const paymentFile: IPaymentFile = { id: 93619 };
-      paymentAdvice.paymentFile = paymentFile;
       const land: ILand = { id: 84618 };
       paymentAdvice.land = land;
 
@@ -206,7 +181,6 @@ describe('PaymentAdvice Management Update Component', () => {
       expect(comp.projectLandsSharedCollection).toContain(projectLand);
       expect(comp.surveysSharedCollection).toContain(survey);
       expect(comp.citizensSharedCollection).toContain(citizen);
-      expect(comp.paymentFilesSharedCollection).toContain(paymentFile);
       expect(comp.landsSharedCollection).toContain(land);
     });
   });
@@ -304,14 +278,6 @@ describe('PaymentAdvice Management Update Component', () => {
       it('Should return tracked Citizen primary key', () => {
         const entity = { id: 123 };
         const trackResult = comp.trackCitizenById(0, entity);
-        expect(trackResult).toEqual(entity.id);
-      });
-    });
-
-    describe('trackPaymentFileById', () => {
-      it('Should return tracked PaymentFile primary key', () => {
-        const entity = { id: 123 };
-        const trackResult = comp.trackPaymentFileById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

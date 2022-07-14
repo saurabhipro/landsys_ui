@@ -27,6 +27,12 @@
       "otherEntityRelationshipName": "bank",
       "relationshipName": "bankBranch",
       "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "paymentFile",
+      "otherEntityRelationshipName": "bank",
+      "relationshipName": "paymentFile",
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

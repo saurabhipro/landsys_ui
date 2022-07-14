@@ -43,7 +43,7 @@ export class CitizenUpdateComponent implements OnInit {
     accountNo: [null, []],
     accNoImage: [],
     accNoImageContentType: [],
-    bankBranch: [null, Validators.required],
+    bankBranch: [],
   });
 
   constructor(

@@ -1,0 +1,30 @@
+{
+  "jhipsterApp": {
+    "khatedar": {
+      "home": {
+        "title": "Khatedars",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Khatedar",
+        "createOrEditLabel": "Create or edit a Khatedar",
+        "notFound": "No Khatedars found"
+      },
+      "created": "A new Khatedar is created with identifier {{ param }}",
+      "updated": "A Khatedar is updated with identifier {{ param }}",
+      "deleted": "A Khatedar is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Khatedar {{ id }}?"
+      },
+      "detail": {
+        "title": "Khatedar"
+      },
+      "id": "ID",
+      "caseFileNo": "Case File No",
+      "remarks": "Remarks",
+      "khatedarStatus": "Khatedar Status",
+      "projectLand": "Project Land",
+      "citizen": "Citizen",
+      "paymentFile": "Payment File",
+      "paymentAdvice": "Payment Advice"
+    }
+  }
+}

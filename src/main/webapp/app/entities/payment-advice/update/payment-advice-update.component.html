@@ -367,21 +367,6 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.paymentFile" for="field_paymentFile">Payment File</label>
-          <select class="form-control" id="field_paymentFile" data-cy="paymentFile" name="paymentFile" formControlName="paymentFile">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="
-                paymentFileOption.id === editForm.get('paymentFile')!.value?.id ? editForm.get('paymentFile')!.value : paymentFileOption
-              "
-              *ngFor="let paymentFileOption of paymentFilesSharedCollection; trackBy: trackPaymentFileById"
-            >
-              {{ paymentFileOption.id }}
-            </option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.land" for="field_land">Land</label>
           <select class="form-control" id="field_land" data-cy="land" name="land" formControlName="land">
             <option [ngValue]="null"></option>

@@ -1,0 +1,30 @@
+{
+  "jhipsterApp": {
+    "khatedar": {
+      "home": {
+        "title": "Khatedars",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Khatedar बनाएँ",
+        "createOrEditLabel": "Khatedar बनाएँ या संपादित करें",
+        "notFound": "No Khatedars found"
+      },
+      "created": "एक नया Khatedar [identifier: {{ param }}] तैयार है",
+      "updated": "एक Khatedar [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Khatedar [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Khatedar [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Khatedar"
+      },
+      "id": "ID",
+      "caseFileNo": "Case File No",
+      "remarks": "Remarks",
+      "khatedarStatus": "Khatedar Status",
+      "projectLand": "Project Land",
+      "citizen": "Citizen",
+      "paymentFile": "Payment File",
+      "paymentAdvice": "Payment Advice"
+    }
+  }
+}

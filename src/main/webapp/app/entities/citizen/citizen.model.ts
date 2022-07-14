@@ -3,6 +3,7 @@ import { ILand } from 'app/entities/land/land.model';
 import { IBankBranch } from 'app/entities/bank-branch/bank-branch.model';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { IPaymentAdvice } from 'app/entities/payment-advice/payment-advice.model';
+import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
 
 export interface ICitizen {
   id?: number;
@@ -26,9 +27,10 @@ export interface ICitizen {
   accNoImageContentType?: string | null;
   accNoImage?: string | null;
   lands?: ILand[] | null;
-  bankBranch?: IBankBranch;
+  bankBranch?: IBankBranch | null;
   projectLands?: IProjectLand[] | null;
   paymentAdvices?: IPaymentAdvice[] | null;
+  khatedars?: IKhatedar[] | null;
 }
 
 export class Citizen implements ICitizen {
@@ -54,9 +56,10 @@ export class Citizen implements ICitizen {
     public accNoImageContentType?: string | null,
     public accNoImage?: string | null,
     public lands?: ILand[] | null,
-    public bankBranch?: IBankBranch,
+    public bankBranch?: IBankBranch | null,
     public projectLands?: IProjectLand[] | null,
-    public paymentAdvices?: IPaymentAdvice[] | null
+    public paymentAdvices?: IPaymentAdvice[] | null,
+    public khatedars?: IKhatedar[] | null
   ) {}
 }
 

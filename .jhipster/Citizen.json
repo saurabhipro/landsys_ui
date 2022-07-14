@@ -94,8 +94,7 @@
       "otherEntityName": "bankBranch",
       "otherEntityRelationshipName": "citizen",
       "relationshipName": "bankBranch",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": "required"
+      "relationshipType": "many-to-one"
     },
     {
       "otherEntityName": "projectLand",
@@ -107,6 +106,12 @@
       "otherEntityName": "paymentAdvice",
       "otherEntityRelationshipName": "citizen",
       "relationshipName": "paymentAdvice",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "khatedar",
+      "otherEntityRelationshipName": "citizen",
+      "relationshipName": "khatedar",
       "relationshipType": "one-to-many"
     }
   ],

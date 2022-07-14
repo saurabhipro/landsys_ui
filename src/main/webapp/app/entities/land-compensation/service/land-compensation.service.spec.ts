@@ -29,6 +29,7 @@ describe('LandCompensation Service', () => {
       id: 0,
       hissaType: HissaType.SINGLE_OWNER,
       area: 0,
+      sharePercentage: 0,
       landMarketValue: 0,
       structuralCompensation: 0,
       horticultureCompensation: 0,
@@ -87,6 +88,7 @@ describe('LandCompensation Service', () => {
           id: 1,
           hissaType: 'BBBBBB',
           area: 1,
+          sharePercentage: 1,
           landMarketValue: 1,
           structuralCompensation: 1,
           horticultureCompensation: 1,
@@ -119,11 +121,11 @@ describe('LandCompensation Service', () => {
       const patchObject = Object.assign(
         {
           hissaType: 'BBBBBB',
+          horticultureCompensation: 1,
           forestCompensation: 1,
-          solatiumMoney: 1,
+          additionalCompensation: 1,
           status: 'BBBBBB',
           orderDate: currentDate.format(DATE_FORMAT),
-          paymentAmount: 1,
         },
         new LandCompensation()
       );
@@ -150,6 +152,7 @@ describe('LandCompensation Service', () => {
           id: 1,
           hissaType: 'BBBBBB',
           area: 1,
+          sharePercentage: 1,
           landMarketValue: 1,
           structuralCompensation: 1,
           horticultureCompensation: 1,
@@ -216,7 +219,7 @@ describe('LandCompensation Service', () => {
       });
 
       it('should add only unique LandCompensation to an array', () => {
-        const landCompensationArray: ILandCompensation[] = [{ id: 123 }, { id: 456 }, { id: 46179 }];
+        const landCompensationArray: ILandCompensation[] = [{ id: 123 }, { id: 456 }, { id: 32169 }];
         const landCompensationCollection: ILandCompensation[] = [{ id: 123 }];
         expectedResult = service.addLandCompensationToCollectionIfMissing(landCompensationCollection, ...landCompensationArray);
         expect(expectedResult).toHaveLength(3);

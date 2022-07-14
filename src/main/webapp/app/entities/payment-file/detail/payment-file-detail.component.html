@@ -38,6 +38,52 @@
         <dd>
           <span>{{ paymentFile.ifscCode }}</span>
         </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFile.paymentMode">Payment Mode</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterApp.PaymentAdviceType.' + paymentFile.paymentMode }}">{{ paymentFile.paymentMode }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFile.khatedar">Khatedar</span></dt>
+        <dd>
+          <div *ngIf="paymentFile.khatedar">
+            <a [routerLink]="['/khatedar', paymentFile.khatedar?.id, 'view']">{{ paymentFile.khatedar?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFile.paymentAdvice">Payment Advice</span></dt>
+        <dd>
+          <div *ngIf="paymentFile.paymentAdvice">
+            <a [routerLink]="['/payment-advice', paymentFile.paymentAdvice?.id, 'view']">{{ paymentFile.paymentAdvice?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFile.projectLand">Project Land</span></dt>
+        <dd>
+          <div *ngIf="paymentFile.projectLand">
+            <a [routerLink]="['/project-land', paymentFile.projectLand?.id, 'view']">{{ paymentFile.projectLand?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFile.survey">Survey</span></dt>
+        <dd>
+          <div *ngIf="paymentFile.survey">
+            <a [routerLink]="['/survey', paymentFile.survey?.id, 'view']">{{ paymentFile.survey?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFile.bank">Bank</span></dt>
+        <dd>
+          <div *ngIf="paymentFile.bank">
+            <a [routerLink]="['/bank', paymentFile.bank?.id, 'view']">{{ paymentFile.bank?.name }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFile.bankBranch">Bank Branch</span></dt>
+        <dd>
+          <div *ngIf="paymentFile.bankBranch">
+            <a [routerLink]="['/bank-branch', paymentFile.bankBranch?.id, 'view']">{{ paymentFile.bankBranch?.name }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFile.landCompensation">Land Compensation</span></dt>
+        <dd>
+          <div *ngIf="paymentFile.landCompensation">
+            <a [routerLink]="['/land-compensation', paymentFile.landCompensation?.id, 'view']">{{ paymentFile.landCompensation?.id }}</a>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

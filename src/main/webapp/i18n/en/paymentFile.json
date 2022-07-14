@@ -24,7 +24,14 @@
       "paymentStatus": "Payment Status",
       "bankName": "Bank Name",
       "ifscCode": "Ifsc Code",
-      "paymentAdvice": "Payment Advice"
+      "paymentMode": "Payment Mode",
+      "khatedar": "Khatedar",
+      "paymentAdvice": "Payment Advice",
+      "projectLand": "Project Land",
+      "survey": "Survey",
+      "bank": "Bank",
+      "bankBranch": "Bank Branch",
+      "landCompensation": "Land Compensation"
     }
   }
 }

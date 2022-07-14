@@ -139,7 +139,7 @@
             name="noticeStatusInfo"
             formControlName="noticeStatusInfo"
           >
-            <option *ngIf="!editForm.get('noticeStatusInfo')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="null"></option>
             <option
               [ngValue]="
                 noticeStatusInfoOption.id === editForm.get('noticeStatusInfo')!.value?.id
@@ -151,20 +151,6 @@
               {{ noticeStatusInfoOption.id }}
             </option>
           </select>
-        </div>
-        <div
-          *ngIf="
-            editForm.get(['noticeStatusInfo'])!.invalid &&
-            (editForm.get(['noticeStatusInfo'])!.dirty || editForm.get(['noticeStatusInfo'])!.touched)
-          "
-        >
-          <small
-            class="form-text text-danger"
-            *ngIf="editForm.get(['noticeStatusInfo'])?.errors?.required"
-            jhiTranslate="entity.validation.required"
-          >
-            This field is required.
-          </small>
         </div>
       </div>
 
