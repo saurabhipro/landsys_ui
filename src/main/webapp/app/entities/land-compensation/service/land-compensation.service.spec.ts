@@ -39,6 +39,8 @@ describe('LandCompensation Service', () => {
       status: CompensationStatus.OPEN,
       orderDate: currentDate,
       paymentAmount: 0,
+      interestRate: 0,
+      interestDays: 0,
       transactionId: 'AAAAAAA',
     };
   });
@@ -98,6 +100,8 @@ describe('LandCompensation Service', () => {
           status: 'BBBBBB',
           orderDate: currentDate.format(DATE_FORMAT),
           paymentAmount: 1,
+          interestRate: 1,
+          interestDays: 1,
           transactionId: 'BBBBBB',
         },
         elemDefault
@@ -162,6 +166,8 @@ describe('LandCompensation Service', () => {
           status: 'BBBBBB',
           orderDate: currentDate.format(DATE_FORMAT),
           paymentAmount: 1,
+          interestRate: 1,
+          interestDays: 1,
           transactionId: 'BBBBBB',
         },
         elemDefault
@@ -219,7 +225,7 @@ describe('LandCompensation Service', () => {
       });
 
       it('should add only unique LandCompensation to an array', () => {
-        const landCompensationArray: ILandCompensation[] = [{ id: 123 }, { id: 456 }, { id: 32169 }];
+        const landCompensationArray: ILandCompensation[] = [{ id: 123 }, { id: 456 }, { id: 63109 }];
         const landCompensationCollection: ILandCompensation[] = [{ id: 123 }];
         expectedResult = service.addLandCompensationToCollectionIfMissing(landCompensationCollection, ...landCompensationArray);
         expect(expectedResult).toHaveLength(3);

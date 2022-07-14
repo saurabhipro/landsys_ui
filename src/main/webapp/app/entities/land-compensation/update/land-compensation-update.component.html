@@ -234,6 +234,30 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.interestRate" for="field_interestRate">Interest Rate</label>
+          <input
+            type="number"
+            class="form-control"
+            name="interestRate"
+            id="field_interestRate"
+            data-cy="interestRate"
+            formControlName="interestRate"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.interestDays" for="field_interestDays">Interest Days</label>
+          <input
+            type="number"
+            class="form-control"
+            name="interestDays"
+            id="field_interestDays"
+            data-cy="interestDays"
+            formControlName="interestDays"
+          />
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.transactionId" for="field_transactionId"
             >Transaction Id</label
           >
@@ -276,7 +300,7 @@
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.survey" for="field_survey">Survey</label>
           <select class="form-control" id="field_survey" data-cy="survey" name="survey" formControlName="survey">
-            <option [ngValue]="null"></option>
+            <option *ngIf="editForm.get(['survey'])!.value == null" [ngValue]="null" selected></option>
             <option
               [ngValue]="surveyOption.id === editForm.get('survey')!.value?.id ? editForm.get('survey')!.value : surveyOption"
               *ngFor="let surveyOption of surveysCollection; trackBy: trackSurveyById"
@@ -284,6 +308,11 @@
               {{ surveyOption.id }}
             </option>
           </select>
+        </div>
+        <div *ngIf="editForm.get(['survey'])!.invalid && (editForm.get(['survey'])!.dirty || editForm.get(['survey'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['survey'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
         </div>
       </div>
 

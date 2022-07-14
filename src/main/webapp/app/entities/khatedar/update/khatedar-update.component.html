@@ -107,29 +107,6 @@
             This field is required.
           </small>
         </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="jhipsterApp.khatedar.paymentAdvice" for="field_paymentAdvice">Payment Advice</label>
-          <select
-            class="form-control"
-            id="field_paymentAdvice"
-            data-cy="paymentAdvice"
-            name="paymentAdvice"
-            formControlName="paymentAdvice"
-          >
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="
-                paymentAdviceOption.id === editForm.get('paymentAdvice')!.value?.id
-                  ? editForm.get('paymentAdvice')!.value
-                  : paymentAdviceOption
-              "
-              *ngFor="let paymentAdviceOption of paymentAdvicesSharedCollection; trackBy: trackPaymentAdviceById"
-            >
-              {{ paymentAdviceOption.id }}
-            </option>
-          </select>
-        </div>
       </div>
 
       <div>

@@ -23,8 +23,8 @@
       "khatedarStatus": "Khatedar Status",
       "projectLand": "Project Land",
       "citizen": "Citizen",
-      "paymentFile": "Payment File",
-      "paymentAdvice": "Payment Advice"
+      "paymentAdvice": "Payment Advice",
+      "paymentFile": "Payment File"
     }
   }
 }

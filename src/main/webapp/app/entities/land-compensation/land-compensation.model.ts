@@ -20,9 +20,11 @@ export interface ILandCompensation {
   status?: CompensationStatus | null;
   orderDate?: dayjs.Dayjs | null;
   paymentAmount?: number | null;
+  interestRate?: number | null;
+  interestDays?: number | null;
   transactionId?: string | null;
   projectLand?: IProjectLand;
-  survey?: ISurvey | null;
+  survey?: ISurvey;
   paymentAdvices?: IPaymentAdvice[] | null;
   paymentFiles?: IPaymentFile[] | null;
 }
@@ -42,9 +44,11 @@ export class LandCompensation implements ILandCompensation {
     public status?: CompensationStatus | null,
     public orderDate?: dayjs.Dayjs | null,
     public paymentAmount?: number | null,
+    public interestRate?: number | null,
+    public interestDays?: number | null,
     public transactionId?: string | null,
     public projectLand?: IProjectLand,
-    public survey?: ISurvey | null,
+    public survey?: ISurvey,
     public paymentAdvices?: IPaymentAdvice[] | null,
     public paymentFiles?: IPaymentFile[] | null
   ) {}

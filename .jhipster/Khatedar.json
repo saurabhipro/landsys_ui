@@ -41,17 +41,18 @@
       "relationshipValidateRules": "required"
     },
     {
+      "otherEntityName": "paymentAdvice",
+      "otherEntityRelationshipName": "khatedar",
+      "ownerSide": false,
+      "relationshipName": "paymentAdvice",
+      "relationshipType": "one-to-one"
+    },
+    {
       "otherEntityName": "paymentFile",
       "otherEntityRelationshipName": "khatedar",
       "ownerSide": false,
       "relationshipName": "paymentFile",
       "relationshipType": "one-to-one"
-    },
-    {
-      "otherEntityName": "paymentAdvice",
-      "otherEntityRelationshipName": "khatedar",
-      "relationshipName": "paymentAdvice",
-      "relationshipType": "many-to-one"
     }
   ],
   "service": "serviceImpl"

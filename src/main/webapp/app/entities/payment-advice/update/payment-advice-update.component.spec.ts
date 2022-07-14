@@ -8,16 +8,14 @@ import { of, Subject, from } from 'rxjs';
 
 import { PaymentAdviceService } from '../service/payment-advice.service';
 import { IPaymentAdvice, PaymentAdvice } from '../payment-advice.model';
+import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
+import { KhatedarService } from 'app/entities/khatedar/service/khatedar.service';
 import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
 import { LandCompensationService } from 'app/entities/land-compensation/service/land-compensation.service';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
 import { ISurvey } from 'app/entities/survey/survey.model';
 import { SurveyService } from 'app/entities/survey/service/survey.service';
-import { ICitizen } from 'app/entities/citizen/citizen.model';
-import { CitizenService } from 'app/entities/citizen/service/citizen.service';
-import { ILand } from 'app/entities/land/land.model';
-import { LandService } from 'app/entities/land/service/land.service';
 
 import { PaymentAdviceUpdateComponent } from './payment-advice-update.component';
 
@@ -26,11 +24,10 @@ describe('PaymentAdvice Management Update Component', () => {
   let fixture: ComponentFixture<PaymentAdviceUpdateComponent>;
   let activatedRoute: ActivatedRoute;
   let paymentAdviceService: PaymentAdviceService;
+  let khatedarService: KhatedarService;
   let landCompensationService: LandCompensationService;
   let projectLandService: ProjectLandService;
   let surveyService: SurveyService;
-  let citizenService: CitizenService;
-  let landService: LandService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -52,16 +49,33 @@ describe('PaymentAdvice Management Update Component', () => {
     fixture = TestBed.createComponent(PaymentAdviceUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
     paymentAdviceService = TestBed.inject(PaymentAdviceService);
+    khatedarService = TestBed.inject(KhatedarService);
     landCompensationService = TestBed.inject(LandCompensationService);
     projectLandService = TestBed.inject(ProjectLandService);
     surveyService = TestBed.inject(SurveyService);
-    citizenService = TestBed.inject(CitizenService);
-    landService = TestBed.inject(LandService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
+    it('Should call khatedar query and add missing value', () => {
+      const paymentAdvice: IPaymentAdvice = { id: 456 };
+      const khatedar: IKhatedar = { id: 22266 };
+      paymentAdvice.khatedar = khatedar;
+
+      const khatedarCollection: IKhatedar[] = [{ id: 27798 }];
+      jest.spyOn(khatedarService, 'query').mockReturnValue(of(new HttpResponse({ body: khatedarCollection })));
+      const expectedCollection: IKhatedar[] = [khatedar, ...khatedarCollection];
+      jest.spyOn(khatedarService, 'addKhatedarToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ paymentAdvice });
+      comp.ngOnInit();
+
+      expect(khatedarService.query).toHaveBeenCalled();
+      expect(khatedarService.addKhatedarToCollectionIfMissing).toHaveBeenCalledWith(khatedarCollection, khatedar);
+      expect(comp.khatedarsCollection).toEqual(expectedCollection);
+    });
+
     it('Should call LandCompensation query and add missing value', () => {
       const paymentAdvice: IPaymentAdvice = { id: 456 };
       const landCompensation: ILandCompensation = { id: 89639 };
@@ -122,66 +136,25 @@ describe('PaymentAdvice Management Update Component', () => {
       expect(comp.surveysSharedCollection).toEqual(expectedCollection);
     });
 
-    it('Should call Citizen query and add missing value', () => {
-      const paymentAdvice: IPaymentAdvice = { id: 456 };
-      const citizen: ICitizen = { id: 62577 };
-      paymentAdvice.citizen = citizen;
-
-      const citizenCollection: ICitizen[] = [{ id: 61996 }];
-      jest.spyOn(citizenService, 'query').mockReturnValue(of(new HttpResponse({ body: citizenCollection })));
-      const additionalCitizens = [citizen];
-      const expectedCollection: ICitizen[] = [...additionalCitizens, ...citizenCollection];
-      jest.spyOn(citizenService, 'addCitizenToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ paymentAdvice });
-      comp.ngOnInit();
-
-      expect(citizenService.query).toHaveBeenCalled();
-      expect(citizenService.addCitizenToCollectionIfMissing).toHaveBeenCalledWith(citizenCollection, ...additionalCitizens);
-      expect(comp.citizensSharedCollection).toEqual(expectedCollection);
-    });
-
-    it('Should call Land query and add missing value', () => {
-      const paymentAdvice: IPaymentAdvice = { id: 456 };
-      const land: ILand = { id: 34955 };
-      paymentAdvice.land = land;
-
-      const landCollection: ILand[] = [{ id: 84793 }];
-      jest.spyOn(landService, 'query').mockReturnValue(of(new HttpResponse({ body: landCollection })));
-      const additionalLands = [land];
-      const expectedCollection: ILand[] = [...additionalLands, ...landCollection];
-      jest.spyOn(landService, 'addLandToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ paymentAdvice });
-      comp.ngOnInit();
-
-      expect(landService.query).toHaveBeenCalled();
-      expect(landService.addLandToCollectionIfMissing).toHaveBeenCalledWith(landCollection, ...additionalLands);
-      expect(comp.landsSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should update editForm', () => {
       const paymentAdvice: IPaymentAdvice = { id: 456 };
+      const khatedar: IKhatedar = { id: 55172 };
+      paymentAdvice.khatedar = khatedar;
       const landCompensation: ILandCompensation = { id: 47210 };
       paymentAdvice.landCompensation = landCompensation;
       const projectLand: IProjectLand = { id: 91548 };
       paymentAdvice.projectLand = projectLand;
       const survey: ISurvey = { id: 25019 };
       paymentAdvice.survey = survey;
-      const citizen: ICitizen = { id: 61632 };
-      paymentAdvice.citizen = citizen;
-      const land: ILand = { id: 84618 };
-      paymentAdvice.land = land;
 
       activatedRoute.data = of({ paymentAdvice });
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(paymentAdvice));
+      expect(comp.khatedarsCollection).toContain(khatedar);
       expect(comp.landCompensationsSharedCollection).toContain(landCompensation);
       expect(comp.projectLandsSharedCollection).toContain(projectLand);
       expect(comp.surveysSharedCollection).toContain(survey);
-      expect(comp.citizensSharedCollection).toContain(citizen);
-      expect(comp.landsSharedCollection).toContain(land);
     });
   });
 
@@ -250,6 +223,14 @@ describe('PaymentAdvice Management Update Component', () => {
   });
 
   describe('Tracking relationships identifiers', () => {
+    describe('trackKhatedarById', () => {
+      it('Should return tracked Khatedar primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackKhatedarById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
     describe('trackLandCompensationById', () => {
       it('Should return tracked LandCompensation primary key', () => {
         const entity = { id: 123 };
@@ -270,22 +251,6 @@ describe('PaymentAdvice Management Update Component', () => {
       it('Should return tracked Survey primary key', () => {
         const entity = { id: 123 };
         const trackResult = comp.trackSurveyById(0, entity);
-        expect(trackResult).toEqual(entity.id);
-      });
-    });
-
-    describe('trackCitizenById', () => {
-      it('Should return tracked Citizen primary key', () => {
-        const entity = { id: 123 };
-        const trackResult = comp.trackCitizenById(0, entity);
-        expect(trackResult).toEqual(entity.id);
-      });
-    });
-
-    describe('trackLandById', () => {
-      it('Should return tracked Land primary key', () => {
-        const entity = { id: 123 };
-        const trackResult = comp.trackLandById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

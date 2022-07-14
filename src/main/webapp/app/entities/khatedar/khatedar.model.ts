@@ -1,7 +1,7 @@
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ICitizen } from 'app/entities/citizen/citizen.model';
-import { IPaymentFile } from 'app/entities/payment-file/payment-file.model';
 import { IPaymentAdvice } from 'app/entities/payment-advice/payment-advice.model';
+import { IPaymentFile } from 'app/entities/payment-file/payment-file.model';
 
 export interface IKhatedar {
   id?: number;
@@ -10,8 +10,8 @@ export interface IKhatedar {
   khatedarStatus?: string | null;
   projectLand?: IProjectLand;
   citizen?: ICitizen;
-  paymentFile?: IPaymentFile | null;
   paymentAdvice?: IPaymentAdvice | null;
+  paymentFile?: IPaymentFile | null;
 }
 
 export class Khatedar implements IKhatedar {
@@ -22,8 +22,8 @@ export class Khatedar implements IKhatedar {
     public khatedarStatus?: string | null,
     public projectLand?: IProjectLand,
     public citizen?: ICitizen,
-    public paymentFile?: IPaymentFile | null,
-    public paymentAdvice?: IPaymentAdvice | null
+    public paymentAdvice?: IPaymentAdvice | null,
+    public paymentFile?: IPaymentFile | null
   ) {}
 }
 

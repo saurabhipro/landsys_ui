@@ -40,9 +40,11 @@ export class LandCompensationUpdateComponent implements OnInit {
     status: [],
     orderDate: [],
     paymentAmount: [],
+    interestRate: [],
+    interestDays: [],
     transactionId: [],
     projectLand: [null, Validators.required],
-    survey: [],
+    survey: [null, Validators.required],
   });
 
   constructor(
@@ -117,6 +119,8 @@ export class LandCompensationUpdateComponent implements OnInit {
       status: landCompensation.status,
       orderDate: landCompensation.orderDate,
       paymentAmount: landCompensation.paymentAmount,
+      interestRate: landCompensation.interestRate,
+      interestDays: landCompensation.interestDays,
       transactionId: landCompensation.transactionId,
       projectLand: landCompensation.projectLand,
       survey: landCompensation.survey,
@@ -163,6 +167,8 @@ export class LandCompensationUpdateComponent implements OnInit {
       status: this.editForm.get(['status'])!.value,
       orderDate: this.editForm.get(['orderDate'])!.value,
       paymentAmount: this.editForm.get(['paymentAmount'])!.value,
+      interestRate: this.editForm.get(['interestRate'])!.value,
+      interestDays: this.editForm.get(['interestDays'])!.value,
       transactionId: this.editForm.get(['transactionId'])!.value,
       projectLand: this.editForm.get(['projectLand'])!.value,
       survey: this.editForm.get(['survey'])!.value,

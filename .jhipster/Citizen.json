@@ -21,7 +21,7 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "mobileNo",
+      "fieldName": "mobileNumber",
       "fieldType": "String"
     },
     {
@@ -83,30 +83,11 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityField": "khasraNumber",
-      "otherEntityName": "land",
-      "otherEntityRelationshipName": "citizen",
-      "relationshipName": "land",
-      "relationshipType": "one-to-many"
-    },
-    {
       "otherEntityField": "name",
       "otherEntityName": "bankBranch",
       "otherEntityRelationshipName": "citizen",
       "relationshipName": "bankBranch",
       "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "projectLand",
-      "otherEntityRelationshipName": "citizen",
-      "relationshipName": "projectLand",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityName": "paymentAdvice",
-      "otherEntityRelationshipName": "citizen",
-      "relationshipName": "paymentAdvice",
-      "relationshipType": "one-to-many"
     },
     {
       "otherEntityName": "khatedar",

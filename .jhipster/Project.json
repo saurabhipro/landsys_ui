@@ -45,13 +45,6 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityField": "khasraNumber",
-      "otherEntityName": "land",
-      "otherEntityRelationshipName": "project",
-      "relationshipName": "land",
-      "relationshipType": "one-to-many"
-    },
-    {
       "otherEntityName": "projectLand",
       "otherEntityRelationshipName": "project",
       "relationshipName": "projectLand",

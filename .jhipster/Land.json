@@ -15,7 +15,7 @@
       "fieldValidateRules": ["unique", "required"]
     },
     {
-      "fieldName": "kahtauniKhata",
+      "fieldName": "khatauni",
       "fieldType": "String"
     },
     {
@@ -54,12 +54,6 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "paymentAdvice",
-      "otherEntityRelationshipName": "land",
-      "relationshipName": "paymentAdvice",
-      "relationshipType": "one-to-many"
-    },
-    {
       "otherEntityField": "name",
       "otherEntityName": "village",
       "otherEntityRelationshipName": "land",
@@ -92,25 +86,10 @@
       "relationshipValidateRules": "required"
     },
     {
-      "otherEntityField": "name",
-      "otherEntityName": "citizen",
-      "otherEntityRelationshipName": "land",
-      "relationshipName": "citizen",
-      "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityField": "name",
-      "otherEntityName": "project",
-      "otherEntityRelationshipName": "land",
-      "relationshipName": "project",
-      "relationshipType": "many-to-one"
-    },
-    {
       "otherEntityName": "projectLand",
       "otherEntityRelationshipName": "land",
       "relationshipName": "projectLand",
-      "relationshipType": "one-to-many",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

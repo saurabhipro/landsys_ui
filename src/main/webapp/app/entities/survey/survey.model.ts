@@ -19,7 +19,7 @@ export interface ISurvey {
   remarks?: string | null;
   status?: SurveyStatus | null;
   projectLand?: IProjectLand;
-  landCompensation?: ILandCompensation;
+  landCompensation?: ILandCompensation | null;
   paymentAdvices?: IPaymentAdvice[] | null;
   paymentFiles?: IPaymentFile[] | null;
 }
@@ -39,7 +39,7 @@ export class Survey implements ISurvey {
     public remarks?: string | null,
     public status?: SurveyStatus | null,
     public projectLand?: IProjectLand,
-    public landCompensation?: ILandCompensation,
+    public landCompensation?: ILandCompensation | null,
     public paymentAdvices?: IPaymentAdvice[] | null,
     public paymentFiles?: IPaymentFile[] | null
   ) {}

@@ -37,8 +37,8 @@
           <th scope="col" jhiSortBy="khasraNumber">
             <span jhiTranslate="jhipsterApp.land.khasraNumber">Khasra Number</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="kahtauniKhata">
-            <span jhiTranslate="jhipsterApp.land.kahtauniKhata">Kahtauni Khata</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="khatauni">
+            <span jhiTranslate="jhipsterApp.land.khatauni">Khatauni</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="area"><span jhiTranslate="jhipsterApp.land.area">Area</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="landMarketValue">
@@ -69,12 +69,6 @@
           <th scope="col" jhiSortBy="state.name">
             <span jhiTranslate="jhipsterApp.land.state">State</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="citizen.name">
-            <span jhiTranslate="jhipsterApp.land.citizen">Citizen</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="project.name">
-            <span jhiTranslate="jhipsterApp.land.project">Project</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -85,7 +79,7 @@
           </td>
           <td>{{ land.ulpin }}</td>
           <td>{{ land.khasraNumber }}</td>
-          <td>{{ land.kahtauniKhata }}</td>
+          <td>{{ land.khatauni }}</td>
           <td>{{ land.area }}</td>
           <td>{{ land.landMarketValue }}</td>
           <td>{{ land.structuralValue }}</td>
@@ -111,16 +105,6 @@
           <td>
             <div *ngIf="land.state">
               <a [routerLink]="['/state', land.state?.id, 'view']">{{ land.state?.name }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="land.citizen">
-              <a [routerLink]="['/citizen', land.citizen?.id, 'view']">{{ land.citizen?.name }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="land.project">
-              <a [routerLink]="['/project', land.project?.id, 'view']">{{ land.project?.name }}</a>
             </div>
           </td>
           <td class="text-end">

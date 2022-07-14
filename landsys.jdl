@@ -35,7 +35,7 @@ entity LandType(landsys_land_type) {
 entity Land(landsys_land) {
    ulpin String
    khasraNumber String unique required
-   kahtauniKhata String
+   khatauni String
    area  Double
    landMarketValue  Double
    structuralValue  Double
@@ -100,7 +100,7 @@ entity Citizen(landsys_citizen) {
     photo  ImageBlob
     name String required
     address String required
-    mobileNo String
+    mobileNumber String
     dob LocalDate
     accountNumber String
     fatherName String required
@@ -128,6 +128,8 @@ entity LandCompensation(land_Compensation) {
 	status			 		 CompensationStatus
 	orderDate              	 LocalDate
 	paymentAmount			 Double
+    interestRate             Double
+    interestDays             Double
 	transactionId			 String
 }
 
@@ -165,7 +167,7 @@ entity PaymentFileRecon(landsys_payment_file_recon) {
 	primaryHolderName			String required
     paymentAmount               Double required
 	paymentDate              	LocalDate
-	utrNumber                  String required
+	utrNumber                   String required
 	referenceNumber		     	String unique
 	paymentStatus	 			PaymentStatus required
 }
@@ -211,19 +213,18 @@ entity TransactionHistory(landsys_transaction_history)
 }
 
 relationship OneToOne {
-    
+    PaymentAdvice{khatedar required} to Khatedar{paymentAdvice}
     Survey{projectLand required} to ProjectLand{survey}
     LandCompensation{projectLand required} to  ProjectLand{landCompensation}
     PaymentFileRecon{paymentAdvice required} to PaymentAdvice{paymentFileRecon}
-    LandCompensation{survey} to Survey{landCompensation required}
+    LandCompensation{survey required} to Survey{landCompensation}
     PaymentFile{khatedar required} to Khatedar{paymentFile}
     PaymentFile{paymentAdvice required} to PaymentAdvice{paymentFile}
     }
 
 relationship ManyToOne {
-    ProjectLand{land(khasraNumber) } to Land{projectLand required}
+    ProjectLand{land(khasraNumber) required } to Land{projectLand}
     ProjectLand{project(name) required} to Project{projectLand}
-    ProjectLand{citizen(name) required}  to Citizen{ProjectLand}
     Land{village(name) required} to Village{land(khasraNumber)}
 	Land{unit(name) required} to  Unit{land(khasraNumber)}
 	Land{LandType(name) required} to LandType{land(khasraNumber)}
@@ -236,7 +237,6 @@ relationship ManyToOne {
     PaymentAdvice{landCompensation required} to LandCompensation{paymentAdvice}
     PaymentAdvice{projectLand required} to ProjectLand{paymentAdvice}
     PaymentAdvice{survey required} to Survey{paymentAdvice}
-    PaymentAdvice{citizen required} to Citizen{paymentAdvice}
     PaymentAdviceDetails{paymentAdvice required} to PaymentAdvice{paymentAdviceDetails}
     PaymentAdviceDetails{projectLand required} to ProjectLand{paymentAdviceDetails}
 	ProjectLand{noticeStatusInfo} to NoticeStatusInfo{projectLand}
@@ -248,15 +248,8 @@ relationship ManyToOne {
     PaymentFile{landCompensation required} to LandCompensation{paymentFile}
     Khatedar{projectLand required} to ProjectLand{khatedar}
     Khatedar{citizen required} to Citizen{khatedar}
-}
 
-relationship OneToMany{
-   Citizen{land(khasraNumber)} to Land{citizen(name)}
-   Project{land(khasraNumber)} to Land{project(name)}
-   Land{PaymentAdvice} to PaymentAdvice{Land(khasraNumber)}
-   PaymentAdvice{khatedar required} to Khatedar{paymentAdvice}
 }
-
 
 enum KhatedarStatus {
     NEW

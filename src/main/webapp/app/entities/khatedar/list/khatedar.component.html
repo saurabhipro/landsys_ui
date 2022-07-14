@@ -48,9 +48,6 @@
           <th scope="col" jhiSortBy="citizen.id">
             <span jhiTranslate="jhipsterApp.khatedar.citizen">Citizen</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="paymentAdvice.id">
-            <span jhiTranslate="jhipsterApp.khatedar.paymentAdvice">Payment Advice</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -70,11 +67,6 @@
           <td>
             <div *ngIf="khatedar.citizen">
               <a [routerLink]="['/citizen', khatedar.citizen?.id, 'view']">{{ khatedar.citizen?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="khatedar.paymentAdvice">
-              <a [routerLink]="['/payment-advice', khatedar.paymentAdvice?.id, 'view']">{{ khatedar.paymentAdvice?.id }}</a>
             </div>
           </td>
           <td class="text-end">

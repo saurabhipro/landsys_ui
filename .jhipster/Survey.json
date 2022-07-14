@@ -76,8 +76,7 @@
       "otherEntityRelationshipName": "survey",
       "ownerSide": false,
       "relationshipName": "landCompensation",
-      "relationshipType": "one-to-one",
-      "relationshipValidateRules": "required"
+      "relationshipType": "one-to-one"
     },
     {
       "otherEntityName": "paymentAdvice",

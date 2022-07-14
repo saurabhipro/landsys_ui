@@ -2,10 +2,8 @@ import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
 import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ISurvey } from 'app/entities/survey/survey.model';
-import { ICitizen } from 'app/entities/citizen/citizen.model';
 import { IPaymentFileRecon } from 'app/entities/payment-file-recon/payment-file-recon.model';
 import { IPaymentFile } from 'app/entities/payment-file/payment-file.model';
-import { ILand } from 'app/entities/land/land.model';
 import { IPaymentAdviceDetails } from 'app/entities/payment-advice-details/payment-advice-details.model';
 import { PaymentAdviceType } from 'app/entities/enumerations/payment-advice-type.model';
 import { PaymentStatus } from 'app/entities/enumerations/payment-status.model';
@@ -25,14 +23,12 @@ export interface IPaymentAdvice {
   referenceNumber?: string | null;
   paymentStatus?: PaymentStatus;
   hissaType?: HissaType;
-  khatedars?: IKhatedar[];
+  khatedar?: IKhatedar;
   landCompensation?: ILandCompensation;
   projectLand?: IProjectLand;
   survey?: ISurvey;
-  citizen?: ICitizen;
   paymentFileRecon?: IPaymentFileRecon | null;
   paymentFile?: IPaymentFile | null;
-  land?: ILand | null;
   paymentAdviceDetails?: IPaymentAdviceDetails[] | null;
 }
 
@@ -51,14 +47,12 @@ export class PaymentAdvice implements IPaymentAdvice {
     public referenceNumber?: string | null,
     public paymentStatus?: PaymentStatus,
     public hissaType?: HissaType,
-    public khatedars?: IKhatedar[],
+    public khatedar?: IKhatedar,
     public landCompensation?: ILandCompensation,
     public projectLand?: IProjectLand,
     public survey?: ISurvey,
-    public citizen?: ICitizen,
     public paymentFileRecon?: IPaymentFileRecon | null,
     public paymentFile?: IPaymentFile | null,
-    public land?: ILand | null,
     public paymentAdviceDetails?: IPaymentAdviceDetails[] | null
   ) {}
 }

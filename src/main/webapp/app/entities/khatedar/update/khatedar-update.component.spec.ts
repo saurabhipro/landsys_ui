@@ -12,8 +12,6 @@ import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
 import { ICitizen } from 'app/entities/citizen/citizen.model';
 import { CitizenService } from 'app/entities/citizen/service/citizen.service';
-import { IPaymentAdvice } from 'app/entities/payment-advice/payment-advice.model';
-import { PaymentAdviceService } from 'app/entities/payment-advice/service/payment-advice.service';
 
 import { KhatedarUpdateComponent } from './khatedar-update.component';
 
@@ -24,7 +22,6 @@ describe('Khatedar Management Update Component', () => {
   let khatedarService: KhatedarService;
   let projectLandService: ProjectLandService;
   let citizenService: CitizenService;
-  let paymentAdviceService: PaymentAdviceService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -48,7 +45,6 @@ describe('Khatedar Management Update Component', () => {
     khatedarService = TestBed.inject(KhatedarService);
     projectLandService = TestBed.inject(ProjectLandService);
     citizenService = TestBed.inject(CitizenService);
-    paymentAdviceService = TestBed.inject(PaymentAdviceService);
 
     comp = fixture.componentInstance;
   });
@@ -92,36 +88,12 @@ describe('Khatedar Management Update Component', () => {
       expect(comp.citizensSharedCollection).toEqual(expectedCollection);
     });
 
-    it('Should call PaymentAdvice query and add missing value', () => {
-      const khatedar: IKhatedar = { id: 456 };
-      const paymentAdvice: IPaymentAdvice = { id: 18608 };
-      khatedar.paymentAdvice = paymentAdvice;
-
-      const paymentAdviceCollection: IPaymentAdvice[] = [{ id: 53149 }];
-      jest.spyOn(paymentAdviceService, 'query').mockReturnValue(of(new HttpResponse({ body: paymentAdviceCollection })));
-      const additionalPaymentAdvices = [paymentAdvice];
-      const expectedCollection: IPaymentAdvice[] = [...additionalPaymentAdvices, ...paymentAdviceCollection];
-      jest.spyOn(paymentAdviceService, 'addPaymentAdviceToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ khatedar });
-      comp.ngOnInit();
-
-      expect(paymentAdviceService.query).toHaveBeenCalled();
-      expect(paymentAdviceService.addPaymentAdviceToCollectionIfMissing).toHaveBeenCalledWith(
-        paymentAdviceCollection,
-        ...additionalPaymentAdvices
-      );
-      expect(comp.paymentAdvicesSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should update editForm', () => {
       const khatedar: IKhatedar = { id: 456 };
       const projectLand: IProjectLand = { id: 84080 };
       khatedar.projectLand = projectLand;
       const citizen: ICitizen = { id: 17296 };
       khatedar.citizen = citizen;
-      const paymentAdvice: IPaymentAdvice = { id: 6651 };
-      khatedar.paymentAdvice = paymentAdvice;
 
       activatedRoute.data = of({ khatedar });
       comp.ngOnInit();
@@ -129,7 +101,6 @@ describe('Khatedar Management Update Component', () => {
       expect(comp.editForm.value).toEqual(expect.objectContaining(khatedar));
       expect(comp.projectLandsSharedCollection).toContain(projectLand);
       expect(comp.citizensSharedCollection).toContain(citizen);
-      expect(comp.paymentAdvicesSharedCollection).toContain(paymentAdvice);
     });
   });
 
@@ -210,14 +181,6 @@ describe('Khatedar Management Update Component', () => {
       it('Should return tracked Citizen primary key', () => {
         const entity = { id: 123 };
         const trackResult = comp.trackCitizenById(0, entity);
-        expect(trackResult).toEqual(entity.id);
-      });
-    });
-
-    describe('trackPaymentAdviceById', () => {
-      it('Should return tracked PaymentAdvice primary key', () => {
-        const entity = { id: 123 };
-        const trackResult = comp.trackPaymentAdviceById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

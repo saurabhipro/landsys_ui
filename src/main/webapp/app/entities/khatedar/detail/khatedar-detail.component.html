@@ -38,12 +38,6 @@
             <a [routerLink]="['/citizen', khatedar.citizen?.id, 'view']">{{ khatedar.citizen?.id }}</a>
           </div>
         </dd>
-        <dt><span jhiTranslate="jhipsterApp.khatedar.paymentAdvice">Payment Advice</span></dt>
-        <dd>
-          <div *ngIf="khatedar.paymentAdvice">
-            <a [routerLink]="['/payment-advice', khatedar.paymentAdvice?.id, 'view']">{{ khatedar.paymentAdvice?.id }}</a>
-          </div>
-        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

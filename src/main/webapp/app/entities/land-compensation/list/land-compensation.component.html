@@ -72,6 +72,12 @@
           <th scope="col" jhiSortBy="paymentAmount">
             <span jhiTranslate="jhipsterApp.landCompensation.paymentAmount">Payment Amount</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="interestRate">
+            <span jhiTranslate="jhipsterApp.landCompensation.interestRate">Interest Rate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="interestDays">
+            <span jhiTranslate="jhipsterApp.landCompensation.interestDays">Interest Days</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="transactionId">
             <span jhiTranslate="jhipsterApp.landCompensation.transactionId">Transaction Id</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -101,6 +107,8 @@
           <td jhiTranslate="{{ 'jhipsterApp.CompensationStatus.' + landCompensation.status }}">{{ landCompensation.status }}</td>
           <td>{{ landCompensation.orderDate | formatMediumDate }}</td>
           <td>{{ landCompensation.paymentAmount }}</td>
+          <td>{{ landCompensation.interestRate }}</td>
+          <td>{{ landCompensation.interestDays }}</td>
           <td>{{ landCompensation.transactionId }}</td>
           <td>
             <div *ngIf="landCompensation.projectLand">

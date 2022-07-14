@@ -60,6 +60,14 @@
       "fieldType": "Double"
     },
     {
+      "fieldName": "interestRate",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "interestDays",
+      "fieldType": "Double"
+    },
+    {
       "fieldName": "transactionId",
       "fieldType": "String"
     }
@@ -83,7 +91,8 @@
       "otherEntityRelationshipName": "landCompensation",
       "ownerSide": true,
       "relationshipName": "survey",
-      "relationshipType": "one-to-one"
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityName": "paymentAdvice",

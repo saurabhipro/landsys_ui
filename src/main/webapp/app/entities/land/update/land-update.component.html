@@ -42,15 +42,8 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="jhipsterApp.land.kahtauniKhata" for="field_kahtauniKhata">Kahtauni Khata</label>
-          <input
-            type="text"
-            class="form-control"
-            name="kahtauniKhata"
-            id="field_kahtauniKhata"
-            data-cy="kahtauniKhata"
-            formControlName="kahtauniKhata"
-          />
+          <label class="form-label" jhiTranslate="jhipsterApp.land.khatauni" for="field_khatauni">Khatauni</label>
+          <input type="text" class="form-control" name="khatauni" id="field_khatauni" data-cy="khatauni" formControlName="khatauni" />
         </div>
 
         <div class="row mb-3">
@@ -210,32 +203,6 @@
           <small class="form-text text-danger" *ngIf="editForm.get(['state'])?.errors?.required" jhiTranslate="entity.validation.required">
             This field is required.
           </small>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="jhipsterApp.land.citizen" for="field_citizen">Citizen</label>
-          <select class="form-control" id="field_citizen" data-cy="citizen" name="citizen" formControlName="citizen">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="citizenOption.id === editForm.get('citizen')!.value?.id ? editForm.get('citizen')!.value : citizenOption"
-              *ngFor="let citizenOption of citizensSharedCollection; trackBy: trackCitizenById"
-            >
-              {{ citizenOption.name }}
-            </option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="jhipsterApp.land.project" for="field_project">Project</label>
-          <select class="form-control" id="field_project" data-cy="project" name="project" formControlName="project">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="projectOption.id === editForm.get('project')!.value?.id ? editForm.get('project')!.value : projectOption"
-              *ngFor="let projectOption of projectsSharedCollection; trackBy: trackProjectById"
-            >
-              {{ projectOption.name }}
-            </option>
-          </select>
         </div>
       </div>
 

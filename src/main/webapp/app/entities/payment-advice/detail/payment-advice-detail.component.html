@@ -64,6 +64,12 @@
         <dd>
           <span jhiTranslate="{{ 'jhipsterApp.HissaType.' + paymentAdvice.hissaType }}">{{ paymentAdvice.hissaType }}</span>
         </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.khatedar">Khatedar</span></dt>
+        <dd>
+          <div *ngIf="paymentAdvice.khatedar">
+            <a [routerLink]="['/khatedar', paymentAdvice.khatedar?.id, 'view']">{{ paymentAdvice.khatedar?.id }}</a>
+          </div>
+        </dd>
         <dt><span jhiTranslate="jhipsterApp.paymentAdvice.landCompensation">Land Compensation</span></dt>
         <dd>
           <div *ngIf="paymentAdvice.landCompensation">
@@ -82,18 +88,6 @@
         <dd>
           <div *ngIf="paymentAdvice.survey">
             <a [routerLink]="['/survey', paymentAdvice.survey?.id, 'view']">{{ paymentAdvice.survey?.id }}</a>
-          </div>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.citizen">Citizen</span></dt>
-        <dd>
-          <div *ngIf="paymentAdvice.citizen">
-            <a [routerLink]="['/citizen', paymentAdvice.citizen?.id, 'view']">{{ paymentAdvice.citizen?.id }}</a>
-          </div>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.land">Land</span></dt>
-        <dd>
-          <div *ngIf="paymentAdvice.land">
-            <a [routerLink]="['/land', paymentAdvice.land?.id, 'view']">{{ paymentAdvice.land?.khasraNumber }}</a>
           </div>
         </dd>
       </dl>

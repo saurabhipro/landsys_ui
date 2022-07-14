@@ -16,10 +16,6 @@ import { ILandType } from 'app/entities/land-type/land-type.model';
 import { LandTypeService } from 'app/entities/land-type/service/land-type.service';
 import { IState } from 'app/entities/state/state.model';
 import { StateService } from 'app/entities/state/service/state.service';
-import { ICitizen } from 'app/entities/citizen/citizen.model';
-import { CitizenService } from 'app/entities/citizen/service/citizen.service';
-import { IProject } from 'app/entities/project/project.model';
-import { ProjectService } from 'app/entities/project/service/project.service';
 
 import { LandUpdateComponent } from './land-update.component';
 
@@ -32,8 +28,6 @@ describe('Land Management Update Component', () => {
   let unitService: UnitService;
   let landTypeService: LandTypeService;
   let stateService: StateService;
-  let citizenService: CitizenService;
-  let projectService: ProjectService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -59,8 +53,6 @@ describe('Land Management Update Component', () => {
     unitService = TestBed.inject(UnitService);
     landTypeService = TestBed.inject(LandTypeService);
     stateService = TestBed.inject(StateService);
-    citizenService = TestBed.inject(CitizenService);
-    projectService = TestBed.inject(ProjectService);
 
     comp = fixture.componentInstance;
   });
@@ -142,44 +134,6 @@ describe('Land Management Update Component', () => {
       expect(comp.statesSharedCollection).toEqual(expectedCollection);
     });
 
-    it('Should call Citizen query and add missing value', () => {
-      const land: ILand = { id: 456 };
-      const citizen: ICitizen = { id: 64002 };
-      land.citizen = citizen;
-
-      const citizenCollection: ICitizen[] = [{ id: 4522 }];
-      jest.spyOn(citizenService, 'query').mockReturnValue(of(new HttpResponse({ body: citizenCollection })));
-      const additionalCitizens = [citizen];
-      const expectedCollection: ICitizen[] = [...additionalCitizens, ...citizenCollection];
-      jest.spyOn(citizenService, 'addCitizenToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ land });
-      comp.ngOnInit();
-
-      expect(citizenService.query).toHaveBeenCalled();
-      expect(citizenService.addCitizenToCollectionIfMissing).toHaveBeenCalledWith(citizenCollection, ...additionalCitizens);
-      expect(comp.citizensSharedCollection).toEqual(expectedCollection);
-    });
-
-    it('Should call Project query and add missing value', () => {
-      const land: ILand = { id: 456 };
-      const project: IProject = { id: 45305 };
-      land.project = project;
-
-      const projectCollection: IProject[] = [{ id: 3959 }];
-      jest.spyOn(projectService, 'query').mockReturnValue(of(new HttpResponse({ body: projectCollection })));
-      const additionalProjects = [project];
-      const expectedCollection: IProject[] = [...additionalProjects, ...projectCollection];
-      jest.spyOn(projectService, 'addProjectToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ land });
-      comp.ngOnInit();
-
-      expect(projectService.query).toHaveBeenCalled();
-      expect(projectService.addProjectToCollectionIfMissing).toHaveBeenCalledWith(projectCollection, ...additionalProjects);
-      expect(comp.projectsSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should update editForm', () => {
       const land: ILand = { id: 456 };
       const village: IVillage = { id: 43848 };
@@ -190,10 +144,6 @@ describe('Land Management Update Component', () => {
       land.landType = landType;
       const state: IState = { id: 14797 };
       land.state = state;
-      const citizen: ICitizen = { id: 62202 };
-      land.citizen = citizen;
-      const project: IProject = { id: 10153 };
-      land.project = project;
 
       activatedRoute.data = of({ land });
       comp.ngOnInit();
@@ -203,8 +153,6 @@ describe('Land Management Update Component', () => {
       expect(comp.unitsSharedCollection).toContain(unit);
       expect(comp.landTypesSharedCollection).toContain(landType);
       expect(comp.statesSharedCollection).toContain(state);
-      expect(comp.citizensSharedCollection).toContain(citizen);
-      expect(comp.projectsSharedCollection).toContain(project);
     });
   });
 
@@ -301,22 +249,6 @@ describe('Land Management Update Component', () => {
       it('Should return tracked State primary key', () => {
         const entity = { id: 123 };
         const trackResult = comp.trackStateById(0, entity);
-        expect(trackResult).toEqual(entity.id);
-      });
-    });
-
-    describe('trackCitizenById', () => {
-      it('Should return tracked Citizen primary key', () => {
-        const entity = { id: 123 };
-        const trackResult = comp.trackCitizenById(0, entity);
-        expect(trackResult).toEqual(entity.id);
-      });
-    });
-
-    describe('trackProjectById', () => {
-      it('Should return tracked Project primary key', () => {
-        const entity = { id: 123 };
-        const trackResult = comp.trackProjectById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

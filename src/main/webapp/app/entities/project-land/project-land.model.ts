@@ -1,6 +1,5 @@
 import { ILand } from 'app/entities/land/land.model';
 import { IProject } from 'app/entities/project/project.model';
-import { ICitizen } from 'app/entities/citizen/citizen.model';
 import { INoticeStatusInfo } from 'app/entities/notice-status-info/notice-status-info.model';
 import { ISurvey } from 'app/entities/survey/survey.model';
 import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
@@ -16,9 +15,8 @@ export interface IProjectLand {
   documentsContentType?: string | null;
   documents?: string | null;
   hissaType?: HissaType | null;
-  land?: ILand | null;
+  land?: ILand;
   project?: IProject;
-  citizen?: ICitizen;
   noticeStatusInfo?: INoticeStatusInfo | null;
   survey?: ISurvey | null;
   landCompensation?: ILandCompensation | null;
@@ -35,9 +33,8 @@ export class ProjectLand implements IProjectLand {
     public documentsContentType?: string | null,
     public documents?: string | null,
     public hissaType?: HissaType | null,
-    public land?: ILand | null,
+    public land?: ILand,
     public project?: IProject,
-    public citizen?: ICitizen,
     public noticeStatusInfo?: INoticeStatusInfo | null,
     public survey?: ISurvey | null,
     public landCompensation?: ILandCompensation | null,

@@ -30,6 +30,8 @@
       "status": "Status",
       "orderDate": "Order Date",
       "paymentAmount": "Payment Amount",
+      "interestRate": "Interest Rate",
+      "interestDays": "Interest Days",
       "transactionId": "Transaction Id",
       "projectLand": "Project Land",
       "survey": "Survey",

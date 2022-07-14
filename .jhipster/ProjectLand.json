@@ -31,21 +31,14 @@
       "otherEntityName": "land",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "land",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityField": "name",
       "otherEntityName": "project",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "project",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": "required"
-    },
-    {
-      "otherEntityField": "name",
-      "otherEntityName": "citizen",
-      "otherEntityRelationshipName": "projectLand",
-      "relationshipName": "citizen",
       "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
     },

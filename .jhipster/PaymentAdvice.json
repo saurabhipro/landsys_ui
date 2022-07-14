@@ -75,8 +75,9 @@
     {
       "otherEntityName": "khatedar",
       "otherEntityRelationshipName": "paymentAdvice",
+      "ownerSide": true,
       "relationshipName": "khatedar",
-      "relationshipType": "one-to-many",
+      "relationshipType": "one-to-one",
       "relationshipValidateRules": "required"
     },
     {
@@ -101,13 +102,6 @@
       "relationshipValidateRules": "required"
     },
     {
-      "otherEntityName": "citizen",
-      "otherEntityRelationshipName": "paymentAdvice",
-      "relationshipName": "citizen",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": "required"
-    },
-    {
       "otherEntityName": "paymentFileRecon",
       "otherEntityRelationshipName": "paymentAdvice",
       "ownerSide": false,
@@ -120,13 +114,6 @@
       "ownerSide": false,
       "relationshipName": "paymentFile",
       "relationshipType": "one-to-one"
-    },
-    {
-      "otherEntityField": "khasraNumber",
-      "otherEntityName": "land",
-      "otherEntityRelationshipName": "paymentAdvice",
-      "relationshipName": "land",
-      "relationshipType": "many-to-one"
     },
     {
       "otherEntityName": "paymentAdviceDetails",

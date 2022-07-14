@@ -21,7 +21,7 @@
       "photo": "Photo",
       "name": "Name",
       "address": "Address",
-      "mobileNo": "Mobile No",
+      "mobileNumber": "Mobile Number",
       "dob": "Dob",
       "accountNumber": "Account Number",
       "fatherName": "Father Name",
@@ -33,10 +33,7 @@
       "panImage": "Pan Image",
       "accountNo": "Account No",
       "accNoImage": "Acc No Image",
-      "land": "Land",
       "bankBranch": "Bank Branch",
-      "projectLand": "Project Land",
-      "paymentAdvice": "Payment Advice",
       "khatedar": "Khatedar"
     }
   }

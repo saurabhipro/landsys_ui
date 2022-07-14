@@ -22,9 +22,9 @@
         <dd>
           <span>{{ land.khasraNumber }}</span>
         </dd>
-        <dt><span jhiTranslate="jhipsterApp.land.kahtauniKhata">Kahtauni Khata</span></dt>
+        <dt><span jhiTranslate="jhipsterApp.land.khatauni">Khatauni</span></dt>
         <dd>
-          <span>{{ land.kahtauniKhata }}</span>
+          <span>{{ land.khatauni }}</span>
         </dd>
         <dt><span jhiTranslate="jhipsterApp.land.area">Area</span></dt>
         <dd>
@@ -76,18 +76,6 @@
         <dd>
           <div *ngIf="land.state">
             <a [routerLink]="['/state', land.state?.id, 'view']">{{ land.state?.name }}</a>
-          </div>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.land.citizen">Citizen</span></dt>
-        <dd>
-          <div *ngIf="land.citizen">
-            <a [routerLink]="['/citizen', land.citizen?.id, 'view']">{{ land.citizen?.name }}</a>
-          </div>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.land.project">Project</span></dt>
-        <dd>
-          <div *ngIf="land.project">
-            <a [routerLink]="['/project', land.project?.id, 'view']">{{ land.project?.name }}</a>
           </div>
         </dd>
       </dl>
