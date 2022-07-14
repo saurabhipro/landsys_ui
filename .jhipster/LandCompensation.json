@@ -17,11 +17,6 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "sharePercentage",
-      "fieldType": "Double",
-      "fieldValidateRules": ["required"]
-    },
-    {
       "fieldName": "landMarketValue",
       "fieldType": "Double",
       "fieldValidateRules": ["required"]

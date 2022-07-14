@@ -50,41 +50,6 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.sharePercentage" for="field_sharePercentage"
-            >Share Percentage</label
-          >
-          <input
-            type="number"
-            class="form-control"
-            name="sharePercentage"
-            id="field_sharePercentage"
-            data-cy="sharePercentage"
-            formControlName="sharePercentage"
-          />
-          <div
-            *ngIf="
-              editForm.get('sharePercentage')!.invalid &&
-              (editForm.get('sharePercentage')!.dirty || editForm.get('sharePercentage')!.touched)
-            "
-          >
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('sharePercentage')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-            <small
-              class="form-text text-danger"
-              [hidden]="!editForm.get('sharePercentage')?.errors?.number"
-              jhiTranslate="entity.validation.number"
-            >
-              This field should be a number.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.landMarketValue" for="field_landMarketValue"
             >Land Market Value</label
           >

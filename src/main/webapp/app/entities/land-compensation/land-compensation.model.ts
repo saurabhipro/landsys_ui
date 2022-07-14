@@ -9,7 +9,6 @@ export interface ILandCompensation {
   id?: number;
   hissaType?: HissaType;
   area?: number;
-  sharePercentage?: number;
   landMarketValue?: number;
   structuralCompensation?: number | null;
   horticultureCompensation?: number | null;
@@ -30,7 +29,6 @@ export class LandCompensation implements ILandCompensation {
     public id?: number,
     public hissaType?: HissaType,
     public area?: number,
-    public sharePercentage?: number,
     public landMarketValue?: number,
     public structuralCompensation?: number | null,
     public horticultureCompensation?: number | null,
