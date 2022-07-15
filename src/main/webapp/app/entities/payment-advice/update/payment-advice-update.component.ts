@@ -45,7 +45,7 @@ export class PaymentAdviceUpdateComponent implements OnInit {
     checkNumber: [],
     micrCode: [],
     paymentAdviceType: [],
-    referenceNumber: [null, []],
+    referenceNumber: [],
     paymentStatus: [null, [Validators.required]],
     hissaType: [null, [Validators.required]],
     khatedar: [null, Validators.required],

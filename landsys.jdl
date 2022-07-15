@@ -34,7 +34,7 @@ entity LandType(landsys_land_type) {
 
 entity Land(landsys_land) {
    ulpin String
-   khasraNumber String unique required
+   khasraNumber String  required
    khatauni String
    area  Double
    landMarketValue  Double
@@ -143,7 +143,7 @@ entity PaymentAdvice(landsys_Payment_Advice) {
 	checkNumber			 		String
 	micrCode			 		String
 	paymentAdviceType			PaymentAdviceType
-	referenceNumber		     	String unique
+	referenceNumber		     	UUID
 	paymentStatus	 			PaymentStatus required
     hissaType HissaType required
 }

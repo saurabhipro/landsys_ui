@@ -12,7 +12,7 @@
     {
       "fieldName": "khasraNumber",
       "fieldType": "String",
-      "fieldValidateRules": ["unique", "required"]
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "khatauni",

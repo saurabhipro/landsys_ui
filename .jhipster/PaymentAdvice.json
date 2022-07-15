@@ -50,8 +50,7 @@
     },
     {
       "fieldName": "referenceNumber",
-      "fieldType": "String",
-      "fieldValidateRules": ["unique"]
+      "fieldType": "UUID"
     },
     {
       "fieldName": "paymentStatus",
