@@ -39,6 +39,9 @@
           <th scope="col" jhiSortBy="file">
             <span jhiTranslate="jhipsterApp.publicNotification.file">File</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="description">
+            <span jhiTranslate="jhipsterApp.publicNotification.description">Description</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -57,6 +60,7 @@
             >
             <span *ngIf="publicNotification.file">{{ publicNotification.fileContentType }}, {{ byteSize(publicNotification.file) }}</span>
           </td>
+          <td>{{ publicNotification.description }}</td>
           <td class="text-end">
             <div class="btn-group">
               <button

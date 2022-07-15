@@ -28,6 +28,7 @@ describe('PublicNotification Service', () => {
       date: currentDate,
       fileContentType: 'image/png',
       file: 'AAAAAAA',
+      description: 'AAAAAAA',
     };
   });
 
@@ -76,6 +77,7 @@ describe('PublicNotification Service', () => {
           id: 1,
           date: currentDate.format(DATE_FORMAT),
           file: 'BBBBBB',
+          description: 'BBBBBB',
         },
         elemDefault
       );
@@ -119,6 +121,7 @@ describe('PublicNotification Service', () => {
           id: 1,
           date: currentDate.format(DATE_FORMAT),
           file: 'BBBBBB',
+          description: 'BBBBBB',
         },
         elemDefault
       );
@@ -175,7 +178,7 @@ describe('PublicNotification Service', () => {
       });
 
       it('should add only unique PublicNotification to an array', () => {
-        const publicNotificationArray: IPublicNotification[] = [{ id: 123 }, { id: 456 }, { id: 39232 }];
+        const publicNotificationArray: IPublicNotification[] = [{ id: 123 }, { id: 456 }, { id: 54875 }];
         const publicNotificationCollection: IPublicNotification[] = [{ id: 123 }];
         expectedResult = service.addPublicNotificationToCollectionIfMissing(publicNotificationCollection, ...publicNotificationArray);
         expect(expectedResult).toHaveLength(3);

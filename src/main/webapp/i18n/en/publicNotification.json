@@ -19,7 +19,8 @@
       },
       "id": "ID",
       "date": "Date",
-      "file": "File"
+      "file": "File",
+      "description": "Description"
     }
   }
 }

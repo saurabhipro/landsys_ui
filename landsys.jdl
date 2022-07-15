@@ -79,8 +79,9 @@ entity NotificationTemplate(landsys_notification_template) {
 }
 
 entity PublicNotification(landsys_public_notification) {
-    date  LocalDate
+    date  LocalDate required
     file  AnyBlob
+    description TextBlob required
 }
 
 
@@ -160,7 +161,7 @@ entity PaymentFile(landsys_payment_file) {
 	paymentStatus	 			PaymentStatus required
     bankName                    String
     ifscCode                    String
-    paymentMode PaymentAdviceType 
+    paymentMode PaymentAdviceType
 }
 
 entity PaymentFileRecon(landsys_payment_file_recon) {
@@ -240,7 +241,7 @@ relationship ManyToOne {
     PaymentAdviceDetails{paymentAdvice required} to PaymentAdvice{paymentAdviceDetails}
     PaymentAdviceDetails{projectLand required} to ProjectLand{paymentAdviceDetails}
 	ProjectLand{noticeStatusInfo} to NoticeStatusInfo{projectLand}
-    PaymentAdvice{projectLand required} to ProjectLand{paymentAdvice}    
+    PaymentAdvice{projectLand required} to ProjectLand{paymentAdvice}
     PaymentFile{projectLand required} to ProjectLand{paymentFile}
     PaymentFile{survey required} to Survey{paymentFile}
     PaymentFile{bank(name) required} to Bank{paymentFile}
@@ -253,7 +254,7 @@ relationship ManyToOne {
 
 enum KhatedarStatus {
     NEW
-    SURVEY_CREATED    
+    SURVEY_CREATED
 }
 
 enum EventStatus {

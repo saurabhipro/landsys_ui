@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -20,9 +20,10 @@ export class PublicNotificationUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    date: [],
+    date: [null, [Validators.required]],
     file: [],
     fileContentType: [],
+    description: [null, [Validators.required]],
   });
 
   constructor(
@@ -93,6 +94,7 @@ export class PublicNotificationUpdateComponent implements OnInit {
       date: publicNotification.date,
       file: publicNotification.file,
       fileContentType: publicNotification.fileContentType,
+      description: publicNotification.description,
     });
   }
 
@@ -103,6 +105,7 @@ export class PublicNotificationUpdateComponent implements OnInit {
       date: this.editForm.get(['date'])!.value,
       fileContentType: this.editForm.get(['fileContentType'])!.value,
       file: this.editForm.get(['file'])!.value,
+      description: this.editForm.get(['description'])!.value,
     };
   }
 }

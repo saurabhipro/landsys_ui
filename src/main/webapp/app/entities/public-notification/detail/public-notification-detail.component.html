@@ -27,6 +27,10 @@
             {{ publicNotification.fileContentType }}, {{ byteSize(publicNotification.file) }}
           </div>
         </dd>
+        <dt><span jhiTranslate="jhipsterApp.publicNotification.description">Description</span></dt>
+        <dd>
+          <span>{{ publicNotification.description }}</span>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
