@@ -42,6 +42,9 @@
             <span jhiTranslate="jhipsterApp.citizen.mobileNumber">Mobile Number</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="dob"><span jhiTranslate="jhipsterApp.citizen.dob">Dob</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="accountName">
+            <span jhiTranslate="jhipsterApp.citizen.accountName">Account Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="accountNumber">
             <span jhiTranslate="jhipsterApp.citizen.accountNumber">Account Number</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -91,6 +94,7 @@
           <td>{{ citizen.address }}</td>
           <td>{{ citizen.mobileNumber }}</td>
           <td>{{ citizen.dob | formatMediumDate }}</td>
+          <td>{{ citizen.accountName }}</td>
           <td>{{ citizen.accountNumber }}</td>
           <td>{{ citizen.fatherName }}</td>
           <td>{{ citizen.spouseName }}</td>

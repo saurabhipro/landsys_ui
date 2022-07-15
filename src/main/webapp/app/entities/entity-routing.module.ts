@@ -129,6 +129,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'jhipsterApp.createPaymentFile.home.title' },
         loadChildren: () => import('./create-payment-file/create-payment-file.module').then(m => m.CreatePaymentFileModule),
       },
+      {
+        path: 'payment-file-header',
+        data: { pageTitle: 'jhipsterApp.paymentFileHeader.home.title' },
+        loadChildren: () => import('./payment-file-header/payment-file-header.module').then(m => m.PaymentFileHeaderModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

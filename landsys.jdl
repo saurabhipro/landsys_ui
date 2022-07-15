@@ -103,6 +103,7 @@ entity Citizen(landsys_citizen) {
     address String required
     mobileNumber String
     dob LocalDate
+    accountName String
     accountNumber String
     fatherName String required
     spouseName String
@@ -154,15 +155,14 @@ entity PaymentAdviceDetails(landsys_payment_advice_details) {
     hissaType HissaType required
 }
 
-entity PaymentFile(landsys_payment_file) {
-	paymentFileId               Double required
-    totalPaymentAmount          Double required
-	paymentFileDate           	LocalDate
+entity PaymentFileHeader(landsys_payment_file_header) {
+    grandTotalPaymentAmount          Double required
 	paymentStatus	 			PaymentStatus required
-    bankName                    String
-    ifscCode                    String
-    paymentMode PaymentAdviceType
+    paymentMode                 PaymentAdviceType
+    approverRemarks             String
+
 }
+
 
 entity CreatePaymentFile(landsys_create_payment_file) {
 	    accountHolderName			String required
@@ -178,6 +178,17 @@ entity CreatePaymentFile(landsys_create_payment_file) {
     	paymentStatus	 			PaymentStatus required
         hissaType HissaType required
 }
+
+
+entity PaymentFile(landsys_payment_file) {
+	paymentFileId               Double required
+    totalPaymentAmount          Double required
+	paymentFileDate           	LocalDate
+	paymentFileStatus	 		PaymentStatus required
+    khatedarIfscCode            String
+    paymentMode PaymentAdviceType required
+}
+
 
 
 entity PaymentFileRecon(landsys_payment_file_recon) {
@@ -265,7 +276,9 @@ relationship ManyToOne {
     PaymentFile{landCompensation required} to LandCompensation{paymentFile}
     Khatedar{projectLand required} to ProjectLand{khatedar}
     Khatedar{citizen required} to Citizen{khatedar}
-
+    PaymentFile{paymentFileHeader required} to PaymentFileHeader{paymentFile}
+    PaymentFileHeader{project(name) required} to Project
+    PaymentFile{project(name) required} to Project
 }
 
 enum KhatedarStatus {

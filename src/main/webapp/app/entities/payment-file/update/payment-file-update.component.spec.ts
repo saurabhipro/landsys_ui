@@ -22,6 +22,10 @@ import { IBankBranch } from 'app/entities/bank-branch/bank-branch.model';
 import { BankBranchService } from 'app/entities/bank-branch/service/bank-branch.service';
 import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
 import { LandCompensationService } from 'app/entities/land-compensation/service/land-compensation.service';
+import { IPaymentFileHeader } from 'app/entities/payment-file-header/payment-file-header.model';
+import { PaymentFileHeaderService } from 'app/entities/payment-file-header/service/payment-file-header.service';
+import { IProject } from 'app/entities/project/project.model';
+import { ProjectService } from 'app/entities/project/service/project.service';
 
 import { PaymentFileUpdateComponent } from './payment-file-update.component';
 
@@ -37,6 +41,8 @@ describe('PaymentFile Management Update Component', () => {
   let bankService: BankService;
   let bankBranchService: BankBranchService;
   let landCompensationService: LandCompensationService;
+  let paymentFileHeaderService: PaymentFileHeaderService;
+  let projectService: ProjectService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -65,6 +71,8 @@ describe('PaymentFile Management Update Component', () => {
     bankService = TestBed.inject(BankService);
     bankBranchService = TestBed.inject(BankBranchService);
     landCompensationService = TestBed.inject(LandCompensationService);
+    paymentFileHeaderService = TestBed.inject(PaymentFileHeaderService);
+    projectService = TestBed.inject(ProjectService);
 
     comp = fixture.componentInstance;
   });
@@ -204,6 +212,47 @@ describe('PaymentFile Management Update Component', () => {
       expect(comp.landCompensationsSharedCollection).toEqual(expectedCollection);
     });
 
+    it('Should call PaymentFileHeader query and add missing value', () => {
+      const paymentFile: IPaymentFile = { id: 456 };
+      const paymentFileHeader: IPaymentFileHeader = { id: 16443 };
+      paymentFile.paymentFileHeader = paymentFileHeader;
+
+      const paymentFileHeaderCollection: IPaymentFileHeader[] = [{ id: 52377 }];
+      jest.spyOn(paymentFileHeaderService, 'query').mockReturnValue(of(new HttpResponse({ body: paymentFileHeaderCollection })));
+      const additionalPaymentFileHeaders = [paymentFileHeader];
+      const expectedCollection: IPaymentFileHeader[] = [...additionalPaymentFileHeaders, ...paymentFileHeaderCollection];
+      jest.spyOn(paymentFileHeaderService, 'addPaymentFileHeaderToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ paymentFile });
+      comp.ngOnInit();
+
+      expect(paymentFileHeaderService.query).toHaveBeenCalled();
+      expect(paymentFileHeaderService.addPaymentFileHeaderToCollectionIfMissing).toHaveBeenCalledWith(
+        paymentFileHeaderCollection,
+        ...additionalPaymentFileHeaders
+      );
+      expect(comp.paymentFileHeadersSharedCollection).toEqual(expectedCollection);
+    });
+
+    it('Should call Project query and add missing value', () => {
+      const paymentFile: IPaymentFile = { id: 456 };
+      const project: IProject = { id: 58276 };
+      paymentFile.project = project;
+
+      const projectCollection: IProject[] = [{ id: 28535 }];
+      jest.spyOn(projectService, 'query').mockReturnValue(of(new HttpResponse({ body: projectCollection })));
+      const additionalProjects = [project];
+      const expectedCollection: IProject[] = [...additionalProjects, ...projectCollection];
+      jest.spyOn(projectService, 'addProjectToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ paymentFile });
+      comp.ngOnInit();
+
+      expect(projectService.query).toHaveBeenCalled();
+      expect(projectService.addProjectToCollectionIfMissing).toHaveBeenCalledWith(projectCollection, ...additionalProjects);
+      expect(comp.projectsSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const paymentFile: IPaymentFile = { id: 456 };
       const khatedar: IKhatedar = { id: 36126 };
@@ -220,6 +269,10 @@ describe('PaymentFile Management Update Component', () => {
       paymentFile.bankBranch = bankBranch;
       const landCompensation: ILandCompensation = { id: 12136 };
       paymentFile.landCompensation = landCompensation;
+      const paymentFileHeader: IPaymentFileHeader = { id: 393 };
+      paymentFile.paymentFileHeader = paymentFileHeader;
+      const project: IProject = { id: 98352 };
+      paymentFile.project = project;
 
       activatedRoute.data = of({ paymentFile });
       comp.ngOnInit();
@@ -232,6 +285,8 @@ describe('PaymentFile Management Update Component', () => {
       expect(comp.banksSharedCollection).toContain(bank);
       expect(comp.bankBranchesSharedCollection).toContain(bankBranch);
       expect(comp.landCompensationsSharedCollection).toContain(landCompensation);
+      expect(comp.paymentFileHeadersSharedCollection).toContain(paymentFileHeader);
+      expect(comp.projectsSharedCollection).toContain(project);
     });
   });
 
@@ -352,6 +407,22 @@ describe('PaymentFile Management Update Component', () => {
       it('Should return tracked LandCompensation primary key', () => {
         const entity = { id: 123 };
         const trackResult = comp.trackLandCompensationById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
+    describe('trackPaymentFileHeaderById', () => {
+      it('Should return tracked PaymentFileHeader primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackPaymentFileHeaderById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
+    describe('trackProjectById', () => {
+      it('Should return tracked Project primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackProjectById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

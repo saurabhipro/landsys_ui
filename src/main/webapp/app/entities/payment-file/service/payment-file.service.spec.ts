@@ -30,9 +30,8 @@ describe('PaymentFile Service', () => {
       paymentFileId: 0,
       totalPaymentAmount: 0,
       paymentFileDate: currentDate,
-      paymentStatus: PaymentStatus.PENDING,
-      bankName: 'AAAAAAA',
-      ifscCode: 'AAAAAAA',
+      paymentFileStatus: PaymentStatus.PENDING,
+      khatedarIfscCode: 'AAAAAAA',
       paymentMode: PaymentAdviceType.ONLINE,
     };
   });
@@ -83,9 +82,8 @@ describe('PaymentFile Service', () => {
           paymentFileId: 1,
           totalPaymentAmount: 1,
           paymentFileDate: currentDate.format(DATE_FORMAT),
-          paymentStatus: 'BBBBBB',
-          bankName: 'BBBBBB',
-          ifscCode: 'BBBBBB',
+          paymentFileStatus: 'BBBBBB',
+          khatedarIfscCode: 'BBBBBB',
           paymentMode: 'BBBBBB',
         },
         elemDefault
@@ -109,7 +107,6 @@ describe('PaymentFile Service', () => {
       const patchObject = Object.assign(
         {
           totalPaymentAmount: 1,
-          paymentMode: 'BBBBBB',
         },
         new PaymentFile()
       );
@@ -137,9 +134,8 @@ describe('PaymentFile Service', () => {
           paymentFileId: 1,
           totalPaymentAmount: 1,
           paymentFileDate: currentDate.format(DATE_FORMAT),
-          paymentStatus: 'BBBBBB',
-          bankName: 'BBBBBB',
-          ifscCode: 'BBBBBB',
+          paymentFileStatus: 'BBBBBB',
+          khatedarIfscCode: 'BBBBBB',
           paymentMode: 'BBBBBB',
         },
         elemDefault
@@ -197,7 +193,7 @@ describe('PaymentFile Service', () => {
       });
 
       it('should add only unique PaymentFile to an array', () => {
-        const paymentFileArray: IPaymentFile[] = [{ id: 123 }, { id: 456 }, { id: 38661 }];
+        const paymentFileArray: IPaymentFile[] = [{ id: 123 }, { id: 456 }, { id: 81659 }];
         const paymentFileCollection: IPaymentFile[] = [{ id: 123 }];
         expectedResult = service.addPaymentFileToCollectionIfMissing(paymentFileCollection, ...paymentFileArray);
         expect(expectedResult).toHaveLength(3);

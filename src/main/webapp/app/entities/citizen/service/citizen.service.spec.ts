@@ -31,6 +31,7 @@ describe('Citizen Service', () => {
       address: 'AAAAAAA',
       mobileNumber: 'AAAAAAA',
       dob: currentDate,
+      accountName: 'AAAAAAA',
       accountNumber: 'AAAAAAA',
       fatherName: 'AAAAAAA',
       spouseName: 'AAAAAAA',
@@ -95,6 +96,7 @@ describe('Citizen Service', () => {
           address: 'BBBBBB',
           mobileNumber: 'BBBBBB',
           dob: currentDate.format(DATE_FORMAT),
+          accountName: 'BBBBBB',
           accountNumber: 'BBBBBB',
           fatherName: 'BBBBBB',
           spouseName: 'BBBBBB',
@@ -130,10 +132,11 @@ describe('Citizen Service', () => {
           address: 'BBBBBB',
           mobileNumber: 'BBBBBB',
           dob: currentDate.format(DATE_FORMAT),
+          fatherName: 'BBBBBB',
           spouseName: 'BBBBBB',
           successorName: 'BBBBBB',
-          aadhar: 'BBBBBB',
-          panImage: 'BBBBBB',
+          aadharImage: 'BBBBBB',
+          accNoImage: 'BBBBBB',
         },
         new Citizen()
       );
@@ -163,6 +166,7 @@ describe('Citizen Service', () => {
           address: 'BBBBBB',
           mobileNumber: 'BBBBBB',
           dob: currentDate.format(DATE_FORMAT),
+          accountName: 'BBBBBB',
           accountNumber: 'BBBBBB',
           fatherName: 'BBBBBB',
           spouseName: 'BBBBBB',
@@ -229,7 +233,7 @@ describe('Citizen Service', () => {
       });
 
       it('should add only unique Citizen to an array', () => {
-        const citizenArray: ICitizen[] = [{ id: 123 }, { id: 456 }, { id: 68239 }];
+        const citizenArray: ICitizen[] = [{ id: 123 }, { id: 456 }, { id: 21573 }];
         const citizenCollection: ICitizen[] = [{ id: 123 }];
         expectedResult = service.addCitizenToCollectionIfMissing(citizenCollection, ...citizenArray);
         expect(expectedResult).toHaveLength(3);

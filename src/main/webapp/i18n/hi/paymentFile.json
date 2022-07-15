@@ -21,9 +21,8 @@
       "paymentFileId": "Payment File Id",
       "totalPaymentAmount": "Total Payment Amount",
       "paymentFileDate": "Payment File Date",
-      "paymentStatus": "Payment Status",
-      "bankName": "Bank Name",
-      "ifscCode": "Ifsc Code",
+      "paymentFileStatus": "Payment File Status",
+      "khatedarIfscCode": "Khatedar Ifsc Code",
       "paymentMode": "Payment Mode",
       "khatedar": "Khatedar",
       "paymentAdvice": "Payment Advice",
@@ -31,7 +30,9 @@
       "survey": "Survey",
       "bank": "Bank",
       "bankBranch": "Bank Branch",
-      "landCompensation": "Land Compensation"
+      "landCompensation": "Land Compensation",
+      "paymentFileHeader": "Payment File Header",
+      "project": "Project"
     }
   }
 }

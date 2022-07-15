@@ -29,6 +29,10 @@
       "fieldType": "LocalDate"
     },
     {
+      "fieldName": "accountName",
+      "fieldType": "String"
+    },
+    {
       "fieldName": "accountNumber",
       "fieldType": "String"
     },

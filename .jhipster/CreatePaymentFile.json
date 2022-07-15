@@ -1,0 +1,75 @@
+{
+  "applications": "*",
+  "changelogDate": "20220715083348",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_create_payment_file",
+  "fields": [
+    {
+      "fieldName": "accountHolderName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "accountHolderBankName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "paymentAmount",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "bankName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "accountNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ifscCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "checkNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "micrCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "paymentAdviceType",
+      "fieldType": "PaymentAdviceType",
+      "fieldValues": "ONLINE,CHECQUE,OTHER"
+    },
+    {
+      "fieldName": "referenceNumber",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "paymentStatus",
+      "fieldType": "PaymentStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "PENDING,APPROVED,PAID"
+    },
+    {
+      "fieldName": "hissaType",
+      "fieldType": "HissaType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SINGLE_OWNER (Single Owner),JOINT_OWNER (Joint Owner),DIVIDED (divided)"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CreatePaymentFile",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

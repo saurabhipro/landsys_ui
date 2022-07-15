@@ -10,6 +10,7 @@ export interface ICitizen {
   address?: string;
   mobileNumber?: string | null;
   dob?: dayjs.Dayjs | null;
+  accountName?: string | null;
   accountNumber?: string | null;
   fatherName?: string;
   spouseName?: string | null;
@@ -36,6 +37,7 @@ export class Citizen implements ICitizen {
     public address?: string,
     public mobileNumber?: string | null,
     public dob?: dayjs.Dayjs | null,
+    public accountName?: string | null,
     public accountNumber?: string | null,
     public fatherName?: string,
     public spouseName?: string | null,

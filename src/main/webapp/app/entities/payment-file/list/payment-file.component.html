@@ -17,11 +17,6 @@
         <fa-icon icon="plus"></fa-icon>
         <span jhiTranslate="jhipsterApp.paymentFile.home.createLabel"> Create a new Payment File </span>
       </button>
-
-      <button id="jh-download-entity" data-cy="entityCreateButton" class="btn btn-primary m2-2" [routerLink]="['/payment-file/download']">
-        <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="jhipsterApp.paymentFile.download">Download</span>
-      </button>
     </div>
   </h2>
 
@@ -47,14 +42,11 @@
           <th scope="col" jhiSortBy="paymentFileDate">
             <span jhiTranslate="jhipsterApp.paymentFile.paymentFileDate">Payment File Date</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="paymentStatus">
-            <span jhiTranslate="jhipsterApp.paymentFile.paymentStatus">Payment Status</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="paymentFileStatus">
+            <span jhiTranslate="jhipsterApp.paymentFile.paymentFileStatus">Payment File Status</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="bankName">
-            <span jhiTranslate="jhipsterApp.paymentFile.bankName">Bank Name</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="ifscCode">
-            <span jhiTranslate="jhipsterApp.paymentFile.ifscCode">Ifsc Code</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="khatedarIfscCode">
+            <span jhiTranslate="jhipsterApp.paymentFile.khatedarIfscCode">Khatedar Ifsc Code</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="paymentMode">
             <span jhiTranslate="jhipsterApp.paymentFile.paymentMode">Payment Mode</span> <fa-icon icon="sort"></fa-icon>
@@ -80,6 +72,12 @@
           <th scope="col" jhiSortBy="landCompensation.id">
             <span jhiTranslate="jhipsterApp.paymentFile.landCompensation">Land Compensation</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="paymentFileHeader.id">
+            <span jhiTranslate="jhipsterApp.paymentFile.paymentFileHeader">Payment File Header</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="project.name">
+            <span jhiTranslate="jhipsterApp.paymentFile.project">Project</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -91,9 +89,8 @@
           <td>{{ paymentFile.paymentFileId }}</td>
           <td>{{ paymentFile.totalPaymentAmount }}</td>
           <td>{{ paymentFile.paymentFileDate | formatMediumDate }}</td>
-          <td jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + paymentFile.paymentStatus }}">{{ paymentFile.paymentStatus }}</td>
-          <td>{{ paymentFile.bankName }}</td>
-          <td>{{ paymentFile.ifscCode }}</td>
+          <td jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + paymentFile.paymentFileStatus }}">{{ paymentFile.paymentFileStatus }}</td>
+          <td>{{ paymentFile.khatedarIfscCode }}</td>
           <td jhiTranslate="{{ 'jhipsterApp.PaymentAdviceType.' + paymentFile.paymentMode }}">{{ paymentFile.paymentMode }}</td>
           <td>
             <div *ngIf="paymentFile.khatedar">
@@ -128,6 +125,18 @@
           <td>
             <div *ngIf="paymentFile.landCompensation">
               <a [routerLink]="['/land-compensation', paymentFile.landCompensation?.id, 'view']">{{ paymentFile.landCompensation?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="paymentFile.paymentFileHeader">
+              <a [routerLink]="['/payment-file-header', paymentFile.paymentFileHeader?.id, 'view']">{{
+                paymentFile.paymentFileHeader?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="paymentFile.project">
+              <a [routerLink]="['/project', paymentFile.project?.id, 'view']">{{ paymentFile.project?.name }}</a>
             </div>
           </td>
           <td class="text-end">

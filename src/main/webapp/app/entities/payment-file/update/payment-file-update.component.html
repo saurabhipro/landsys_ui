@@ -106,13 +106,15 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.paymentStatus" for="field_paymentStatus">Payment Status</label>
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.paymentFileStatus" for="field_paymentFileStatus"
+            >Payment File Status</label
+          >
           <select
             class="form-control"
-            name="paymentStatus"
-            formControlName="paymentStatus"
-            id="field_paymentStatus"
-            data-cy="paymentStatus"
+            name="paymentFileStatus"
+            formControlName="paymentFileStatus"
+            id="field_paymentFileStatus"
+            data-cy="paymentFileStatus"
           >
             <option [ngValue]="null">{{ 'jhipsterApp.PaymentStatus.null' | translate }}</option>
             <option *ngFor="let paymentStatus of paymentStatusValues" [value]="paymentStatus">
@@ -121,12 +123,13 @@
           </select>
           <div
             *ngIf="
-              editForm.get('paymentStatus')!.invalid && (editForm.get('paymentStatus')!.dirty || editForm.get('paymentStatus')!.touched)
+              editForm.get('paymentFileStatus')!.invalid &&
+              (editForm.get('paymentFileStatus')!.dirty || editForm.get('paymentFileStatus')!.touched)
             "
           >
             <small
               class="form-text text-danger"
-              *ngIf="editForm.get('paymentStatus')?.errors?.required"
+              *ngIf="editForm.get('paymentFileStatus')?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
               This field is required.
@@ -135,13 +138,17 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.bankName" for="field_bankName">Bank Name</label>
-          <input type="text" class="form-control" name="bankName" id="field_bankName" data-cy="bankName" formControlName="bankName" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.ifscCode" for="field_ifscCode">Ifsc Code</label>
-          <input type="text" class="form-control" name="ifscCode" id="field_ifscCode" data-cy="ifscCode" formControlName="ifscCode" />
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.khatedarIfscCode" for="field_khatedarIfscCode"
+            >Khatedar Ifsc Code</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="khatedarIfscCode"
+            id="field_khatedarIfscCode"
+            data-cy="khatedarIfscCode"
+            formControlName="khatedarIfscCode"
+          />
         </div>
 
         <div class="row mb-3">
@@ -152,6 +159,15 @@
               {{ 'jhipsterApp.PaymentAdviceType.' + paymentAdviceType | translate }}
             </option>
           </select>
+          <div *ngIf="editForm.get('paymentMode')!.invalid && (editForm.get('paymentMode')!.dirty || editForm.get('paymentMode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('paymentMode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
         </div>
 
         <div class="row mb-3">
@@ -333,6 +349,67 @@
           <small
             class="form-text text-danger"
             *ngIf="editForm.get(['landCompensation'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.paymentFileHeader" for="field_paymentFileHeader"
+            >Payment File Header</label
+          >
+          <select
+            class="form-control"
+            id="field_paymentFileHeader"
+            data-cy="paymentFileHeader"
+            name="paymentFileHeader"
+            formControlName="paymentFileHeader"
+          >
+            <option *ngIf="!editForm.get('paymentFileHeader')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                paymentFileHeaderOption.id === editForm.get('paymentFileHeader')!.value?.id
+                  ? editForm.get('paymentFileHeader')!.value
+                  : paymentFileHeaderOption
+              "
+              *ngFor="let paymentFileHeaderOption of paymentFileHeadersSharedCollection; trackBy: trackPaymentFileHeaderById"
+            >
+              {{ paymentFileHeaderOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['paymentFileHeader'])!.invalid &&
+            (editForm.get(['paymentFileHeader'])!.dirty || editForm.get(['paymentFileHeader'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['paymentFileHeader'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.project" for="field_project">Project</label>
+          <select class="form-control" id="field_project" data-cy="project" name="project" formControlName="project">
+            <option *ngIf="!editForm.get('project')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="projectOption.id === editForm.get('project')!.value?.id ? editForm.get('project')!.value : projectOption"
+              *ngFor="let projectOption of projectsSharedCollection; trackBy: trackProjectById"
+            >
+              {{ projectOption.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['project'])!.invalid && (editForm.get(['project'])!.dirty || editForm.get(['project'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['project'])?.errors?.required"
             jhiTranslate="entity.validation.required"
           >
             This field is required.

@@ -1,0 +1,51 @@
+{
+  "applications": "*",
+  "changelogDate": "20220715175201",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "landsys_payment_file_header",
+  "fields": [
+    {
+      "fieldName": "grandTotalPaymentAmount",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "paymentStatus",
+      "fieldType": "PaymentStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "PENDING,APPROVED,PAID"
+    },
+    {
+      "fieldName": "paymentMode",
+      "fieldType": "PaymentAdviceType",
+      "fieldValues": "ONLINE,CHECQUE,OTHER"
+    },
+    {
+      "fieldName": "approverRemarks",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PaymentFileHeader",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "project",
+      "otherEntityRelationshipName": "paymentFileHeader",
+      "relationshipName": "project",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "paymentFile",
+      "otherEntityRelationshipName": "paymentFileHeader",
+      "relationshipName": "paymentFile",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,29 @@
+{
+  "jhipsterApp": {
+    "paymentFileHeader": {
+      "home": {
+        "title": "PaymentFileHeaders",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Payment File Header बनाएँ",
+        "createOrEditLabel": "Payment File Header बनाएँ या संपादित करें",
+        "notFound": "No Payment File Headers found"
+      },
+      "created": "एक नया Payment File Header [identifier: {{ param }}] तैयार है",
+      "updated": "एक Payment File Header [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Payment File Header [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Payment File Header [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Payment File Header"
+      },
+      "id": "ID",
+      "grandTotalPaymentAmount": "Grand Total Payment Amount",
+      "paymentStatus": "Payment Status",
+      "paymentMode": "Payment Mode",
+      "approverRemarks": "Approver Remarks",
+      "project": "Project",
+      "paymentFile": "Payment File"
+    }
+  }
+}

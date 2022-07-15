@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="paymentFileHeader">
+      <h2 data-cy="paymentFileHeaderDetailsHeading">
+        <span jhiTranslate="jhipsterApp.paymentFileHeader.detail.title">Payment File Header</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ paymentFileHeader.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFileHeader.grandTotalPaymentAmount">Grand Total Payment Amount</span></dt>
+        <dd>
+          <span>{{ paymentFileHeader.grandTotalPaymentAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFileHeader.paymentStatus">Payment Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + paymentFileHeader.paymentStatus }}">{{
+            paymentFileHeader.paymentStatus
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFileHeader.paymentMode">Payment Mode</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterApp.PaymentAdviceType.' + paymentFileHeader.paymentMode }}">{{
+            paymentFileHeader.paymentMode
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFileHeader.approverRemarks">Approver Remarks</span></dt>
+        <dd>
+          <span>{{ paymentFileHeader.approverRemarks }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.paymentFileHeader.project">Project</span></dt>
+        <dd>
+          <div *ngIf="paymentFileHeader.project">
+            <a [routerLink]="['/project', paymentFileHeader.project?.id, 'view']">{{ paymentFileHeader.project?.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/payment-file-header', paymentFileHeader.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

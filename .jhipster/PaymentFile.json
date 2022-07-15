@@ -20,22 +20,19 @@
       "fieldType": "LocalDate"
     },
     {
-      "fieldName": "paymentStatus",
+      "fieldName": "paymentFileStatus",
       "fieldType": "PaymentStatus",
       "fieldValidateRules": ["required"],
       "fieldValues": "PENDING,APPROVED,PAID"
     },
     {
-      "fieldName": "bankName",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "ifscCode",
+      "fieldName": "khatedarIfscCode",
       "fieldType": "String"
     },
     {
       "fieldName": "paymentMode",
       "fieldType": "PaymentAdviceType",
+      "fieldValidateRules": ["required"],
       "fieldValues": "ONLINE,CHECQUE,OTHER"
     }
   ],
@@ -95,6 +92,21 @@
       "otherEntityName": "landCompensation",
       "otherEntityRelationshipName": "paymentFile",
       "relationshipName": "landCompensation",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "paymentFileHeader",
+      "otherEntityRelationshipName": "paymentFile",
+      "relationshipName": "paymentFileHeader",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "project",
+      "otherEntityRelationshipName": "paymentFile",
+      "relationshipName": "project",
       "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
     }

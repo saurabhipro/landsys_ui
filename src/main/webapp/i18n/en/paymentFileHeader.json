@@ -1,0 +1,29 @@
+{
+  "jhipsterApp": {
+    "paymentFileHeader": {
+      "home": {
+        "title": "Payment File Headers",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Payment File Header",
+        "createOrEditLabel": "Create or edit a Payment File Header",
+        "notFound": "No Payment File Headers found"
+      },
+      "created": "A new Payment File Header is created with identifier {{ param }}",
+      "updated": "A Payment File Header is updated with identifier {{ param }}",
+      "deleted": "A Payment File Header is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Payment File Header {{ id }}?"
+      },
+      "detail": {
+        "title": "Payment File Header"
+      },
+      "id": "ID",
+      "grandTotalPaymentAmount": "Grand Total Payment Amount",
+      "paymentStatus": "Payment Status",
+      "paymentMode": "Payment Mode",
+      "approverRemarks": "Approver Remarks",
+      "project": "Project",
+      "paymentFile": "Payment File"
+    }
+  }
+}

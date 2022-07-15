@@ -1,0 +1,35 @@
+{
+  "jhipsterApp": {
+    "createPaymentFile": {
+      "home": {
+        "title": "CreatePaymentFiles",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Create Payment File बनाएँ",
+        "createOrEditLabel": "Create Payment File बनाएँ या संपादित करें",
+        "notFound": "No Create Payment Files found"
+      },
+      "created": "एक नया Create Payment File [identifier: {{ param }}] तैयार है",
+      "updated": "एक Create Payment File [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Create Payment File [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Create Payment File [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Create Payment File"
+      },
+      "id": "ID",
+      "accountHolderName": "Account Holder Name",
+      "accountHolderBankName": "Account Holder Bank Name",
+      "paymentAmount": "Payment Amount",
+      "bankName": "Bank Name",
+      "accountNumber": "Account Number",
+      "ifscCode": "Ifsc Code",
+      "checkNumber": "Check Number",
+      "micrCode": "Micr Code",
+      "paymentAdviceType": "Payment Advice Type",
+      "referenceNumber": "Reference Number",
+      "paymentStatus": "Payment Status",
+      "hissaType": "Hissa Type"
+    }
+  }
+}
