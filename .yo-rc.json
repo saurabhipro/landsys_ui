@@ -43,14 +43,15 @@
       "Survey",
       "NoticeStatusInfo",
       "TransactionHistory",
-      "Khatedar"
+      "Khatedar",
+      "CreatePaymentFile"
     ],
     "entitySuffix": "",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "7.8.1",
     "jwtSecretKey": "Y2RkZDdiOGNlYmE1Y2VmOWRlMjE0YjgwZjVhY2MzNTg2MjMxNDdhOWZhZjdmN2I0YTYzYzUyMDU5YWRlZjIzMjBmZGE2NzgyMTVjZWY4MmM3M2Q5MTg3NDZiNWQ0NTRjOTRmYTY3ZDYwY2M5ZGFmMDZlNjAwZDYxOTkwZjY3N2Q=",
     "languages": ["en", "hi"],
-    "lastLiquibaseTimestamp": 1657803921000,
+    "lastLiquibaseTimestamp": 1657874028000,
     "messageBroker": false,
     "nativeLanguage": "en",
     "otherModules": [],

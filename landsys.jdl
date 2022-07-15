@@ -164,6 +164,22 @@ entity PaymentFile(landsys_payment_file) {
     paymentMode PaymentAdviceType
 }
 
+entity CreatePaymentFile(landsys_create_payment_file) {
+	    accountHolderName			String required
+        accountHolderBankName       String required
+        paymentAmount               Double required
+    	bankName			 		String required
+    	accountNumber				String required
+    	ifscCode			 		String required
+    	checkNumber			 		String
+    	micrCode			 		String
+    	paymentAdviceType			PaymentAdviceType
+    	referenceNumber		     	UUID
+    	paymentStatus	 			PaymentStatus required
+        hissaType HissaType required
+}
+
+
 entity PaymentFileRecon(landsys_payment_file_recon) {
 	primaryHolderName			String required
     paymentAmount               Double required

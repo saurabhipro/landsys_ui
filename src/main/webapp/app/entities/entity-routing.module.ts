@@ -124,6 +124,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'jhipsterApp.khatedar.home.title' },
         loadChildren: () => import('./khatedar/khatedar.module').then(m => m.KhatedarModule),
       },
+      {
+        path: 'create-payment-file',
+        data: { pageTitle: 'jhipsterApp.createPaymentFile.home.title' },
+        loadChildren: () => import('./create-payment-file/create-payment-file.module').then(m => m.CreatePaymentFileModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

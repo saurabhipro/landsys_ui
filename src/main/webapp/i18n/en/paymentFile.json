@@ -1,6 +1,7 @@
 {
   "jhipsterApp": {
     "paymentFile": {
+      "download": "Download",
       "home": {
         "title": "Payment Files",
         "refreshListLabel": "Refresh list",
