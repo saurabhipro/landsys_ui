@@ -95,6 +95,14 @@
       "relationshipValidateRules": "required"
     },
     {
+      "otherEntityField": "name",
+      "otherEntityName": "village",
+      "otherEntityRelationshipName": "landCompensation",
+      "relationshipName": "village",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
       "otherEntityName": "paymentAdvice",
       "otherEntityRelationshipName": "landCompensation",
       "relationshipName": "paymentAdvice",

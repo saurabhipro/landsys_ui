@@ -35,6 +35,7 @@
       "transactionId": "Transaction Id",
       "projectLand": "Project Land",
       "survey": "Survey",
+      "village": "Village",
       "paymentAdvice": "Payment Advice",
       "paymentFile": "Payment File"
     }

@@ -12,6 +12,8 @@ import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
 import { ISurvey } from 'app/entities/survey/survey.model';
 import { SurveyService } from 'app/entities/survey/service/survey.service';
+import { IVillage } from 'app/entities/village/village.model';
+import { VillageService } from 'app/entities/village/service/village.service';
 
 import { LandCompensationUpdateComponent } from './land-compensation-update.component';
 
@@ -22,6 +24,7 @@ describe('LandCompensation Management Update Component', () => {
   let landCompensationService: LandCompensationService;
   let projectLandService: ProjectLandService;
   let surveyService: SurveyService;
+  let villageService: VillageService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -45,6 +48,7 @@ describe('LandCompensation Management Update Component', () => {
     landCompensationService = TestBed.inject(LandCompensationService);
     projectLandService = TestBed.inject(ProjectLandService);
     surveyService = TestBed.inject(SurveyService);
+    villageService = TestBed.inject(VillageService);
 
     comp = fixture.componentInstance;
   });
@@ -86,12 +90,33 @@ describe('LandCompensation Management Update Component', () => {
       expect(comp.surveysCollection).toEqual(expectedCollection);
     });
 
+    it('Should call Village query and add missing value', () => {
+      const landCompensation: ILandCompensation = { id: 456 };
+      const village: IVillage = { id: 66 };
+      landCompensation.village = village;
+
+      const villageCollection: IVillage[] = [{ id: 50196 }];
+      jest.spyOn(villageService, 'query').mockReturnValue(of(new HttpResponse({ body: villageCollection })));
+      const additionalVillages = [village];
+      const expectedCollection: IVillage[] = [...additionalVillages, ...villageCollection];
+      jest.spyOn(villageService, 'addVillageToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ landCompensation });
+      comp.ngOnInit();
+
+      expect(villageService.query).toHaveBeenCalled();
+      expect(villageService.addVillageToCollectionIfMissing).toHaveBeenCalledWith(villageCollection, ...additionalVillages);
+      expect(comp.villagesSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const landCompensation: ILandCompensation = { id: 456 };
       const projectLand: IProjectLand = { id: 46961 };
       landCompensation.projectLand = projectLand;
       const survey: ISurvey = { id: 76414 };
       landCompensation.survey = survey;
+      const village: IVillage = { id: 88384 };
+      landCompensation.village = village;
 
       activatedRoute.data = of({ landCompensation });
       comp.ngOnInit();
@@ -99,6 +124,7 @@ describe('LandCompensation Management Update Component', () => {
       expect(comp.editForm.value).toEqual(expect.objectContaining(landCompensation));
       expect(comp.projectLandsCollection).toContain(projectLand);
       expect(comp.surveysCollection).toContain(survey);
+      expect(comp.villagesSharedCollection).toContain(village);
     });
   });
 
@@ -179,6 +205,14 @@ describe('LandCompensation Management Update Component', () => {
       it('Should return tracked Survey primary key', () => {
         const entity = { id: 123 };
         const trackResult = comp.trackSurveyById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
+    describe('trackVillageById', () => {
+      it('Should return tracked Village primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackVillageById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

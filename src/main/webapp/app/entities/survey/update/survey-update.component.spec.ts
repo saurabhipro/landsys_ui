@@ -10,6 +10,8 @@ import { SurveyService } from '../service/survey.service';
 import { ISurvey, Survey } from '../survey.model';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
+import { IVillage } from 'app/entities/village/village.model';
+import { VillageService } from 'app/entities/village/service/village.service';
 
 import { SurveyUpdateComponent } from './survey-update.component';
 
@@ -19,6 +21,7 @@ describe('Survey Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let surveyService: SurveyService;
   let projectLandService: ProjectLandService;
+  let villageService: VillageService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -41,6 +44,7 @@ describe('Survey Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     surveyService = TestBed.inject(SurveyService);
     projectLandService = TestBed.inject(ProjectLandService);
+    villageService = TestBed.inject(VillageService);
 
     comp = fixture.componentInstance;
   });
@@ -64,16 +68,38 @@ describe('Survey Management Update Component', () => {
       expect(comp.projectLandsCollection).toEqual(expectedCollection);
     });
 
+    it('Should call Village query and add missing value', () => {
+      const survey: ISurvey = { id: 456 };
+      const village: IVillage = { id: 10596 };
+      survey.village = village;
+
+      const villageCollection: IVillage[] = [{ id: 52599 }];
+      jest.spyOn(villageService, 'query').mockReturnValue(of(new HttpResponse({ body: villageCollection })));
+      const additionalVillages = [village];
+      const expectedCollection: IVillage[] = [...additionalVillages, ...villageCollection];
+      jest.spyOn(villageService, 'addVillageToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ survey });
+      comp.ngOnInit();
+
+      expect(villageService.query).toHaveBeenCalled();
+      expect(villageService.addVillageToCollectionIfMissing).toHaveBeenCalledWith(villageCollection, ...additionalVillages);
+      expect(comp.villagesSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const survey: ISurvey = { id: 456 };
       const projectLand: IProjectLand = { id: 31685 };
       survey.projectLand = projectLand;
+      const village: IVillage = { id: 28605 };
+      survey.village = village;
 
       activatedRoute.data = of({ survey });
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(survey));
       expect(comp.projectLandsCollection).toContain(projectLand);
+      expect(comp.villagesSharedCollection).toContain(village);
     });
   });
 
@@ -146,6 +172,14 @@ describe('Survey Management Update Component', () => {
       it('Should return tracked ProjectLand primary key', () => {
         const entity = { id: 123 };
         const trackResult = comp.trackProjectLandById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
+    describe('trackVillageById', () => {
+      it('Should return tracked Village primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackVillageById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

@@ -43,6 +43,14 @@
       "relationshipValidateRules": "required"
     },
     {
+      "otherEntityField": "name",
+      "otherEntityName": "village",
+      "otherEntityRelationshipName": "projectLand",
+      "relationshipName": "village",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
       "otherEntityName": "noticeStatusInfo",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "noticeStatusInfo",

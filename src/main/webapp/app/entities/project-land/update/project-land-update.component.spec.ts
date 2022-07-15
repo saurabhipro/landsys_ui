@@ -12,6 +12,8 @@ import { ILand } from 'app/entities/land/land.model';
 import { LandService } from 'app/entities/land/service/land.service';
 import { IProject } from 'app/entities/project/project.model';
 import { ProjectService } from 'app/entities/project/service/project.service';
+import { IVillage } from 'app/entities/village/village.model';
+import { VillageService } from 'app/entities/village/service/village.service';
 import { INoticeStatusInfo } from 'app/entities/notice-status-info/notice-status-info.model';
 import { NoticeStatusInfoService } from 'app/entities/notice-status-info/service/notice-status-info.service';
 
@@ -24,6 +26,7 @@ describe('ProjectLand Management Update Component', () => {
   let projectLandService: ProjectLandService;
   let landService: LandService;
   let projectService: ProjectService;
+  let villageService: VillageService;
   let noticeStatusInfoService: NoticeStatusInfoService;
 
   beforeEach(() => {
@@ -48,6 +51,7 @@ describe('ProjectLand Management Update Component', () => {
     projectLandService = TestBed.inject(ProjectLandService);
     landService = TestBed.inject(LandService);
     projectService = TestBed.inject(ProjectService);
+    villageService = TestBed.inject(VillageService);
     noticeStatusInfoService = TestBed.inject(NoticeStatusInfoService);
 
     comp = fixture.componentInstance;
@@ -92,6 +96,25 @@ describe('ProjectLand Management Update Component', () => {
       expect(comp.projectsSharedCollection).toEqual(expectedCollection);
     });
 
+    it('Should call Village query and add missing value', () => {
+      const projectLand: IProjectLand = { id: 456 };
+      const village: IVillage = { id: 33999 };
+      projectLand.village = village;
+
+      const villageCollection: IVillage[] = [{ id: 3401 }];
+      jest.spyOn(villageService, 'query').mockReturnValue(of(new HttpResponse({ body: villageCollection })));
+      const additionalVillages = [village];
+      const expectedCollection: IVillage[] = [...additionalVillages, ...villageCollection];
+      jest.spyOn(villageService, 'addVillageToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ projectLand });
+      comp.ngOnInit();
+
+      expect(villageService.query).toHaveBeenCalled();
+      expect(villageService.addVillageToCollectionIfMissing).toHaveBeenCalledWith(villageCollection, ...additionalVillages);
+      expect(comp.villagesSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should call NoticeStatusInfo query and add missing value', () => {
       const projectLand: IProjectLand = { id: 456 };
       const noticeStatusInfo: INoticeStatusInfo = { id: 50222 };
@@ -120,6 +143,8 @@ describe('ProjectLand Management Update Component', () => {
       projectLand.land = land;
       const project: IProject = { id: 92901 };
       projectLand.project = project;
+      const village: IVillage = { id: 10285 };
+      projectLand.village = village;
       const noticeStatusInfo: INoticeStatusInfo = { id: 97324 };
       projectLand.noticeStatusInfo = noticeStatusInfo;
 
@@ -129,6 +154,7 @@ describe('ProjectLand Management Update Component', () => {
       expect(comp.editForm.value).toEqual(expect.objectContaining(projectLand));
       expect(comp.landsSharedCollection).toContain(land);
       expect(comp.projectsSharedCollection).toContain(project);
+      expect(comp.villagesSharedCollection).toContain(village);
       expect(comp.noticeStatusInfosSharedCollection).toContain(noticeStatusInfo);
     });
   });
@@ -210,6 +236,14 @@ describe('ProjectLand Management Update Component', () => {
       it('Should return tracked Project primary key', () => {
         const entity = { id: 123 };
         const trackResult = comp.trackProjectById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
+    describe('trackVillageById', () => {
+      it('Should return tracked Village primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackVillageById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

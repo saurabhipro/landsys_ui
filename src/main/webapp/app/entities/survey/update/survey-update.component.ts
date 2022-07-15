@@ -9,6 +9,8 @@ import { ISurvey, Survey } from '../survey.model';
 import { SurveyService } from '../service/survey.service';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
+import { IVillage } from 'app/entities/village/village.model';
+import { VillageService } from 'app/entities/village/service/village.service';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 import { SurveyStatus } from 'app/entities/enumerations/survey-status.model';
 
@@ -22,6 +24,7 @@ export class SurveyUpdateComponent implements OnInit {
   surveyStatusValues = Object.keys(SurveyStatus);
 
   projectLandsCollection: IProjectLand[] = [];
+  villagesSharedCollection: IVillage[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -37,11 +40,13 @@ export class SurveyUpdateComponent implements OnInit {
     remarks: [],
     status: [],
     projectLand: [null, Validators.required],
+    village: [null, Validators.required],
   });
 
   constructor(
     protected surveyService: SurveyService,
     protected projectLandService: ProjectLandService,
+    protected villageService: VillageService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -69,6 +74,10 @@ export class SurveyUpdateComponent implements OnInit {
   }
 
   trackProjectLandById(_index: number, item: IProjectLand): number {
+    return item.id!;
+  }
+
+  trackVillageById(_index: number, item: IVillage): number {
     return item.id!;
   }
 
@@ -106,12 +115,14 @@ export class SurveyUpdateComponent implements OnInit {
       remarks: survey.remarks,
       status: survey.status,
       projectLand: survey.projectLand,
+      village: survey.village,
     });
 
     this.projectLandsCollection = this.projectLandService.addProjectLandToCollectionIfMissing(
       this.projectLandsCollection,
       survey.projectLand
     );
+    this.villagesSharedCollection = this.villageService.addVillageToCollectionIfMissing(this.villagesSharedCollection, survey.village);
   }
 
   protected loadRelationshipsOptions(): void {
@@ -124,6 +135,14 @@ export class SurveyUpdateComponent implements OnInit {
         )
       )
       .subscribe((projectLands: IProjectLand[]) => (this.projectLandsCollection = projectLands));
+
+    this.villageService
+      .query()
+      .pipe(map((res: HttpResponse<IVillage[]>) => res.body ?? []))
+      .pipe(
+        map((villages: IVillage[]) => this.villageService.addVillageToCollectionIfMissing(villages, this.editForm.get('village')!.value))
+      )
+      .subscribe((villages: IVillage[]) => (this.villagesSharedCollection = villages));
   }
 
   protected createFromForm(): ISurvey {
@@ -142,6 +161,7 @@ export class SurveyUpdateComponent implements OnInit {
       remarks: this.editForm.get(['remarks'])!.value,
       status: this.editForm.get(['status'])!.value,
       projectLand: this.editForm.get(['projectLand'])!.value,
+      village: this.editForm.get(['village'])!.value,
     };
   }
 }

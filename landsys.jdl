@@ -163,23 +163,6 @@ entity PaymentFileHeader(landsys_payment_file_header) {
 
 }
 
-
-entity CreatePaymentFile(landsys_create_payment_file) {
-	    accountHolderName			String required
-        accountHolderBankName       String required
-        paymentAmount               Double required
-    	bankName			 		String required
-    	accountNumber				String required
-    	ifscCode			 		String required
-    	checkNumber			 		String
-    	micrCode			 		String
-    	paymentAdviceType			PaymentAdviceType
-    	referenceNumber		     	UUID
-    	paymentStatus	 			PaymentStatus required
-        hissaType HissaType required
-}
-
-
 entity PaymentFile(landsys_payment_file) {
 	paymentFileId               Double required
     totalPaymentAmount          Double required
@@ -240,6 +223,22 @@ entity TransactionHistory(landsys_transaction_history)
     approver3 String
 }
 
+entity CreatePaymentFile(landsys_create_payment_file) {
+	    accountHolderName			String required
+        accountHolderBankName       String required
+        paymentAmount               Double required
+    	bankName			 		String required
+    	accountNumber				String required
+    	ifscCode			 		String required
+    	checkNumber			 		String
+    	micrCode			 		String
+    	paymentAdviceType			PaymentAdviceType
+    	referenceNumber		     	UUID
+    	paymentStatus	 			PaymentStatus required
+        hissaType HissaType required
+}
+
+
 relationship OneToOne {
     PaymentAdvice{khatedar required} to Khatedar{paymentAdvice}
     Survey{projectLand required} to ProjectLand{survey}
@@ -248,12 +247,16 @@ relationship OneToOne {
     LandCompensation{survey required} to Survey{landCompensation}
     PaymentFile{khatedar required} to Khatedar{paymentFile}
     PaymentFile{paymentAdvice required} to PaymentAdvice{paymentFile}
+
     }
 
 relationship ManyToOne {
     ProjectLand{land(khasraNumber) required } to Land{projectLand}
     ProjectLand{project(name) required} to Project{projectLand}
     Land{village(name) required} to Village{land(khasraNumber)}
+    Survey{village(name) required} to Village{survey}
+    LandCompensation{village(name) required} to Village{landCompensation}
+    ProjectLand{village(name) required} to Village{projectLand}
 	Land{unit(name) required} to  Unit{land(khasraNumber)}
 	Land{LandType(name) required} to LandType{land(khasraNumber)}
     SubDistrict{district(name) required} to District{subDistrict}
@@ -279,7 +282,7 @@ relationship ManyToOne {
     PaymentFile{paymentFileHeader required} to PaymentFileHeader{paymentFile}
     PaymentFileHeader{project(name) required} to Project
     PaymentFile{project(name) required} to Project
-}
+ }
 
 enum KhatedarStatus {
     NEW

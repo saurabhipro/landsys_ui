@@ -314,6 +314,28 @@
             This field is required.
           </small>
         </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.village" for="field_village">Village</label>
+          <select class="form-control" id="field_village" data-cy="village" name="village" formControlName="village">
+            <option *ngIf="!editForm.get('village')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="villageOption.id === editForm.get('village')!.value?.id ? editForm.get('village')!.value : villageOption"
+              *ngFor="let villageOption of villagesSharedCollection; trackBy: trackVillageById"
+            >
+              {{ villageOption.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['village'])!.invalid && (editForm.get(['village'])!.dirty || editForm.get(['village'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['village'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
       </div>
 
       <div>

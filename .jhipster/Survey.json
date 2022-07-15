@@ -72,6 +72,14 @@
       "relationshipValidateRules": "required"
     },
     {
+      "otherEntityField": "name",
+      "otherEntityName": "village",
+      "otherEntityRelationshipName": "survey",
+      "relationshipName": "village",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
       "otherEntityName": "landCompensation",
       "otherEntityRelationshipName": "survey",
       "ownerSide": false,
