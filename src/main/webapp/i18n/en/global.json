@@ -5,7 +5,11 @@
     "menu": {
       "home": "Home",
       "masters": "Masters",
+      "notifications": "Notifications",
       "transactions": "Transactions",
+      "payments": "Payments",
+      "reports": "Reports",
+
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
@@ -28,6 +32,7 @@
         "paymentAdvice": "Payment Advice",
         "paymentAdviceDetails": "Payment Advice Details",
         "paymentFile": "Payment File",
+        "downloadPaymentFile": "Download Payment File",
         "paymentFileRecon": "Payment File Recon",
         "survey": "Survey",
         "noticeStatusInfo": "Notice Status Info",
@@ -35,6 +40,7 @@
         "khatedar": "Khatedar",
         "createPaymentFile": "Create Payment File",
         "paymentFileHeader": "Payment File Header",
+        "sequenceGenerator": "Sequence Generator",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

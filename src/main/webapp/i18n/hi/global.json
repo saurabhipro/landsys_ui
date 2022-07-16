@@ -33,6 +33,7 @@
         "khatedar": "Khatedar",
         "createPaymentFile": "Create Payment File",
         "paymentFileHeader": "Payment File Header",
+        "sequenceGenerator": "Sequence Generator",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -134,6 +134,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'jhipsterApp.paymentFileHeader.home.title' },
         loadChildren: () => import('./payment-file-header/payment-file-header.module').then(m => m.PaymentFileHeaderModule),
       },
+      {
+        path: 'sequence-generator',
+        data: { pageTitle: 'jhipsterApp.sequenceGenerator.home.title' },
+        loadChildren: () => import('./sequence-generator/sequence-generator.module').then(m => m.SequenceGeneratorModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

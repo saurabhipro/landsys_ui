@@ -140,18 +140,18 @@
                 <span jhiTranslate="global.menu.entities.project">Project</span>
               </a>
             </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="project-status-history"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.projectStatusHistory">Project Status History</span>
-              </a>
-            </li>
+            <!--            <li>-->
+            <!--              <a-->
+            <!--                class="dropdown-item"-->
+            <!--                routerLink="project-status-history"-->
+            <!--                routerLinkActive="active"-->
+            <!--                [routerLinkActiveOptions]="{ exact: true }"-->
+            <!--                (click)="collapseNavbar()"-->
+            <!--              >-->
+            <!--                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+            <!--                <span jhiTranslate="global.menu.entities.projectStatusHistory">Project Status History</span>-->
+            <!--              </a>-->
+            <!--            </li>-->
             <li>
               <a
                 class="dropdown-item"
@@ -173,19 +173,7 @@
                 (click)="collapseNavbar()"
               >
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.notificationTemplate">Notification Template</span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="public-notification"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.publicNotification">Public Notification</span>
+                <span jhiTranslate="global.menu.entities.notificationTemplate">Notification</span>
               </a>
             </li>
             <li>
@@ -212,6 +200,28 @@
                 <span jhiTranslate="global.menu.entities.bankBranch">Bank Branch</span>
               </a>
             </li>
+
+            <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+          </ul>
+        </li>
+
+        <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
+        <li
+          *ngSwitchCase="true"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
+            <span>
+              <fa-icon icon="th-list"></fa-icon>
+              <span jhiTranslate="global.menu.transactions">Survey</span>
+            </span>
+          </a>
+
+          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
             <li>
               <a
                 class="dropdown-item"
@@ -236,26 +246,7 @@
                 <span jhiTranslate="global.menu.entities.khatedar">Khatedar</span>
               </a>
             </li>
-            <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
-          </ul>
-        </li>
 
-        <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-        <li
-          *ngSwitchCase="true"
-          ngbDropdown
-          class="nav-item dropdown pointer"
-          display="dynamic"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
-            <span>
-              <fa-icon icon="th-list"></fa-icon>
-              <span jhiTranslate="global.menu.transactions">Transaction</span>
-            </span>
-          </a>
-          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
             <li>
               <a
                 class="dropdown-item"
@@ -281,6 +272,37 @@
                 <span jhiTranslate="global.menu.entities.landCompensation">Land Compensation</span>
               </a>
             </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="public-notification"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.entities.publicNotification">Public Notification</span>
+              </a>
+            </li>
+            <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+          </ul>
+        </li>
+
+        <li
+          *ngSwitchCase="true"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
+            <span>
+              <fa-icon icon="th-list"></fa-icon>
+              <span jhiTranslate="global.menu.payments">Payments</span>
+            </span>
+          </a>
+          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
             <li>
               <a
                 class="dropdown-item"
@@ -328,21 +350,53 @@
                 (click)="collapseNavbar()"
               >
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.paymentFile">Payment File</span>
+                <span jhiTranslate="global.menu.entities.downloadPaymentFile">Download Payment File</span>
               </a>
             </li>
+            <!--            <li>-->
+            <!--              <a-->
+            <!--                class="dropdown-item"-->
+            <!--                routerLink="notice-status-info"-->
+            <!--                routerLinkActive="active"-->
+            <!--                [routerLinkActiveOptions]="{ exact: true }"-->
+            <!--                (click)="collapseNavbar()"-->
+            <!--              >-->
+            <!--                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+            <!--                <span jhiTranslate="global.menu.entities.noticeStatusInfo">Notice Status Info</span>-->
+            <!--              </a>-->
+            <!--            </li>-->
             <li>
               <a
                 class="dropdown-item"
-                routerLink="notice-status-info"
+                routerLink="payment-file-header"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
                 (click)="collapseNavbar()"
               >
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.noticeStatusInfo">Notice Status Info</span>
+                <span jhiTranslate="global.menu.entities.paymentFileHeader">Payment File Header</span>
               </a>
             </li>
+
+            <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+          </ul>
+        </li>
+
+        <li
+          *ngSwitchCase="true"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
+            <span>
+              <fa-icon icon="th-list"></fa-icon>
+              <span jhiTranslate="global.menu.reports">Reports</span>
+            </span>
+          </a>
+          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
             <li>
               <a
                 class="dropdown-item"
@@ -367,20 +421,6 @@
                 <span jhiTranslate="global.menu.entities.transactionHistory">Transaction History</span>
               </a>
             </li>
-
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="payment-file-header"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.paymentFileHeader">Payment File Header</span>
-              </a>
-            </li>
-
             <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
           </ul>
         </li>
