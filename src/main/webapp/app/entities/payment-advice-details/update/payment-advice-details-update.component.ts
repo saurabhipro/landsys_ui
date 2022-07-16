@@ -11,6 +11,8 @@ import { IPaymentAdvice } from 'app/entities/payment-advice/payment-advice.model
 import { PaymentAdviceService } from 'app/entities/payment-advice/service/payment-advice.service';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
+import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
+import { KhatedarService } from 'app/entities/khatedar/service/khatedar.service';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 
 @Component({
@@ -23,6 +25,7 @@ export class PaymentAdviceDetailsUpdateComponent implements OnInit {
 
   paymentAdvicesSharedCollection: IPaymentAdvice[] = [];
   projectLandsSharedCollection: IProjectLand[] = [];
+  khatedarsSharedCollection: IKhatedar[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -30,12 +33,14 @@ export class PaymentAdviceDetailsUpdateComponent implements OnInit {
     hissaType: [null, [Validators.required]],
     paymentAdvice: [null, Validators.required],
     projectLand: [null, Validators.required],
+    khatedar: [null, Validators.required],
   });
 
   constructor(
     protected paymentAdviceDetailsService: PaymentAdviceDetailsService,
     protected paymentAdviceService: PaymentAdviceService,
     protected projectLandService: ProjectLandService,
+    protected khatedarService: KhatedarService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -70,6 +75,10 @@ export class PaymentAdviceDetailsUpdateComponent implements OnInit {
     return item.id!;
   }
 
+  trackKhatedarById(_index: number, item: IKhatedar): number {
+    return item.id!;
+  }
+
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPaymentAdviceDetails>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
@@ -96,6 +105,7 @@ export class PaymentAdviceDetailsUpdateComponent implements OnInit {
       hissaType: paymentAdviceDetails.hissaType,
       paymentAdvice: paymentAdviceDetails.paymentAdvice,
       projectLand: paymentAdviceDetails.projectLand,
+      khatedar: paymentAdviceDetails.khatedar,
     });
 
     this.paymentAdvicesSharedCollection = this.paymentAdviceService.addPaymentAdviceToCollectionIfMissing(
@@ -105,6 +115,10 @@ export class PaymentAdviceDetailsUpdateComponent implements OnInit {
     this.projectLandsSharedCollection = this.projectLandService.addProjectLandToCollectionIfMissing(
       this.projectLandsSharedCollection,
       paymentAdviceDetails.projectLand
+    );
+    this.khatedarsSharedCollection = this.khatedarService.addKhatedarToCollectionIfMissing(
+      this.khatedarsSharedCollection,
+      paymentAdviceDetails.khatedar
     );
   }
 
@@ -128,6 +142,16 @@ export class PaymentAdviceDetailsUpdateComponent implements OnInit {
         )
       )
       .subscribe((projectLands: IProjectLand[]) => (this.projectLandsSharedCollection = projectLands));
+
+    this.khatedarService
+      .query()
+      .pipe(map((res: HttpResponse<IKhatedar[]>) => res.body ?? []))
+      .pipe(
+        map((khatedars: IKhatedar[]) =>
+          this.khatedarService.addKhatedarToCollectionIfMissing(khatedars, this.editForm.get('khatedar')!.value)
+        )
+      )
+      .subscribe((khatedars: IKhatedar[]) => (this.khatedarsSharedCollection = khatedars));
   }
 
   protected createFromForm(): IPaymentAdviceDetails {
@@ -138,6 +162,7 @@ export class PaymentAdviceDetailsUpdateComponent implements OnInit {
       hissaType: this.editForm.get(['hissaType'])!.value,
       paymentAdvice: this.editForm.get(['paymentAdvice'])!.value,
       projectLand: this.editForm.get(['projectLand'])!.value,
+      khatedar: this.editForm.get(['khatedar'])!.value,
     };
   }
 }

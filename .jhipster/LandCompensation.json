@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220712174916",
+  "changelogDate": "20220716095810",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "land_compensation",
@@ -92,14 +92,6 @@
       "ownerSide": true,
       "relationshipName": "survey",
       "relationshipType": "one-to-one",
-      "relationshipValidateRules": "required"
-    },
-    {
-      "otherEntityField": "name",
-      "otherEntityName": "village",
-      "otherEntityRelationshipName": "landCompensation",
-      "relationshipName": "village",
-      "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
     },
     {

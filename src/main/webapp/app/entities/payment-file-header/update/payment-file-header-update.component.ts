@@ -7,8 +7,8 @@ import { finalize, map } from 'rxjs/operators';
 
 import { IPaymentFileHeader, PaymentFileHeader } from '../payment-file-header.model';
 import { PaymentFileHeaderService } from '../service/payment-file-header.service';
-import { IProject } from 'app/entities/project/project.model';
-import { ProjectService } from 'app/entities/project/service/project.service';
+import { IProjectLand } from 'app/entities/project-land/project-land.model';
+import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
 import { PaymentStatus } from 'app/entities/enumerations/payment-status.model';
 import { PaymentAdviceType } from 'app/entities/enumerations/payment-advice-type.model';
 
@@ -21,7 +21,7 @@ export class PaymentFileHeaderUpdateComponent implements OnInit {
   paymentStatusValues = Object.keys(PaymentStatus);
   paymentAdviceTypeValues = Object.keys(PaymentAdviceType);
 
-  projectsSharedCollection: IProject[] = [];
+  projectLandsSharedCollection: IProjectLand[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -29,12 +29,12 @@ export class PaymentFileHeaderUpdateComponent implements OnInit {
     paymentStatus: [null, [Validators.required]],
     paymentMode: [],
     approverRemarks: [],
-    project: [null, Validators.required],
+    projectLand: [null, Validators.required],
   });
 
   constructor(
     protected paymentFileHeaderService: PaymentFileHeaderService,
-    protected projectService: ProjectService,
+    protected projectLandService: ProjectLandService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -61,7 +61,7 @@ export class PaymentFileHeaderUpdateComponent implements OnInit {
     }
   }
 
-  trackProjectById(_index: number, item: IProject): number {
+  trackProjectLandById(_index: number, item: IProjectLand): number {
     return item.id!;
   }
 
@@ -91,23 +91,25 @@ export class PaymentFileHeaderUpdateComponent implements OnInit {
       paymentStatus: paymentFileHeader.paymentStatus,
       paymentMode: paymentFileHeader.paymentMode,
       approverRemarks: paymentFileHeader.approverRemarks,
-      project: paymentFileHeader.project,
+      projectLand: paymentFileHeader.projectLand,
     });
 
-    this.projectsSharedCollection = this.projectService.addProjectToCollectionIfMissing(
-      this.projectsSharedCollection,
-      paymentFileHeader.project
+    this.projectLandsSharedCollection = this.projectLandService.addProjectLandToCollectionIfMissing(
+      this.projectLandsSharedCollection,
+      paymentFileHeader.projectLand
     );
   }
 
   protected loadRelationshipsOptions(): void {
-    this.projectService
+    this.projectLandService
       .query()
-      .pipe(map((res: HttpResponse<IProject[]>) => res.body ?? []))
+      .pipe(map((res: HttpResponse<IProjectLand[]>) => res.body ?? []))
       .pipe(
-        map((projects: IProject[]) => this.projectService.addProjectToCollectionIfMissing(projects, this.editForm.get('project')!.value))
+        map((projectLands: IProjectLand[]) =>
+          this.projectLandService.addProjectLandToCollectionIfMissing(projectLands, this.editForm.get('projectLand')!.value)
+        )
       )
-      .subscribe((projects: IProject[]) => (this.projectsSharedCollection = projects));
+      .subscribe((projectLands: IProjectLand[]) => (this.projectLandsSharedCollection = projectLands));
   }
 
   protected createFromForm(): IPaymentFileHeader {
@@ -118,7 +120,7 @@ export class PaymentFileHeaderUpdateComponent implements OnInit {
       paymentStatus: this.editForm.get(['paymentStatus'])!.value,
       paymentMode: this.editForm.get(['paymentMode'])!.value,
       approverRemarks: this.editForm.get(['approverRemarks'])!.value,
-      project: this.editForm.get(['project'])!.value,
+      projectLand: this.editForm.get(['projectLand'])!.value,
     };
   }
 }

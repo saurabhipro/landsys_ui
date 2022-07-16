@@ -39,9 +39,10 @@
         "transactionHistory": "Transaction History",
         "khatedar": "Khatedar",
         "createPaymentFile": "Create Payment File",
-        "paymentFileHeader": "Payment File Header",
+        "paymentFileHeader": "Payment File",
         "sequenceGenerator": "Sequence Generator",
         "sequenceGen": "Sequence Gen",
+        "paymentFileHeader": "Payment File Header",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

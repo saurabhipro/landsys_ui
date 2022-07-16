@@ -46,8 +46,8 @@
           <th scope="col" jhiSortBy="approverRemarks">
             <span jhiTranslate="jhipsterApp.paymentFileHeader.approverRemarks">Approver Remarks</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="project.name">
-            <span jhiTranslate="jhipsterApp.paymentFileHeader.project">Project</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="projectLand.id">
+            <span jhiTranslate="jhipsterApp.paymentFileHeader.projectLand">Project Land</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -62,8 +62,8 @@
           <td jhiTranslate="{{ 'jhipsterApp.PaymentAdviceType.' + paymentFileHeader.paymentMode }}">{{ paymentFileHeader.paymentMode }}</td>
           <td>{{ paymentFileHeader.approverRemarks }}</td>
           <td>
-            <div *ngIf="paymentFileHeader.project">
-              <a [routerLink]="['/project', paymentFileHeader.project?.id, 'view']">{{ paymentFileHeader.project?.name }}</a>
+            <div *ngIf="paymentFileHeader.projectLand">
+              <a [routerLink]="['/project-land', paymentFileHeader.projectLand?.id, 'view']">{{ paymentFileHeader.projectLand?.id }}</a>
             </div>
           </td>
           <td class="text-end">

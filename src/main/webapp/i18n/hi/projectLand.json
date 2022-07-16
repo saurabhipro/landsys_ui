@@ -23,14 +23,14 @@
       "hissaType": "Hissa Type",
       "land": "Land",
       "project": "Project",
-      "village": "Village",
       "noticeStatusInfo": "Notice Status Info",
       "survey": "Survey",
       "landCompensation": "Land Compensation",
       "paymentAdvice": "Payment Advice",
       "paymentAdviceDetails": "Payment Advice Details",
       "paymentFile": "Payment File",
-      "khatedar": "Khatedar"
+      "khatedar": "Khatedar",
+      "paymentFileHeader": "Payment File Header"
     }
   }
 }

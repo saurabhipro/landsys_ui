@@ -31,8 +31,7 @@
       "bank": "Bank",
       "bankBranch": "Bank Branch",
       "landCompensation": "Land Compensation",
-      "paymentFileHeader": "Payment File Header",
-      "project": "Project"
+      "paymentFileHeader": "Payment File Header"
     }
   }
 }

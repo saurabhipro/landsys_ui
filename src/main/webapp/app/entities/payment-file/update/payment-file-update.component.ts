@@ -23,8 +23,6 @@ import { ILandCompensation } from 'app/entities/land-compensation/land-compensat
 import { LandCompensationService } from 'app/entities/land-compensation/service/land-compensation.service';
 import { IPaymentFileHeader } from 'app/entities/payment-file-header/payment-file-header.model';
 import { PaymentFileHeaderService } from 'app/entities/payment-file-header/service/payment-file-header.service';
-import { IProject } from 'app/entities/project/project.model';
-import { ProjectService } from 'app/entities/project/service/project.service';
 import { PaymentStatus } from 'app/entities/enumerations/payment-status.model';
 import { PaymentAdviceType } from 'app/entities/enumerations/payment-advice-type.model';
 
@@ -45,7 +43,6 @@ export class PaymentFileUpdateComponent implements OnInit {
   bankBranchesSharedCollection: IBankBranch[] = [];
   landCompensationsSharedCollection: ILandCompensation[] = [];
   paymentFileHeadersSharedCollection: IPaymentFileHeader[] = [];
-  projectsSharedCollection: IProject[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -63,7 +60,6 @@ export class PaymentFileUpdateComponent implements OnInit {
     bankBranch: [null, Validators.required],
     landCompensation: [null, Validators.required],
     paymentFileHeader: [null, Validators.required],
-    project: [null, Validators.required],
   });
 
   constructor(
@@ -76,7 +72,6 @@ export class PaymentFileUpdateComponent implements OnInit {
     protected bankBranchService: BankBranchService,
     protected landCompensationService: LandCompensationService,
     protected paymentFileHeaderService: PaymentFileHeaderService,
-    protected projectService: ProjectService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -135,10 +130,6 @@ export class PaymentFileUpdateComponent implements OnInit {
     return item.id!;
   }
 
-  trackProjectById(_index: number, item: IProject): number {
-    return item.id!;
-  }
-
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPaymentFile>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
@@ -175,7 +166,6 @@ export class PaymentFileUpdateComponent implements OnInit {
       bankBranch: paymentFile.bankBranch,
       landCompensation: paymentFile.landCompensation,
       paymentFileHeader: paymentFile.paymentFileHeader,
-      project: paymentFile.project,
     });
 
     this.khatedarsCollection = this.khatedarService.addKhatedarToCollectionIfMissing(this.khatedarsCollection, paymentFile.khatedar);
@@ -201,7 +191,6 @@ export class PaymentFileUpdateComponent implements OnInit {
       this.paymentFileHeadersSharedCollection,
       paymentFile.paymentFileHeader
     );
-    this.projectsSharedCollection = this.projectService.addProjectToCollectionIfMissing(this.projectsSharedCollection, paymentFile.project);
   }
 
   protected loadRelationshipsOptions(): void {
@@ -282,14 +271,6 @@ export class PaymentFileUpdateComponent implements OnInit {
         )
       )
       .subscribe((paymentFileHeaders: IPaymentFileHeader[]) => (this.paymentFileHeadersSharedCollection = paymentFileHeaders));
-
-    this.projectService
-      .query()
-      .pipe(map((res: HttpResponse<IProject[]>) => res.body ?? []))
-      .pipe(
-        map((projects: IProject[]) => this.projectService.addProjectToCollectionIfMissing(projects, this.editForm.get('project')!.value))
-      )
-      .subscribe((projects: IProject[]) => (this.projectsSharedCollection = projects));
   }
 
   protected createFromForm(): IPaymentFile {
@@ -310,7 +291,6 @@ export class PaymentFileUpdateComponent implements OnInit {
       bankBranch: this.editForm.get(['bankBranch'])!.value,
       landCompensation: this.editForm.get(['landCompensation'])!.value,
       paymentFileHeader: this.editForm.get(['paymentFileHeader'])!.value,
-      project: this.editForm.get(['project'])!.value,
     };
   }
 }

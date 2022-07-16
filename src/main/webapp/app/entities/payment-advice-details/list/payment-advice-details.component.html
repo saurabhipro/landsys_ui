@@ -45,6 +45,9 @@
           <th scope="col" jhiSortBy="projectLand.id">
             <span jhiTranslate="jhipsterApp.paymentAdviceDetails.projectLand">Project Land</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="khatedar.id">
+            <span jhiTranslate="jhipsterApp.paymentAdviceDetails.khatedar">Khatedar</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -67,6 +70,11 @@
               <a [routerLink]="['/project-land', paymentAdviceDetails.projectLand?.id, 'view']">{{
                 paymentAdviceDetails.projectLand?.id
               }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="paymentAdviceDetails.khatedar">
+              <a [routerLink]="['/khatedar', paymentAdviceDetails.khatedar?.id, 'view']">{{ paymentAdviceDetails.khatedar?.id }}</a>
             </div>
           </td>
           <td class="text-end">

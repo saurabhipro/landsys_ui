@@ -67,9 +67,6 @@
           <th scope="col" jhiSortBy="projectLand.id">
             <span jhiTranslate="jhipsterApp.survey.projectLand">Project Land</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="village.name">
-            <span jhiTranslate="jhipsterApp.survey.village">Village</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -92,11 +89,6 @@
           <td>
             <div *ngIf="survey.projectLand">
               <a [routerLink]="['/project-land', survey.projectLand?.id, 'view']">{{ survey.projectLand?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="survey.village">
-              <a [routerLink]="['/village', survey.village?.id, 'view']">{{ survey.village?.name }}</a>
             </div>
           </td>
           <td class="text-end">

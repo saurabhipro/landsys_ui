@@ -393,28 +393,6 @@
             This field is required.
           </small>
         </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="jhipsterApp.paymentFile.project" for="field_project">Project</label>
-          <select class="form-control" id="field_project" data-cy="project" name="project" formControlName="project">
-            <option *ngIf="!editForm.get('project')!.value" [ngValue]="null" selected></option>
-            <option
-              [ngValue]="projectOption.id === editForm.get('project')!.value?.id ? editForm.get('project')!.value : projectOption"
-              *ngFor="let projectOption of projectsSharedCollection; trackBy: trackProjectById"
-            >
-              {{ projectOption.name }}
-            </option>
-          </select>
-        </div>
-        <div *ngIf="editForm.get(['project'])!.invalid && (editForm.get(['project'])!.dirty || editForm.get(['project'])!.touched)">
-          <small
-            class="form-text text-danger"
-            *ngIf="editForm.get(['project'])?.errors?.required"
-            jhiTranslate="entity.validation.required"
-          >
-            This field is required.
-          </small>
-        </div>
       </div>
 
       <div>

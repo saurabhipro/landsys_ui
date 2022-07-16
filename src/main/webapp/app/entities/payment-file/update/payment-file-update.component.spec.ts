@@ -24,8 +24,6 @@ import { ILandCompensation } from 'app/entities/land-compensation/land-compensat
 import { LandCompensationService } from 'app/entities/land-compensation/service/land-compensation.service';
 import { IPaymentFileHeader } from 'app/entities/payment-file-header/payment-file-header.model';
 import { PaymentFileHeaderService } from 'app/entities/payment-file-header/service/payment-file-header.service';
-import { IProject } from 'app/entities/project/project.model';
-import { ProjectService } from 'app/entities/project/service/project.service';
 
 import { PaymentFileUpdateComponent } from './payment-file-update.component';
 
@@ -42,7 +40,6 @@ describe('PaymentFile Management Update Component', () => {
   let bankBranchService: BankBranchService;
   let landCompensationService: LandCompensationService;
   let paymentFileHeaderService: PaymentFileHeaderService;
-  let projectService: ProjectService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -72,7 +69,6 @@ describe('PaymentFile Management Update Component', () => {
     bankBranchService = TestBed.inject(BankBranchService);
     landCompensationService = TestBed.inject(LandCompensationService);
     paymentFileHeaderService = TestBed.inject(PaymentFileHeaderService);
-    projectService = TestBed.inject(ProjectService);
 
     comp = fixture.componentInstance;
   });
@@ -234,25 +230,6 @@ describe('PaymentFile Management Update Component', () => {
       expect(comp.paymentFileHeadersSharedCollection).toEqual(expectedCollection);
     });
 
-    it('Should call Project query and add missing value', () => {
-      const paymentFile: IPaymentFile = { id: 456 };
-      const project: IProject = { id: 58276 };
-      paymentFile.project = project;
-
-      const projectCollection: IProject[] = [{ id: 28535 }];
-      jest.spyOn(projectService, 'query').mockReturnValue(of(new HttpResponse({ body: projectCollection })));
-      const additionalProjects = [project];
-      const expectedCollection: IProject[] = [...additionalProjects, ...projectCollection];
-      jest.spyOn(projectService, 'addProjectToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ paymentFile });
-      comp.ngOnInit();
-
-      expect(projectService.query).toHaveBeenCalled();
-      expect(projectService.addProjectToCollectionIfMissing).toHaveBeenCalledWith(projectCollection, ...additionalProjects);
-      expect(comp.projectsSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should update editForm', () => {
       const paymentFile: IPaymentFile = { id: 456 };
       const khatedar: IKhatedar = { id: 36126 };
@@ -271,8 +248,6 @@ describe('PaymentFile Management Update Component', () => {
       paymentFile.landCompensation = landCompensation;
       const paymentFileHeader: IPaymentFileHeader = { id: 393 };
       paymentFile.paymentFileHeader = paymentFileHeader;
-      const project: IProject = { id: 98352 };
-      paymentFile.project = project;
 
       activatedRoute.data = of({ paymentFile });
       comp.ngOnInit();
@@ -286,7 +261,6 @@ describe('PaymentFile Management Update Component', () => {
       expect(comp.bankBranchesSharedCollection).toContain(bankBranch);
       expect(comp.landCompensationsSharedCollection).toContain(landCompensation);
       expect(comp.paymentFileHeadersSharedCollection).toContain(paymentFileHeader);
-      expect(comp.projectsSharedCollection).toContain(project);
     });
   });
 
@@ -415,14 +389,6 @@ describe('PaymentFile Management Update Component', () => {
       it('Should return tracked PaymentFileHeader primary key', () => {
         const entity = { id: 123 };
         const trackResult = comp.trackPaymentFileHeaderById(0, entity);
-        expect(trackResult).toEqual(entity.id);
-      });
-    });
-
-    describe('trackProjectById', () => {
-      it('Should return tracked Project primary key', () => {
-        const entity = { id: 123 };
-        const trackResult = comp.trackProjectById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

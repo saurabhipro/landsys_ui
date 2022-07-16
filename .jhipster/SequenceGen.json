@@ -1,9 +1,9 @@
 {
   "applications": "*",
-  "changelogDate": "20220716041801",
+  "changelogDate": "20220716095820",
   "dto": "mapstruct",
   "embedded": false,
-  "entityTableName": "sequence_generator",
+  "entityTableName": "sequence_gen",
   "fields": [
     {
       "fieldName": "seqType",
@@ -24,7 +24,7 @@
   ],
   "fluentMethods": true,
   "jpaMetamodelFiltering": true,
-  "name": "SequenceGenerator",
+  "name": "SequenceGen",
   "pagination": "pagination",
   "readOnly": false,
   "relationships": [],

@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220712174918",
+  "changelogDate": "20220716095812",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_payment_advice_details",
@@ -34,6 +34,13 @@
       "otherEntityName": "projectLand",
       "otherEntityRelationshipName": "paymentAdviceDetails",
       "relationshipName": "projectLand",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "khatedar",
+      "otherEntityRelationshipName": "paymentAdviceDetails",
+      "relationshipName": "khatedar",
       "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
     }

@@ -1,0 +1,106 @@
+<div>
+  <h2 id="page-heading" data-cy="SequenceGeneratorHeading">
+    <span jhiTranslate="jhipsterApp.sequenceGenerator.home.title">Sequence Generators</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterApp.sequenceGenerator.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-sequence-generator"
+        [routerLink]="['/sequence-generator/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterApp.sequenceGenerator.home.createLabel"> Create a new Sequence Generator </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="sequenceGenerators?.length === 0">
+    <span jhiTranslate="jhipsterApp.sequenceGenerator.home.notFound">No sequenceGenerators found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="sequenceGenerators && sequenceGenerators.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="seqType">
+            <span jhiTranslate="jhipsterApp.sequenceGenerator.seqType">Seq Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="latestSequence">
+            <span jhiTranslate="jhipsterApp.sequenceGenerator.latestSequence">Latest Sequence</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="sequenceSuffix">
+            <span jhiTranslate="jhipsterApp.sequenceGenerator.sequenceSuffix">Sequence Suffix</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sequenceGenerator of sequenceGenerators; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/sequence-generator', sequenceGenerator.id, 'view']">{{ sequenceGenerator.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'jhipsterApp.SequenceType.' + sequenceGenerator.seqType }}">{{ sequenceGenerator.seqType }}</td>
+          <td>{{ sequenceGenerator.latestSequence }}</td>
+          <td>{{ sequenceGenerator.sequenceSuffix }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/sequence-generator', sequenceGenerator.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/sequence-generator', sequenceGenerator.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(sequenceGenerator)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="sequenceGenerators && sequenceGenerators.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

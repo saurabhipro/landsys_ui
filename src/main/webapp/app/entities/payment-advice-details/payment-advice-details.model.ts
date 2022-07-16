@@ -1,5 +1,6 @@
 import { IPaymentAdvice } from 'app/entities/payment-advice/payment-advice.model';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
+import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 
 export interface IPaymentAdviceDetails {
@@ -8,6 +9,7 @@ export interface IPaymentAdviceDetails {
   hissaType?: HissaType;
   paymentAdvice?: IPaymentAdvice;
   projectLand?: IProjectLand;
+  khatedar?: IKhatedar;
 }
 
 export class PaymentAdviceDetails implements IPaymentAdviceDetails {
@@ -16,7 +18,8 @@ export class PaymentAdviceDetails implements IPaymentAdviceDetails {
     public landOwners?: string,
     public hissaType?: HissaType,
     public paymentAdvice?: IPaymentAdvice,
-    public projectLand?: IProjectLand
+    public projectLand?: IProjectLand,
+    public khatedar?: IKhatedar
   ) {}
 }
 

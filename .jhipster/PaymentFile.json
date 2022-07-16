@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220712174919",
+  "changelogDate": "20220716095814",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_payment_file",
@@ -99,14 +99,6 @@
       "otherEntityName": "paymentFileHeader",
       "otherEntityRelationshipName": "paymentFile",
       "relationshipName": "paymentFileHeader",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": "required"
-    },
-    {
-      "otherEntityField": "name",
-      "otherEntityName": "project",
-      "otherEntityRelationshipName": "paymentFile",
-      "relationshipName": "project",
       "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
     }

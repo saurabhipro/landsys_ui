@@ -1,9 +1,9 @@
 entity Khatedar(landsys_khatedar) {
     caseFileNo String required unique
     remarks String required unique
+    hissaType HissaType required
     khatedarStatus KhatedarStatus required
 }
-
 
 entity State(landsys_state) {
     name String required unique
@@ -63,13 +63,11 @@ entity ProjectStatusHistory(landsys_project_status_history) {
     remarks String
 }
 
-
 entity ProjectLand(landsys_project_land) {
     remarks String
     documents  AnyBlob
     hissaType HissaType
 }
-
 
 entity NotificationTemplate(landsys_notification_template) {
      name String
@@ -114,7 +112,6 @@ entity Citizen(landsys_citizen) {
     panImage  AnyBlob
     accountNo String unique
     accNoImage  ImageBlob
-
  }
 
 entity LandCompensation(land_Compensation) {
@@ -160,7 +157,6 @@ entity PaymentFileHeader(landsys_payment_file_header) {
 	paymentStatus	 			PaymentStatus required
     paymentMode                 PaymentAdviceType
     approverRemarks             String
-
 }
 
 entity PaymentFile(landsys_payment_file) {
@@ -171,8 +167,6 @@ entity PaymentFile(landsys_payment_file) {
     khatedarIfscCode            String
     paymentMode PaymentAdviceType required
 }
-
-
 
 entity PaymentFileRecon(landsys_payment_file_recon) {
 	primaryHolderName			String required
@@ -238,12 +232,12 @@ entity CreatePaymentFile(landsys_create_payment_file) {
         hissaType HissaType required
 }
 
+
 entity SequenceGen {
  seqType SequenceType required
  latestSequence Integer required
  sequenceSuffix String required
 }
-
 
 relationship OneToOne {
     PaymentAdvice{khatedar required} to Khatedar{paymentAdvice}
@@ -253,16 +247,12 @@ relationship OneToOne {
     LandCompensation{survey required} to Survey{landCompensation}
     PaymentFile{khatedar required} to Khatedar{paymentFile}
     PaymentFile{paymentAdvice required} to PaymentAdvice{paymentFile}
-
     }
 
 relationship ManyToOne {
     ProjectLand{land(khasraNumber) required } to Land{projectLand}
     ProjectLand{project(name) required} to Project{projectLand}
     Land{village(name) required} to Village{land(khasraNumber)}
-    Survey{village(name) required} to Village{survey}
-    LandCompensation{village(name) required} to Village{landCompensation}
-    ProjectLand{village(name) required} to Village{projectLand}
 	Land{unit(name) required} to  Unit{land(khasraNumber)}
 	Land{LandType(name) required} to LandType{land(khasraNumber)}
     SubDistrict{district(name) required} to District{subDistrict}
@@ -276,7 +266,8 @@ relationship ManyToOne {
     PaymentAdvice{survey required} to Survey{paymentAdvice}
     PaymentAdviceDetails{paymentAdvice required} to PaymentAdvice{paymentAdviceDetails}
     PaymentAdviceDetails{projectLand required} to ProjectLand{paymentAdviceDetails}
-	ProjectLand{noticeStatusInfo} to NoticeStatusInfo{projectLand}
+	PaymentAdviceDetails{khatedar required} to Khatedar{paymentAdviceDetails}
+    ProjectLand{noticeStatusInfo} to NoticeStatusInfo{projectLand}
     PaymentAdvice{projectLand required} to ProjectLand{paymentAdvice}
     PaymentFile{projectLand required} to ProjectLand{paymentFile}
     PaymentFile{survey required} to Survey{paymentFile}
@@ -286,8 +277,7 @@ relationship ManyToOne {
     Khatedar{projectLand required} to ProjectLand{khatedar}
     Khatedar{citizen required} to Citizen{khatedar}
     PaymentFile{paymentFileHeader required} to PaymentFileHeader{paymentFile}
-    PaymentFileHeader{project(name) required} to Project
-    PaymentFile{project(name) required} to Project
+    PaymentFileHeader{projectLand required} to ProjectLand{paymentFileHeader}
  }
 
 enum KhatedarStatus {
@@ -353,7 +343,6 @@ enum HissaType {
     JOINT_OWNER("Joint Owner")
     DIVIDED("divided")
 }
-
 
 enum SequenceType {
     SURVEY

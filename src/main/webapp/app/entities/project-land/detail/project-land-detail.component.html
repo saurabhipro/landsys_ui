@@ -41,12 +41,6 @@
             <a [routerLink]="['/project', projectLand.project?.id, 'view']">{{ projectLand.project?.name }}</a>
           </div>
         </dd>
-        <dt><span jhiTranslate="jhipsterApp.projectLand.village">Village</span></dt>
-        <dd>
-          <div *ngIf="projectLand.village">
-            <a [routerLink]="['/village', projectLand.village?.id, 'view']">{{ projectLand.village?.name }}</a>
-          </div>
-        </dd>
         <dt><span jhiTranslate="jhipsterApp.projectLand.noticeStatusInfo">Notice Status Info</span></dt>
         <dd>
           <div *ngIf="projectLand.noticeStatusInfo">

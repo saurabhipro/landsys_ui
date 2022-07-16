@@ -22,7 +22,7 @@
       "paymentStatus": "Payment Status",
       "paymentMode": "Payment Mode",
       "approverRemarks": "Approver Remarks",
-      "project": "Project",
+      "projectLand": "Project Land",
       "paymentFile": "Payment File"
     }
   }

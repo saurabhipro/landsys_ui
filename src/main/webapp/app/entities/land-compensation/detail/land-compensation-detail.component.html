@@ -88,12 +88,6 @@
             <a [routerLink]="['/survey', landCompensation.survey?.id, 'view']">{{ landCompensation.survey?.id }}</a>
           </div>
         </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.village">Village</span></dt>
-        <dd>
-          <div *ngIf="landCompensation.village">
-            <a [routerLink]="['/village', landCompensation.village?.id, 'view']">{{ landCompensation.village?.name }}</a>
-          </div>
-        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

@@ -11,8 +11,6 @@ import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
 import { ISurvey } from 'app/entities/survey/survey.model';
 import { SurveyService } from 'app/entities/survey/service/survey.service';
-import { IVillage } from 'app/entities/village/village.model';
-import { VillageService } from 'app/entities/village/service/village.service';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 import { CompensationStatus } from 'app/entities/enumerations/compensation-status.model';
 
@@ -27,7 +25,6 @@ export class LandCompensationUpdateComponent implements OnInit {
 
   projectLandsCollection: IProjectLand[] = [];
   surveysCollection: ISurvey[] = [];
-  villagesSharedCollection: IVillage[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -48,14 +45,12 @@ export class LandCompensationUpdateComponent implements OnInit {
     transactionId: [],
     projectLand: [null, Validators.required],
     survey: [null, Validators.required],
-    village: [null, Validators.required],
   });
 
   constructor(
     protected landCompensationService: LandCompensationService,
     protected projectLandService: ProjectLandService,
     protected surveyService: SurveyService,
-    protected villageService: VillageService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -87,10 +82,6 @@ export class LandCompensationUpdateComponent implements OnInit {
   }
 
   trackSurveyById(_index: number, item: ISurvey): number {
-    return item.id!;
-  }
-
-  trackVillageById(_index: number, item: IVillage): number {
     return item.id!;
   }
 
@@ -133,7 +124,6 @@ export class LandCompensationUpdateComponent implements OnInit {
       transactionId: landCompensation.transactionId,
       projectLand: landCompensation.projectLand,
       survey: landCompensation.survey,
-      village: landCompensation.village,
     });
 
     this.projectLandsCollection = this.projectLandService.addProjectLandToCollectionIfMissing(
@@ -141,10 +131,6 @@ export class LandCompensationUpdateComponent implements OnInit {
       landCompensation.projectLand
     );
     this.surveysCollection = this.surveyService.addSurveyToCollectionIfMissing(this.surveysCollection, landCompensation.survey);
-    this.villagesSharedCollection = this.villageService.addVillageToCollectionIfMissing(
-      this.villagesSharedCollection,
-      landCompensation.village
-    );
   }
 
   protected loadRelationshipsOptions(): void {
@@ -163,14 +149,6 @@ export class LandCompensationUpdateComponent implements OnInit {
       .pipe(map((res: HttpResponse<ISurvey[]>) => res.body ?? []))
       .pipe(map((surveys: ISurvey[]) => this.surveyService.addSurveyToCollectionIfMissing(surveys, this.editForm.get('survey')!.value)))
       .subscribe((surveys: ISurvey[]) => (this.surveysCollection = surveys));
-
-    this.villageService
-      .query()
-      .pipe(map((res: HttpResponse<IVillage[]>) => res.body ?? []))
-      .pipe(
-        map((villages: IVillage[]) => this.villageService.addVillageToCollectionIfMissing(villages, this.editForm.get('village')!.value))
-      )
-      .subscribe((villages: IVillage[]) => (this.villagesSharedCollection = villages));
   }
 
   protected createFromForm(): ILandCompensation {
@@ -194,7 +172,6 @@ export class LandCompensationUpdateComponent implements OnInit {
       transactionId: this.editForm.get(['transactionId'])!.value,
       projectLand: this.editForm.get(['projectLand'])!.value,
       survey: this.editForm.get(['survey'])!.value,
-      village: this.editForm.get(['village'])!.value,
     };
   }
 }

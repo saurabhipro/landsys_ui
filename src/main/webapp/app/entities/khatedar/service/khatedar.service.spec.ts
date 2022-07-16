@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
+import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 import { KhatedarStatus } from 'app/entities/enumerations/khatedar-status.model';
 import { IKhatedar, Khatedar } from '../khatedar.model';
 
@@ -24,6 +25,7 @@ describe('Khatedar Service', () => {
       id: 0,
       caseFileNo: 'AAAAAAA',
       remarks: 'AAAAAAA',
+      hissaType: HissaType.SINGLE_OWNER,
       khatedarStatus: KhatedarStatus.NEW,
     };
   });
@@ -62,6 +64,7 @@ describe('Khatedar Service', () => {
           id: 1,
           caseFileNo: 'BBBBBB',
           remarks: 'BBBBBB',
+          hissaType: 'BBBBBB',
           khatedarStatus: 'BBBBBB',
         },
         elemDefault
@@ -80,7 +83,7 @@ describe('Khatedar Service', () => {
       const patchObject = Object.assign(
         {
           remarks: 'BBBBBB',
-          khatedarStatus: 'BBBBBB',
+          hissaType: 'BBBBBB',
         },
         new Khatedar()
       );
@@ -102,6 +105,7 @@ describe('Khatedar Service', () => {
           id: 1,
           caseFileNo: 'BBBBBB',
           remarks: 'BBBBBB',
+          hissaType: 'BBBBBB',
           khatedarStatus: 'BBBBBB',
         },
         elemDefault
@@ -154,7 +158,7 @@ describe('Khatedar Service', () => {
       });
 
       it('should add only unique Khatedar to an array', () => {
-        const khatedarArray: IKhatedar[] = [{ id: 123 }, { id: 456 }, { id: 41993 }];
+        const khatedarArray: IKhatedar[] = [{ id: 123 }, { id: 456 }, { id: 56099 }];
         const khatedarCollection: IKhatedar[] = [{ id: 123 }];
         expectedResult = service.addKhatedarToCollectionIfMissing(khatedarCollection, ...khatedarArray);
         expect(expectedResult).toHaveLength(3);

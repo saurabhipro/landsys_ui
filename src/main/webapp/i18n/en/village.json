@@ -20,10 +20,7 @@
       "id": "ID",
       "name": "Name",
       "subDistrict": "Sub District",
-      "land": "Land",
-      "survey": "Survey",
-      "landCompensation": "Land Compensation",
-      "projectLand": "Project Land"
+      "land": "Land"
     }
   }
 }

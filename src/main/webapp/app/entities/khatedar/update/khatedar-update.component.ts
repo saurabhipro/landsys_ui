@@ -11,6 +11,7 @@ import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
 import { ICitizen } from 'app/entities/citizen/citizen.model';
 import { CitizenService } from 'app/entities/citizen/service/citizen.service';
+import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 import { KhatedarStatus } from 'app/entities/enumerations/khatedar-status.model';
 
 @Component({
@@ -19,6 +20,7 @@ import { KhatedarStatus } from 'app/entities/enumerations/khatedar-status.model'
 })
 export class KhatedarUpdateComponent implements OnInit {
   isSaving = false;
+  hissaTypeValues = Object.keys(HissaType);
   khatedarStatusValues = Object.keys(KhatedarStatus);
 
   projectLandsSharedCollection: IProjectLand[] = [];
@@ -28,6 +30,7 @@ export class KhatedarUpdateComponent implements OnInit {
     id: [],
     caseFileNo: [null, [Validators.required]],
     remarks: [null, [Validators.required]],
+    hissaType: [null, [Validators.required]],
     khatedarStatus: [null, [Validators.required]],
     projectLand: [null, Validators.required],
     citizen: [null, Validators.required],
@@ -95,6 +98,7 @@ export class KhatedarUpdateComponent implements OnInit {
       id: khatedar.id,
       caseFileNo: khatedar.caseFileNo,
       remarks: khatedar.remarks,
+      hissaType: khatedar.hissaType,
       khatedarStatus: khatedar.khatedarStatus,
       projectLand: khatedar.projectLand,
       citizen: khatedar.citizen,
@@ -133,6 +137,7 @@ export class KhatedarUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       caseFileNo: this.editForm.get(['caseFileNo'])!.value,
       remarks: this.editForm.get(['remarks'])!.value,
+      hissaType: this.editForm.get(['hissaType'])!.value,
       khatedarStatus: this.editForm.get(['khatedarStatus'])!.value,
       projectLand: this.editForm.get(['projectLand'])!.value,
       citizen: this.editForm.get(['citizen'])!.value,

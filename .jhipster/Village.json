@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220712174904",
+  "changelogDate": "20220716095758",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_village",
@@ -30,24 +30,6 @@
       "otherEntityName": "land",
       "otherEntityRelationshipName": "village",
       "relationshipName": "land",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityName": "survey",
-      "otherEntityRelationshipName": "village",
-      "relationshipName": "survey",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityName": "landCompensation",
-      "otherEntityRelationshipName": "village",
-      "relationshipName": "landCompensation",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityName": "projectLand",
-      "otherEntityRelationshipName": "village",
-      "relationshipName": "projectLand",
       "relationshipType": "one-to-many"
     }
   ],

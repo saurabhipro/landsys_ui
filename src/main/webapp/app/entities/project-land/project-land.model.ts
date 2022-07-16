@@ -1,6 +1,5 @@
 import { ILand } from 'app/entities/land/land.model';
 import { IProject } from 'app/entities/project/project.model';
-import { IVillage } from 'app/entities/village/village.model';
 import { INoticeStatusInfo } from 'app/entities/notice-status-info/notice-status-info.model';
 import { ISurvey } from 'app/entities/survey/survey.model';
 import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
@@ -8,6 +7,7 @@ import { IPaymentAdvice } from 'app/entities/payment-advice/payment-advice.model
 import { IPaymentAdviceDetails } from 'app/entities/payment-advice-details/payment-advice-details.model';
 import { IPaymentFile } from 'app/entities/payment-file/payment-file.model';
 import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
+import { IPaymentFileHeader } from 'app/entities/payment-file-header/payment-file-header.model';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 
 export interface IProjectLand {
@@ -18,7 +18,6 @@ export interface IProjectLand {
   hissaType?: HissaType | null;
   land?: ILand;
   project?: IProject;
-  village?: IVillage;
   noticeStatusInfo?: INoticeStatusInfo | null;
   survey?: ISurvey | null;
   landCompensation?: ILandCompensation | null;
@@ -26,6 +25,7 @@ export interface IProjectLand {
   paymentAdviceDetails?: IPaymentAdviceDetails[] | null;
   paymentFiles?: IPaymentFile[] | null;
   khatedars?: IKhatedar[] | null;
+  paymentFileHeaders?: IPaymentFileHeader[] | null;
 }
 
 export class ProjectLand implements IProjectLand {
@@ -37,14 +37,14 @@ export class ProjectLand implements IProjectLand {
     public hissaType?: HissaType | null,
     public land?: ILand,
     public project?: IProject,
-    public village?: IVillage,
     public noticeStatusInfo?: INoticeStatusInfo | null,
     public survey?: ISurvey | null,
     public landCompensation?: ILandCompensation | null,
     public paymentAdvices?: IPaymentAdvice[] | null,
     public paymentAdviceDetails?: IPaymentAdviceDetails[] | null,
     public paymentFiles?: IPaymentFile[] | null,
-    public khatedars?: IKhatedar[] | null
+    public khatedars?: IKhatedar[] | null,
+    public paymentFileHeaders?: IPaymentFileHeader[] | null
   ) {}
 }
 

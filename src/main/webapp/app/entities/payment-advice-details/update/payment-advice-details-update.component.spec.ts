@@ -12,6 +12,8 @@ import { IPaymentAdvice } from 'app/entities/payment-advice/payment-advice.model
 import { PaymentAdviceService } from 'app/entities/payment-advice/service/payment-advice.service';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
+import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
+import { KhatedarService } from 'app/entities/khatedar/service/khatedar.service';
 
 import { PaymentAdviceDetailsUpdateComponent } from './payment-advice-details-update.component';
 
@@ -22,6 +24,7 @@ describe('PaymentAdviceDetails Management Update Component', () => {
   let paymentAdviceDetailsService: PaymentAdviceDetailsService;
   let paymentAdviceService: PaymentAdviceService;
   let projectLandService: ProjectLandService;
+  let khatedarService: KhatedarService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -45,6 +48,7 @@ describe('PaymentAdviceDetails Management Update Component', () => {
     paymentAdviceDetailsService = TestBed.inject(PaymentAdviceDetailsService);
     paymentAdviceService = TestBed.inject(PaymentAdviceService);
     projectLandService = TestBed.inject(ProjectLandService);
+    khatedarService = TestBed.inject(KhatedarService);
 
     comp = fixture.componentInstance;
   });
@@ -91,12 +95,33 @@ describe('PaymentAdviceDetails Management Update Component', () => {
       expect(comp.projectLandsSharedCollection).toEqual(expectedCollection);
     });
 
+    it('Should call Khatedar query and add missing value', () => {
+      const paymentAdviceDetails: IPaymentAdviceDetails = { id: 456 };
+      const khatedar: IKhatedar = { id: 49123 };
+      paymentAdviceDetails.khatedar = khatedar;
+
+      const khatedarCollection: IKhatedar[] = [{ id: 35116 }];
+      jest.spyOn(khatedarService, 'query').mockReturnValue(of(new HttpResponse({ body: khatedarCollection })));
+      const additionalKhatedars = [khatedar];
+      const expectedCollection: IKhatedar[] = [...additionalKhatedars, ...khatedarCollection];
+      jest.spyOn(khatedarService, 'addKhatedarToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ paymentAdviceDetails });
+      comp.ngOnInit();
+
+      expect(khatedarService.query).toHaveBeenCalled();
+      expect(khatedarService.addKhatedarToCollectionIfMissing).toHaveBeenCalledWith(khatedarCollection, ...additionalKhatedars);
+      expect(comp.khatedarsSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const paymentAdviceDetails: IPaymentAdviceDetails = { id: 456 };
       const paymentAdvice: IPaymentAdvice = { id: 97652 };
       paymentAdviceDetails.paymentAdvice = paymentAdvice;
       const projectLand: IProjectLand = { id: 84859 };
       paymentAdviceDetails.projectLand = projectLand;
+      const khatedar: IKhatedar = { id: 98600 };
+      paymentAdviceDetails.khatedar = khatedar;
 
       activatedRoute.data = of({ paymentAdviceDetails });
       comp.ngOnInit();
@@ -104,6 +129,7 @@ describe('PaymentAdviceDetails Management Update Component', () => {
       expect(comp.editForm.value).toEqual(expect.objectContaining(paymentAdviceDetails));
       expect(comp.paymentAdvicesSharedCollection).toContain(paymentAdvice);
       expect(comp.projectLandsSharedCollection).toContain(projectLand);
+      expect(comp.khatedarsSharedCollection).toContain(khatedar);
     });
   });
 
@@ -184,6 +210,14 @@ describe('PaymentAdviceDetails Management Update Component', () => {
       it('Should return tracked ProjectLand primary key', () => {
         const entity = { id: 123 };
         const trackResult = comp.trackProjectLandById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
+    describe('trackKhatedarById', () => {
+      it('Should return tracked Khatedar primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackKhatedarById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

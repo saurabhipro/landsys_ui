@@ -20,11 +20,13 @@
       "id": "ID",
       "caseFileNo": "Case File No",
       "remarks": "Remarks",
+      "hissaType": "Hissa Type",
       "khatedarStatus": "Khatedar Status",
       "projectLand": "Project Land",
       "citizen": "Citizen",
       "paymentAdvice": "Payment Advice",
-      "paymentFile": "Payment File"
+      "paymentFile": "Payment File",
+      "paymentAdviceDetails": "Payment Advice Details"
     }
   }
 }

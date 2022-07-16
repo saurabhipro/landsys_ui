@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220712174921",
+  "changelogDate": "20220716095816",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_survey",
@@ -69,14 +69,6 @@
       "ownerSide": true,
       "relationshipName": "projectLand",
       "relationshipType": "one-to-one",
-      "relationshipValidateRules": "required"
-    },
-    {
-      "otherEntityField": "name",
-      "otherEntityName": "village",
-      "otherEntityRelationshipName": "survey",
-      "relationshipName": "village",
-      "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
     },
     {

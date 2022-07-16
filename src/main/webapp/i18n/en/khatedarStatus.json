@@ -1,0 +1,9 @@
+{
+  "jhipsterApp": {
+    "KhatedarStatus": {
+      "null": "",
+      "NEW": "NEW",
+      "SURVEY_CREATED": "SURVEY_CREATED"
+    }
+  }
+}

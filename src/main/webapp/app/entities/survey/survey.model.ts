@@ -1,5 +1,4 @@
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
-import { IVillage } from 'app/entities/village/village.model';
 import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
 import { IPaymentAdvice } from 'app/entities/payment-advice/payment-advice.model';
 import { IPaymentFile } from 'app/entities/payment-file/payment-file.model';
@@ -20,7 +19,6 @@ export interface ISurvey {
   remarks?: string | null;
   status?: SurveyStatus | null;
   projectLand?: IProjectLand;
-  village?: IVillage;
   landCompensation?: ILandCompensation | null;
   paymentAdvices?: IPaymentAdvice[] | null;
   paymentFiles?: IPaymentFile[] | null;
@@ -41,7 +39,6 @@ export class Survey implements ISurvey {
     public remarks?: string | null,
     public status?: SurveyStatus | null,
     public projectLand?: IProjectLand,
-    public village?: IVillage,
     public landCompensation?: ILandCompensation | null,
     public paymentAdvices?: IPaymentAdvice[] | null,
     public paymentFiles?: IPaymentFile[] | null

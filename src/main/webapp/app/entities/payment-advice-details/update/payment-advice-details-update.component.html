@@ -120,6 +120,28 @@
             This field is required.
           </small>
         </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdviceDetails.khatedar" for="field_khatedar">Khatedar</label>
+          <select class="form-control" id="field_khatedar" data-cy="khatedar" name="khatedar" formControlName="khatedar">
+            <option *ngIf="!editForm.get('khatedar')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="khatedarOption.id === editForm.get('khatedar')!.value?.id ? editForm.get('khatedar')!.value : khatedarOption"
+              *ngFor="let khatedarOption of khatedarsSharedCollection; trackBy: trackKhatedarById"
+            >
+              {{ khatedarOption.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['khatedar'])!.invalid && (editForm.get(['khatedar'])!.dirty || editForm.get(['khatedar'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['khatedar'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
       </div>
 
       <div>

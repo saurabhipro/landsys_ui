@@ -7,7 +7,6 @@ import { IBank } from 'app/entities/bank/bank.model';
 import { IBankBranch } from 'app/entities/bank-branch/bank-branch.model';
 import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
 import { IPaymentFileHeader } from 'app/entities/payment-file-header/payment-file-header.model';
-import { IProject } from 'app/entities/project/project.model';
 import { PaymentStatus } from 'app/entities/enumerations/payment-status.model';
 import { PaymentAdviceType } from 'app/entities/enumerations/payment-advice-type.model';
 
@@ -27,7 +26,6 @@ export interface IPaymentFile {
   bankBranch?: IBankBranch;
   landCompensation?: ILandCompensation;
   paymentFileHeader?: IPaymentFileHeader;
-  project?: IProject;
 }
 
 export class PaymentFile implements IPaymentFile {
@@ -46,8 +44,7 @@ export class PaymentFile implements IPaymentFile {
     public bank?: IBank,
     public bankBranch?: IBankBranch,
     public landCompensation?: ILandCompensation,
-    public paymentFileHeader?: IPaymentFileHeader,
-    public project?: IProject
+    public paymentFileHeader?: IPaymentFileHeader
   ) {}
 }
 

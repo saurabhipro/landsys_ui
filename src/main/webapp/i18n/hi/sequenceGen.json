@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "sequenceGen": {
+      "home": {
+        "title": "SequenceGens",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Sequence Gen बनाएँ",
+        "createOrEditLabel": "Sequence Gen बनाएँ या संपादित करें",
+        "notFound": "No Sequence Gens found"
+      },
+      "created": "एक नया Sequence Gen [identifier: {{ param }}] तैयार है",
+      "updated": "एक Sequence Gen [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Sequence Gen [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Sequence Gen [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Sequence Gen"
+      },
+      "id": "ID",
+      "seqType": "Seq Type",
+      "latestSequence": "Latest Sequence",
+      "sequenceSuffix": "Sequence Suffix"
+    }
+  }
+}

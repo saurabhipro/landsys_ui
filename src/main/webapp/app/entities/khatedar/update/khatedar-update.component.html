@@ -49,6 +49,25 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.khatedar.hissaType" for="field_hissaType">Hissa Type</label>
+          <select class="form-control" name="hissaType" formControlName="hissaType" id="field_hissaType" data-cy="hissaType">
+            <option [ngValue]="null">{{ 'jhipsterApp.HissaType.null' | translate }}</option>
+            <option *ngFor="let hissaType of hissaTypeValues" [value]="hissaType">
+              {{ 'jhipsterApp.HissaType.' + hissaType | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('hissaType')!.invalid && (editForm.get('hissaType')!.dirty || editForm.get('hissaType')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('hissaType')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.khatedar.khatedarStatus" for="field_khatedarStatus">Khatedar Status</label>
           <select
             class="form-control"

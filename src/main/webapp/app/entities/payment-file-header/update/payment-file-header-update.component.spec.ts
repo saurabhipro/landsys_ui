@@ -8,8 +8,8 @@ import { of, Subject, from } from 'rxjs';
 
 import { PaymentFileHeaderService } from '../service/payment-file-header.service';
 import { IPaymentFileHeader, PaymentFileHeader } from '../payment-file-header.model';
-import { IProject } from 'app/entities/project/project.model';
-import { ProjectService } from 'app/entities/project/service/project.service';
+import { IProjectLand } from 'app/entities/project-land/project-land.model';
+import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
 
 import { PaymentFileHeaderUpdateComponent } from './payment-file-header-update.component';
 
@@ -18,7 +18,7 @@ describe('PaymentFileHeader Management Update Component', () => {
   let fixture: ComponentFixture<PaymentFileHeaderUpdateComponent>;
   let activatedRoute: ActivatedRoute;
   let paymentFileHeaderService: PaymentFileHeaderService;
-  let projectService: ProjectService;
+  let projectLandService: ProjectLandService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -40,41 +40,41 @@ describe('PaymentFileHeader Management Update Component', () => {
     fixture = TestBed.createComponent(PaymentFileHeaderUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
     paymentFileHeaderService = TestBed.inject(PaymentFileHeaderService);
-    projectService = TestBed.inject(ProjectService);
+    projectLandService = TestBed.inject(ProjectLandService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call Project query and add missing value', () => {
+    it('Should call ProjectLand query and add missing value', () => {
       const paymentFileHeader: IPaymentFileHeader = { id: 456 };
-      const project: IProject = { id: 5983 };
-      paymentFileHeader.project = project;
+      const projectLand: IProjectLand = { id: 99550 };
+      paymentFileHeader.projectLand = projectLand;
 
-      const projectCollection: IProject[] = [{ id: 66667 }];
-      jest.spyOn(projectService, 'query').mockReturnValue(of(new HttpResponse({ body: projectCollection })));
-      const additionalProjects = [project];
-      const expectedCollection: IProject[] = [...additionalProjects, ...projectCollection];
-      jest.spyOn(projectService, 'addProjectToCollectionIfMissing').mockReturnValue(expectedCollection);
+      const projectLandCollection: IProjectLand[] = [{ id: 41110 }];
+      jest.spyOn(projectLandService, 'query').mockReturnValue(of(new HttpResponse({ body: projectLandCollection })));
+      const additionalProjectLands = [projectLand];
+      const expectedCollection: IProjectLand[] = [...additionalProjectLands, ...projectLandCollection];
+      jest.spyOn(projectLandService, 'addProjectLandToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ paymentFileHeader });
       comp.ngOnInit();
 
-      expect(projectService.query).toHaveBeenCalled();
-      expect(projectService.addProjectToCollectionIfMissing).toHaveBeenCalledWith(projectCollection, ...additionalProjects);
-      expect(comp.projectsSharedCollection).toEqual(expectedCollection);
+      expect(projectLandService.query).toHaveBeenCalled();
+      expect(projectLandService.addProjectLandToCollectionIfMissing).toHaveBeenCalledWith(projectLandCollection, ...additionalProjectLands);
+      expect(comp.projectLandsSharedCollection).toEqual(expectedCollection);
     });
 
     it('Should update editForm', () => {
       const paymentFileHeader: IPaymentFileHeader = { id: 456 };
-      const project: IProject = { id: 63687 };
-      paymentFileHeader.project = project;
+      const projectLand: IProjectLand = { id: 70754 };
+      paymentFileHeader.projectLand = projectLand;
 
       activatedRoute.data = of({ paymentFileHeader });
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(paymentFileHeader));
-      expect(comp.projectsSharedCollection).toContain(project);
+      expect(comp.projectLandsSharedCollection).toContain(projectLand);
     });
   });
 
@@ -143,10 +143,10 @@ describe('PaymentFileHeader Management Update Component', () => {
   });
 
   describe('Tracking relationships identifiers', () => {
-    describe('trackProjectById', () => {
-      it('Should return tracked Project primary key', () => {
+    describe('trackProjectLandById', () => {
+      it('Should return tracked ProjectLand primary key', () => {
         const entity = { id: 123 };
-        const trackResult = comp.trackProjectById(0, entity);
+        const trackResult = comp.trackProjectLandById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

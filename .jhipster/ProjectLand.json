@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20220712174910",
+  "changelogDate": "20220716095804",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "landsys_project_land",
@@ -39,14 +39,6 @@
       "otherEntityName": "project",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "project",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": "required"
-    },
-    {
-      "otherEntityField": "name",
-      "otherEntityName": "village",
-      "otherEntityRelationshipName": "projectLand",
-      "relationshipName": "village",
       "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
     },
@@ -92,6 +84,12 @@
       "otherEntityName": "khatedar",
       "otherEntityRelationshipName": "projectLand",
       "relationshipName": "khatedar",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "paymentFileHeader",
+      "otherEntityRelationshipName": "projectLand",
+      "relationshipName": "paymentFileHeader",
       "relationshipType": "one-to-many"
     }
   ],

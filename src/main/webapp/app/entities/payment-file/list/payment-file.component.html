@@ -75,9 +75,6 @@
           <th scope="col" jhiSortBy="paymentFileHeader.id">
             <span jhiTranslate="jhipsterApp.paymentFile.paymentFileHeader">Payment File Header</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="project.name">
-            <span jhiTranslate="jhipsterApp.paymentFile.project">Project</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -132,11 +129,6 @@
               <a [routerLink]="['/payment-file-header', paymentFile.paymentFileHeader?.id, 'view']">{{
                 paymentFile.paymentFileHeader?.id
               }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="paymentFile.project">
-              <a [routerLink]="['/project', paymentFile.project?.id, 'view']">{{ paymentFile.project?.name }}</a>
             </div>
           </td>
           <td class="text-end">

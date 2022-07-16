@@ -14,8 +14,6 @@ import { ILand } from 'app/entities/land/land.model';
 import { LandService } from 'app/entities/land/service/land.service';
 import { IProject } from 'app/entities/project/project.model';
 import { ProjectService } from 'app/entities/project/service/project.service';
-import { IVillage } from 'app/entities/village/village.model';
-import { VillageService } from 'app/entities/village/service/village.service';
 import { INoticeStatusInfo } from 'app/entities/notice-status-info/notice-status-info.model';
 import { NoticeStatusInfoService } from 'app/entities/notice-status-info/service/notice-status-info.service';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
@@ -30,7 +28,6 @@ export class ProjectLandUpdateComponent implements OnInit {
 
   landsSharedCollection: ILand[] = [];
   projectsSharedCollection: IProject[] = [];
-  villagesSharedCollection: IVillage[] = [];
   noticeStatusInfosSharedCollection: INoticeStatusInfo[] = [];
 
   editForm = this.fb.group({
@@ -41,7 +38,6 @@ export class ProjectLandUpdateComponent implements OnInit {
     hissaType: [],
     land: [null, Validators.required],
     project: [null, Validators.required],
-    village: [null, Validators.required],
     noticeStatusInfo: [],
   });
 
@@ -51,7 +47,6 @@ export class ProjectLandUpdateComponent implements OnInit {
     protected projectLandService: ProjectLandService,
     protected landService: LandService,
     protected projectService: ProjectService,
-    protected villageService: VillageService,
     protected noticeStatusInfoService: NoticeStatusInfoService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
@@ -102,10 +97,6 @@ export class ProjectLandUpdateComponent implements OnInit {
     return item.id!;
   }
 
-  trackVillageById(_index: number, item: IVillage): number {
-    return item.id!;
-  }
-
   trackNoticeStatusInfoById(_index: number, item: INoticeStatusInfo): number {
     return item.id!;
   }
@@ -138,13 +129,11 @@ export class ProjectLandUpdateComponent implements OnInit {
       hissaType: projectLand.hissaType,
       land: projectLand.land,
       project: projectLand.project,
-      village: projectLand.village,
       noticeStatusInfo: projectLand.noticeStatusInfo,
     });
 
     this.landsSharedCollection = this.landService.addLandToCollectionIfMissing(this.landsSharedCollection, projectLand.land);
     this.projectsSharedCollection = this.projectService.addProjectToCollectionIfMissing(this.projectsSharedCollection, projectLand.project);
-    this.villagesSharedCollection = this.villageService.addVillageToCollectionIfMissing(this.villagesSharedCollection, projectLand.village);
     this.noticeStatusInfosSharedCollection = this.noticeStatusInfoService.addNoticeStatusInfoToCollectionIfMissing(
       this.noticeStatusInfosSharedCollection,
       projectLand.noticeStatusInfo
@@ -165,14 +154,6 @@ export class ProjectLandUpdateComponent implements OnInit {
         map((projects: IProject[]) => this.projectService.addProjectToCollectionIfMissing(projects, this.editForm.get('project')!.value))
       )
       .subscribe((projects: IProject[]) => (this.projectsSharedCollection = projects));
-
-    this.villageService
-      .query()
-      .pipe(map((res: HttpResponse<IVillage[]>) => res.body ?? []))
-      .pipe(
-        map((villages: IVillage[]) => this.villageService.addVillageToCollectionIfMissing(villages, this.editForm.get('village')!.value))
-      )
-      .subscribe((villages: IVillage[]) => (this.villagesSharedCollection = villages));
 
     this.noticeStatusInfoService
       .query()
@@ -198,7 +179,6 @@ export class ProjectLandUpdateComponent implements OnInit {
       hissaType: this.editForm.get(['hissaType'])!.value,
       land: this.editForm.get(['land'])!.value,
       project: this.editForm.get(['project'])!.value,
-      village: this.editForm.get(['village'])!.value,
       noticeStatusInfo: this.editForm.get(['noticeStatusInfo'])!.value,
     };
   }

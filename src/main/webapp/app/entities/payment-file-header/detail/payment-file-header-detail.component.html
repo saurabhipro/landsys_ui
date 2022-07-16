@@ -36,10 +36,10 @@
         <dd>
           <span>{{ paymentFileHeader.approverRemarks }}</span>
         </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentFileHeader.project">Project</span></dt>
+        <dt><span jhiTranslate="jhipsterApp.paymentFileHeader.projectLand">Project Land</span></dt>
         <dd>
-          <div *ngIf="paymentFileHeader.project">
-            <a [routerLink]="['/project', paymentFileHeader.project?.id, 'view']">{{ paymentFileHeader.project?.name }}</a>
+          <div *ngIf="paymentFileHeader.projectLand">
+            <a [routerLink]="['/project-land', paymentFileHeader.projectLand?.id, 'view']">{{ paymentFileHeader.projectLand?.id }}</a>
           </div>
         </dd>
       </dl>

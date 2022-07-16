@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "sequenceGen": {
+      "home": {
+        "title": "Sequence Gens",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Sequence Gen",
+        "createOrEditLabel": "Create or edit a Sequence Gen",
+        "notFound": "No Sequence Gens found"
+      },
+      "created": "A new Sequence Gen is created with identifier {{ param }}",
+      "updated": "A Sequence Gen is updated with identifier {{ param }}",
+      "deleted": "A Sequence Gen is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Sequence Gen {{ id }}?"
+      },
+      "detail": {
+        "title": "Sequence Gen"
+      },
+      "id": "ID",
+      "seqType": "Seq Type",
+      "latestSequence": "Latest Sequence",
+      "sequenceSuffix": "Sequence Suffix"
+    }
+  }
+}
