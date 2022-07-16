@@ -50,14 +50,31 @@
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.khatedar.khatedarStatus" for="field_khatedarStatus">Khatedar Status</label>
-          <input
-            type="text"
+          <select
             class="form-control"
             name="khatedarStatus"
+            formControlName="khatedarStatus"
             id="field_khatedarStatus"
             data-cy="khatedarStatus"
-            formControlName="khatedarStatus"
-          />
+          >
+            <option [ngValue]="null">{{ 'jhipsterApp.KhatedarStatus.null' | translate }}</option>
+            <option *ngFor="let khatedarStatus of khatedarStatusValues" [value]="khatedarStatus">
+              {{ 'jhipsterApp.KhatedarStatus.' + khatedarStatus | translate }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('khatedarStatus')!.invalid && (editForm.get('khatedarStatus')!.dirty || editForm.get('khatedarStatus')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('khatedarStatus')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
         </div>
 
         <div class="row mb-3">

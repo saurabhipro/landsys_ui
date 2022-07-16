@@ -11,6 +11,7 @@ import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
 import { ICitizen } from 'app/entities/citizen/citizen.model';
 import { CitizenService } from 'app/entities/citizen/service/citizen.service';
+import { KhatedarStatus } from 'app/entities/enumerations/khatedar-status.model';
 
 @Component({
   selector: 'jhi-khatedar-update',
@@ -18,6 +19,7 @@ import { CitizenService } from 'app/entities/citizen/service/citizen.service';
 })
 export class KhatedarUpdateComponent implements OnInit {
   isSaving = false;
+  khatedarStatusValues = Object.keys(KhatedarStatus);
 
   projectLandsSharedCollection: IProjectLand[] = [];
   citizensSharedCollection: ICitizen[] = [];
@@ -26,7 +28,7 @@ export class KhatedarUpdateComponent implements OnInit {
     id: [],
     caseFileNo: [null, [Validators.required]],
     remarks: [null, [Validators.required]],
-    khatedarStatus: [],
+    khatedarStatus: [null, [Validators.required]],
     projectLand: [null, Validators.required],
     citizen: [null, Validators.required],
   });

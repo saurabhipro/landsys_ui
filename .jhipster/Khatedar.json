@@ -17,7 +17,9 @@
     },
     {
       "fieldName": "khatedarStatus",
-      "fieldType": "String"
+      "fieldType": "KhatedarStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "NEW,SURVEY_CREATED"
     }
   ],
   "fluentMethods": true,

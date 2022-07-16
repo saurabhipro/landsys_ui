@@ -58,7 +58,7 @@
           </td>
           <td>{{ khatedar.caseFileNo }}</td>
           <td>{{ khatedar.remarks }}</td>
-          <td>{{ khatedar.khatedarStatus }}</td>
+          <td jhiTranslate="{{ 'jhipsterApp.KhatedarStatus.' + khatedar.khatedarStatus }}">{{ khatedar.khatedarStatus }}</td>
           <td>
             <div *ngIf="khatedar.projectLand">
               <a [routerLink]="['/project-land', khatedar.projectLand?.id, 'view']">{{ khatedar.projectLand?.id }}</a>

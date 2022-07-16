@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
+import { KhatedarStatus } from 'app/entities/enumerations/khatedar-status.model';
 import { IKhatedar, Khatedar } from '../khatedar.model';
 
 import { KhatedarService } from './khatedar.service';
@@ -23,7 +24,7 @@ describe('Khatedar Service', () => {
       id: 0,
       caseFileNo: 'AAAAAAA',
       remarks: 'AAAAAAA',
-      khatedarStatus: 'AAAAAAA',
+      khatedarStatus: KhatedarStatus.NEW,
     };
   });
 

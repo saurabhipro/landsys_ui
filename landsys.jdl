@@ -1,7 +1,7 @@
 entity Khatedar(landsys_khatedar) {
     caseFileNo String required unique
     remarks String required unique
-    khatedarStatus String
+    khatedarStatus KhatedarStatus required
 }
 
 
@@ -238,12 +238,12 @@ entity CreatePaymentFile(landsys_create_payment_file) {
         hissaType HissaType required
 }
 
-
-entity SequenceGenerator {
+entity SequenceGen {
  seqType SequenceType required
  latestSequence Integer required
  sequenceSuffix String required
 }
+
 
 relationship OneToOne {
     PaymentAdvice{khatedar required} to Khatedar{paymentAdvice}
@@ -367,4 +367,4 @@ paginate * with pagination
 service all with serviceImpl
 dto all with mapstruct
 
-filter Citizen , Khatedar , Survey , LandCompensation , Project , PaymentFileRecon, NoticeStatusInfo, PaymentAdvice , TransactionHistory, PaymentFile , PaymentAdviceDetails , SequenceGenerator
+filter Citizen , Khatedar , Survey , LandCompensation , Project , PaymentFileRecon, NoticeStatusInfo, PaymentAdvice , TransactionHistory, PaymentFile , PaymentAdviceDetails , SequenceGen

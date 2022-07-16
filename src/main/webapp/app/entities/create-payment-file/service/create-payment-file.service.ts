@@ -7,16 +7,12 @@ import { ApplicationConfigService } from 'app/core/config/application-config.ser
 import { createRequestOption } from 'app/core/request/request-util';
 import { ICreatePaymentFile, getCreatePaymentFileIdentifier } from '../create-payment-file.model';
 
-import { IPaymentAdvice } from '../../payment-advice/payment-advice.model';
-import { PaymentAdviceService } from '../../payment-advice/service/payment-advice.service';
-
 export type EntityResponseType = HttpResponse<ICreatePaymentFile>;
 export type EntityArrayResponseType = HttpResponse<ICreatePaymentFile[]>;
 
 @Injectable({ providedIn: 'root' })
 export class CreatePaymentFileService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/create-payment-files');
-  protected paymentAdviseResourceUrl = this.applicationConfigService.getEndpointFor('api/payment-advices');
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
@@ -46,7 +42,7 @@ export class CreatePaymentFileService {
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
-    return this.http.get<IPaymentAdvice[]>(this.paymentAdviseResourceUrl, { params: options, observe: 'response' });
+    return this.http.get<ICreatePaymentFile[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {

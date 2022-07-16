@@ -139,6 +139,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'jhipsterApp.sequenceGenerator.home.title' },
         loadChildren: () => import('./sequence-generator/sequence-generator.module').then(m => m.SequenceGeneratorModule),
       },
+      {
+        path: 'sequence-gen',
+        data: { pageTitle: 'jhipsterApp.sequenceGen.home.title' },
+        loadChildren: () => import('./sequence-gen/sequence-gen.module').then(m => m.SequenceGenModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

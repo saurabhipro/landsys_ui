@@ -41,6 +41,7 @@
         "createPaymentFile": "Create Payment File",
         "paymentFileHeader": "Payment File Header",
         "sequenceGenerator": "Sequence Generator",
+        "sequenceGen": "Sequence Gen",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
