@@ -1,0 +1,32 @@
+{
+  "applications": "*",
+  "changelogDate": "20220716041801",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "sequence_generator",
+  "fields": [
+    {
+      "fieldName": "seqType",
+      "fieldType": "SequenceType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SURVEY,COMPENSATION,KHATEDAR,PAYMENTADVICE,PAYMENTFILE"
+    },
+    {
+      "fieldName": "latestSequence",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sequenceSuffix",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "SequenceGenerator",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "sequenceGenerator": {
+      "home": {
+        "title": "SequenceGenerators",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Sequence Generator बनाएँ",
+        "createOrEditLabel": "Sequence Generator बनाएँ या संपादित करें",
+        "notFound": "No Sequence Generators found"
+      },
+      "created": "एक नया Sequence Generator [identifier: {{ param }}] तैयार है",
+      "updated": "एक Sequence Generator [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Sequence Generator [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Sequence Generator [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Sequence Generator"
+      },
+      "id": "ID",
+      "seqType": "Seq Type",
+      "latestSequence": "Latest Sequence",
+      "sequenceSuffix": "Sequence Suffix"
+    }
+  }
+}

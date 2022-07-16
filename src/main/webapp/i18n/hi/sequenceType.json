@@ -1,0 +1,12 @@
+{
+  "jhipsterApp": {
+    "SequenceType": {
+      "null": "",
+      "SURVEY": "SURVEY",
+      "COMPENSATION": "COMPENSATION",
+      "KHATEDAR": "KHATEDAR",
+      "PAYMENTADVICE": "PAYMENTADVICE",
+      "PAYMENTFILE": "PAYMENTFILE"
+    }
+  }
+}
