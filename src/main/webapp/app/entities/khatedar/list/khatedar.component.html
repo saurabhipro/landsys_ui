@@ -18,6 +18,16 @@
           <fa-icon icon="plus"></fa-icon>
           <span jhiTranslate="jhipsterApp.khatedar.home.createLabel"> Create a new Khatedar </span>
         </button>
+
+        <button
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-danger jh-create-entity create-khatedar"
+          [routerLink]="['/khatedar/new']"
+        >
+          <fa-icon icon="plus"></fa-icon>
+          <span jhiTranslate="jhipsterApp.khatedar.home.uploadKhatedarLabel"> Upload Khatedar </span>
+        </button>
       </div>
     </h2>
 

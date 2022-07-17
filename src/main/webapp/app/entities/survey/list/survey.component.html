@@ -32,40 +32,53 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="id">
+            <span jhiTranslate="global.field.id">ID</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="surveyor">
-            <span jhiTranslate="jhipsterApp.survey.surveyor">Surveyor</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.survey.surveyor">Surveyor</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="hissaType">
-            <span jhiTranslate="jhipsterApp.survey.hissaType">Hissa Type</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.survey.hissaType">Hissa Type</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="sharePercentage">
-            <span jhiTranslate="jhipsterApp.survey.sharePercentage">Share Percentage</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.survey.sharePercentage">Share Percentage</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="area"><span jhiTranslate="jhipsterApp.survey.area">Area</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="area">
+            <span jhiTranslate="jhipsterApp.survey.area">Area</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="landMarketValue">
-            <span jhiTranslate="jhipsterApp.survey.landMarketValue">Land Market Value</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.survey.landMarketValue">Land Market Value</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="structuralValue">
-            <span jhiTranslate="jhipsterApp.survey.structuralValue">Structural Value</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.survey.structuralValue">Structural Value</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="horticultureValue">
-            <span jhiTranslate="jhipsterApp.survey.horticultureValue">Horticulture Value</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.survey.horticultureValue">Horticulture Value</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="forestValue">
-            <span jhiTranslate="jhipsterApp.survey.forestValue">Forest Value</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.survey.forestValue">Forest Value</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="distanceFromCity">
-            <span jhiTranslate="jhipsterApp.survey.distanceFromCity">Distance From City</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="remarks">
-            <span jhiTranslate="jhipsterApp.survey.remarks">Remarks</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.survey.distanceFromCity">Distance From City</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="status">
-            <span jhiTranslate="jhipsterApp.survey.status">Status</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.survey.status">Status</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="projectLand.id">
-            <span jhiTranslate="jhipsterApp.survey.projectLand">Project Land</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.survey.projectLand">Project Land</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -76,7 +89,16 @@
             <a [routerLink]="['/survey', survey.id, 'view']">{{ survey.id }}</a>
           </td>
           <td>{{ survey.surveyor }}</td>
-          <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + survey.hissaType }}">{{ survey.hissaType }}</td>
+
+          <!--<td jhiTranslate="{{ 'jhipsterApp.HissaType.' + survey.hissaType }}">{{ survey.hissaType }}</td>-->
+          <td>
+            <span *ngIf="survey.hissaType == 'SINGLE_OWNER'" class="btn btn-primary btn-sm">{{ survey.hissaType }} </span>
+
+            <span *ngIf="survey.hissaType == 'DIVIDED'" class="btn btn-info btn-sm">{{ survey.hissaType }} </span>
+
+            <span *ngIf="survey.hissaType == 'JOINT_OWNER'" class="btn btn-success btn-sm">{{ survey.hissaType }} </span>
+          </td>
+
           <td>{{ survey.sharePercentage }}</td>
           <td>{{ survey.area }}</td>
           <td>{{ survey.landMarketValue }}</td>
@@ -84,8 +106,13 @@
           <td>{{ survey.horticultureValue }}</td>
           <td>{{ survey.forestValue }}</td>
           <td>{{ survey.distanceFromCity }}</td>
-          <td>{{ survey.remarks }}</td>
-          <td jhiTranslate="{{ 'jhipsterApp.SurveyStatus.' + survey.status }}">{{ survey.status }}</td>
+
+          <td>
+            <span *ngIf="survey.status == 'OPEN'" class="btn btn-primary btn-sm">{{ survey.status }} </span>
+
+            <span *ngIf="survey.status == 'CLOSED'" class="btn btn-success btn-sm">{{ survey.status }} </span>
+          </td>
+
           <td>
             <div *ngIf="survey.projectLand">
               <a [routerLink]="['/project-land', survey.projectLand?.id, 'view']">{{ survey.projectLand?.id }}</a>

@@ -1,7 +1,7 @@
 export enum HissaType {
-  SINGLE_OWNER = 'Single Owner',
+  SINGLE_OWNER = 'SINGLE_OWNER',
 
-  JOINT_OWNER = 'Joint Owner',
+  JOINT_OWNER = 'JOINT_OWNER',
 
-  DIVIDED = 'divided',
+  DIVIDED = 'DIVIDED',
 }

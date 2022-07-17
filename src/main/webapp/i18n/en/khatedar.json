@@ -5,6 +5,7 @@
         "title": "Khatedars",
         "refreshListLabel": "Refresh list",
         "createLabel": "Create a new Khatedar",
+        "uploadKhatedarLabel": "Upload Khatedar",
         "createOrEditLabel": "Create or edit a Khatedar",
         "notFound": "No Khatedars found"
       },
