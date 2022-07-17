@@ -130,7 +130,7 @@
               [ngValue]="citizenOption.id === editForm.get('citizen')!.value?.id ? editForm.get('citizen')!.value : citizenOption"
               *ngFor="let citizenOption of citizensSharedCollection; trackBy: trackCitizenById"
             >
-              {{ citizenOption.id }}
+              {{ citizenOption.name }}
             </option>
           </select>
         </div>

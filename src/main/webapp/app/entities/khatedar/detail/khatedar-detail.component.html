@@ -2,13 +2,9 @@
   <div class="col-8">
     <div *ngIf="khatedar">
       <h2 data-cy="khatedarDetailsHeading"><span jhiTranslate="jhipsterApp.khatedar.detail.title">Khatedar</span></h2>
-
       <hr />
-
       <jhi-alert-error></jhi-alert-error>
-
       <jhi-alert></jhi-alert>
-
       <dl class="row-md jh-entity-details">
         <dt><span jhiTranslate="global.field.id">ID</span></dt>
         <dd>
@@ -33,7 +29,8 @@
         <dt><span jhiTranslate="jhipsterApp.khatedar.projectLand">Project Land</span></dt>
         <dd>
           <div *ngIf="khatedar.projectLand">
-            <a [routerLink]="['/project-land', khatedar.projectLand?.id, 'view']">{{ khatedar.projectLand?.id }}</a>
+            <!--            <a [routerLink]="['/project-land', khatedar.projectLand?.id, 'view']">{{ khatedar.projectLand?.id }}</a>-->
+            <a [routerLink]="['/project-land', khatedar.projectLand?.id, 'view']">{{ khatedar.projectLand.land?.khasraNumber }}</a>
           </div>
         </dd>
         <dt><span jhiTranslate="jhipsterApp.khatedar.citizen">Citizen</span></dt>

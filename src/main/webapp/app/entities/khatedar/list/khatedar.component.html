@@ -1,126 +1,153 @@
 <div>
-  <h2 id="page-heading" data-cy="KhatedarHeading">
-    <span jhiTranslate="jhipsterApp.khatedar.home.title">Khatedars</span>
+  <div>
+    <h2 id="page-heading" data-cy="KhatedarHeading">
+      <span jhiTranslate="jhipsterApp.khatedar.home.title">Khatedars</span>
 
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="jhipsterApp.khatedar.home.refreshListLabel">Refresh List</span>
-      </button>
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+          <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+          <span jhiTranslate="jhipsterApp.khatedar.home.refreshListLabel">Refresh List</span>
+        </button>
 
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-khatedar"
-        [routerLink]="['/khatedar/new']"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="jhipsterApp.khatedar.home.createLabel"> Create a new Khatedar </span>
-      </button>
-    </div>
-  </h2>
+        <button
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-primary jh-create-entity create-khatedar"
+          [routerLink]="['/khatedar/new']"
+        >
+          <fa-icon icon="plus"></fa-icon>
+          <span jhiTranslate="jhipsterApp.khatedar.home.createLabel"> Create a new Khatedar </span>
+        </button>
+      </div>
+    </h2>
 
-  <jhi-alert-error></jhi-alert-error>
+    <jhi-alert-error></jhi-alert-error>
 
-  <jhi-alert></jhi-alert>
+    <jhi-alert></jhi-alert>
 
-  <div class="alert alert-warning" id="no-result" *ngIf="khatedars?.length === 0">
-    <span jhiTranslate="jhipsterApp.khatedar.home.notFound">No khatedars found</span>
-  </div>
-
-  <div class="table-responsive" id="entities" *ngIf="khatedars && khatedars.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="caseFileNo">
-            <span jhiTranslate="jhipsterApp.khatedar.caseFileNo">Case File No</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="remarks">
-            <span jhiTranslate="jhipsterApp.khatedar.remarks">Remarks</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="hissaType">
-            <span jhiTranslate="jhipsterApp.khatedar.hissaType">Hissa Type</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="khatedarStatus">
-            <span jhiTranslate="jhipsterApp.khatedar.khatedarStatus">Khatedar Status</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="projectLand.id">
-            <span jhiTranslate="jhipsterApp.khatedar.projectLand">Project Land</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="citizen.id">
-            <span jhiTranslate="jhipsterApp.khatedar.citizen">Citizen</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let khatedar of khatedars; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a [routerLink]="['/khatedar', khatedar.id, 'view']">{{ khatedar.id }}</a>
-          </td>
-          <td>{{ khatedar.caseFileNo }}</td>
-          <td>{{ khatedar.remarks }}</td>
-          <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + khatedar.hissaType }}">{{ khatedar.hissaType }}</td>
-          <td jhiTranslate="{{ 'jhipsterApp.KhatedarStatus.' + khatedar.khatedarStatus }}">{{ khatedar.khatedarStatus }}</td>
-          <td>
-            <div *ngIf="khatedar.projectLand">
-              <a [routerLink]="['/project-land', khatedar.projectLand?.id, 'view']">{{ khatedar.projectLand?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="khatedar.citizen">
-              <a [routerLink]="['/citizen', khatedar.citizen?.id, 'view']">{{ khatedar.citizen?.id }}</a>
-            </div>
-          </td>
-          <td class="text-end">
-            <div class="btn-group">
-              <button
-                type="submit"
-                [routerLink]="['/khatedar', khatedar.id, 'view']"
-                class="btn btn-info btn-sm"
-                data-cy="entityDetailsButton"
-              >
-                <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-              </button>
-
-              <button
-                type="submit"
-                [routerLink]="['/khatedar', khatedar.id, 'edit']"
-                class="btn btn-primary btn-sm"
-                data-cy="entityEditButton"
-              >
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-              </button>
-
-              <button type="submit" (click)="delete(khatedar)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div *ngIf="khatedars && khatedars.length > 0">
-    <div class="d-flex justify-content-center">
-      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    <div class="alert alert-warning" id="no-result" *ngIf="khatedars?.length === 0">
+      <span jhiTranslate="jhipsterApp.khatedar.home.notFound">No khatedars found</span>
     </div>
 
-    <div class="d-flex justify-content-center">
-      <ngb-pagination
-        [collectionSize]="totalItems"
-        [(page)]="ngbPaginationPage"
-        [pageSize]="itemsPerPage"
-        [maxSize]="5"
-        [rotate]="true"
-        [boundaryLinks]="true"
-        (pageChange)="loadPage($event)"
-      ></ngb-pagination>
+    <div class="table-responsive" id="entities" *ngIf="khatedars && khatedars.length > 0">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+            <th scope="col" jhiSortBy="id">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="caseFileNo">
+              <span jhiTranslate="jhipsterApp.khatedar.caseFileNo">Case File No</span>
+              <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="remarks">
+              <span jhiTranslate="jhipsterApp.khatedar.remarks">Remarks</span>
+              <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="hissaType">
+              <span jhiTranslate="jhipsterApp.khatedar.hissaType">Hissa Type</span>
+              <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="khatedarStatus">
+              <span jhiTranslate="jhipsterApp.khatedar.khatedarStatus">Khatedar Status</span>
+              <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="projectLand.id">
+              <span jhiTranslate="jhipsterApp.khatedar.projectLand">Project Land</span>
+              <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="citizen.id">
+              <span jhiTranslate="jhipsterApp.khatedar.citizen">Citizen</span>
+              <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let khatedar of khatedars; trackBy: trackId" data-cy="entityTable">
+            <td>
+              <a [routerLink]="['/khatedar', khatedar.id, 'view']">{{ khatedar.id }}</a>
+            </td>
+            <td>{{ khatedar.caseFileNo }}</td>
+            <td>{{ khatedar.remarks }}</td>
+            <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + khatedar.hissaType }}">{{ khatedar.hissaType }}</td>
+
+            <td>
+              <span *ngIf="khatedar.khatedarStatus == 'NEW'" class="btn btn-primary btn-sm">{{ khatedar.khatedarStatus }} </span>
+
+              <span *ngIf="khatedar.khatedarStatus == 'SURVEY_CREATED'" class="btn btn-info btn-sm">{{ khatedar.khatedarStatus }} </span>
+
+              <span *ngIf="khatedar.khatedarStatus == 'COMPENSATION_CREATED'" class="btn btn-danger btn-sm"
+                >{{ khatedar.khatedarStatus }}
+              </span>
+
+              <span *ngIf="khatedar.khatedarStatus == 'PAYMENT_FILE_CREATED'" -->
+                class="btn btn-danger btn-sm">{{ khatedar.khatedarStatus }}-->
+              </span>
+
+              <span *ngIf="khatedar.khatedarStatus == 'PAYMENT_DONE'" class="btn btn-success btn-sm">{{ khatedar.khatedarStatus }} </span>
+            </td>
+
+            <td>
+              <div *ngIf="khatedar.projectLand">
+                <a [routerLink]="['/project-land', khatedar.projectLand?.id, 'view']">{{ khatedar.projectLand.land?.khasraNumber }}</a>
+              </div>
+            </td>
+            <td>
+              <div *ngIf="khatedar.citizen">
+                <a [routerLink]="['/citizen', khatedar.citizen?.id, 'view']">{{ khatedar.citizen?.name }}</a>
+              </div>
+            </td>
+            <td class="text-end">
+              <div class="btn-group">
+                <button
+                  type="submit"
+                  [routerLink]="['/khatedar', khatedar.id, 'view']"
+                  class="btn btn-info btn-sm"
+                  data-cy="entityDetailsButton"
+                >
+                  <fa-icon icon="eye"></fa-icon>
+                  <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                </button>
+
+                <button
+                  type="submit"
+                  [routerLink]="['/khatedar', khatedar.id, 'edit']"
+                  class="btn btn-primary btn-sm"
+                  data-cy="entityEditButton"
+                >
+                  <fa-icon icon="pencil-alt"></fa-icon>
+                  <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                </button>
+
+                <button type="submit" (click)="delete(khatedar)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                  <fa-icon icon="times"></fa-icon>
+                  <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="khatedars && khatedars.length > 0">
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [(page)]="ngbPaginationPage"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="loadPage($event)"
+        ></ngb-pagination>
+      </div>
     </div>
   </div>
 </div>
