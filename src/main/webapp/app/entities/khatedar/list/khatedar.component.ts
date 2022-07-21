@@ -1,20 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { HttpEventType, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { IKhatedar } from '../khatedar.model';
-
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { KhatedarService } from '../service/khatedar.service';
 import { KhatedarDeleteDialogComponent } from '../delete/khatedar-delete-dialog.component';
+import { Project } from 'app/entities/project/project.model';
+import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
+import { EventWithContent } from 'app/core/util/event-manager.service';
+import { Alert } from 'app/core/util/alert.service';
+import { AlertError } from 'app/shared/alert/alert-error.model';
+import { Citizen } from 'app/entities/citizen/citizen.model';
+import { ProjectLand } from 'app/entities/project-land/project-land.model';
 
 @Component({
   selector: 'jhi-khatedar',
   templateUrl: './khatedar.component.html',
 })
 export class KhatedarComponent implements OnInit {
+  @ViewChild('fileUpload')
+  fileUpload!: ElementRef;
   khatedars?: IKhatedar[];
   isLoading = false;
   totalItems = 0;
@@ -23,12 +30,21 @@ export class KhatedarComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  filterBy = 'Name';
+  searchString!: string;
+  fileBeingUploaded = false;
+  filterString!: string;
+  contextProject!: Project;
+  progress = 10;
+  eventManager: any;
+  originaKhatedars: IKhatedar[] | undefined;
 
   constructor(
     protected khatedarService: KhatedarService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    protected dataUtils: DataUtils
   ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
@@ -59,6 +75,108 @@ export class KhatedarComponent implements OnInit {
 
   trackId(_index: number, item: IKhatedar): number {
     return item.id!;
+  }
+
+  byteSize(base64String: string): string {
+    return this.dataUtils.byteSize(base64String);
+  }
+
+  openFile(base64String: string, contentType: string | null | undefined): void {
+    return this.dataUtils.openFile(base64String, contentType);
+  }
+
+  clickFileUpload(): void {
+    this.fileUpload.nativeElement.click();
+  }
+
+  uploadFile(): void {
+    this.fileBeingUploaded = true;
+    this.progress = 0;
+    this.khatedarService.upload(this.fileUpload.nativeElement.files[0]).subscribe(
+      event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress = Math.round((100 * event.loaded) / event.total!);
+        } else if (event instanceof HttpResponse) {
+          this.fileBeingUploaded = false;
+          this.eventManager.broadcast(
+            new EventWithContent<Alert>('landsysUiApp.success', {
+              type: 'success',
+              message: 'File uploaded successfully.',
+              translationKey: 'en',
+            })
+          );
+          if (event.headers.get('excelfile')) {
+            const errorFile = new Blob([event.body], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            const fileURL = window.URL.createObjectURL(errorFile);
+            const link = document.createElement('a');
+            link.href = fileURL;
+            link.download = 'records_with_error';
+            link.click();
+          }
+        }
+      },
+      (error: FileLoadError): void => {
+        this.fileBeingUploaded = false;
+        this.eventManager.broadcast(
+          new EventWithContent<AlertError>('landsysUiApp.error', {
+            ...error,
+            key: 'error.file.' + error.key,
+          })
+        );
+      },
+      () => {
+        this.loadPage();
+      }
+    );
+  }
+
+  downloadTemplate(): void {
+    this.khatedarService.downloadTemplate().subscribe(data => {
+      const fileURL = window.URL.createObjectURL(data);
+      const link = document.createElement('a');
+      link.href = fileURL;
+      link.download = 'template';
+      link.click();
+    });
+  }
+
+  searchFor(searchString: string): void {
+    this.khatedars = this.originaKhatedars;
+
+    function checkForSearchString(khatedar: IKhatedar): IKhatedar | undefined {
+      if (khatedar.citizen && ((khatedar.citizen as Citizen).name as string).toLowerCase().includes(searchString.toLowerCase())) {
+        return khatedar;
+      }
+      if (khatedar.id!.toString().toLowerCase().includes(searchString.toLowerCase())) {
+        return khatedar;
+      }
+      if ((khatedar.caseFileNo as string).toLowerCase().includes(searchString.toLowerCase())) {
+        return khatedar;
+      }
+      if (khatedar.citizen && ((khatedar.citizen as Citizen).aadhar as string).toLowerCase().includes(searchString.toLowerCase())) {
+        return khatedar;
+      }
+      if (khatedar.citizen && ((khatedar.citizen as Citizen).pan as string).toLowerCase().includes(searchString.toLowerCase())) {
+        return khatedar;
+      }
+      if (
+        khatedar.projectLand &&
+        ((khatedar.projectLand as ProjectLand).land?.khasraNumber as string).toLowerCase().includes(searchString.toLowerCase())
+      ) {
+        return khatedar;
+      }
+      return undefined;
+    }
+
+    if (searchString !== '') {
+      this.khatedars = this.khatedars?.filter(checkForSearchString);
+    }
+  }
+
+  filter(): void {
+    this.khatedarService.filter(this.filterBy, this.filterString, this.contextProject).subscribe(data => {
+      this.khatedars = data.khatedars;
+    });
   }
 
   delete(khatedar: IKhatedar): void {

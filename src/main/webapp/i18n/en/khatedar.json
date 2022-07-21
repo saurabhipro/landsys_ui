@@ -2,11 +2,16 @@
   "jhipsterApp": {
     "khatedar": {
       "home": {
+        "filter": "Filter",
+        "mobile": "Mobile",
+        "aadhar": "Aadhar",
+        "pan": "PAN",
+        "upload": "Upload",
+        "download": "Download Template",
         "title": "Khatedars",
-        "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Khatedar",
-        "uploadKhatedarLabel": "Upload Khatedar",
-        "createOrEditLabel": "Create or edit a Khatedar",
+        "refreshListLabel": "Refresh",
+        "createLabel": "Create",
+        "createOrEditLabel": "Create Khatedar",
         "notFound": "No Khatedars found"
       },
       "created": "A new Khatedar is created with identifier {{ param }}",

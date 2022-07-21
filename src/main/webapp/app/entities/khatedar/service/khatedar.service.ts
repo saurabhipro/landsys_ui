@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IKhatedar, getKhatedarIdentifier } from '../khatedar.model';
+import { Project } from 'app/entities/project/project.model';
 
 export type EntityResponseType = HttpResponse<IKhatedar>;
 export type EntityArrayResponseType = HttpResponse<IKhatedar[]>;
@@ -58,5 +59,31 @@ export class KhatedarService {
       return [...khatedarsToAdd, ...khatedarCollection];
     }
     return khatedarCollection;
+  }
+
+  downloadTemplate(): Observable<Blob> {
+    return this.http.get(`${this.resourceUrl}/downloadTemplate`, { responseType: 'blob' });
+  }
+
+  downloadCSV(): Observable<Blob> {
+    return this.http.get(`${this.resourceUrl}/downloadTemplate2`, { responseType: 'blob' });
+  }
+
+  upload(file: File): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    const req = new HttpRequest('POST', `${this.resourceUrl}/upload`, formData, {
+      reportProgress: true,
+      responseType: 'blob',
+    });
+    return this.http.request(req);
+  }
+
+  filter(filterBy: string, filterString: string, contextProject: Project): Observable<any> {
+    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+    const url = '/api/searchCitizen/projectId/' + contextProject.id + '/' + filterBy + '/' + filterString;
+    // eslint-disable-next-line no-console
+    console.log(url);
+    return this.http.get(url);
   }
 }
