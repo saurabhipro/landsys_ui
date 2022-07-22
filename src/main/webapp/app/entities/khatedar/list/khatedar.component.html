@@ -112,10 +112,10 @@
                   <span jhiTranslate="jhipsterApp.khatedar.remarks">Remarks</span>
                   <fa-icon icon="sort"></fa-icon>
                 </th>
-                <th scope="col" jhiSortBy="hissaType">
-                  <span jhiTranslate="jhipsterApp.khatedar.hissaType">Hissa Type</span>
-                  <fa-icon icon="sort"></fa-icon>
-                </th>
+                <!-- <th scope="col" jhiSortBy="hissaType">
+              <span jhiTranslate="jhipsterApp.khatedar.hissaType">Hissa Type</span>
+              <fa-icon icon="sort"></fa-icon>
+            </th> -->
                 <th scope="col" jhiSortBy="khatedarStatus">
                   <span jhiTranslate="jhipsterApp.khatedar.khatedarStatus">Khatedar Status</span>
                   <fa-icon icon="sort"></fa-icon>
@@ -138,7 +138,7 @@
                 </td>
                 <td>{{ khatedar.caseFileNo }}</td>
                 <td>{{ khatedar.remarks }}</td>
-                <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + khatedar.hissaType }}">{{ khatedar.hissaType }}</td>
+                <!-- <td jhiTranslate="{{ 'jhipsterApp.khatedar.hissaType' + khatedar.hissaType }}">{{ khatedar.hissaType }}</td> -->
 
                 <td>
                   <span *ngIf="khatedar.khatedarStatus == 'NEW'" class="btn btn-primary btn-sm">{{ khatedar.khatedarStatus }} </span>
