@@ -17,7 +17,7 @@ export interface ISurvey {
   forestValue?: number | null;
   distanceFromCity?: number | null;
   remarks?: string | null;
-  status?: SurveyStatus | null;
+  surveyStatus?: SurveyStatus | null;
   projectLand?: IProjectLand;
   landCompensation?: ILandCompensation | null;
   paymentAdvices?: IPaymentAdvice[] | null;

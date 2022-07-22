@@ -40,6 +40,10 @@
             <span jhiTranslate="jhipsterApp.survey.surveyor">Surveyor</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="projectLand.id">
+            <span jhiTranslate="jhipsterApp.survey.projectLand">Project Land</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="hissaType">
             <span jhiTranslate="jhipsterApp.survey.hissaType">Hissa Type</span>
             <fa-icon icon="sort"></fa-icon>
@@ -65,18 +69,11 @@
             <span jhiTranslate="jhipsterApp.survey.forestValue">Forest Value</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="distanceFromCity">
-            <span jhiTranslate="jhipsterApp.survey.distanceFromCity">Distance From City</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col" jhiSortBy="status">
             <span jhiTranslate="jhipsterApp.survey.status">Status</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="projectLand.id">
-            <span jhiTranslate="jhipsterApp.survey.projectLand">Project Land</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
+
           <th scope="col"></th>
         </tr>
       </thead>
@@ -86,8 +83,11 @@
             <a [routerLink]="['/survey', survey.id, 'view']">{{ survey.id }}</a>
           </td>
           <td>{{ survey.surveyor }}</td>
-
-          <!--<td jhiTranslate="{{ 'jhipsterApp.HissaType.' + survey.hissaType }}">{{ survey.hissaType }}</td>-->
+          <td>
+            <div *ngIf="survey.projectLand">
+              <a [routerLink]="['/project-land', survey.projectLand?.id, 'view']">{{ survey.projectLand.land?.khasraNumber }}</a>
+            </div>
+          </td>
           <td>
             <span *ngIf="survey.hissaType == 'SINGLE_OWNER'" class="btn btn-primary btn-sm">{{ survey.hissaType }} </span>
 
@@ -101,19 +101,13 @@
           <td>{{ survey.structuralValue }}</td>
           <td>{{ survey.horticultureValue }}</td>
           <td>{{ survey.forestValue }}</td>
-          <td>{{ survey.distanceFromCity }}</td>
 
           <td>
-            <span *ngIf="survey.status == 'OPEN'" class="btn btn-primary btn-sm">{{ survey.status }} </span>
+            <span *ngIf="survey.surveyStatus == 'OPEN'" class="btn btn-primary btn-sm">{{ survey.surveyStatus }} </span>
 
-            <span *ngIf="survey.status == 'CLOSED'" class="btn btn-success btn-sm">{{ survey.status }} </span>
+            <span *ngIf="survey.surveyStatus == 'CLOSED'" class="btn btn-success btn-sm">{{ survey.surveyStatus }} </span>
           </td>
 
-          <td>
-            <div *ngIf="survey.projectLand">
-              <a [routerLink]="['/project-land', survey.projectLand?.id, 'view']">{{ survey.projectLand?.id }}</a>
-            </div>
-          </td>
           <td class="text-end">
             <div class="btn-group">
               <button type="submit" [routerLink]="['/survey', survey.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
@@ -126,10 +120,10 @@
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
               </button>
 
-              <button type="submit" (click)="delete(survey)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-              </button>
+              <!--            <button type="submit" (click)="delete(survey)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">-->
+              <!--              <fa-icon icon="times"></fa-icon>-->
+              <!--              <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>-->
+              <!--            </button>-->
             </div>
           </td>
         </tr>
