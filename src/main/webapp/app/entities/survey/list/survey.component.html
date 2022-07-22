@@ -44,10 +44,7 @@
             <span jhiTranslate="jhipsterApp.survey.hissaType">Hissa Type</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="sharePercentage">
-            <span jhiTranslate="jhipsterApp.survey.sharePercentage">Share Percentage</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
+
           <th scope="col" jhiSortBy="area">
             <span jhiTranslate="jhipsterApp.survey.area">Area</span>
             <fa-icon icon="sort"></fa-icon>
@@ -99,7 +96,6 @@
             <span *ngIf="survey.hissaType == 'JOINT_OWNER'" class="btn btn-success btn-sm">{{ survey.hissaType }} </span>
           </td>
 
-          <td>{{ survey.sharePercentage }}</td>
           <td>{{ survey.area }}</td>
           <td>{{ survey.landMarketValue }}</td>
           <td>{{ survey.structuralValue }}</td>

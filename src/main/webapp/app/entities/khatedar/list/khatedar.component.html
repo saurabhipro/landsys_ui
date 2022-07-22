@@ -113,9 +113,9 @@
                   <fa-icon icon="sort"></fa-icon>
                 </th>
                 <!-- <th scope="col" jhiSortBy="hissaType">
-              <span jhiTranslate="jhipsterApp.khatedar.hissaType">Hissa Type</span>
-              <fa-icon icon="sort"></fa-icon>
-            </th> -->
+            <span jhiTranslate="jhipsterApp.khatedar.hissaType">Hissa Type</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th> -->
                 <th scope="col" jhiSortBy="khatedarStatus">
                   <span jhiTranslate="jhipsterApp.khatedar.khatedarStatus">Khatedar Status</span>
                   <fa-icon icon="sort"></fa-icon>
@@ -147,12 +147,14 @@
                     >{{ khatedar.khatedarStatus }}
                   </span>
 
-                  <span *ngIf="khatedar.khatedarStatus == 'COMPENSATION_CREATED'" class="btn btn-danger btn-sm"
+                  <span
+                    *ngIf="khatedar?.khatedarStatus == 'COMPENSATION_CREATED' || khatedar?.khatedarStatus === 'PENDING_FOR_PAYMENT'"
+                    class="btn btn-danger btn-sm"
                     >{{ khatedar.khatedarStatus }}
                   </span>
 
-                  <span *ngIf="khatedar.khatedarStatus == 'PAYMENT_FILE_CREATED'" -->
-                    class="btn btn-danger btn-sm">{{ khatedar.khatedarStatus }}-->
+                  <span *ngIf="khatedar.khatedarStatus == 'PAYMENT_FILE_CREATED'" class="btn btn-danger btn-sm"
+                    >{{ khatedar.khatedarStatus }}
                   </span>
 
                   <span *ngIf="khatedar.khatedarStatus == 'PAYMENT_DONE'" class="btn btn-success btn-sm"

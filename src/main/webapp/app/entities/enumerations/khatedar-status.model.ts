@@ -10,4 +10,6 @@ export enum KhatedarStatus {
   PAYMENT_DONE = 'PAYMENT_DONE',
 
   COURT_CASE = 'COURT_CASE',
+
+  PENDING_FOR_PAYMENT = 'PENDING_FOR_PAYMENT',
 }

@@ -32,49 +32,54 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="photo"><span jhiTranslate="jhipsterApp.citizen.photo">Photo</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="name"><span jhiTranslate="jhipsterApp.citizen.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="id">
+            <span jhiTranslate="global.field.id">ID</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <span jhiTranslate="jhipsterApp.citizen.name">Name</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="address">
-            <span jhiTranslate="jhipsterApp.citizen.address">Address</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.citizen.address">Address</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="mobileNumber">
-            <span jhiTranslate="jhipsterApp.citizen.mobileNumber">Mobile Number</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.citizen.mobileNumber">Mobile Number</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="dob"><span jhiTranslate="jhipsterApp.citizen.dob">Dob</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dob">
+            <span jhiTranslate="jhipsterApp.citizen.dob">Dob</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="accountName">
-            <span jhiTranslate="jhipsterApp.citizen.accountName">Account Name</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.citizen.accountName">Account Name</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="accountNumber">
-            <span jhiTranslate="jhipsterApp.citizen.accountNumber">Account Number</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.citizen.accountNumber">Account Number</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="fatherName">
-            <span jhiTranslate="jhipsterApp.citizen.fatherName">Father Name</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="spouseName">
-            <span jhiTranslate="jhipsterApp.citizen.spouseName">Spouse Name</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="successorName">
-            <span jhiTranslate="jhipsterApp.citizen.successorName">Successor Name</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.citizen.fatherName">Father Name</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="aadhar">
-            <span jhiTranslate="jhipsterApp.citizen.aadhar">Aadhar</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.citizen.aadhar">Aadhar</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="pan"><span jhiTranslate="jhipsterApp.citizen.pan">Pan</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="aadharImage">
-            <span jhiTranslate="jhipsterApp.citizen.aadharImage">Aadhar Image</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="panImage">
-            <span jhiTranslate="jhipsterApp.citizen.panImage">Pan Image</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="pan">
+            <span jhiTranslate="jhipsterApp.citizen.pan">Pan</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="accountNo">
-            <span jhiTranslate="jhipsterApp.citizen.accountNo">Account No</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.citizen.accountNo">Account No</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="accNoImage">
-            <span jhiTranslate="jhipsterApp.citizen.accNoImage">Acc No Image</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+
           <th scope="col" jhiSortBy="bankBranch.name">
-            <span jhiTranslate="jhipsterApp.citizen.bankBranch">Bank Branch</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.citizen.bankBranch">Bank Branch</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -84,12 +89,12 @@
           <td>
             <a [routerLink]="['/citizen', citizen.id, 'view']">{{ citizen.id }}</a>
           </td>
-          <td>
-            <a *ngIf="citizen.photo" (click)="openFile(citizen.photo, citizen.photoContentType)">
-              <img [src]="'data:' + citizen.photoContentType + ';base64,' + citizen.photo" style="max-height: 30px" alt="citizen image" />
-            </a>
-            <span *ngIf="citizen.photo">{{ citizen.photoContentType }}, {{ byteSize(citizen.photo) }}</span>
-          </td>
+          <!--          <td>-->
+          <!--            <a *ngIf="citizen.photo" (click)="openFile(citizen.photo, citizen.photoContentType)">-->
+          <!--              <img [src]="'data:' + citizen.photoContentType + ';base64,' + citizen.photo" style="max-height: 30px" alt="citizen image" />-->
+          <!--            </a>-->
+          <!--            <span *ngIf="citizen.photo">{{ citizen.photoContentType }}, {{ byteSize(citizen.photo) }}</span>-->
+          <!--          </td>-->
           <td>{{ citizen.name }}</td>
           <td>{{ citizen.address }}</td>
           <td>{{ citizen.mobileNumber }}</td>
@@ -97,36 +102,9 @@
           <td>{{ citizen.accountName }}</td>
           <td>{{ citizen.accountNumber }}</td>
           <td>{{ citizen.fatherName }}</td>
-          <td>{{ citizen.spouseName }}</td>
-          <td>{{ citizen.successorName }}</td>
           <td>{{ citizen.aadhar }}</td>
           <td>{{ citizen.pan }}</td>
-          <td>
-            <a
-              *ngIf="citizen.aadharImage"
-              (click)="openFile(citizen.aadharImage, citizen.aadharImageContentType)"
-              jhiTranslate="entity.action.open"
-              >open</a
-            >
-            <span *ngIf="citizen.aadharImage">{{ citizen.aadharImageContentType }}, {{ byteSize(citizen.aadharImage) }}</span>
-          </td>
-          <td>
-            <a *ngIf="citizen.panImage" (click)="openFile(citizen.panImage, citizen.panImageContentType)" jhiTranslate="entity.action.open"
-              >open</a
-            >
-            <span *ngIf="citizen.panImage">{{ citizen.panImageContentType }}, {{ byteSize(citizen.panImage) }}</span>
-          </td>
           <td>{{ citizen.accountNo }}</td>
-          <td>
-            <a *ngIf="citizen.accNoImage" (click)="openFile(citizen.accNoImage, citizen.accNoImageContentType)">
-              <img
-                [src]="'data:' + citizen.accNoImageContentType + ';base64,' + citizen.accNoImage"
-                style="max-height: 30px"
-                alt="citizen image"
-              />
-            </a>
-            <span *ngIf="citizen.accNoImage">{{ citizen.accNoImageContentType }}, {{ byteSize(citizen.accNoImage) }}</span>
-          </td>
           <td>
             <div *ngIf="citizen.bankBranch">
               <a [routerLink]="['/bank-branch', citizen.bankBranch?.id, 'view']">{{ citizen.bankBranch?.name }}</a>
