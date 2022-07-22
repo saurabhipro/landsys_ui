@@ -40,11 +40,15 @@
             <span jhiTranslate="jhipsterApp.landCompensation.projectLand">Project Land</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
+
+          <th scope="col" jhiSortBy="survey.id">
+            <span jhiTranslate="jhipsterApp.landCompensation.survey">Survey</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="hissaType">
             <span jhiTranslate="jhipsterApp.landCompensation.hissaType">Hissa Type</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-
           <th scope="col" jhiSortBy="area">
             <span jhiTranslate="jhipsterApp.landCompensation.area">Area</span>
             <fa-icon icon="sort"></fa-icon>
@@ -73,18 +77,12 @@
             <span jhiTranslate="jhipsterApp.landCompensation.additionalCompensation">Additional Compensation</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="status">
-            <span jhiTranslate="jhipsterApp.landCompensation.compensationStatus">Status</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
-
           <th scope="col" jhiSortBy="paymentAmount">
             <span jhiTranslate="jhipsterApp.landCompensation.paymentAmount">Payment Amount</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-
-          <th scope="col" jhiSortBy="survey.id">
-            <span jhiTranslate="jhipsterApp.landCompensation.survey">Survey</span>
+          <th scope="col" jhiSortBy="status">
+            <span jhiTranslate="jhipsterApp.landCompensation.compensationStatus">Status</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
@@ -97,28 +95,32 @@
           </td>
           <td>
             <div *ngIf="landCompensation.projectLand">
-              <a [routerLink]="['/project-land', landCompensation.projectLand?.id, 'view']">{{ landCompensation.projectLand?.id }}</a>
+              <a [routerLink]="['/project-land', landCompensation.projectLand?.id, 'view']">{{
+                landCompensation.projectLand.land?.khasraNumber
+              }}</a>
             </div>
           </td>
-          <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + landCompensation.hissaType }}">{{ landCompensation.hissaType }}</td>
-
-          <td>{{ landCompensation.area }}</td>
-          <td>{{ landCompensation.landMarketValue }}</td>
-          <td>{{ landCompensation.structuralCompensation }}</td>
-          <td>{{ landCompensation.horticultureCompensation }}</td>
-          <td>{{ landCompensation.forestCompensation }}</td>
-          <td>{{ landCompensation.solatiumMoney }}</td>
-          <td>{{ landCompensation.additionalCompensation }}</td>
-          <!--          <td jhiTranslate="{{ 'jhipsterApp.status.' + landCompensation.status }}">{{ landCompensation.status }}</td>-->
-          <td>{{ landCompensation.compensationStatus }}</td>
-          <!--          <td>{{ landCompensation.orderDate | formatMediumDate }}</td>-->
-          <td>{{ landCompensation.paymentAmount }}</td>
 
           <td>
             <div *ngIf="landCompensation.survey">
               <a [routerLink]="['/survey', landCompensation.survey?.id, 'view']">{{ landCompensation.survey?.id }}</a>
             </div>
           </td>
+
+          <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + landCompensation.hissaType }}">{{ landCompensation.hissaType }}</td>
+
+          <td>{{ landCompensation.area }}</td>
+          <td>{{ landCompensation.landMarketValue | currency: '&#8377;' }}</td>
+          <td>{{ landCompensation.structuralCompensation | currency: '&#8377;' }}</td>
+          <td>{{ landCompensation.horticultureCompensation | currency: '&#8377;' }}</td>
+          <td>{{ landCompensation.forestCompensation | currency: '&#8377;' }}</td>
+          <td>{{ landCompensation.solatiumMoney | currency: '&#8377;' }}</td>
+          <td>{{ landCompensation.additionalCompensation | currency: '&#8377;' }}</td>
+          <!--          <td jhiTranslate="{{ 'jhipsterApp.status.' + landCompensation.status }}">{{ landCompensation.status }}</td>-->
+          <!--          <td>{{ landCompensation.orderDate | formatMediumDate }}</td>-->
+          <td>{{ landCompensation.paymentAmount | currency: '&#8377;' }}</td>
+          <td>{{ landCompensation.compensationStatus }}</td>
+
           <td class="text-end">
             <div class="btn-group">
               <button
@@ -139,11 +141,6 @@
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-              </button>
-
-              <button type="submit" (click)="delete(landCompensation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
               </button>
             </div>
           </td>

@@ -97,10 +97,10 @@
           </td>
 
           <td>{{ survey.area }}</td>
-          <td>{{ survey.landMarketValue }}</td>
-          <td>{{ survey.structuralValue }}</td>
-          <td>{{ survey.horticultureValue }}</td>
-          <td>{{ survey.forestValue }}</td>
+          <td>{{ survey.landMarketValue | currency: '&#8377;' }}</td>
+          <td>{{ survey.structuralValue | currency: '&#8377;' }}</td>
+          <td>{{ survey.horticultureValue | currency: '&#8377;' }}</td>
+          <td>{{ survey.forestValue | currency: '&#8377;' }}</td>
 
           <td>
             <span *ngIf="survey.surveyStatus == 'OPEN'" class="btn btn-primary btn-sm">{{ survey.surveyStatus }} </span>
