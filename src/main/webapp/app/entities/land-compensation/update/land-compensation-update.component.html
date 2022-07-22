@@ -193,7 +193,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.status" for="field_status">Status</label>
+          <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.compensationStatus" for="field_status">Status</label>
           <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
             <option [ngValue]="null">{{ 'jhipsterApp.CompensationStatus.null' | translate }}</option>
             <option *ngFor="let compensationStatus of compensationStatusValues" [value]="compensationStatus">

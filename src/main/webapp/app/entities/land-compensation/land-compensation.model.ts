@@ -17,7 +17,7 @@ export interface ILandCompensation {
   forestCompensation?: number | null;
   solatiumMoney?: number | null;
   additionalCompensation?: number | null;
-  status?: CompensationStatus | null;
+  compensationStatus?: CompensationStatus | null;
   orderDate?: dayjs.Dayjs | null;
   paymentAmount?: number | null;
   interestRate?: number | null;

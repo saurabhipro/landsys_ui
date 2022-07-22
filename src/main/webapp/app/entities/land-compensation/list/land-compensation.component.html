@@ -32,57 +32,60 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="hissaType">
-            <span jhiTranslate="jhipsterApp.landCompensation.hissaType">Hissa Type</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="id">
+            <span jhiTranslate="global.field.id">ID</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="projectLand.id">
+            <span jhiTranslate="jhipsterApp.landCompensation.projectLand">Project Land</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="hissaType">
+            <span jhiTranslate="jhipsterApp.landCompensation.hissaType">Hissa Type</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+
           <th scope="col" jhiSortBy="area">
-            <span jhiTranslate="jhipsterApp.landCompensation.area">Area</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.landCompensation.area">Area</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="landMarketValue">
-            <span jhiTranslate="jhipsterApp.landCompensation.landMarketValue">Land Market Value</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.landCompensation.landMarketValue">Land Market Value</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="structuralCompensation">
-            <span jhiTranslate="jhipsterApp.landCompensation.structuralCompensation">Structural Compensation</span>
+            <span jhiTranslate="jhipsterApp.landCompensation.structuralCompensation">Structura</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="horticultureCompensation">
-            <span jhiTranslate="jhipsterApp.landCompensation.horticultureCompensation">Horticulture Compensation</span>
+            <span jhiTranslate="jhipsterApp.landCompensation.horticultureCompensation">Horticulture</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="forestCompensation">
-            <span jhiTranslate="jhipsterApp.landCompensation.forestCompensation">Forest Compensation</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.landCompensation.forestCompensation">Forest</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="solatiumMoney">
-            <span jhiTranslate="jhipsterApp.landCompensation.solatiumMoney">Solatium Money</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.landCompensation.solatiumMoney">Solatium Money</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="additionalCompensation">
             <span jhiTranslate="jhipsterApp.landCompensation.additionalCompensation">Additional Compensation</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="status">
-            <span jhiTranslate="jhipsterApp.landCompensation.status">Status</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.landCompensation.compensationStatus">Status</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="orderDate">
-            <span jhiTranslate="jhipsterApp.landCompensation.orderDate">Order Date</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+
           <th scope="col" jhiSortBy="paymentAmount">
-            <span jhiTranslate="jhipsterApp.landCompensation.paymentAmount">Payment Amount</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.landCompensation.paymentAmount">Payment Amount</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="interestRate">
-            <span jhiTranslate="jhipsterApp.landCompensation.interestRate">Interest Rate</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="interestDays">
-            <span jhiTranslate="jhipsterApp.landCompensation.interestDays">Interest Days</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="transactionId">
-            <span jhiTranslate="jhipsterApp.landCompensation.transactionId">Transaction Id</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="projectLand.id">
-            <span jhiTranslate="jhipsterApp.landCompensation.projectLand">Project Land</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+
           <th scope="col" jhiSortBy="survey.id">
-            <span jhiTranslate="jhipsterApp.landCompensation.survey">Survey</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.landCompensation.survey">Survey</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -92,7 +95,13 @@
           <td>
             <a [routerLink]="['/land-compensation', landCompensation.id, 'view']">{{ landCompensation.id }}</a>
           </td>
+          <td>
+            <div *ngIf="landCompensation.projectLand">
+              <a [routerLink]="['/project-land', landCompensation.projectLand?.id, 'view']">{{ landCompensation.projectLand?.id }}</a>
+            </div>
+          </td>
           <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + landCompensation.hissaType }}">{{ landCompensation.hissaType }}</td>
+
           <td>{{ landCompensation.area }}</td>
           <td>{{ landCompensation.landMarketValue }}</td>
           <td>{{ landCompensation.structuralCompensation }}</td>
@@ -100,17 +109,11 @@
           <td>{{ landCompensation.forestCompensation }}</td>
           <td>{{ landCompensation.solatiumMoney }}</td>
           <td>{{ landCompensation.additionalCompensation }}</td>
-          <td jhiTranslate="{{ 'jhipsterApp.CompensationStatus.' + landCompensation.status }}">{{ landCompensation.status }}</td>
-          <td>{{ landCompensation.orderDate | formatMediumDate }}</td>
+          <!--          <td jhiTranslate="{{ 'jhipsterApp.status.' + landCompensation.status }}">{{ landCompensation.status }}</td>-->
+          <td>{{ landCompensation.compensationStatus }}</td>
+          <!--          <td>{{ landCompensation.orderDate | formatMediumDate }}</td>-->
           <td>{{ landCompensation.paymentAmount }}</td>
-          <td>{{ landCompensation.interestRate }}</td>
-          <td>{{ landCompensation.interestDays }}</td>
-          <td>{{ landCompensation.transactionId }}</td>
-          <td>
-            <div *ngIf="landCompensation.projectLand">
-              <a [routerLink]="['/project-land', landCompensation.projectLand?.id, 'view']">{{ landCompensation.projectLand?.id }}</a>
-            </div>
-          </td>
+
           <td>
             <div *ngIf="landCompensation.survey">
               <a [routerLink]="['/survey', landCompensation.survey?.id, 'view']">{{ landCompensation.survey?.id }}</a>
