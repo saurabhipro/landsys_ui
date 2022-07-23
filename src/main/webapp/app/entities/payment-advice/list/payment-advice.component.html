@@ -32,55 +32,62 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="id">
+            <span jhiTranslate="global.field.id">ID</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="accountHolderName">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderName">Account Holder Name</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderName">Account Holder Name</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="accountHolderBankName">
             <span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderBankName">Account Holder Bank Name</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="paymentAmount">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.paymentAmount">Payment Amount</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.paymentAdvice.paymentAmount">Payment Amount</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="bankName">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.bankName">Bank Name</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.paymentAdvice.bankName">Bank Name</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="accountNumber">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.accountNumber">Account Number</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.paymentAdvice.accountNumber">Account Number</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="ifscCode">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.ifscCode">Ifsc Code</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="checkNumber">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.checkNumber">Check Number</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="micrCode">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.micrCode">Micr Code</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.paymentAdvice.ifscCode">Ifsc Code</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="paymentAdviceType">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.paymentAdviceType">Payment Advice Type</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.paymentAdvice.paymentAdviceType">Payment Advice Type</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="referenceNumber">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.referenceNumber">Reference Number</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.paymentAdvice.referenceNumber">Reference Number</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="paymentStatus">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.paymentStatus">Payment Status</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+
           <th scope="col" jhiSortBy="hissaType">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.hissaType">Hissa Type</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.paymentAdvice.hissaType">Hissa Type</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="khatedar.id">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.khatedar">Khatedar</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.paymentAdvice.khatedar">Khatedar</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="landCompensation.id">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.landCompensation">Land Compensation</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.paymentAdvice.landCompensation">Land Compensation</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="projectLand.id">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="survey.id">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.survey">Survey</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="paymentStatus">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.paymentStatus">Payment Status</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -96,17 +103,18 @@
           <td>{{ paymentAdvice.bankName }}</td>
           <td>{{ paymentAdvice.accountNumber }}</td>
           <td>{{ paymentAdvice.ifscCode }}</td>
-          <td>{{ paymentAdvice.checkNumber }}</td>
-          <td>{{ paymentAdvice.micrCode }}</td>
-          <td jhiTranslate="{{ 'jhipsterApp.PaymentAdviceType.' + paymentAdvice.paymentAdviceType }}">
+          <!--          <td jhiTranslate="{{ 'jhipsterApp.PaymentAdviceType.' + paymentAdvice.paymentAdviceType }}">-->
+          <!--            {{ paymentAdvice.paymentAdviceType }}-->
+          <!--          </td>-->
+          <td>
             {{ paymentAdvice.paymentAdviceType }}
           </td>
           <td>{{ paymentAdvice.referenceNumber }}</td>
-          <td jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + paymentAdvice.paymentStatus }}">{{ paymentAdvice.paymentStatus }}</td>
+
           <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + paymentAdvice.hissaType }}">{{ paymentAdvice.hissaType }}</td>
           <td>
             <div *ngIf="paymentAdvice.khatedar">
-              <a [routerLink]="['/khatedar', paymentAdvice.khatedar?.id, 'view']">{{ paymentAdvice.khatedar?.id }}</a>
+              <a [routerLink]="['/khatedar', paymentAdvice.khatedar?.id, 'view']">{{ paymentAdvice.khatedar.citizen?.name }}</a>
             </div>
           </td>
           <td>
@@ -121,11 +129,7 @@
               <a [routerLink]="['/project-land', paymentAdvice.projectLand?.id, 'view']">{{ paymentAdvice.projectLand?.id }}</a>
             </div>
           </td>
-          <td>
-            <div *ngIf="paymentAdvice.survey">
-              <a [routerLink]="['/survey', paymentAdvice.survey?.id, 'view']">{{ paymentAdvice.survey?.id }}</a>
-            </div>
-          </td>
+          <td jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + paymentAdvice.paymentStatus }}">{{ paymentAdvice.paymentStatus }}</td>
           <td class="text-end">
             <div class="btn-group">
               <button
@@ -146,11 +150,6 @@
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-              </button>
-
-              <button type="submit" (click)="delete(paymentAdvice)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
               </button>
             </div>
           </td>

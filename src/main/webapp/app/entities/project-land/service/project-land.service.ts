@@ -6,6 +6,7 @@ import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IProjectLand, getProjectLandIdentifier } from '../project-land.model';
+import { ISurvey } from '../../survey/survey.model';
 
 export type EntityResponseType = HttpResponse<IProjectLand>;
 export type EntityArrayResponseType = HttpResponse<IProjectLand[]>;
@@ -63,5 +64,9 @@ export class ProjectLandService {
       return [...projectLandsToAdd, ...projectLandCollection];
     }
     return projectLandCollection;
+  }
+
+  getSurvey(id: number): Observable<EntityResponseType> {
+    return this.http.get<ISurvey>(`api/surveys/byProjectLand?id=${id}`, { observe: 'response' });
   }
 }

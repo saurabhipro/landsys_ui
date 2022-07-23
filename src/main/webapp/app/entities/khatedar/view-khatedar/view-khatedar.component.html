@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-2">
+    <div class="card">
+      <img
+        *ngIf="citizen.photo"
+        [src]="'data:' + citizen.photoContentType + ';base64,' + citizen.photo"
+        style="height: 200px; width: 200px"
+        alt="citizen image"
+      />
+      <img *ngIf="!citizen.photo" src="content/images/jhipster_family_member_1_head-192.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{ khatedar.citizen?.name }}</h5>
+        <dl class="row-md jh-entity-details">
+          <dt>
+            <span jhiTranslate="jhipsterApp.khatedar.caseFileNo" [ngbTooltip]="'jhipsterApp.khatedar.help.caseFileNo' | translate"
+              >Case File Number</span
+            >
+          </dt>
+          <dd>
+            <span>{{ khatedar.caseFileNo }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="jhipsterApp.khatedar.remarks" [ngbTooltip]="'jhipsterApp.khatedar.help.remarks' | translate">Pan</span>
+          </dt>
+          <dd>
+            <span>{{ khatedar.remarks }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.projectLand.hissaType"></span></dt>
+          <dd>
+            <span>{{ projectLand.hissaType }}</span>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div class="col-10">
+    <jhi-alert-error></jhi-alert-error>
+    <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+      <li *ngFor="let tab of tabs" class="nav-item" role="presentation">
+        <button [class]="tab.tabClass" (click)="selectTab(tab)">
+          <strong>{{ tab.title }}</strong>
+        </button>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div *ngFor="let tab of tabs" [class]="tab.tabContentClass + ' card-header'">
+        <!--        <jhi-khatedar-detail
+                  *ngIf="tab.name === 'Khatedar'"
+                  [khatedar]="khatedar"
+                  (next)="gotoNext()"
+                  (previous)="gotoPrevious()"
+                ></jhi-khatedar-detail>-->
+        <jhi-view-citizen
+          *ngIf="tab.name === 'Khatedar'"
+          [citizen]="citizen"
+          (next)="gotoNext()"
+          (previous)="gotoPrevious()"
+        ></jhi-view-citizen>
+        <!--        <jhi-land-detail *ngIf="tab.name === 'Land'" [land]="land" (next)="gotoNext()"-->
+        <!--                         (previous)="gotoPrevious()"></jhi-land-detail>-->
+        <jhi-view-survey *ngIf="tab.name === 'Survey'" [survey]="survey" (next)="gotoNext()" (previous)="gotoPrevious()"></jhi-view-survey>
+        <!--        <jhi-compensation-detail *ngIf="tab.name === 'Compensation'"></jhi-compensation-detail>-->
+        <!--        <jhi-khatedar-payment-detail *ngIf="tab.name === 'Payment'"></jhi-khatedar-payment-detail>-->
+      </div>
+    </div>
+  </div>
+</div>
