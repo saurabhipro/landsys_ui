@@ -67,6 +67,8 @@ export class ProjectLandService {
   }
 
   getSurvey(id: number): Observable<EntityResponseType> {
-    return this.http.get<ISurvey>(`api/surveys/byProjectLand?id=${id}`, { observe: 'response' });
+    // return this.http.get<ISurvey>(`api/surveys/byProjectLand?id=${id}`, { observe: 'response' });
+    //http://localhost:9000/api/surveys?projectLandId.in=21&projectLandId.in=0&page=0&size=20
+    return this.http.get<ISurvey>(`/api/surveys?projectLandId.in=${id}`, { observe: 'response' });
   }
 }

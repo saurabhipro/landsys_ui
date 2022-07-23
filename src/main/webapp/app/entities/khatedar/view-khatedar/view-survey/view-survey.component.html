@@ -1,90 +1,74 @@
-<h2 *ngIf="!survey">No Survey Found!</h2>
-<h3 *ngIf="survey">
-  <strong>{{ 'jhipsterApp.survey.surveyor' | translate }}:</strong> {{ survey?.surveyor }}
-</h3>
-<div *ngIf="survey">
-  <div class="row">
-    <div class="col-4">
-      <!--<dt>
-        <span jhiTranslate="jhipsterApp.survey.surveyor"
-              [ngbTooltip]="'jhipsterApp.survey.help.surveyor' | translate">Surveyor</span>
-      </dt>
-      <dd>
-        <span>{{ survey.surveyor }}</span>
-      </dd>-->
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="survey">
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
       <dl class="row-md jh-entity-details">
-        <dt>
-          <span jhiTranslate="jhipsterApp.survey.remarks" [ngbTooltip]="'jhipsterApp.survey.help.remarks' | translate">Remarks</span>
-        </dt>
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
         <dd>
-          <span>{{ survey.remarks }}</span>
+          <span>{{ survey.id }}</span>
         </dd>
-        <dt><span jhiTranslate="jhipsterApp.survey.area" [ngbTooltip]="'jhipsterApp.survey.help.area' | translate">Area</span></dt>
+        <dt><span jhiTranslate="jhipsterApp.survey.surveyor">Surveyor</span></dt>
+        <dd>
+          <span>{{ survey.surveyor }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.hissaType">Hissa Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterApp.HissaType.' + survey.hissaType }}">{{ survey.hissaType }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.sharePercentage">Share Percentage</span></dt>
+        <dd>
+          <span>{{ survey.sharePercentage }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.area">Area</span></dt>
         <dd>
           <span>{{ survey.area }}</span>
         </dd>
-        <dt>
-          <span jhiTranslate="jhipsterApp.survey.marketValue" [ngbTooltip]="'jhipsterApp.survey.help.marketValue' | translate"
-            >Market Value</span
-          >
-        </dt>
+        <dt><span jhiTranslate="jhipsterApp.survey.landMarketValue">Land Market Value</span></dt>
         <dd>
           <span>{{ survey.landMarketValue }}</span>
         </dd>
-        <dt>
-          <span jhiTranslate="jhipsterApp.survey.distanceFromCity" [ngbTooltip]="'jhipsterApp.survey.help.distanceFromCity' | translate"
-            >Distance From City</span
-          >
-        </dt>
-        <dd>
-          <span>{{ survey.distanceFromCity }}</span>
-        </dd>
-      </dl>
-    </div>
-    <div class="col-4">
-      <dl>
-        <dt>
-          <span jhiTranslate="jhipsterApp.survey.structuralLoss" [ngbTooltip]="'jhipsterApp.survey.help.structuralLoss' | translate"
-            >Structural Loss</span
-          >
-        </dt>
+        <dt><span jhiTranslate="jhipsterApp.survey.structuralValue">Structural Value</span></dt>
         <dd>
           <span>{{ survey.structuralValue }}</span>
         </dd>
-        <dt>
-          <span jhiTranslate="jhipsterApp.survey.horicultureLoss" [ngbTooltip]="'jhipsterApp.survey.help.horicultureLoss' | translate"
-            >Horiculture Loss</span
-          >
-        </dt>
+        <dt><span jhiTranslate="jhipsterApp.survey.horticultureValue">Horticulture Value</span></dt>
         <dd>
           <span>{{ survey.horticultureValue }}</span>
         </dd>
-        <dt>
-          <span jhiTranslate="jhipsterApp.survey.forestDept" [ngbTooltip]="'jhipsterApp.survey.help.forestDept' | translate"
-            >Forest Dept</span
-          >
-        </dt>
+        <dt><span jhiTranslate="jhipsterApp.survey.forestValue">Forest Value</span></dt>
         <dd>
           <span>{{ survey.forestValue }}</span>
         </dd>
-        <!--<dt><span jhiTranslate="jhipsterApp.survey.khatedar">Khatedar</span></dt>
+        <dt><span jhiTranslate="jhipsterApp.survey.distanceFromCity">Distance From City</span></dt>
         <dd>
-          <div *ngIf="survey.citizen">
-            <a [routerLink]="['/khatedar', survey.citizen?.id, 'view']">{{ survey.citizen?.name }}</a>
+          <span>{{ survey.distanceFromCity }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.remarks">Remarks</span></dt>
+        <dd>
+          <span>{{ survey.remarks }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterApp.SurveyStatus.' + survey.surveyStatus }}">{{ survey.surveyStatus }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.survey.projectLand">Project Land</span></dt>
+        <dd>
+          <div *ngIf="survey.projectLand">
+            <a [routerLink]="['/project-land', survey.projectLand?.id, 'view']">{{ survey.projectLand?.id }}</a>
           </div>
-        </dd>-->
+        </dd>
       </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/survey', survey.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
     </div>
   </div>
-</div>
-<div class="col-4">
-  <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-    <span jhiTranslate="entity.action.return">Return</span>
-  </button>
-  <button type="button" (click)="previous.emit()" class="btn btn-primary">
-    <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.previous">Previous</span>
-  </button>
-  <button type="button" (click)="next.emit()" class="btn btn-primary">
-    <span jhiTranslate="entity.action.next">Edit</span>
-  </button>
 </div>

@@ -19,7 +19,7 @@ const khatedarRoute: Routes = [
   },
 
   {
-    path: ':id/view1',
+    path: ':id/view',
     component: ViewKhatedarComponent,
     resolve: {
       khatedar: KhatedarRoutingResolveService,
@@ -27,14 +27,14 @@ const khatedarRoute: Routes = [
     canActivate: [UserRouteAccessService],
   },
 
-  {
-    path: ':id/view',
-    component: KhatedarDetailComponent,
-    resolve: {
-      khatedar: KhatedarRoutingResolveService,
-    },
-    canActivate: [UserRouteAccessService],
-  },
+  // {
+  //   path: ':id/view',
+  //   component: KhatedarDetailComponent,
+  //   resolve: {
+  //     khatedar: KhatedarRoutingResolveService,
+  //   },
+  //   canActivate: [UserRouteAccessService],
+  // },
 
   {
     path: 'new',

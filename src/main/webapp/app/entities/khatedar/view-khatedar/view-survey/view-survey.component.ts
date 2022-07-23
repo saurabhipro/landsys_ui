@@ -8,8 +8,7 @@ import { ISurvey } from '../../../survey/survey.model';
   styleUrls: ['./view-survey.component.scss'],
 })
 export class ViewSurveyComponent {
-  @Input()
-  survey!: ISurvey;
+  @Input() survey: ISurvey | undefined;
   @Output() next = new EventEmitter();
   @Output() previous = new EventEmitter();
 

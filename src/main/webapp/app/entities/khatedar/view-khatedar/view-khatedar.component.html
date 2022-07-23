@@ -42,26 +42,28 @@
         </button>
       </li>
     </ul>
+
     <div class="tab-content" id="pills-tabContent">
-      <div *ngFor="let tab of tabs" [class]="tab.tabContentClass + ' card-header'">
-        <!--        <jhi-khatedar-detail
-                  *ngIf="tab.name === 'Khatedar'"
-                  [khatedar]="khatedar"
-                  (next)="gotoNext()"
-                  (previous)="gotoPrevious()"
-                ></jhi-khatedar-detail>-->
-        <jhi-view-citizen
-          *ngIf="tab.name === 'Khatedar'"
-          [citizen]="citizen"
-          (next)="gotoNext()"
-          (previous)="gotoPrevious()"
-        ></jhi-view-citizen>
-        <!--        <jhi-land-detail *ngIf="tab.name === 'Land'" [land]="land" (next)="gotoNext()"-->
-        <!--                         (previous)="gotoPrevious()"></jhi-land-detail>-->
-        <jhi-view-survey *ngIf="tab.name === 'Survey'" [survey]="survey" (next)="gotoNext()" (previous)="gotoPrevious()"></jhi-view-survey>
-        <!--        <jhi-compensation-detail *ngIf="tab.name === 'Compensation'"></jhi-compensation-detail>-->
-        <!--        <jhi-khatedar-payment-detail *ngIf="tab.name === 'Payment'"></jhi-khatedar-payment-detail>-->
-      </div>
+      <!--      <div *ngFor="let tab of tabs" [class]="tab.tabContentClass + ' card-header'">-->
+      <!--        <jhi-khatedar-detail
+                *ngIf="tab.name === 'Khatedar'"
+                [khatedar]="khatedar"
+                (next)="gotoNext()"
+                (previous)="gotoPrevious()"
+              ></jhi-khatedar-detail>-->
+
+      <jhi-view-citizen *ngIf="selectedTab.name === 'Khatedar'" [citizen]="citizen"> </jhi-view-citizen>
+
+      <jhi-view-survey *ngIf="selectedTab.name === 'Survey'" [survey]="survey" (next)="gotoNext()" (previous)="gotoPrevious()">
+      </jhi-view-survey>
+
+      <!--        <jhi-land-detail *ngIf="tab.name === 'Land'" [land]="land" (next)="gotoNext()"-->
+      <!--                         (previous)="gotoPrevious()"></jhi-land-detail>-->
+      <!--        <jhi-view-survey *ngIf="tab.name === 'Survey'" [survey]="survey" (next)="gotoNext()"-->
+      <!--                         (previous)="gotoPrevious()"></jhi-view-survey>-->
+      <!--        <jhi-compensation-detail *ngIf="tab.name === 'Compensation'"></jhi-compensation-detail>-->
+      <!--        <jhi-khatedar-payment-detail *ngIf="tab.name === 'Payment'"></jhi-khatedar-payment-detail>-->
+      <!--    </div>-->
     </div>
   </div>
 </div>

@@ -38,29 +38,29 @@ export class ViewKhatedarComponent implements OnInit {
       tabClass: 'nav-link active',
       tabContentClass: 'tab-pane fade show active',
     },
+    // {
+    //   index: 1,
+    //   name: 'Land',
+    //   title: 'Land Details',
+    //   tabClass: 'nav-link',
+    //   tabContentClass: 'tab-pane fade',
+    // },
     {
       index: 1,
-      name: 'Land',
-      title: 'Land Details',
-      tabClass: 'nav-link',
-      tabContentClass: 'tab-pane fade',
-    },
-    {
-      index: 2,
       name: 'Survey',
       title: 'Survey',
       tabClass: 'nav-link',
       tabContentClass: 'tab-pane fade',
     },
     {
-      index: 3,
+      index: 2,
       name: 'Compensation',
       title: 'Compensation',
       tabClass: 'nav-link',
       tabContentClass: 'tab-pane fade',
     },
     {
-      index: 4,
+      index: 3,
       name: 'Payment',
       title: 'Payment',
       tabClass: 'nav-link',
@@ -82,24 +82,29 @@ export class ViewKhatedarComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ khatedar }) => {
       this.khatedar = khatedar;
+
       this.citizenService.find(khatedar.citizen.id).subscribe(response => {
         this.khatedar.citizen = this.citizen = response.body as Citizen;
       });
+
       this.projectLandService.find(khatedar.projectLand.id).subscribe(response => {
         this.projectLand = this.khatedar.projectLand = response.body as ProjectLand;
-        this.projectLandService.getSurvey(this.projectLand.id!).subscribe(
-          surveyResponse => {
-            if (response.body) {
-              this.survey = surveyResponse.body as Survey;
-            }
-          },
-          err =>
-            this.eventManager.broadcast(
-              new EventWithContent<AlertError>('landsysUiApp.error', {
-                message: 'No Survey Found!',
-              })
-            )
-        );
+
+        if (typeof this.projectLand.id === 'number') {
+          this.projectLandService.getSurvey(this.projectLand.id).subscribe(
+            (surveyResponse: any) => {
+              if (surveyResponse.body) {
+                this.survey = surveyResponse.body[0];
+              }
+            },
+            err =>
+              this.eventManager.broadcast(
+                new EventWithContent<AlertError>('landsysUiApp.error', {
+                  message: 'No Survey Found!',
+                })
+              )
+          );
+        }
         this.landService.find(response.body!.land!.id!).subscribe(res => {
           this.land = this.projectLand.land = this.khatedar.projectLand!.land = res.body as Land;
         });

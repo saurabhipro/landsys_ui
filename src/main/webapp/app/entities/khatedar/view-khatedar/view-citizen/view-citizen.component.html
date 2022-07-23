@@ -51,7 +51,7 @@
           <dd>
             <span>{{ citizen.accountNumber }}</span>
           </dd>
-          <dt><span jhiTranslate="jhipsterApp.citizen.branch">Branch</span></dt>
+          <dt><span jhiTranslate="jhipsterApp.citizen.bankBranch">Branch</span></dt>
           <dd>
             <div *ngIf="citizen.bankBranch">
               <a [routerLink]="['/bank-branch', citizen.bankBranch?.id, 'view']">{{ citizen.bankBranch?.name }}</a>
@@ -63,13 +63,13 @@
   </div>
 </div>
 <div class="col-4">
-  <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-    <span jhiTranslate="entity.action.return">Return</span>
-  </button>
-  <button type="button" (click)="previous.emit()" class="btn btn-primary">
-    <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.previous">Previous</span>
-  </button>
-  <button type="button" (click)="next.emit()" class="btn btn-primary">
-    <span jhiTranslate="entity.action.next">Edit</span>
-  </button>
+  <!--  <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">-->
+  <!--    <span jhiTranslate="entity.action.return">Return</span>-->
+  <!--  </button>-->
+  <!--  <button type="button" (click)="previous.emit()" class="btn btn-primary">-->
+  <!--    <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.previous">Previous</span>-->
+  <!--  </button>-->
+  <!--  <button type="button" (click)="next.emit()" class="btn btn-primary">-->
+  <!--    <span jhiTranslate="entity.action.next">Edit</span>-->
+  <!--  </button>-->
 </div>
