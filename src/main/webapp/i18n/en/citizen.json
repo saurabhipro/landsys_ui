@@ -23,7 +23,7 @@
       "address": "Address",
       "mobileNumber": "Mobile Number",
       "dob": "Dob",
-      "accountName": "Account Name",
+      "nameInBank": "Name in Bank",
       "accountNumber": "Account Number",
       "fatherName": "Father Name",
       "spouseName": "Spouse Name",

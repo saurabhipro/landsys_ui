@@ -31,7 +31,7 @@ describe('Citizen Service', () => {
       address: 'AAAAAAA',
       mobileNumber: 'AAAAAAA',
       dob: currentDate,
-      accountName: 'AAAAAAA',
+      nameInBank: 'AAAAAAA',
       accountNumber: 'AAAAAAA',
       fatherName: 'AAAAAAA',
       spouseName: 'AAAAAAA',
