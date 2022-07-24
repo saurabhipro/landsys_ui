@@ -52,12 +52,14 @@
                 (previous)="gotoPrevious()"
               ></jhi-khatedar-detail>-->
 
-      <jhi-view-citizen *ngIf="selectedTab.name === 'Khatedar'" [citizen]="citizen"> </jhi-view-citizen>
+      <jhi-view-citizen *ngIf="selectedTab.name === 'Khatedar'" [citizen]="citizen"></jhi-view-citizen>
 
       <jhi-view-survey *ngIf="selectedTab.name === 'Survey'" [survey]="survey" (next)="gotoNext()" (previous)="gotoPrevious()">
       </jhi-view-survey>
 
-      <jhi-view-compensation *ngIf="selectedTab.name === 'Compensation'" [landCompensation]="compensation"> </jhi-view-compensation>
+      <jhi-view-compensation *ngIf="selectedTab.name === 'Compensation'" [landCompensation]="compensation"></jhi-view-compensation>
+
+      <jhi-view-payment-advice *ngIf="selectedTab.name === 'PaymentAdvice'" [paymentAdvice]="paymentAdvice"></jhi-view-payment-advice>
     </div>
   </div>
 </div>

@@ -6,6 +6,7 @@ import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IPaymentAdvice, getPaymentAdviceIdentifier } from '../payment-advice.model';
+import { ILandCompensation } from '../../land-compensation/land-compensation.model';
 
 export type EntityResponseType = HttpResponse<IPaymentAdvice>;
 export type EntityArrayResponseType = HttpResponse<IPaymentAdvice[]>;
@@ -65,5 +66,9 @@ export class PaymentAdviceService {
       return [...paymentAdvicesToAdd, ...paymentAdviceCollection];
     }
     return paymentAdviceCollection;
+  }
+
+  getPaymentAdviceFromCompensation(id: number): Observable<HttpResponse<IPaymentAdvice>> {
+    return this.http.get<IPaymentAdvice>(`/api/payment-advices?landCompensationId.equals=213`, { observe: 'response' });
   }
 }

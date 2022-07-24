@@ -13,6 +13,8 @@ import { AlertError } from '../../../shared/alert/alert-error.model';
 import { ISurvey, Survey } from '../../survey/survey.model';
 import { ILandCompensation, LandCompensation } from '../../land-compensation/land-compensation.model';
 import { LandCompensationService } from '../../land-compensation/service/land-compensation.service';
+import { PaymentAdviceService } from '../../payment-advice/service/payment-advice.service';
+import { IPaymentAdvice } from '../../payment-advice/payment-advice.model';
 
 interface Tab {
   index: number;
@@ -58,14 +60,14 @@ export class ViewKhatedarComponent implements OnInit {
     },
     {
       index: 4,
-      name: 'Payment Advice',
+      name: 'PaymentAdvice',
       title: 'Payment Advice',
       tabClass: 'nav-link',
       tabContentClass: 'tab-pane fade',
     },
     {
       index: 5,
-      name: 'Payment File',
+      name: 'PaymentFile',
       title: 'Payment File',
       tabClass: 'nav-link',
       tabContentClass: 'tab-pane fade',
@@ -74,6 +76,7 @@ export class ViewKhatedarComponent implements OnInit {
   selectedTab = this.tabs[0];
   survey!: ISurvey;
   compensation!: ILandCompensation;
+  paymentAdvice!: IPaymentAdvice;
 
   constructor(
     protected dataUtils: DataUtils,
@@ -82,17 +85,16 @@ export class ViewKhatedarComponent implements OnInit {
     protected citizenService: CitizenService,
     protected landService: LandService,
     protected projectLandService: ProjectLandService,
-    protected landCompensationService: LandCompensationService
+    protected landCompensationService: LandCompensationService,
+    protected paymentAdviceService: PaymentAdviceService
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ khatedar }) => {
       this.khatedar = khatedar;
-
       this.citizenService.find(khatedar.citizen.id).subscribe(citizenResponse => {
         this.khatedar.citizen = this.citizen = citizenResponse.body as Citizen;
       });
-
       this.projectLandService.find(khatedar.projectLand.id).subscribe(projectLandResponse => {
         this.projectLand = this.khatedar.projectLand = projectLandResponse.body as ProjectLand;
         if (typeof this.projectLand.id === 'number') {
@@ -102,6 +104,13 @@ export class ViewKhatedarComponent implements OnInit {
                 this.survey = surveyResponse.body[0];
                 this.landCompensationService.getCompensationFromSurveyId(<number>this.survey.id).subscribe((compensationResponse: any) => {
                   this.compensation = compensationResponse.body[0];
+                  if (this.projectLand.id != null) {
+                    this.paymentAdviceService
+                      .getPaymentAdviceFromCompensation(this.projectLand.id)
+                      .subscribe((paymentAdviceResponse: any) => {
+                        this.paymentAdvice = paymentAdviceResponse.body[0];
+                      });
+                  }
                 });
               }
             },

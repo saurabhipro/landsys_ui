@@ -1,75 +1,66 @@
-<div class="col-11">
-  <div *ngIf="citizen">
-    <div class="row">
-      <div class="col-4">
-        <dl class="row-md jh-entity-details">
-          <dt><span jhiTranslate="jhipsterApp.citizen.name" [ngbTooltip]="'jhipsterApp.citizen.help.name' | translate">Name</span></dt>
-          <dd>
-            <span>{{ citizen.name }}</span>
-          </dd>
-          <dt>
-            <span jhiTranslate="jhipsterApp.citizen.address" [ngbTooltip]="'jhipsterApp.citizen.help.address' | translate">Address</span>
-          </dt>
-          <dd>
-            <span>{{ citizen.address }}</span>
-          </dd>
-          <dt>
-            <span jhiTranslate="jhipsterApp.citizen.fatherName" [ngbTooltip]="'jhipsterApp.citizen.help.fatherName' | translate"
-              >Father Name</span
-            >
-          </dt>
-          <dd>
-            <span>{{ citizen.fatherName }}</span>
-          </dd>
-          <dt>
-            <span jhiTranslate="jhipsterApp.citizen.successorName" [ngbTooltip]="'jhipsterApp.citizen.help.successorName' | translate"
-              >Successor Name</span
-            >
-          </dt>
-          <dd>
-            <span>{{ citizen.successorName }}</span>
-          </dd>
-        </dl>
-      </div>
-      <div class="col-4">
-        <dl class="row-md jh-entity-details">
-          <dt>
-            <span jhiTranslate="jhipsterApp.citizen.aadhar" [ngbTooltip]="'jhipsterApp.citizen.help.aadhar' | translate">Aadhar</span>
-          </dt>
-          <dd>
-            <span>{{ citizen.aadhar }}</span>
-          </dd>
-          <dt><span jhiTranslate="jhipsterApp.citizen.pan" [ngbTooltip]="'jhipsterApp.citizen.help.pan' | translate">Pan</span></dt>
-          <dd>
-            <span>{{ citizen.pan }}</span>
-          </dd>
-          <dt>
-            <span jhiTranslate="jhipsterApp.citizen.accountNumber" [ngbTooltip]="'jhipsterApp.citizen.help.accountNumber' | translate"
-              >Account Number</span
-            >
-          </dt>
-          <dd>
-            <span>{{ citizen.accountNumber }}</span>
-          </dd>
-          <dt><span jhiTranslate="jhipsterApp.citizen.bankBranch">Branch</span></dt>
-          <dd>
-            <div *ngIf="citizen.bankBranch">
-              <a [routerLink]="['/bank-branch', citizen.bankBranch?.id, 'view']">{{ citizen.bankBranch?.name }}</a>
-            </div>
-          </dd>
-        </dl>
+<div class="d-flex justify-content-lg-start">
+  <div class="col-12">
+    <div *ngIf="citizen">
+      <div class="row">
+        <div class="col-4">
+          <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="jhipsterApp.citizen.name" [ngbTooltip]="'jhipsterApp.citizen.help.name' | translate">Name</span></dt>
+            <dd>
+              <span>{{ citizen.name }}</span>
+            </dd>
+            <dt>
+              <span jhiTranslate="jhipsterApp.citizen.address" [ngbTooltip]="'jhipsterApp.citizen.help.address' | translate">Address</span>
+            </dt>
+            <dd>
+              <span>{{ citizen.address }}</span>
+            </dd>
+            <dt>
+              <span jhiTranslate="jhipsterApp.citizen.fatherName" [ngbTooltip]="'jhipsterApp.citizen.help.fatherName' | translate"
+                >Father Name</span
+              >
+            </dt>
+            <dd>
+              <span>{{ citizen.fatherName }}</span>
+            </dd>
+            <dt>
+              <span jhiTranslate="jhipsterApp.citizen.successorName" [ngbTooltip]="'jhipsterApp.citizen.help.successorName' | translate"
+                >Successor Name</span
+              >
+            </dt>
+            <dd>
+              <span>{{ citizen.successorName }}</span>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-4">
+          <dl class="row-md jh-entity-details">
+            <dt>
+              <span jhiTranslate="jhipsterApp.citizen.aadhar" [ngbTooltip]="'jhipsterApp.citizen.help.aadhar' | translate">Aadhar</span>
+            </dt>
+            <dd>
+              <span>{{ citizen.aadhar }}</span>
+            </dd>
+            <dt><span jhiTranslate="jhipsterApp.citizen.pan" [ngbTooltip]="'jhipsterApp.citizen.help.pan' | translate">Pan</span></dt>
+            <dd>
+              <span>{{ citizen.pan }}</span>
+            </dd>
+            <dt>
+              <span jhiTranslate="jhipsterApp.citizen.accountNumber" [ngbTooltip]="'jhipsterApp.citizen.help.accountNumber' | translate"
+                >Account Number</span
+              >
+            </dt>
+            <dd>
+              <span>{{ citizen.accountNumber }}</span>
+            </dd>
+            <dt><span jhiTranslate="jhipsterApp.citizen.bankBranch">Branch</span></dt>
+            <dd>
+              <div *ngIf="citizen.bankBranch">
+                <a [routerLink]="['/bank-branch', citizen.bankBranch?.id, 'view']">{{ citizen.bankBranch?.name }}</a>
+              </div>
+            </dd>
+          </dl>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="col-4">
-  <!--  <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">-->
-  <!--    <span jhiTranslate="entity.action.return">Return</span>-->
-  <!--  </button>-->
-  <!--  <button type="button" (click)="previous.emit()" class="btn btn-primary">-->
-  <!--    <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.previous">Previous</span>-->
-  <!--  </button>-->
-  <!--  <button type="button" (click)="next.emit()" class="btn btn-primary">-->
-  <!--    <span jhiTranslate="entity.action.next">Edit</span>-->
-  <!--  </button>-->
 </div>
