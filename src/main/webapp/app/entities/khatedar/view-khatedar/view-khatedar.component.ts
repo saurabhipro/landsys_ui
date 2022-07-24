@@ -14,6 +14,7 @@ import { ISurvey, Survey } from '../../survey/survey.model';
 import { ILandCompensation, LandCompensation } from '../../land-compensation/land-compensation.model';
 import { LandCompensationService } from '../../land-compensation/service/land-compensation.service';
 import { LandCompensationComponent } from '../../land-compensation/list/land-compensation.component';
+import { HttpResponse } from '@angular/common/http';
 
 interface Tab {
   index: number;
@@ -101,9 +102,11 @@ export class ViewKhatedarComponent implements OnInit {
             (surveyResponse: any) => {
               if (surveyResponse.body) {
                 this.survey = surveyResponse.body[0];
-                this.landServiceCompensationService.getCompensationFromSurveyId(163).subscribe(compensationResponse => {
-                  this.compensation = compensationResponse.body as LandCompensation;
-                });
+                this.landServiceCompensationService
+                  .getCompensationFromSurveyId(163)
+                  .subscribe((compensationResponse: HttpResponse<ILandCompensation>) => {
+                    this.compensation = compensationResponse.body as LandCompensation;
+                  });
               }
             },
             err =>
@@ -114,7 +117,6 @@ export class ViewKhatedarComponent implements OnInit {
               )
           );
         }
-
         this.landService.find(projectLandResponse.body!.land!.id!).subscribe(res => {
           this.land = this.projectLand.land = this.khatedar.projectLand!.land = res.body as Land;
         });

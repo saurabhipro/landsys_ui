@@ -106,7 +106,7 @@ export class LandCompensationService {
     return res;
   }
 
-  getCompensationFromSurveyId(id: number): Observable<EntityResponseType> {
+  protected getCompensationFromSurveyId(id: number): Observable<HttpResponse<ILandCompensation>> {
     return this.http.get<ILandCompensation>(`/api/land-compensations?surveyId.equals=163`, { observe: 'response' });
   }
 }
