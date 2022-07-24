@@ -11,6 +11,9 @@ import { ProjectLandService } from '../../project-land/service/project-land.serv
 import { EventManager, EventWithContent } from '../../../core/util/event-manager.service';
 import { AlertError } from '../../../shared/alert/alert-error.model';
 import { ISurvey, Survey } from '../../survey/survey.model';
+import { ILandCompensation, LandCompensation } from '../../land-compensation/land-compensation.model';
+import { LandCompensationService } from '../../land-compensation/service/land-compensation.service';
+import { LandCompensationComponent } from '../../land-compensation/list/land-compensation.component';
 
 interface Tab {
   index: number;
@@ -26,6 +29,7 @@ interface Tab {
   styleUrls: ['./view-khatedar.component.scss'],
 })
 export class ViewKhatedarComponent implements OnInit {
+  [x: string]: any;
   citizen: Citizen = new Citizen();
   land: Land = new Land();
   projectLand: ProjectLand = new ProjectLand();
@@ -38,13 +42,7 @@ export class ViewKhatedarComponent implements OnInit {
       tabClass: 'nav-link active',
       tabContentClass: 'tab-pane fade show active',
     },
-    // {
-    //   index: 1,
-    //   name: 'Land',
-    //   title: 'Land Details',
-    //   tabClass: 'nav-link',
-    //   tabContentClass: 'tab-pane fade',
-    // },
+
     {
       index: 1,
       name: 'Survey',
@@ -60,15 +58,23 @@ export class ViewKhatedarComponent implements OnInit {
       tabContentClass: 'tab-pane fade',
     },
     {
-      index: 3,
-      name: 'Payment',
-      title: 'Payment',
+      index: 4,
+      name: 'Payment Advice',
+      title: 'Payment Advice',
+      tabClass: 'nav-link',
+      tabContentClass: 'tab-pane fade',
+    },
+    {
+      index: 5,
+      name: 'Payment File',
+      title: 'Payment File',
       tabClass: 'nav-link',
       tabContentClass: 'tab-pane fade',
     },
   ];
   selectedTab = this.tabs[0];
   survey!: ISurvey;
+  compensation!: ILandCompensation;
 
   constructor(
     protected dataUtils: DataUtils,
@@ -76,25 +82,28 @@ export class ViewKhatedarComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     protected citizenService: CitizenService,
     protected landService: LandService,
-    protected projectLandService: ProjectLandService
+    protected projectLandService: ProjectLandService,
+    protected landCompensationService: LandCompensationService
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ khatedar }) => {
       this.khatedar = khatedar;
 
-      this.citizenService.find(khatedar.citizen.id).subscribe(response => {
-        this.khatedar.citizen = this.citizen = response.body as Citizen;
+      this.citizenService.find(khatedar.citizen.id).subscribe(citizenResponse => {
+        this.khatedar.citizen = this.citizen = citizenResponse.body as Citizen;
       });
 
-      this.projectLandService.find(khatedar.projectLand.id).subscribe(response => {
-        this.projectLand = this.khatedar.projectLand = response.body as ProjectLand;
-
+      this.projectLandService.find(khatedar.projectLand.id).subscribe(projectLandResponse => {
+        this.projectLand = this.khatedar.projectLand = projectLandResponse.body as ProjectLand;
         if (typeof this.projectLand.id === 'number') {
           this.projectLandService.getSurvey(this.projectLand.id).subscribe(
             (surveyResponse: any) => {
               if (surveyResponse.body) {
                 this.survey = surveyResponse.body[0];
+                this.landServiceCompensationService.getCompensationFromSurveyId(163).subscribe(compensationResponse => {
+                  this.compensation = compensationResponse.body as LandCompensation;
+                });
               }
             },
             err =>
@@ -105,7 +114,8 @@ export class ViewKhatedarComponent implements OnInit {
               )
           );
         }
-        this.landService.find(response.body!.land!.id!).subscribe(res => {
+
+        this.landService.find(projectLandResponse.body!.land!.id!).subscribe(res => {
           this.land = this.projectLand.land = this.khatedar.projectLand!.land = res.body as Land;
         });
       });

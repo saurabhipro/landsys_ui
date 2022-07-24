@@ -57,13 +57,7 @@
       <jhi-view-survey *ngIf="selectedTab.name === 'Survey'" [survey]="survey" (next)="gotoNext()" (previous)="gotoPrevious()">
       </jhi-view-survey>
 
-      <!--        <jhi-land-detail *ngIf="tab.name === 'Land'" [land]="land" (next)="gotoNext()"-->
-      <!--                         (previous)="gotoPrevious()"></jhi-land-detail>-->
-      <!--        <jhi-view-survey *ngIf="tab.name === 'Survey'" [survey]="survey" (next)="gotoNext()"-->
-      <!--                         (previous)="gotoPrevious()"></jhi-view-survey>-->
-      <!--        <jhi-compensation-detail *ngIf="tab.name === 'Compensation'"></jhi-compensation-detail>-->
-      <!--        <jhi-khatedar-payment-detail *ngIf="tab.name === 'Payment'"></jhi-khatedar-payment-detail>-->
-      <!--    </div>-->
+      <jhi-view-compensation *ngIf="selectedTab.name === 'Compensation'" [landCompensation]="compensation"> </jhi-view-compensation>
     </div>
   </div>
 </div>

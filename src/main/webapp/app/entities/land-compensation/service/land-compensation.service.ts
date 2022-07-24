@@ -9,6 +9,7 @@ import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { ILandCompensation, getLandCompensationIdentifier } from '../land-compensation.model';
+import { ISurvey } from '../../survey/survey.model';
 
 export type EntityResponseType = HttpResponse<ILandCompensation>;
 export type EntityArrayResponseType = HttpResponse<ILandCompensation[]>;
@@ -103,5 +104,9 @@ export class LandCompensationService {
       });
     }
     return res;
+  }
+
+  getCompensationFromSurveyId(id: number): Observable<EntityResponseType> {
+    return this.http.get<ILandCompensation>(`/api/land-compensations?surveyId.equals=163`, { observe: 'response' });
   }
 }
