@@ -30,6 +30,7 @@
         "citizen": "Citizen",
         "landCompensation": "Land Compensation",
         "paymentAdvice": "Payment Advice",
+        "createPaymentAdvice": "Create Payment Advice",
         "paymentAdviceDetails": "Payment Advice Details",
         "paymentFile": "Payment File",
         "downloadPaymentFile": "Download Payment File",
@@ -39,10 +40,10 @@
         "transactionHistory": "Transaction History",
         "khatedar": "Khatedar",
         "createPaymentFile": "Create Payment File",
+        "searchPaymentFile": "Search Payment File",
         "paymentFileHeader": "Payment File",
         "sequenceGenerator": "Sequence Generator",
         "sequenceGen": "Sequence Gen",
-        "paymentFileHeader": "Payment File Header",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
