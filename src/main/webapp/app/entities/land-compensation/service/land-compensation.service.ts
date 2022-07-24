@@ -84,6 +84,10 @@ export class LandCompensationService {
     return landCompensationCollection;
   }
 
+  getCompensationFromSurveyId(id: number): Observable<HttpResponse<ILandCompensation>> {
+    return this.http.get<ILandCompensation>(`/api/land-compensations?surveyId.equals=${id}`, { observe: 'response' });
+  }
+
   protected convertDateFromClient(landCompensation: ILandCompensation): ILandCompensation {
     return Object.assign({}, landCompensation, {
       orderDate: landCompensation.orderDate?.isValid() ? landCompensation.orderDate.format(DATE_FORMAT) : undefined,
@@ -104,9 +108,5 @@ export class LandCompensationService {
       });
     }
     return res;
-  }
-
-  protected getCompensationFromSurveyId(id: number): Observable<HttpResponse<ILandCompensation>> {
-    return this.http.get<ILandCompensation>(`/api/land-compensations?surveyId.equals=163`, { observe: 'response' });
   }
 }

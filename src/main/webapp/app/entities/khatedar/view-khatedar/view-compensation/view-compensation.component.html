@@ -1,16 +1,6 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="landCompensation">
-      <h2 data-cy="landCompensationDetailsHeading">
-        <span jhiTranslate="jhipsterApp.landCompensation.detail.title">Land Compensation</span>
-      </h2>
-
-      <hr />
-
-      <jhi-alert-error></jhi-alert-error>
-
-      <jhi-alert></jhi-alert>
-
       <dl class="row-md jh-entity-details">
         <dt><span jhiTranslate="global.field.id">ID</span></dt>
         <dd>
@@ -52,7 +42,7 @@
         <dd>
           <span>{{ landCompensation.additionalCompensation }}</span>
         </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.status">Status</span></dt>
+        <dt><span jhiTranslate="jhipsterApp.landCompensation.compensationStatus">Status</span></dt>
         <dd>
           <span jhiTranslate="{{ 'jhipsterApp.CompensationStatus.' + landCompensation.compensationStatus }}">{{
             landCompensation.compensationStatus

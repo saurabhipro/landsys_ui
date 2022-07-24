@@ -79,9 +79,11 @@ export class KhatedarService {
     return this.http.request(req);
   }
 
-  filter(filterBy: string, filterString: string, contextProject: Project): Observable<any> {
+  filter(): Observable<any> {
     // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-    const url = '/api/searchCitizen/projectId/' + contextProject.id + '/' + filterBy + '/' + filterString;
+    // const url = '/api/khatedar/projectIdprojectId/' + contextProject.id + '/' + filterBy + '/' + filterString;
+    //http://localhost:9000/api/khatedars?projectLandId.equals=20
+    const url = `${this.resourceUrl}?projectLandId.equals=20`;
     // eslint-disable-next-line no-console
     console.log(url);
     return this.http.get(url);

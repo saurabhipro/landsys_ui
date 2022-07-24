@@ -174,8 +174,9 @@ export class KhatedarComponent implements OnInit {
   }
 
   filter(): void {
-    this.khatedarService.filter(this.filterBy, this.filterString, this.contextProject).subscribe(data => {
-      this.khatedars = data.khatedars;
+    // this.khatedarService.filter(this.filterBy, this.filterString, this.contextProject).subscribe(data => {
+    this.khatedarService.filter().subscribe(data => {
+      this.khatedars = data;
     });
   }
 

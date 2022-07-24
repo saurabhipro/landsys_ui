@@ -13,8 +13,6 @@ import { AlertError } from '../../../shared/alert/alert-error.model';
 import { ISurvey, Survey } from '../../survey/survey.model';
 import { ILandCompensation, LandCompensation } from '../../land-compensation/land-compensation.model';
 import { LandCompensationService } from '../../land-compensation/service/land-compensation.service';
-import { LandCompensationComponent } from '../../land-compensation/list/land-compensation.component';
-import { HttpResponse } from '@angular/common/http';
 
 interface Tab {
   index: number;
@@ -30,10 +28,10 @@ interface Tab {
   styleUrls: ['./view-khatedar.component.scss'],
 })
 export class ViewKhatedarComponent implements OnInit {
-  [x: string]: any;
   citizen: Citizen = new Citizen();
   land: Land = new Land();
   projectLand: ProjectLand = new ProjectLand();
+  landCompensation: LandCompensation = new LandCompensation();
   khatedar: Khatedar = new Khatedar();
   tabs: Tab[] = [
     {
@@ -102,11 +100,9 @@ export class ViewKhatedarComponent implements OnInit {
             (surveyResponse: any) => {
               if (surveyResponse.body) {
                 this.survey = surveyResponse.body[0];
-                this.landServiceCompensationService
-                  .getCompensationFromSurveyId(163)
-                  .subscribe((compensationResponse: HttpResponse<ILandCompensation>) => {
-                    this.compensation = compensationResponse.body as LandCompensation;
-                  });
+                this.landCompensationService.getCompensationFromSurveyId(<number>this.survey.id).subscribe((compensationResponse: any) => {
+                  this.compensation = compensationResponse.body[0];
+                });
               }
             },
             err =>

@@ -1,11 +1,9 @@
 <div>
   <h2 id="page-heading" data-cy="CreatePaymentFileHeading">
-    <span jhiTranslate="jhipsterApp.createPaymentFile.home.title">Create Payment Files</span>
-
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="jhipsterApp.createPaymentFile.home.refreshListLabel">Refresh List</span>
+        <span>Refresh List</span>
       </button>
 
       <button
@@ -15,7 +13,7 @@
         [routerLink]="['/create-payment-file/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="jhipsterApp.createPaymentFile.home.createLabel"> Create a new Create Payment File </span>
+        <span> Create a new Create Payment File </span>
       </button>
     </div>
   </h2>
@@ -25,52 +23,52 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="createPaymentFiles?.length === 0">
-    <span jhiTranslate="jhipsterApp.createPaymentFile.home.notFound">No createPaymentFiles found</span>
+    <span>No createPaymentFiles found</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="createPaymentFiles && createPaymentFiles.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="accountHolderName">
-            <span jhiTranslate="jhipsterApp.createPaymentFile.accountHolderName">Account Holder Name</span> <fa-icon icon="sort"></fa-icon>
+            <!--            <span jhiTranslate="jhipsterApp.createPaymentFile.accountHolderName">Account Holder Name</span> <fa-icon icon="sort"></fa-icon>-->
           </th>
-          <th scope="col" jhiSortBy="accountHolderBankName">
-            <span jhiTranslate="jhipsterApp.createPaymentFile.accountHolderBankName">Account Holder Bank Name</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="paymentAmount">
-            <span jhiTranslate="jhipsterApp.createPaymentFile.paymentAmount">Payment Amount</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="bankName">
-            <span jhiTranslate="jhipsterApp.createPaymentFile.bankName">Bank Name</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="accountNumber">
-            <span jhiTranslate="jhipsterApp.createPaymentFile.accountNumber">Account Number</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="ifscCode">
-            <span jhiTranslate="jhipsterApp.createPaymentFile.ifscCode">Ifsc Code</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="checkNumber">
-            <span jhiTranslate="jhipsterApp.createPaymentFile.checkNumber">Check Number</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="micrCode">
-            <span jhiTranslate="jhipsterApp.createPaymentFile.micrCode">Micr Code</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="paymentAdviceType">
-            <span jhiTranslate="jhipsterApp.createPaymentFile.paymentAdviceType">Payment Advice Type</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="referenceNumber">
-            <span jhiTranslate="jhipsterApp.createPaymentFile.referenceNumber">Reference Number</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="paymentStatus">
-            <span jhiTranslate="jhipsterApp.createPaymentFile.paymentStatus">Payment Status</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="hissaType">
-            <span jhiTranslate="jhipsterApp.createPaymentFile.hissaType">Hissa Type</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col"></th>
+          <!--          <th scope="col" jhiSortBy="accountHolderBankName">-->
+          <!--            <span jhiTranslate="jhipsterApp.createPaymentFile.accountHolderBankName">Account Holder Bank Name</span>-->
+          <!--            <fa-icon icon="sort"></fa-icon>-->
+          <!--          </th>-->
+          <!--          <th scope="col" jhiSortBy="paymentAmount">-->
+          <!--            <span jhiTranslate="jhipsterApp.createPaymentFile.paymentAmount">Payment Amount</span> <fa-icon icon="sort"></fa-icon>-->
+          <!--          </th>-->
+          <!--          <th scope="col" jhiSortBy="bankName">-->
+          <!--            <span jhiTranslate="jhipsterApp.createPaymentFile.bankName">Bank Name</span> <fa-icon icon="sort"></fa-icon>-->
+          <!--          </th>-->
+          <!--          <th scope="col" jhiSortBy="accountNumber">-->
+          <!--            <span jhiTranslate="jhipsterApp.createPaymentFile.accountNumber">Account Number</span> <fa-icon icon="sort"></fa-icon>-->
+          <!--          </th>-->
+          <!--          <th scope="col" jhiSortBy="ifscCode">-->
+          <!--            <span jhiTranslate="jhipsterApp.createPaymentFile.ifscCode">Ifsc Code</span> <fa-icon icon="sort"></fa-icon>-->
+          <!--          </th>-->
+          <!--          <th scope="col" jhiSortBy="checkNumber">-->
+          <!--            <span jhiTranslate="jhipsterApp.createPaymentFile.checkNumber">Check Number</span> <fa-icon icon="sort"></fa-icon>-->
+          <!--          </th>-->
+          <!--          <th scope="col" jhiSortBy="micrCode">-->
+          <!--            <span jhiTranslate="jhipsterApp.createPaymentFile.micrCode">Micr Code</span> <fa-icon icon="sort"></fa-icon>-->
+          <!--          </th>-->
+          <!--          <th scope="col" jhiSortBy="paymentAdviceType">-->
+          <!--            <span jhiTranslate="jhipsterApp.createPaymentFile.paymentAdviceType">Payment Advice Type</span> <fa-icon icon="sort"></fa-icon>-->
+          <!--          </th>-->
+          <!--          <th scope="col" jhiSortBy="referenceNumber">-->
+          <!--            <span jhiTranslate="jhipsterApp.createPaymentFile.referenceNumber">Reference Number</span> <fa-icon icon="sort"></fa-icon>-->
+          <!--          </th>-->
+          <!--          <th scope="col" jhiSortBy="paymentStatus">-->
+          <!--            <span jhiTranslate="jhipsterApp.createPaymentFile.paymentStatus">Payment Status</span> <fa-icon icon="sort"></fa-icon>-->
+          <!--          </th>-->
+          <!--          <th scope="col" jhiSortBy="hissaType">-->
+          <!--            <span jhiTranslate="jhipsterApp.createPaymentFile.hissaType">Hissa Type</span> <fa-icon icon="sort"></fa-icon>-->
+          <!--          </th>-->
+          <!--          <th scope="col"></th>-->
         </tr>
       </thead>
       <tbody>
@@ -86,12 +84,12 @@
           <td>{{ createPaymentFile.ifscCode }}</td>
           <td>{{ createPaymentFile.checkNumber }}</td>
           <td>{{ createPaymentFile.micrCode }}</td>
-          <td jhiTranslate="{{ 'jhipsterApp.PaymentAdviceType.' + createPaymentFile.paymentAdviceType }}">
+          <td>
             {{ createPaymentFile.paymentAdviceType }}
           </td>
           <td>{{ createPaymentFile.referenceNumber }}</td>
-          <td jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + createPaymentFile.paymentStatus }}">{{ createPaymentFile.paymentStatus }}</td>
-          <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + createPaymentFile.hissaType }}">{{ createPaymentFile.hissaType }}</td>
+          <td>{{ createPaymentFile.paymentStatus }}</td>
+          <td>{{ createPaymentFile.hissaType }}</td>
           <td class="text-end">
             <div class="btn-group">
               <button
@@ -101,7 +99,7 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                <span class="d-none d-md-inline">View</span>
               </button>
 
               <button
@@ -111,12 +109,12 @@
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                <span class="d-none d-md-inline">Edit</span>
               </button>
 
               <button type="submit" (click)="delete(createPaymentFile)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                <span class="d-none d-md-inline">Delete</span>
               </button>
             </div>
           </td>
@@ -125,21 +123,21 @@
     </table>
   </div>
 
-  <div *ngIf="createPaymentFiles && createPaymentFiles.length > 0">
-    <div class="d-flex justify-content-center">
-      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
-    </div>
+  <!--  <div *ngIf="createPaymentFiles && createPaymentFiles.length > 0">-->
+  <!--    <div class="d-flex justify-content-center">-->
+  <!--      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>-->
+  <!--    </div>-->
 
-    <div class="d-flex justify-content-center">
-      <ngb-pagination
-        [collectionSize]="totalItems"
-        [(page)]="ngbPaginationPage"
-        [pageSize]="itemsPerPage"
-        [maxSize]="5"
-        [rotate]="true"
-        [boundaryLinks]="true"
-        (pageChange)="loadPage($event)"
-      ></ngb-pagination>
-    </div>
-  </div>
+  <!--    <div class="d-flex justify-content-center">-->
+  <!--      <ngb-pagination-->
+  <!--        [collectionSize]="totalItems"-->
+  <!--        [(page)]="ngbPaginationPage"-->
+  <!--        [pageSize]="itemsPerPage"-->
+  <!--        [maxSize]="5"-->
+  <!--        [rotate]="true"-->
+  <!--        [boundaryLinks]="true"-->
+  <!--        (pageChange)="loadPage($event)"-->
+  <!--      ></ngb-pagination>-->
+  <!--    </div>-->
+  <!--  </div>-->
 </div>
