@@ -1,7 +1,6 @@
 {
   "jhipsterApp": {
     "PaymentStatus": {
-      "null": "",
       "PENDING": "PENDING",
       "APPROVED": "APPROVED",
       "PAID": "PAID"

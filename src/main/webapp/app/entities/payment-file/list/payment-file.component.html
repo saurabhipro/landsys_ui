@@ -42,11 +42,9 @@
           <th scope="col" jhiSortBy="paymentFileDate">
             <span jhiTranslate="jhipsterApp.paymentFile.paymentFileDate">Payment File Date</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="paymentFileStatus">
-            <span jhiTranslate="jhipsterApp.paymentFile.paymentFileStatus">Payment File Status</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+
           <th scope="col" jhiSortBy="khatedarIfscCode">
-            <span jhiTranslate="jhipsterApp.paymentFile.khatedarIfscCode">Khatedar Ifsc Code</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="jhipsterApp.paymentFile.khatedarIfscCode">IFSC Code</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="paymentMode">
             <span jhiTranslate="jhipsterApp.paymentFile.paymentMode">Payment Mode</span> <fa-icon icon="sort"></fa-icon>
@@ -57,23 +55,14 @@
           <th scope="col" jhiSortBy="paymentAdvice.id">
             <span jhiTranslate="jhipsterApp.paymentFile.paymentAdvice">Payment Advice</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="projectLand.id">
-            <span jhiTranslate="jhipsterApp.paymentFile.projectLand">Project Land</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="survey.id">
-            <span jhiTranslate="jhipsterApp.paymentFile.survey">Survey</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col" jhiSortBy="bank.name">
             <span jhiTranslate="jhipsterApp.paymentFile.bank">Bank</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="bankBranch.name">
             <span jhiTranslate="jhipsterApp.paymentFile.bankBranch">Bank Branch</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="landCompensation.id">
-            <span jhiTranslate="jhipsterApp.paymentFile.landCompensation">Land Compensation</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="paymentFileHeader.id">
-            <span jhiTranslate="jhipsterApp.paymentFile.paymentFileHeader">Payment File Header</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="paymentFileStatus">
+            <span jhiTranslate="jhipsterApp.paymentFile.paymentFileStatus">Payment File Status</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -86,7 +75,6 @@
           <td>{{ paymentFile.paymentFileId }}</td>
           <td>{{ paymentFile.totalPaymentAmount }}</td>
           <td>{{ paymentFile.paymentFileDate | formatMediumDate }}</td>
-          <td jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + paymentFile.paymentFileStatus }}">{{ paymentFile.paymentFileStatus }}</td>
           <td>{{ paymentFile.khatedarIfscCode }}</td>
           <td jhiTranslate="{{ 'jhipsterApp.PaymentAdviceType.' + paymentFile.paymentMode }}">{{ paymentFile.paymentMode }}</td>
           <td>
@@ -100,16 +88,6 @@
             </div>
           </td>
           <td>
-            <div *ngIf="paymentFile.projectLand">
-              <a [routerLink]="['/project-land', paymentFile.projectLand?.id, 'view']">{{ paymentFile.projectLand?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="paymentFile.survey">
-              <a [routerLink]="['/survey', paymentFile.survey?.id, 'view']">{{ paymentFile.survey?.id }}</a>
-            </div>
-          </td>
-          <td>
             <div *ngIf="paymentFile.bank">
               <a [routerLink]="['/bank', paymentFile.bank?.id, 'view']">{{ paymentFile.bank?.name }}</a>
             </div>
@@ -119,18 +97,9 @@
               <a [routerLink]="['/bank-branch', paymentFile.bankBranch?.id, 'view']">{{ paymentFile.bankBranch?.name }}</a>
             </div>
           </td>
-          <td>
-            <div *ngIf="paymentFile.landCompensation">
-              <a [routerLink]="['/land-compensation', paymentFile.landCompensation?.id, 'view']">{{ paymentFile.landCompensation?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="paymentFile.paymentFileHeader">
-              <a [routerLink]="['/payment-file-header', paymentFile.paymentFileHeader?.id, 'view']">{{
-                paymentFile.paymentFileHeader?.id
-              }}</a>
-            </div>
-          </td>
+          <!--          <td jhiTranslate="{{ 'jhipsterApp.paymentFile.' + paymentFile.paymentFileStatus }}">{{ paymentFile.paymentFileStatus }}</td>-->
+          <td>{{ paymentFile.paymentFileStatus }}</td>
+
           <td class="text-end">
             <div class="btn-group">
               <button
@@ -141,21 +110,6 @@
               >
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-              </button>
-
-              <button
-                type="submit"
-                [routerLink]="['/payment-file', paymentFile.id, 'edit']"
-                class="btn btn-primary btn-sm"
-                data-cy="entityEditButton"
-              >
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-              </button>
-
-              <button type="submit" (click)="delete(paymentFile)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
               </button>
             </div>
           </td>

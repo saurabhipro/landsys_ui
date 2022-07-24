@@ -2,9 +2,10 @@
   "jhipsterApp": {
     "paymentFile": {
       "home": {
-        "title": "Payment Files",
-        "refreshListLabel": "Refresh list",
+        "title": "Payment File Details",
+        "refreshListLabel": "Refresh",
         "createLabel": "Create a new Payment File",
+        "downloadPaymentFile": "Create a new Payment File",
         "createOrEditLabel": "Create or edit a Payment File",
         "notFound": "No Payment Files found"
       },
@@ -15,14 +16,14 @@
         "question": "Are you sure you want to delete Payment File {{ id }}?"
       },
       "detail": {
-        "title": "Payment File"
+        "title": "Payment File Details"
       },
       "id": "ID",
-      "paymentFileId": "Payment File Id",
-      "totalPaymentAmount": "Total Payment Amount",
+      "paymentFileId": "Id",
+      "totalPaymentAmount": "Total Amount",
       "paymentFileDate": "Payment File Date",
       "paymentFileStatus": "Payment File Status",
-      "khatedarIfscCode": "Khatedar Ifsc Code",
+      "khatedarIfscCode": "IFSC",
       "paymentMode": "Payment Mode",
       "khatedar": "Khatedar",
       "paymentAdvice": "Payment Advice",
