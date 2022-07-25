@@ -5,10 +5,11 @@ import { PaymentAdviceDetailComponent } from './detail/payment-advice-detail.com
 import { PaymentAdviceUpdateComponent } from './update/payment-advice-update.component';
 import { PaymentAdviceDeleteDialogComponent } from './delete/payment-advice-delete-dialog.component';
 import { PaymentAdviceRoutingModule } from './route/payment-advice-routing.module';
+import { CreatePaymentComponent } from './create-payment/create-payment.component';
 
 @NgModule({
   imports: [SharedModule, PaymentAdviceRoutingModule],
-  declarations: [PaymentAdviceComponent, PaymentAdviceDetailComponent, PaymentAdviceUpdateComponent, PaymentAdviceDeleteDialogComponent],
+  declarations: [PaymentAdviceComponent, PaymentAdviceDetailComponent, PaymentAdviceUpdateComponent, PaymentAdviceDeleteDialogComponent, CreatePaymentComponent],
   entryComponents: [PaymentAdviceDeleteDialogComponent],
 })
 export class PaymentAdviceModule {}

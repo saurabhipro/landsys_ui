@@ -5,22 +5,19 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
-import { CreatePaymentFileService } from '../service/create-payment-file.service';
+import { PaymentAdviceService } from '../service/payment-advice.service';
 
-import { CreatePaymentFileComponent } from './create-payment-file.component';
+import { CreatePaymentComponent } from './create-payment.component';
 
-describe('CreatePaymentFile Management Component', () => {
-  let comp: CreatePaymentFileComponent;
-  let fixture: ComponentFixture<CreatePaymentFileComponent>;
-  let service: CreatePaymentFileService;
+describe('PaymentAdvice Management Component', () => {
+  let comp: CreatePaymentComponent;
+  let fixture: ComponentFixture<CreatePaymentComponent>;
+  let service: PaymentAdviceService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule.withRoutes([{ path: 'create-payment-file', component: CreatePaymentFileComponent }]),
-        HttpClientTestingModule,
-      ],
-      declarations: [CreatePaymentFileComponent],
+      imports: [RouterTestingModule.withRoutes([{ path: 'payment-advice', component: CreatePaymentComponent }]), HttpClientTestingModule],
+      declarations: [CreatePaymentComponent],
       providers: [
         {
           provide: ActivatedRoute,
@@ -39,12 +36,12 @@ describe('CreatePaymentFile Management Component', () => {
         },
       ],
     })
-      .overrideTemplate(CreatePaymentFileComponent, '')
+      .overrideTemplate(CreatePaymentComponent, '')
       .compileComponents();
 
-    fixture = TestBed.createComponent(CreatePaymentFileComponent);
+    fixture = TestBed.createComponent(CreatePaymentComponent);
     comp = fixture.componentInstance;
-    service = TestBed.inject(CreatePaymentFileService);
+    service = TestBed.inject(PaymentAdviceService);
 
     const headers = new HttpHeaders();
     jest.spyOn(service, 'query').mockReturnValue(
@@ -63,7 +60,7 @@ describe('CreatePaymentFile Management Component', () => {
 
     // THEN
     expect(service.query).toHaveBeenCalled();
-    expect(comp.createPaymentFiles?.[0]).toEqual(expect.objectContaining({ id: 123 }));
+    expect(comp.paymentAdvices?.[0]).toEqual(expect.objectContaining({ id: 123 }));
   });
 
   it('should load a page', () => {
@@ -72,7 +69,7 @@ describe('CreatePaymentFile Management Component', () => {
 
     // THEN
     expect(service.query).toHaveBeenCalled();
-    expect(comp.createPaymentFiles?.[0]).toEqual(expect.objectContaining({ id: 123 }));
+    expect(comp.paymentAdvices?.[0]).toEqual(expect.objectContaining({ id: 123 }));
   });
 
   it('should calculate the sort attribute for an id', () => {

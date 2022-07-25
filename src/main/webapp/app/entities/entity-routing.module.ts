@@ -125,11 +125,6 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./khatedar/khatedar.module').then(m => m.KhatedarModule),
       },
       {
-        path: 'create-payment-file',
-        data: { pageTitle: 'jhipsterApp.createPaymentFile.home.title' },
-        loadChildren: () => import('./create-payment-file/create-payment-file.module').then(m => m.CreatePaymentFileModule),
-      },
-      {
         path: 'payment-file-header',
         data: { pageTitle: 'jhipsterApp.paymentFileHeader.home.title' },
         loadChildren: () => import('./payment-file-header/payment-file-header.module').then(m => m.PaymentFileHeaderModule),

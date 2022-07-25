@@ -4,18 +4,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ICreatePaymentFile } from '../create-payment-file.model';
+import { IPaymentAdvice } from '../payment-advice.model';
 
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
-import { CreatePaymentFileService } from '../service/create-payment-file.service';
-import { CreatePaymentFileDeleteDialogComponent } from '../delete/create-payment-file-delete-dialog.component';
+import { PaymentAdviceService } from '../service/payment-advice.service';
+import { PaymentAdviceDeleteDialogComponent } from '../delete/payment-advice-delete-dialog.component';
 
 @Component({
-  selector: 'jhi-create-payment-file',
-  templateUrl: './create-payment-file.component.html',
+  selector: 'jhi-create-payment',
+  templateUrl: './create-payment.component.html',
 })
-export class CreatePaymentFileComponent implements OnInit {
-  createPaymentFiles?: ICreatePaymentFile[];
+export class CreatePaymentComponent implements OnInit {
+  paymentAdvices?: IPaymentAdvice[];
   isLoading = false;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -25,7 +25,7 @@ export class CreatePaymentFileComponent implements OnInit {
   ngbPaginationPage = 1;
 
   constructor(
-    protected createPaymentFileService: CreatePaymentFileService,
+    protected paymentAdviceService: PaymentAdviceService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected modalService: NgbModal
@@ -35,14 +35,14 @@ export class CreatePaymentFileComponent implements OnInit {
     this.isLoading = true;
     const pageToLoad: number = page ?? this.page ?? 1;
 
-    this.createPaymentFileService
+    this.paymentAdviceService
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
       })
       .subscribe({
-        next: (res: HttpResponse<ICreatePaymentFile[]>) => {
+        next: (res: HttpResponse<IPaymentAdvice[]>) => {
           this.isLoading = false;
           this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
         },
@@ -57,13 +57,13 @@ export class CreatePaymentFileComponent implements OnInit {
     this.handleNavigation();
   }
 
-  trackId(_index: number, item: ICreatePaymentFile): number {
+  trackId(_index: number, item: IPaymentAdvice): number {
     return item.id!;
   }
 
-  delete(createPaymentFile: ICreatePaymentFile): void {
-    const modalRef = this.modalService.open(CreatePaymentFileDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.componentInstance.createPaymentFile = createPaymentFile;
+  delete(paymentAdvice: IPaymentAdvice): void {
+    const modalRef = this.modalService.open(PaymentAdviceDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.paymentAdvice = paymentAdvice;
     // unsubscribe not needed because closed completes on modal close
     modalRef.closed.subscribe(reason => {
       if (reason === 'deleted') {
@@ -95,11 +95,11 @@ export class CreatePaymentFileComponent implements OnInit {
     });
   }
 
-  protected onSuccess(data: ICreatePaymentFile[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {
+  protected onSuccess(data: IPaymentAdvice[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.page = page;
     if (navigate) {
-      this.router.navigate(['/create-payment-file'], {
+      this.router.navigate(['/payment-advice'], {
         queryParams: {
           page: this.page,
           size: this.itemsPerPage,
@@ -107,7 +107,7 @@ export class CreatePaymentFileComponent implements OnInit {
         },
       });
     }
-    this.createPaymentFiles = data ?? [];
+    this.paymentAdvices = data ?? [];
     this.ngbPaginationPage = this.page;
   }
 

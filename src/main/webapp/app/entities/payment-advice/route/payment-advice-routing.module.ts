@@ -6,6 +6,7 @@ import { PaymentAdviceComponent } from '../list/payment-advice.component';
 import { PaymentAdviceDetailComponent } from '../detail/payment-advice-detail.component';
 import { PaymentAdviceUpdateComponent } from '../update/payment-advice-update.component';
 import { PaymentAdviceRoutingResolveService } from './payment-advice-routing-resolve.service';
+import { CreatePaymentComponent } from '../create-payment/create-payment.component';
 
 const paymentAdviceRoute: Routes = [
   {
@@ -40,6 +41,15 @@ const paymentAdviceRoute: Routes = [
     },
     canActivate: [UserRouteAccessService],
   },
+  {
+    path: 'create-payment-file',
+    component: CreatePaymentComponent,
+    data: {
+      defaultSort: 'id,asc',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+
 ];
 
 @NgModule({
