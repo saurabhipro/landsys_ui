@@ -24,12 +24,33 @@ export class CreatePaymentComponent implements OnInit {
   ascending!: boolean;
   ngbPaginationPage = 1;
 
+  selectedIds:number[] = [];
+
   constructor(
     protected paymentAdviceService: PaymentAdviceService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected modalService: NgbModal
   ) {}
+
+  OnClick(event:any, id:any):void{
+    if(id){
+     const index =  this.selectedIds.indexOf(id);
+     if(index === -1){
+      this.selectedIds.push(id)
+     }else {
+      this.selectedIds.splice(index,1)
+     }
+      
+    }
+
+  }
+
+  createPaymentFile():void{
+    // eslint-disable-next-line no-consoles
+    console.log('idsss....', this.selectedIds);
+    //todo service call
+  }
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;

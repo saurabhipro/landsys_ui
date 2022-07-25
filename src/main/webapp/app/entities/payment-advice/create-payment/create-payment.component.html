@@ -12,10 +12,12 @@
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-payment-advice"
+        [disabled]="selectedIds.length===0"
+        (click)="createPaymentFile()"
         
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="jhipsterApp.paymentAdvice.home.createLabel"> Create a new Payment file </span>
+        <span  > Create a new Payment file </span>
       </button>
     </div>
   </h2>
@@ -98,7 +100,7 @@
       <tbody>
         <tr *ngFor="let paymentAdvice of paymentAdvices; trackBy: trackId" data-cy="entityTable">
           <td>
-            <input type="checkbox">
+            <input type="checkbox" (click)="OnClick(paymentAdvice, paymentAdvice.id)" >
           </td>
           <td>
             <a [routerLink]="['/payment-advice', paymentAdvice.id, 'view']">{{ paymentAdvice.id }}</a>
@@ -109,9 +111,6 @@
           <td>{{ paymentAdvice.bankName }}</td>
           <td>{{ paymentAdvice.accountNumber }}</td>
           <td>{{ paymentAdvice.ifscCode }}</td>
-          <!--          <td jhiTranslate="{{ 'jhipsterApp.PaymentAdviceType.' + paymentAdvice.paymentAdviceType }}">-->
-          <!--            {{ paymentAdvice.paymentAdviceType }}-->
-          <!--          </td>-->
           <td>
             {{ paymentAdvice.paymentAdviceType }}
           </td>
