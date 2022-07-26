@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="PaymentAdviceHeading">
-    <span >Payment Advise Pending</span>
+    <span >Create Payment file for  Pending Advices</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
@@ -17,7 +17,7 @@
         
       >
         <fa-icon icon="plus"></fa-icon>
-        <span  > Create a new Payment file </span>
+        <span> Create a new Payment file </span>
       </button>
     </div>
   </h2>
@@ -100,7 +100,7 @@
       <tbody>
         <tr *ngFor="let paymentAdvice of paymentAdvices; trackBy: trackId" data-cy="entityTable">
           <td>
-            <input type="checkbox" (click)="OnClick(paymentAdvice, paymentAdvice.id)" >
+            <input type="checkbox" (click)="OnClick(paymentAdvice.id)" >
           </td>
           <td>
             <a [routerLink]="['/payment-advice', paymentAdvice.id, 'view']">{{ paymentAdvice.id }}</a>

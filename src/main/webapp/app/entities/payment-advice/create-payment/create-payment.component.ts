@@ -33,7 +33,7 @@ export class CreatePaymentComponent implements OnInit {
     protected modalService: NgbModal
   ) {}
 
-  OnClick(event:any, id:any):void{
+  OnClick(id:any):void{
     if(id){
      const index =  this.selectedIds.indexOf(id);
      if(index === -1){
@@ -47,9 +47,7 @@ export class CreatePaymentComponent implements OnInit {
   }
 
   createPaymentFile():void{
-    // eslint-disable-next-line no-consoles
-    console.log('idsss....', this.selectedIds);
-    //todo service call
+    this.selectedIds;
   }
 
   loadPage(page?: number, dontNavigate?: boolean): void {
@@ -61,6 +59,7 @@ export class CreatePaymentComponent implements OnInit {
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
+        'paymentStatus.equals':'PENDING'
       })
       .subscribe({
         next: (res: HttpResponse<IPaymentAdvice[]>) => {
@@ -102,7 +101,7 @@ export class CreatePaymentComponent implements OnInit {
   }
 
   protected handleNavigation(): void {
-    combineLatest([this.activatedRoute.data, this.activatedRoute.queryParamMap]).subscribe(([data, params]) => {
+    combineLatest([this.activatedRoute.data, this.activatedRoute.queryParamMap]).subscribe(([data, params]:any) => {
       const page = params.get('page');
       const pageNumber = +(page ?? 1);
       const sort = (params.get(SORT) ?? data['defaultSort']).split(',');
