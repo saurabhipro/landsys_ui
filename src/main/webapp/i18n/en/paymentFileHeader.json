@@ -2,10 +2,10 @@
   "jhipsterApp": {
     "paymentFileHeader": {
       "home": {
-        "title": "Payment File Headers",
+        "title": "Payment File",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Payment File Header",
-        "createOrEditLabel": "Create or edit a Payment File Header",
+        "createLabel": "Create a new Payment File",
+        "createOrEditLabel": "Create or edit a Payment File",
         "notFound": "No Payment File Headers found"
       },
       "created": "A new Payment File Header is created with identifier {{ param }}",
@@ -15,7 +15,7 @@
         "question": "Are you sure you want to delete Payment File Header {{ id }}?"
       },
       "detail": {
-        "title": "Payment File Header"
+        "title": "Payment File"
       },
       "id": "ID",
       "grandTotalPaymentAmount": "Grand Total Payment Amount",

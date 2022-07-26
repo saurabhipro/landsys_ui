@@ -106,7 +106,7 @@ export class ViewKhatedarComponent implements OnInit {
                   this.compensation = compensationResponse.body[0];
                   if (this.projectLand.id != null) {
                     this.paymentAdviceService
-                      .getPaymentAdviceFromCompensation(this.projectLand.id)
+                      .getPaymentAdviceFromCompensation(<number>this.compensation.id)
                       .subscribe((paymentAdviceResponse: any) => {
                         this.paymentAdvice = paymentAdviceResponse.body[0];
                       });

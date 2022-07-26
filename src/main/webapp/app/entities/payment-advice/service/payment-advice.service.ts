@@ -69,6 +69,6 @@ export class PaymentAdviceService {
   }
 
   getPaymentAdviceFromCompensation(id: number): Observable<HttpResponse<IPaymentAdvice>> {
-    return this.http.get<IPaymentAdvice>(`/api/payment-advices?landCompensationId.equals=213`, { observe: 'response' });
+    return this.http.get<IPaymentAdvice>(`/api/payment-advices?landCompensationId.equals=${id}`, { observe: 'response' });
   }
 }
