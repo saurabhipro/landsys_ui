@@ -24,7 +24,7 @@ export class CreatePaymentComponent implements OnInit {
   ascending!: boolean;
   ngbPaginationPage = 1;
 
-  selectedIds:number[] = [];
+  selectedIds: number[] = [];
 
   constructor(
     protected paymentAdviceService: PaymentAdviceService,
@@ -33,20 +33,18 @@ export class CreatePaymentComponent implements OnInit {
     protected modalService: NgbModal
   ) {}
 
-  OnClick(id:any):void{
-    if(id){
-     const index =  this.selectedIds.indexOf(id);
-     if(index === -1){
-      this.selectedIds.push(id)
-     }else {
-      this.selectedIds.splice(index,1)
-     }
-      
+  OnClick(id: any): void {
+    if (id) {
+      const index = this.selectedIds.indexOf(id);
+      if (index === -1) {
+        this.selectedIds.push(id);
+      } else {
+        this.selectedIds.splice(index, 1);
+      }
     }
-
   }
 
-  createPaymentFile():void{
+  createPaymentFile(): void {
     this.selectedIds;
   }
 
@@ -59,7 +57,7 @@ export class CreatePaymentComponent implements OnInit {
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
-        'paymentStatus.equals':'PENDING'
+        'paymentStatus.equals': 'PENDING',
       })
       .subscribe({
         next: (res: HttpResponse<IPaymentAdvice[]>) => {
@@ -101,7 +99,7 @@ export class CreatePaymentComponent implements OnInit {
   }
 
   protected handleNavigation(): void {
-    combineLatest([this.activatedRoute.data, this.activatedRoute.queryParamMap]).subscribe(([data, params]:any) => {
+    combineLatest([this.activatedRoute.data, this.activatedRoute.queryParamMap]).subscribe(([data, params]: any) => {
       const page = params.get('page');
       const pageNumber = +(page ?? 1);
       const sort = (params.get(SORT) ?? data['defaultSort']).split(',');

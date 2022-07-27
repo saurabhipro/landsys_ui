@@ -23,7 +23,8 @@
       "paymentMode": "Payment Mode",
       "approverRemarks": "Approver Remarks",
       "projectLand": "Project Land",
-      "paymentFile": "Payment File"
+      "paymentFile": "Payment File",
+      "downloadPaymentFile": "Download Payment File"
     }
   }
 }

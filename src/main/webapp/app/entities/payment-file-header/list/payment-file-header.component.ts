@@ -23,6 +23,7 @@ export class PaymentFileHeaderComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  selectedIds: number[] = [];
 
   constructor(
     protected paymentFileHeaderService: PaymentFileHeaderService,
@@ -70,6 +71,17 @@ export class PaymentFileHeaderComponent implements OnInit {
         this.loadPage();
       }
     });
+  }
+
+  OnClick(id: any): void {
+    if (id) {
+      const index = this.selectedIds.indexOf(id);
+      if (index === -1) {
+        this.selectedIds.push(id);
+      } else {
+        this.selectedIds.splice(index, 1);
+      }
+    }
   }
 
   protected sort(): string[] {
