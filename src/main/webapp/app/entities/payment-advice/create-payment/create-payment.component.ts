@@ -9,6 +9,7 @@ import { IPaymentAdvice } from '../payment-advice.model';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { PaymentAdviceService } from '../service/payment-advice.service';
 import { PaymentAdviceDeleteDialogComponent } from '../delete/payment-advice-delete-dialog.component';
+import { PaymentFileHeaderService } from '../../payment-file-header/service/payment-file-header.service';
 
 @Component({
   selector: 'jhi-create-payment',
@@ -25,6 +26,7 @@ export class CreatePaymentComponent implements OnInit {
   ngbPaginationPage = 1;
 
   selectedIds: number[] = [];
+  private PaymentFileHeaderService: any;
 
   constructor(
     protected paymentAdviceService: PaymentAdviceService,
@@ -43,6 +45,16 @@ export class CreatePaymentComponent implements OnInit {
       }
     }
   }
+
+  // downloadPaymentFile(): void {
+  //   this.PaymentFileHeaderService.downloadTemplate().subscribe(data => {
+  //     const fileURL = window.URL.createObjectURL(data);
+  //     const link = document.createElement('a');
+  //     link.href = fileURL;
+  //     link.download = 'template';
+  //     link.click();
+  //   });
+  // }
 
   createPaymentFile(): void {
     this.selectedIds;

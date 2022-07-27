@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IPaymentFileHeader } from '../payment-file-header.model';
@@ -24,6 +24,8 @@ export class PaymentFileHeaderComponent implements OnInit {
   ascending!: boolean;
   ngbPaginationPage = 1;
   selectedIds: number[] = [];
+  private http: any;
+  private resourceUrl: any;
 
   constructor(
     protected paymentFileHeaderService: PaymentFileHeaderService,
@@ -84,6 +86,17 @@ export class PaymentFileHeaderComponent implements OnInit {
     }
   }
 
+  downloadPaymentFile(id: number | undefined): void {
+    if (id != null) {
+      this.paymentFileHeaderService.downloadPaymentFile(id).subscribe(data => {
+        const fileURL = window.URL.createObjectURL(data);
+        const link = document.createElement('a');
+        link.href = fileURL;
+        link.download = 'PaymentFile_' + Date.now().toString();
+        link.click();
+      });
+    }
+  }
   protected sort(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? ASC : DESC)];
     if (this.predicate !== 'id') {

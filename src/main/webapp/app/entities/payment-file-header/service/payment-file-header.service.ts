@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
@@ -13,6 +12,7 @@ export type EntityArrayResponseType = HttpResponse<IPaymentFileHeader[]>;
 @Injectable({ providedIn: 'root' })
 export class PaymentFileHeaderService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/payment-file-headers');
+  protected resourceUrlDownloadPaymentFile = this.applicationConfigService.getEndpointFor('api/payment-files');
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
@@ -69,5 +69,9 @@ export class PaymentFileHeaderService {
       return [...paymentFileHeadersToAdd, ...paymentFileHeaderCollection];
     }
     return paymentFileHeaderCollection;
+  }
+
+  downloadPaymentFile(selectedId: number): Observable<Blob> {
+    return this.http.get(`${this.resourceUrlDownloadPaymentFile}/download?paymentFileHeaderId=${selectedId}`, { responseType: 'blob' });
   }
 }

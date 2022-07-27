@@ -19,12 +19,7 @@
       </button>
       <div style="margin-left: 10px"></div>
 
-      <button
-        id="jh-download-file"
-        data-cy="entityCreateButton"
-        class="btn btn-success jh-create-entity create-payment-file-header"
-        [routerLink]="['/payment-file-header/new']"
-      >
+      <button id="jh-download-file" data-cy="entityCreateButton" class="btn btn-success jh-create-entity create-payment-file-header">
         <fa-icon icon="plus"></fa-icon>
         <span jhiTranslate="jhipsterApp.paymentFileHeader.downloadPaymentFile"> Download </span>
       </button>
@@ -104,17 +99,12 @@
 
               <button
                 type="submit"
-                [routerLink]="['/payment-file-header', paymentFileHeader.id, 'edit']"
-                class="btn btn-primary btn-sm"
-                data-cy="entityEditButton"
+                (click)="downloadPaymentFile(paymentFileHeader.id)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
               >
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-              </button>
-
-              <button type="submit" (click)="delete(paymentFileHeader)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Download</span>
               </button>
             </div>
           </td>

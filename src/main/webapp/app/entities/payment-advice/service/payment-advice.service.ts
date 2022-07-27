@@ -71,4 +71,8 @@ export class PaymentAdviceService {
   getPaymentAdviceFromCompensation(id: number): Observable<HttpResponse<IPaymentAdvice>> {
     return this.http.get<IPaymentAdvice>(`/api/payment-advices?landCompensationId.equals=${id}`, { observe: 'response' });
   }
+
+  downloadPaymentFile(): Observable<Blob> {
+    return this.http.get(`${this.resourceUrl}/downloadTemplate`, { responseType: 'blob' });
+  }
 }
