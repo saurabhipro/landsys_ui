@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
-import { IPaymentAdvice, getPaymentAdviceIdentifier } from '../payment-advice.model';
+import { IPaymentAdvice, getPaymentAdviceIdentifier, ICreatePaymentFile } from '../payment-advice.model';
 import { ILandCompensation } from '../../land-compensation/land-compensation.model';
 
 export type EntityResponseType = HttpResponse<IPaymentAdvice>;
@@ -70,5 +70,9 @@ export class PaymentAdviceService {
 
   getPaymentAdviceFromCompensation(id: number): Observable<HttpResponse<IPaymentAdvice>> {
     return this.http.get<IPaymentAdvice>(`/api/payment-advices?landCompensationId.equals=${id}`, { observe: 'response' });
+  }
+
+  createPaymentAFile(paymentAdvice: ICreatePaymentFile): Observable<EntityResponseType> {
+    return this.http.post(`/api/create-payment-files`, paymentAdvice, { observe: 'response' });
   }
 }

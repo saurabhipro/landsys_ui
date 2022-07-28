@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { IPaymentAdvice } from '../payment-advice.model';
+import { ICreatePaymentFile, ICreatePaymentFileAdvices, IPaymentAdvice } from '../payment-advice.model';
 
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { PaymentAdviceService } from '../service/payment-advice.service';
@@ -45,13 +45,37 @@ export class CreatePaymentComponent implements OnInit {
   }
 
   createPaymentFile(): void {
-    this.selectedIds;
+    if(this.selectedIds.length && this.paymentAdvices?.length){
+    const advices:ICreatePaymentFileAdvices[]  = [];
+     this.selectedIds.forEach(id=>{
+     const foundRecord =  this.paymentAdvices?.find(pay => pay.id === id);
+      if(foundRecord?.id && foundRecord.bankName && foundRecord.ifscCode){
+        advices.push( { "paymentAdviceId": foundRecord.id,
+        "bankName": foundRecord.bankName,
+        "ifscCode":  foundRecord.ifscCode })
+      }
+    })
+   
+
+    this.paymentAdviceService
+      .createPaymentAFile({
+        paymentAdvices : advices
+      } )
+      .subscribe({
+        next: () => {
+        this.loadPage();
+        },
+        error: () => {
+          this.onError();
+        },
+      });
+    }
   }
+
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
     const pageToLoad: number = page ?? this.page ?? 1;
-
     this.paymentAdviceService
       .query({
         page: pageToLoad - 1,

@@ -32,6 +32,18 @@ export interface IPaymentAdvice {
   paymentAdviceDetails?: IPaymentAdviceDetails[] | null;
 }
 
+export interface ICreatePaymentFileAdvices {
+  
+    paymentAdviceId: number;
+    bankName: string;
+    ifscCode: string;
+}
+export interface ICreatePaymentFile {
+
+    paymentAdvices: ICreatePaymentFileAdvices[]
+}
+
+
 export class PaymentAdvice implements IPaymentAdvice {
   constructor(
     public id?: number,
