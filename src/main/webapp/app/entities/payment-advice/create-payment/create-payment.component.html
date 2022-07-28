@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="PaymentAdviceHeading">
-    <span >Create Payment file for  Pending Advices</span>
+    <span>Create Payment file for Pending Advices</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
@@ -12,9 +12,7 @@
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-payment-advice"
-        [disabled]="selectedIds.length===0"
-        (click)="createPaymentFile()"
-        
+        [disabled]="selectedIds.length === 0"
       >
         <fa-icon icon="plus"></fa-icon>
         <span> Create a new Payment file </span>
@@ -35,7 +33,7 @@
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col">
-            <span >Select</span>
+            <span>Select</span>
           </th>
           <th scope="col" jhiSortBy="id">
             <span jhiTranslate="global.field.id">ID</span>
@@ -100,7 +98,7 @@
       <tbody>
         <tr *ngFor="let paymentAdvice of paymentAdvices; trackBy: trackId" data-cy="entityTable">
           <td>
-            <input type="checkbox" (click)="OnClick(paymentAdvice.id)" >
+            <input type="checkbox" (click)="OnClick(paymentAdvice.id)" />
           </td>
           <td>
             <a [routerLink]="['/payment-advice', paymentAdvice.id, 'view']">{{ paymentAdvice.id }}</a>

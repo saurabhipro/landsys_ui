@@ -75,4 +75,7 @@ export class PaymentAdviceService {
   createPaymentAFile(paymentAdvice: ICreatePaymentFile): Observable<EntityResponseType> {
     return this.http.post(`/api/create-payment-files`, paymentAdvice, { observe: 'response' });
   }
+  downloadPaymentFile(): Observable<Blob> {
+    return this.http.get(`${this.resourceUrl}/downloadTemplate`, { responseType: 'blob' });
+  }
 }
