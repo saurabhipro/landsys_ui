@@ -256,7 +256,7 @@
                 (click)="collapseNavbar()"
               >
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.createSurvey">Create Survey</span>
+                <span jhiTranslate="global.menu.entities.createSurvey">Create/Search Survey</span>
               </a>
             </li>
 
@@ -270,6 +270,19 @@
               >
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                 <span jhiTranslate="global.menu.entities.createLandCompensation">Create Land Compensation</span>
+              </a>
+            </li>
+
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="land-compensation"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.entities.searchLandCompensation">Search Land Compensation</span>
               </a>
             </li>
             <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
