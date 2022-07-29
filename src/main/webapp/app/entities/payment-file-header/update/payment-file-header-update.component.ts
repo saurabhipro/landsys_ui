@@ -29,7 +29,6 @@ export class PaymentFileHeaderUpdateComponent implements OnInit {
     paymentStatus: [null, [Validators.required]],
     paymentMode: [],
     approverRemarks: [],
-    projectLand: [null, Validators.required],
   });
 
   constructor(
@@ -91,12 +90,12 @@ export class PaymentFileHeaderUpdateComponent implements OnInit {
       paymentStatus: paymentFileHeader.paymentStatus,
       paymentMode: paymentFileHeader.paymentMode,
       approverRemarks: paymentFileHeader.approverRemarks,
-      projectLand: paymentFileHeader.projectLand,
+      projectLand: paymentFileHeader.project,
     });
 
     this.projectLandsSharedCollection = this.projectLandService.addProjectLandToCollectionIfMissing(
-      this.projectLandsSharedCollection,
-      paymentFileHeader.projectLand
+      this.projectLandsSharedCollection
+      // paymentFileHeader.project
     );
   }
 
@@ -120,7 +119,7 @@ export class PaymentFileHeaderUpdateComponent implements OnInit {
       paymentStatus: this.editForm.get(['paymentStatus'])!.value,
       paymentMode: this.editForm.get(['paymentMode'])!.value,
       approverRemarks: this.editForm.get(['approverRemarks'])!.value,
-      projectLand: this.editForm.get(['projectLand'])!.value,
+      // projectLand: this.editForm.get(['projectLand'])!.value,
     };
   }
 }

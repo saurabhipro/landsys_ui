@@ -49,7 +49,7 @@ describe('PaymentFileHeader Management Update Component', () => {
     it('Should call ProjectLand query and add missing value', () => {
       const paymentFileHeader: IPaymentFileHeader = { id: 456 };
       const projectLand: IProjectLand = { id: 99550 };
-      paymentFileHeader.projectLand = projectLand;
+      // paymentFileHeader.project = project;
 
       const projectLandCollection: IProjectLand[] = [{ id: 41110 }];
       jest.spyOn(projectLandService, 'query').mockReturnValue(of(new HttpResponse({ body: projectLandCollection })));
@@ -68,7 +68,7 @@ describe('PaymentFileHeader Management Update Component', () => {
     it('Should update editForm', () => {
       const paymentFileHeader: IPaymentFileHeader = { id: 456 };
       const projectLand: IProjectLand = { id: 70754 };
-      paymentFileHeader.projectLand = projectLand;
+      // paymentFileHeader.project = projectLand;
 
       activatedRoute.data = of({ paymentFileHeader });
       comp.ngOnInit();

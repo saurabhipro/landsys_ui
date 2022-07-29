@@ -86,17 +86,18 @@ export class PaymentFileHeaderComponent implements OnInit {
     }
   }
 
-  downloadPaymentFile(id: number | undefined): void {
-    if (id != null) {
-      this.paymentFileHeaderService.downloadPaymentFile(id).subscribe(data => {
+  downloadPaymentFile(paymentFileHeader: IPaymentFileHeader): void {
+    if (paymentFileHeader.id != null) {
+      this.paymentFileHeaderService.downloadPaymentFileService(paymentFileHeader.id).subscribe(data => {
         const fileURL = window.URL.createObjectURL(data);
         const link = document.createElement('a');
         link.href = fileURL;
-        link.download = 'PaymentFile_' + Date.now().toString();
+        link.download = `PaymentFile_${paymentFileHeader.paymentFileId ? paymentFileHeader.paymentFileId : 'file'}`;
         link.click();
       });
     }
   }
+
   protected sort(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? ASC : DESC)];
     if (this.predicate !== 'id') {

@@ -18,7 +18,7 @@
         "title": "Payment File"
       },
       "id": "ID",
-      "grandTotalPaymentAmount": "Grand Total Payment Amount",
+      "grandTotalPaymentAmount": "Amount",
       "paymentStatus": "Payment Status",
       "paymentMode": "Payment Mode",
       "approverRemarks": "Approver Remarks",

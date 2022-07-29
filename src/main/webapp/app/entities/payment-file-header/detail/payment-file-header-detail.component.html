@@ -37,11 +37,6 @@
           <span>{{ paymentFileHeader.approverRemarks }}</span>
         </dd>
         <dt><span jhiTranslate="jhipsterApp.paymentFileHeader.projectLand">Project Land</span></dt>
-        <dd>
-          <div *ngIf="paymentFileHeader.projectLand">
-            <a [routerLink]="['/project-land', paymentFileHeader.projectLand?.id, 'view']">{{ paymentFileHeader.projectLand?.id }}</a>
-          </div>
-        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

@@ -40,8 +40,12 @@
             <span jhiTranslate="global.field.id">ID</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="grandTotalPaymentAmount">
-            <span jhiTranslate="jhipsterApp.paymentFileHeader.grandTotalPaymentAmount">Grand Total Payment Amount</span>
+          <th scope="col">
+            <span>Project</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col">
+            <span>Payment File Id</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="paymentStatus">
@@ -56,10 +60,15 @@
             <span jhiTranslate="jhipsterApp.paymentFileHeader.approverRemarks">Approver Remarks</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="projectLand.id">
-            <span jhiTranslate="jhipsterApp.paymentFileHeader.projectLand">Project Land</span>
+          <th scope="col" jhiSortBy="grandTotalPaymentAmount">
+            <span jhiTranslate="jhipsterApp.paymentFileHeader.grandTotalPaymentAmount">Grand Total Payment Amount</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col">
+            <span>Created Date</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+
           <th scope="col"></th>
         </tr>
       </thead>
@@ -71,15 +80,14 @@
           <td>
             <a [routerLink]="['/payment-file-header', paymentFileHeader.id, 'view']">{{ paymentFileHeader.id }}</a>
           </td>
-          <td>{{ paymentFileHeader.grandTotalPaymentAmount | currency: '&#8377;' }}</td>
+          <td>{{ paymentFileHeader.project }}</td>
+          <td>{{ paymentFileHeader.paymentFileId }}</td>
           <td jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + paymentFileHeader.paymentStatus }}">{{ paymentFileHeader.paymentStatus }}</td>
           <td jhiTranslate="{{ 'jhipsterApp.PaymentAdviceType.' + paymentFileHeader.paymentMode }}">{{ paymentFileHeader.paymentMode }}</td>
           <td>{{ paymentFileHeader.approverRemarks }}</td>
-          <td>
-            <div *ngIf="paymentFileHeader.projectLand">
-              <a [routerLink]="['/project-land', paymentFileHeader.projectLand?.id, 'view']">{{ paymentFileHeader.projectLand?.id }}</a>
-            </div>
-          </td>
+          <td>{{ paymentFileHeader.grandTotalPaymentAmount | currency: '&#8377;' }}</td>
+          <td>{{ paymentFileHeader.createdDate }}</td>
+          <td>{{ paymentFileHeader.createdBy }}</td>
           <td class="text-end">
             <div class="btn-group">
               <button
@@ -94,7 +102,7 @@
 
               <button
                 type="submit"
-                (click)="downloadPaymentFile(paymentFileHeader.id)"
+                (click)="downloadPaymentFile(paymentFileHeader)"
                 class="btn btn-danger btn-sm"
                 data-cy="entityDeleteButton"
               >

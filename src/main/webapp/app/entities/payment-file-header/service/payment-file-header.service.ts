@@ -71,7 +71,7 @@ export class PaymentFileHeaderService {
     return paymentFileHeaderCollection;
   }
 
-  downloadPaymentFile(selectedId: number): Observable<Blob> {
+  downloadPaymentFileService(selectedId: number): Observable<Blob> {
     return this.http.get(`${this.resourceUrlDownloadPaymentFile}/download?paymentFileHeaderId=${selectedId}`, { responseType: 'blob' });
   }
 }

@@ -9,7 +9,10 @@ export interface IPaymentFileHeader {
   paymentStatus?: PaymentStatus;
   paymentMode?: PaymentAdviceType | null;
   approverRemarks?: string | null;
-  projectLand?: IProjectLand;
+  project?: string | null;
+  createdDate?: string | null;
+  createdBy?: string | null;
+  paymentFileId?: string | null;
   paymentFiles?: IPaymentFile[] | null;
 }
 
@@ -20,7 +23,10 @@ export class PaymentFileHeader implements IPaymentFileHeader {
     public paymentStatus?: PaymentStatus,
     public paymentMode?: PaymentAdviceType | null,
     public approverRemarks?: string | null,
-    public projectLand?: IProjectLand,
+    public project?: string | null,
+    public createdDate?: string | null,
+    public createdBy?: string | null,
+    public paymentFileId?: string | null,
     public paymentFiles?: IPaymentFile[] | null
   ) {}
 }
