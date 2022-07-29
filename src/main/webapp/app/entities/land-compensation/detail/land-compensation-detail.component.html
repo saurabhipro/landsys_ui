@@ -1,104 +1,107 @@
-<div class="d-flex justify-content-center">
-  <div class="col-8">
-    <div *ngIf="landCompensation">
-      <h2 data-cy="landCompensationDetailsHeading">
-        <span jhiTranslate="jhipsterApp.landCompensation.detail.title">Land Compensation</span>
-      </h2>
+<div class="row">
+  <div *ngIf="landCompensation">
+    <h2 data-cy="landCompensationDetailsHeading">
+      <span jhiTranslate="jhipsterApp.landCompensation.detail.title">Land Compensation</span>
+    </h2>
+    <hr />
+    <jhi-alert-error></jhi-alert-error>
 
-      <hr />
-
-      <jhi-alert-error></jhi-alert-error>
-
-      <jhi-alert></jhi-alert>
-
-      <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="global.field.id">ID</span></dt>
-        <dd>
-          <span>{{ landCompensation.id }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.hissaType">Hissa Type</span></dt>
-        <dd>
-          <span jhiTranslate="{{ 'jhipsterApp.HissaType.' + landCompensation.hissaType }}">{{ landCompensation.hissaType }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.area">Area</span></dt>
-        <dd>
-          <span>{{ landCompensation.area }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.sharePercentage">Share Percentage</span></dt>
-        <dd>
-          <span>{{ landCompensation.sharePercentage }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.landMarketValue">Land Market Value</span></dt>
-        <dd>
-          <span>{{ landCompensation.landMarketValue }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.structuralCompensation">Structural Compensation</span></dt>
-        <dd>
-          <span>{{ landCompensation.structuralCompensation }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.horticultureCompensation">Horticulture Compensation</span></dt>
-        <dd>
-          <span>{{ landCompensation.horticultureCompensation }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.forestCompensation">Forest Compensation</span></dt>
-        <dd>
-          <span>{{ landCompensation.forestCompensation }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.solatiumMoney">Solatium Money</span></dt>
-        <dd>
-          <span>{{ landCompensation.solatiumMoney }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.additionalCompensation">Additional Compensation</span></dt>
-        <dd>
-          <span>{{ landCompensation.additionalCompensation }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.status">Status</span></dt>
-        <dd>
-          <span jhiTranslate="{{ 'jhipsterApp.CompensationStatus.' + landCompensation.compensationStatus }}">{{
-            landCompensation.compensationStatus
-          }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.orderDate">Order Date</span></dt>
-        <dd>
-          <span>{{ landCompensation.orderDate | formatMediumDate }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.paymentAmount">Payment Amount</span></dt>
-        <dd>
-          <span>{{ landCompensation.paymentAmount }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.interestRate">Interest Rate</span></dt>
-        <dd>
-          <span>{{ landCompensation.interestRate }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.interestDays">Interest Days</span></dt>
-        <dd>
-          <span>{{ landCompensation.interestDays }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.transactionId">Transaction Id</span></dt>
-        <dd>
-          <span>{{ landCompensation.transactionId }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.projectLand">Project Land</span></dt>
-        <dd>
-          <div *ngIf="landCompensation.projectLand">
-            <a [routerLink]="['/project-land', landCompensation.projectLand?.id, 'view']">{{ landCompensation.projectLand?.id }}</a>
-          </div>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.landCompensation.survey">Survey</span></dt>
-        <dd>
-          <div *ngIf="landCompensation.survey">
-            <a [routerLink]="['/survey', landCompensation.survey?.id, 'view']">{{ landCompensation.survey?.id }}</a>
-          </div>
-        </dd>
-      </dl>
-
-      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
-      </button>
-
-      <button type="button" [routerLink]="['/land-compensation', landCompensation.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
-      </button>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+      <div class="col-6">
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ landCompensation.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.landCompensation.hissaType">Hissa Type</span></dt>
+          <dd>
+            <span jhiTranslate="{{ 'jhipsterApp.HissaType.' + landCompensation.hissaType }}">{{ landCompensation.hissaType }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.landCompensation.area">Area</span></dt>
+          <dd>
+            <span>{{ landCompensation.area }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.landCompensation.sharePercentage">Share Percentage</span></dt>
+          <dd>
+            <span>{{ landCompensation.sharePercentage }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.landCompensation.landMarketValue">Land Market Value</span></dt>
+          <dd>
+            <span>{{ landCompensation.landMarketValue }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.landCompensation.structuralCompensation">Structural Compensation</span></dt>
+          <dd>
+            <span>{{ landCompensation.structuralCompensation }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.landCompensation.horticultureCompensation">Horticulture Compensation</span></dt>
+          <dd>
+            <span>{{ landCompensation.horticultureCompensation }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.landCompensation.forestCompensation">Forest Compensation</span></dt>
+          <dd>
+            <span>{{ landCompensation.forestCompensation }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.landCompensation.solatiumMoney">Solatium Money</span></dt>
+          <dd>
+            <span>{{ landCompensation.solatiumMoney }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.landCompensation.additionalCompensation">Additional Compensation</span></dt>
+          <dd>
+            <span>{{ landCompensation.additionalCompensation }}</span>
+          </dd>
+        </dl>
+      </div>
+      <div class="col-6">
+        <dl class="row-md jh-entity-details">
+          <dt><span>Status</span></dt>
+          <dd>
+            <span jhiTranslate="{{ 'jhipsterApp.CompensationStatus.' + landCompensation.compensationStatus }}">{{
+              landCompensation.compensationStatus
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.landCompensation.orderDate">Order Date</span></dt>
+          <dd>
+            <span>{{ landCompensation.orderDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.landCompensation.paymentAmount">Payment Amount</span></dt>
+          <dd>
+            <span>{{ landCompensation.paymentAmount }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.landCompensation.interestRate">Interest Rate</span></dt>
+          <dd>
+            <span>{{ landCompensation.interestRate }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.landCompensation.interestDays">Interest Days</span></dt>
+          <dd>
+            <span>{{ landCompensation.interestDays }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.landCompensation.transactionId">Transaction Id</span></dt>
+          <dd>
+            <span>{{ landCompensation.transactionId }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.landCompensation.projectLand">Project Land</span></dt>
+          <dd>
+            <div *ngIf="landCompensation.projectLand">
+              <a [routerLink]="['/project-land', landCompensation.projectLand?.id, 'view']">{{ landCompensation.projectLand?.id }}</a>
+            </div>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.landCompensation.survey">Survey</span></dt>
+          <dd>
+            <div *ngIf="landCompensation.survey">
+              <a [routerLink]="['/survey', landCompensation.survey?.id, 'view']">{{ landCompensation.survey?.id }}</a>
+            </div>
+          </dd>
+        </dl>
+      </div>
     </div>
+
+    <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+      <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+    </button>
+
+    <button type="button" [routerLink]="['/land-compensation', landCompensation.id, 'edit']" class="btn btn-primary">
+      <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+    </button>
   </div>
 </div>

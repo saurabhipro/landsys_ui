@@ -126,7 +126,9 @@
           </td>
           <td>
             <div *ngIf="paymentAdvice.projectLand">
-              <a [routerLink]="['/project-land', paymentAdvice.projectLand?.id, 'view']">{{ paymentAdvice.projectLand?.id }}</a>
+              <a [routerLink]="['/project-land', paymentAdvice.projectLand?.id, 'view']">{{
+                paymentAdvice.khatedar?.projectLand?.land?.khasraNumber
+              }}</a>
             </div>
           </td>
           <td>{{ paymentAdvice.paymentStatus }}</td>
