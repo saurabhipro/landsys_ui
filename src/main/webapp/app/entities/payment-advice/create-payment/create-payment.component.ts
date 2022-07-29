@@ -57,33 +57,29 @@ export class CreatePaymentComponent implements OnInit {
   // }
 
   createPaymentFile(): void {
-    if(this.selectedIds.length && this.paymentAdvices?.length){
-    const advices:ICreatePaymentFileAdvices[]  = [];
-     this.selectedIds.forEach(id=>{
-     const foundRecord =  this.paymentAdvices?.find(pay => pay.id === id);
-      if(foundRecord?.id && foundRecord.bankName && foundRecord.ifscCode){
-        advices.push( { "paymentAdviceId": foundRecord.id,
-        "bankName": foundRecord.bankName,
-        "ifscCode":  foundRecord.ifscCode })
-      }
-    })
-   
-
-    this.paymentAdviceService
-      .createPaymentAFile({
-        paymentAdvices : advices
-      } )
-      .subscribe({
-        next: () => {
-        this.loadPage();
-        },
-        error: () => {
-          this.onError();
-        },
+    if (this.selectedIds.length && this.paymentAdvices?.length) {
+      const advices: ICreatePaymentFileAdvices[] = [];
+      this.selectedIds.forEach(id => {
+        const foundRecord = this.paymentAdvices?.find(pay => pay.id === id);
+        if (foundRecord?.id && foundRecord.bankName && foundRecord.ifscCode) {
+          advices.push({ paymentAdviceId: foundRecord.id, bankName: foundRecord.bankName, ifscCode: foundRecord.ifscCode });
+        }
       });
+
+      this.paymentAdviceService
+        .createPaymentAFile({
+          paymentAdvices: advices,
+        })
+        .subscribe({
+          next: () => {
+            this.loadPage();
+          },
+          error: () => {
+            this.onError();
+          },
+        });
     }
   }
-
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;

@@ -71,7 +71,7 @@
           <td>
             <a [routerLink]="['/payment-file-header', paymentFileHeader.id, 'view']">{{ paymentFileHeader.id }}</a>
           </td>
-          <td>{{ paymentFileHeader.grandTotalPaymentAmount }}</td>
+          <td>{{ paymentFileHeader.grandTotalPaymentAmount | currency: '&#8377;' }}</td>
           <td jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + paymentFileHeader.paymentStatus }}">{{ paymentFileHeader.paymentStatus }}</td>
           <td jhiTranslate="{{ 'jhipsterApp.PaymentAdviceType.' + paymentFileHeader.paymentMode }}">{{ paymentFileHeader.paymentMode }}</td>
           <td>{{ paymentFileHeader.approverRemarks }}</td>
@@ -98,7 +98,7 @@
                 class="btn btn-danger btn-sm"
                 data-cy="entityDeleteButton"
               >
-                <fa-icon icon="eye"></fa-icon>
+                <fa-icon icon="download"></fa-icon>
                 <span class="d-none d-md-inline">Download</span>
               </button>
             </div>

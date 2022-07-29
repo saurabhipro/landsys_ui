@@ -13,6 +13,7 @@
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-payment-advice"
         [disabled]="selectedIds.length === 0"
+        (click)="createPaymentFile()"
       >
         <fa-icon icon="plus"></fa-icon>
         <span> Create a new Payment file </span>
