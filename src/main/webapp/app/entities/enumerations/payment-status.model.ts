@@ -4,4 +4,6 @@ export enum PaymentStatus {
   APPROVED = 'APPROVED',
 
   PAID = 'PAID',
+
+  CLOSED = 'CLOSED',
 }
