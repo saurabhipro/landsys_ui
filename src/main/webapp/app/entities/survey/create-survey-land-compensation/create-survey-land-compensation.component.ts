@@ -42,7 +42,7 @@ export class CreateSurveyLandCompensationComponent implements OnInit {
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
-        'status.equals': 'PENDING',
+        'status.equals': 'OPEN',
       })
       .subscribe({
         next: (res: HttpResponse<ISurvey[]>) => {

@@ -139,6 +139,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'jhipsterApp.sequenceGen.home.title' },
         loadChildren: () => import('./sequence-gen/sequence-gen.module').then(m => m.SequenceGenModule),
       },
+      {
+        path: 'form-11',
+        data: { pageTitle: 'jhipsterApp.form11.home.title' },
+        loadChildren: () => import('./form-11/form-11.module').then(m => m.Form11Module),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],
