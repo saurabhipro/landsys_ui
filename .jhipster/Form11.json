@@ -1,0 +1,32 @@
+{
+  "applications": "*",
+  "changelogDate": "20220730143701",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "form_11",
+  "fields": [
+    {
+      "fieldName": "projectName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "district",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "subDistrict",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "village",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Form11",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

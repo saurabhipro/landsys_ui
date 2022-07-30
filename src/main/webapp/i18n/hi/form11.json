@@ -1,0 +1,27 @@
+{
+  "jhipsterApp": {
+    "form11": {
+      "home": {
+        "title": "Form11s",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Form 11 बनाएँ",
+        "createOrEditLabel": "Form 11 बनाएँ या संपादित करें",
+        "notFound": "No Form 11 S found"
+      },
+      "created": "एक नया Form 11 [identifier: {{ param }}] तैयार है",
+      "updated": "एक Form 11 [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Form 11 [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Form 11 [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Form 11"
+      },
+      "id": "ID",
+      "projectName": "Project Name",
+      "district": "District",
+      "subDistrict": "Sub District",
+      "village": "Village"
+    }
+  }
+}
