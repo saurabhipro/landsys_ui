@@ -98,13 +98,6 @@ export class KhatedarComponent implements OnInit {
           this.progress = Math.round((100 * event.loaded) / event.total!);
         } else if (event instanceof HttpResponse) {
           this.fileBeingUploaded = false;
-          this.eventManager.broadcast(
-            new EventWithContent<Alert>('landsysUiApp.success', {
-              type: 'success',
-              message: 'File uploaded successfully.',
-              translationKey: 'en',
-            })
-          );
           if (event.headers.get('excelfile')) {
             const errorFile = new Blob([event.body], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
             const fileURL = window.URL.createObjectURL(errorFile);
@@ -112,6 +105,8 @@ export class KhatedarComponent implements OnInit {
             link.href = fileURL;
             link.download = 'records_with_error';
             link.click();
+            this.fileUpload.nativeElement.files[0].clean;
+            this.loadPage();
           }
         }
       },
