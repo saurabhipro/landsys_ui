@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="form11">
+      <h2 data-cy="form11DetailsHeading"><span jhiTranslate="jhipsterApp.form11.detail.title">Form 11</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ form11.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.form11.projectName">Project Name</span></dt>
+        <dd>
+          <span>{{ form11.projectName }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.form11.district">District</span></dt>
+        <dd>
+          <span>{{ form11.district }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.form11.subDistrict">Sub District</span></dt>
+        <dd>
+          <span>{{ form11.subDistrict }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.form11.village">Village</span></dt>
+        <dd>
+          <span>{{ form11.village }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/form-11', form11.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

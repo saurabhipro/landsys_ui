@@ -1,0 +1,82 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="createPaymentFile">
+      <h2 data-cy="createPaymentFileDetailsHeading">
+        <span jhiTranslate="jhipsterApp.createPaymentFile.detail.title">Create Payment File</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ createPaymentFile.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.createPaymentFile.accountHolderName">Account Holder Name</span></dt>
+        <dd>
+          <span>{{ createPaymentFile.accountHolderName }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.createPaymentFile.accountHolderBankName">Account Holder Bank Name</span></dt>
+        <dd>
+          <span>{{ createPaymentFile.accountHolderBankName }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.createPaymentFile.paymentAmount">Payment Amount</span></dt>
+        <dd>
+          <span>{{ createPaymentFile.paymentAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.createPaymentFile.bankName">Bank Name</span></dt>
+        <dd>
+          <span>{{ createPaymentFile.bankName }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.createPaymentFile.accountNumber">Account Number</span></dt>
+        <dd>
+          <span>{{ createPaymentFile.accountNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.createPaymentFile.ifscCode">Ifsc Code</span></dt>
+        <dd>
+          <span>{{ createPaymentFile.ifscCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.createPaymentFile.checkNumber">Check Number</span></dt>
+        <dd>
+          <span>{{ createPaymentFile.checkNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.createPaymentFile.micrCode">Micr Code</span></dt>
+        <dd>
+          <span>{{ createPaymentFile.micrCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.createPaymentFile.paymentAdviceType">Payment Advice Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterApp.PaymentAdviceType.' + createPaymentFile.paymentAdviceType }}">{{
+            createPaymentFile.paymentAdviceType
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.createPaymentFile.referenceNumber">Reference Number</span></dt>
+        <dd>
+          <span>{{ createPaymentFile.referenceNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.createPaymentFile.paymentStatus">Payment Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + createPaymentFile.paymentStatus }}">{{
+            createPaymentFile.paymentStatus
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterApp.createPaymentFile.hissaType">Hissa Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterApp.HissaType.' + createPaymentFile.hissaType }}">{{ createPaymentFile.hissaType }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/create-payment-file', createPaymentFile.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

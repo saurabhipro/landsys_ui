@@ -1,0 +1,27 @@
+{
+  "jhipsterApp": {
+    "form11": {
+      "home": {
+        "title": "Form 11 S",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Form 11",
+        "createOrEditLabel": "Create or edit a Form 11",
+        "notFound": "No Form 11 S found"
+      },
+      "created": "A new Form 11 is created with identifier {{ param }}",
+      "updated": "A Form 11 is updated with identifier {{ param }}",
+      "deleted": "A Form 11 is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Form 11 {{ id }}?"
+      },
+      "detail": {
+        "title": "Form 11"
+      },
+      "id": "ID",
+      "projectName": "Project Name",
+      "district": "District",
+      "subDistrict": "Sub District",
+      "village": "Village"
+    }
+  }
+}

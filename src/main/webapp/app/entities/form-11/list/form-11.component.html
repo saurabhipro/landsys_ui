@@ -1,0 +1,84 @@
+<div>
+  <h2 id="page-heading" data-cy="Form11Heading">
+    <span jhiTranslate="jhipsterApp.form11.home.title">Form 11 S</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterApp.form11.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-form-11"
+        [routerLink]="['/form-11/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterApp.form11.home.createLabel"> Create a new Form 11 </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="form11s?.length === 0">
+    <span jhiTranslate="jhipsterApp.form11.home.notFound">No form11s found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="form11s && form11s.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterApp.form11.projectName">Project Name</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterApp.form11.district">District</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterApp.form11.subDistrict">Sub District</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterApp.form11.village">Village</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let form11 of form11s; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/form-11', form11.id, 'view']">{{ form11.id }}</a>
+          </td>
+          <td>{{ form11.projectName }}</td>
+          <td>{{ form11.district }}</td>
+          <td>{{ form11.subDistrict }}</td>
+          <td>{{ form11.village }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/form-11', form11.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/form-11', form11.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(form11)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
