@@ -6,6 +6,7 @@ import { SurveyComponent } from '../list/survey.component';
 import { SurveyDetailComponent } from '../detail/survey-detail.component';
 import { SurveyUpdateComponent } from '../update/survey-update.component';
 import { SurveyRoutingResolveService } from './survey-routing-resolve.service';
+import { CreateSurveyLandCompensationComponent } from '../create-survey-land-compensation/create-survey-land-compensation.component';
 
 const surveyRoute: Routes = [
   {
@@ -37,6 +38,14 @@ const surveyRoute: Routes = [
     component: SurveyUpdateComponent,
     resolve: {
       survey: SurveyRoutingResolveService,
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'create-land-compensation',
+    component: CreateSurveyLandCompensationComponent,
+    data: {
+      defaultSort: 'id,asc',
     },
     canActivate: [UserRouteAccessService],
   },
