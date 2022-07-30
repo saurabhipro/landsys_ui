@@ -9,6 +9,7 @@ import { ISurvey } from '../survey.model';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { SurveyService } from '../service/survey.service';
 import { SurveyDeleteDialogComponent } from '../delete/survey-delete-dialog.component';
+import { LoaderService } from 'app/loader.service';
 
 @Component({
   selector: 'jhi-survey',
@@ -28,13 +29,14 @@ export class SurveyComponent implements OnInit {
     protected surveyService: SurveyService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private loaderService: LoaderService
   ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
     const pageToLoad: number = page ?? this.page ?? 1;
-
+    this.loaderService.show(true);
     this.surveyService
       .query({
         page: pageToLoad - 1,
@@ -45,10 +47,12 @@ export class SurveyComponent implements OnInit {
         next: (res: HttpResponse<ISurvey[]>) => {
           this.isLoading = false;
           this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+          this.loaderService.show(false);
         },
         error: () => {
           this.isLoading = false;
           this.onError();
+          this.loaderService.show(false);
         },
       });
   }

@@ -14,6 +14,7 @@ import { Alert } from 'app/core/util/alert.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
 import { Citizen } from 'app/entities/citizen/citizen.model';
 import { ProjectLand } from 'app/entities/project-land/project-land.model';
+import { LoaderService } from 'app/loader.service';
 
 @Component({
   selector: 'jhi-khatedar',
@@ -44,13 +45,14 @@ export class KhatedarComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected modalService: NgbModal,
-    protected dataUtils: DataUtils
+    protected dataUtils: DataUtils,
+    private loaderService: LoaderService
   ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
     const pageToLoad: number = page ?? this.page ?? 1;
-
+    this.loaderService.show(true);
     this.khatedarService
       .query({
         page: pageToLoad - 1,
@@ -61,10 +63,12 @@ export class KhatedarComponent implements OnInit {
         next: (res: HttpResponse<IKhatedar[]>) => {
           this.isLoading = false;
           this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+          this.loaderService.show(false);
         },
         error: () => {
           this.isLoading = false;
           this.onError();
+          this.loaderService.show(false);
         },
       });
   }

@@ -9,6 +9,7 @@ import { IPaymentAdvice } from '../payment-advice.model';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { PaymentAdviceService } from '../service/payment-advice.service';
 import { PaymentAdviceDeleteDialogComponent } from '../delete/payment-advice-delete-dialog.component';
+import { LoaderService } from 'app/loader.service';
 
 @Component({
   selector: 'jhi-payment-advice',
@@ -28,13 +29,14 @@ export class PaymentAdviceComponent implements OnInit {
     protected paymentAdviceService: PaymentAdviceService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private loaderService: LoaderService
   ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
     const pageToLoad: number = page ?? this.page ?? 1;
-
+    this.loaderService.show(true);
     this.paymentAdviceService
       .query({
         page: pageToLoad - 1,
@@ -45,10 +47,12 @@ export class PaymentAdviceComponent implements OnInit {
         next: (res: HttpResponse<IPaymentAdvice[]>) => {
           this.isLoading = false;
           this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+          this.loaderService.show(false);
         },
         error: () => {
           this.isLoading = false;
           this.onError();
+          this.loaderService.show(false);
         },
       });
   }
