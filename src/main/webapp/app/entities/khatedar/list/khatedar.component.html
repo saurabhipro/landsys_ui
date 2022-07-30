@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-12 row">
       <div class="col-12 row">
-        <div class="col-3">
+        <div class="col-4">
           <div class="input-group">
             <input
               type="text"
@@ -21,7 +21,7 @@
           </button>-->
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-5">
           <div class="input-group">
             <input type="text" class="form-control" [placeholder]="filterBy" [(ngModel)]="filterString" />
             <div class="btn-group me-2">
@@ -46,51 +46,42 @@
             </div>
           </div>
         </div>
-        <div class="col-3">
-          <div class="justify-content-end">
-            <div ngbDropdown class="d-inline-block">
-              <button type="button" class="btn btn-outline-primary" ngbDropdownToggle jhiTranslate="jhipsterApp.khatedar.home.upload">
-                Upload
+        
+        <div class="col-3 d-flex justify-content-around">
+          <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-outline-primary" ngbDropdownToggle jhiTranslate="jhipsterApp.khatedar.home.upload">
+              Upload
+            </button>
+            <div ngbDropdownMenu>
+              <button ngbDropdownItem jhiTranslate="jhipsterApp.khatedar.home.upload" (click)="clickFileUpload()">Upload Excel</button>
+              <input
+                type="file"
+                #fileUpload
+                hidden
+                (change)="uploadFile()"
+                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              />
+              <button ngbDropdownItem jhiTranslate="jhipsterApp.khatedar.home.download" (click)="downloadTemplate()">
+                Download Template
               </button>
-              <div ngbDropdownMenu>
-                <button ngbDropdownItem jhiTranslate="jhipsterApp.khatedar.home.upload" (click)="clickFileUpload()">Upload Excel</button>
-                <input
-                  type="file"
-                  #fileUpload
-                  hidden
-                  (change)="uploadFile()"
-                  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                />
-                <button ngbDropdownItem jhiTranslate="jhipsterApp.khatedar.home.download" (click)="downloadTemplate()">
-                  Download Template
-                </button>
-              </div>
             </div>
           </div>
+          <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+            <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+            <span jhiTranslate="jhipsterApp.khatedar.home.refreshListLabel">Refresh List</span>
+          </button>
+
+          <button
+            id="jh-create-entity"
+            data-cy="entityCreateButton"
+            class="btn btn-primary jh-create-entity create-khatedar"
+            [routerLink]="['/khatedar/new']"
+          >
+            <fa-icon icon="plus"></fa-icon>
+            <span jhiTranslate="jhipsterApp.khatedar.home.createLabel"> Create a new Khatedar </span>
+          </button>
         </div>
-
         <div>
-          <h2 id="page-heading" data-cy="KhatedarHeading">
-            <!-- <span jhiTranslate="jhipsterApp.khatedar.home.title">Khatedars</span> -->
-
-            <div class="d-flex justify-content-end">
-              <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
-                <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-                <span jhiTranslate="jhipsterApp.khatedar.home.refreshListLabel">Refresh List</span>
-              </button>
-
-              <button
-                id="jh-create-entity"
-                data-cy="entityCreateButton"
-                class="btn btn-primary jh-create-entity create-khatedar"
-                [routerLink]="['/khatedar/new']"
-              >
-                <fa-icon icon="plus"></fa-icon>
-                <span jhiTranslate="jhipsterApp.khatedar.home.createLabel"> Create a new Khatedar </span>
-              </button>
-            </div>
-          </h2>
-
           <jhi-alert-error></jhi-alert-error>
 
           <jhi-alert></jhi-alert>
