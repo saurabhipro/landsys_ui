@@ -10,6 +10,7 @@ import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants
 import { PaymentAdviceService } from '../service/payment-advice.service';
 import { PaymentAdviceDeleteDialogComponent } from '../delete/payment-advice-delete-dialog.component';
 import { PaymentFileHeaderService } from '../../payment-file-header/service/payment-file-header.service';
+import { LoaderService } from 'app/loader.service';
 
 @Component({
   selector: 'jhi-create-payment',
@@ -32,7 +33,8 @@ export class CreatePaymentComponent implements OnInit {
     protected paymentAdviceService: PaymentAdviceService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private loaderService: LoaderService
   ) {}
 
   OnClick(id: any): void {
@@ -65,7 +67,7 @@ export class CreatePaymentComponent implements OnInit {
           advices.push({ paymentAdviceId: foundRecord.id, bankName: foundRecord.bankName, ifscCode: foundRecord.ifscCode });
         }
       });
-
+      this.loaderService.show(true);
       this.paymentAdviceService
         .createPaymentAFile({
           paymentAdvices: advices,
@@ -73,9 +75,11 @@ export class CreatePaymentComponent implements OnInit {
         .subscribe({
           next: () => {
             this.loadPage();
+            this.loaderService.show(false);
           },
           error: () => {
             this.onError();
+            this.loaderService.show(false);
           },
         });
     }

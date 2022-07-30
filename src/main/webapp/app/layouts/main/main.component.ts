@@ -3,12 +3,14 @@ import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRouteSnapshot, NavigationEnd } from '@angular/router';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import dayjs from 'dayjs/esm';
-
 import { AccountService } from 'app/core/auth/account.service';
+import { LoaderService } from 'app/loader.service';
 
 @Component({
   selector: 'jhi-main',
   templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
+  
 })
 export class MainComponent implements OnInit {
   private renderer: Renderer2;
@@ -18,7 +20,8 @@ export class MainComponent implements OnInit {
     private titleService: Title,
     private router: Router,
     private translateService: TranslateService,
-    rootRenderer: RendererFactory2
+    rootRenderer: RendererFactory2,
+    public loaderService: LoaderService
   ) {
     this.renderer = rootRenderer.createRenderer(document.querySelector('html'), null);
   }
