@@ -8,11 +8,11 @@ import { Form11UpdateComponent } from '../update/form-11-update.component';
 import { Form11RoutingResolveService } from './form-11-routing-resolve.service';
 
 const form11Route: Routes = [
-  {
-    path: '',
-    component: Form11Component,
-    canActivate: [UserRouteAccessService],
-  },
+  // {
+  //   path: '',
+  //   component: Form11Component,
+  //   canActivate: [UserRouteAccessService],
+  // },
   {
     path: ':id/view',
     component: Form11DetailComponent,
@@ -22,7 +22,7 @@ const form11Route: Routes = [
     canActivate: [UserRouteAccessService],
   },
   {
-    path: 'new',
+    path: '',
     component: Form11UpdateComponent,
     resolve: {
       form11: Form11RoutingResolveService,
