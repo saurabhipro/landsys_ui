@@ -3,18 +3,22 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 
 import { IForm11, Form11 } from '../form-11.model';
 import { Form11Service } from '../service/form-11.service';
+import { IProject } from 'app/entities/project/project.model';
+import { ProjectService } from 'app/entities/project/service/project.service';
 
 @Component({
   selector: 'jhi-form-11-update',
   templateUrl: './form-11-update.component.html',
 })
 export class Form11UpdateComponent implements OnInit {
-  isSaving = false;
 
+  // todo project
+  isSaving = false;
+  projectsSharedCollection: IProject[] = [];
   editForm = this.fb.group({
     id: [],
     projectName: [],
@@ -23,13 +27,24 @@ export class Form11UpdateComponent implements OnInit {
     village: [],
   });
 
-  constructor(protected form11Service: Form11Service, protected activatedRoute: ActivatedRoute, protected fb: FormBuilder) {}
+  constructor(protected form11Service: Form11Service, protected activatedRoute: ActivatedRoute, protected fb: FormBuilder, private projectService: ProjectService) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ form11 }) => {
-      this.updateForm(form11);
-    });
+    this.projectService
+      .query()
+      .pipe(map((res: HttpResponse<IProject[]>) => res.body ?? []))
+      .pipe(
+        map((projects: IProject[]) => this.projectService.addProjectToCollectionIfMissing(projects, this.editForm.get('project')!.value))
+      )
+      .subscribe((projects: IProject[]) => (this.projectsSharedCollection = projects));
   }
+
+
+  trackProjectById(_index: number, item: IProject): number {
+    return item.id!;
+  }
+
+  
 
   previousState(): void {
     window.history.back();

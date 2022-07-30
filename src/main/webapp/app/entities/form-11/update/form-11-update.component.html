@@ -1,28 +1,24 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-form-11-heading" data-cy="Form11CreateUpdateHeading" jhiTranslate="jhipsterApp.form11.home.createOrEditLabel">
-        Create or edit a Form 11
+      <h2 id="jhi-form-11-heading" data-cy="Form11CreateUpdateHeading" >
+       Download Form 11
       </h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
-
-        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
-          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-        </div>
-
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.form11.projectName" for="field_projectName">Project Name</label>
-          <input
-            type="text"
-            class="form-control"
-            name="projectName"
-            id="field_projectName"
-            data-cy="projectName"
-            formControlName="projectName"
-          />
+          <select class="form-control" id="field_projectName" data-cy="projectName" name="projectName" formControlName="projectName">
+            <option *ngIf="!editForm.get('projectName')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="projectOption"
+              *ngFor="let projectOption of projectsSharedCollection; trackBy: trackProjectById"
+            >
+              {{ projectOption.name }}
+            </option>
+          </select>
+        {{projectsSharedCollection | json}}
         </div>
 
         <div class="row mb-3">
