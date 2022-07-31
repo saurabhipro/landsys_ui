@@ -44,21 +44,23 @@
           <thead>
             <th>ID</th>
             <th>Payment File ID</th>
+            <th>IFSC</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Status</th>
           </thead>
           <tr *ngFor="let x of paymentFileHeader.paymentFiles" data-cy="entityTable">
             <td>{{ x.id }}</td>
             <td>{{ x.paymentFileId }}</td>
             <td>{{ x.khatedarIfscCode }}</td>
             <td>{{ x.paymentFileDate }}</td>
+            <td>{{ x.totalPaymentAmount }}</td>
+            <td>{{ x.paymentFileStatus }}</td>
           </tr>
         </table>
       </div>
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
-      </button>
-
-      <button type="button" [routerLink]="['/payment-file-header', paymentFileHeader.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
       </button>
     </div>
   </div>
