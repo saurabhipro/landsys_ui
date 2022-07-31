@@ -1,17 +1,20 @@
 <div class="d-flex justify-content-center">
-  <div class="col-8">
+  <div >
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2
         id="jhi-land-compensation-heading"
         data-cy="LandCompensationCreateUpdateHeading"
-        jhiTranslate="jhipsterApp.landCompensation.home.createOrEditLabel"
+        
       >
-        Create or edit a Land Compensation
+        Create a Land Compensation
       </h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
+        <div class="row">
+          <div class="col-6">
 
+         
         <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
           <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
           <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
@@ -163,7 +166,9 @@
             formControlName="forestCompensation"
           />
         </div>
-
+    
+        
+   
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.solatiumMoney" for="field_solatiumMoney"
             >Solatium Money</label
@@ -191,15 +196,18 @@
             formControlName="additionalCompensation"
           />
         </div>
-
+      </div>
+      <div class="col-6">
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.compensationStatus" for="field_status">Status</label>
+          <div class="input-group">
           <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
             <option [ngValue]="null">{{ 'jhipsterApp.CompensationStatus.null' | translate }}</option>
             <option *ngFor="let compensationStatus of compensationStatusValues" [value]="compensationStatus">
               {{ 'jhipsterApp.CompensationStatus.' + compensationStatus | translate }}
             </option>
           </select>
+          </div>
         </div>
 
         <div class="row mb-3">
@@ -223,6 +231,7 @@
           <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.paymentAmount" for="field_paymentAmount"
             >Payment Amount</label
           >
+          <div class="input-group">
           <input
             type="number"
             class="form-control"
@@ -231,10 +240,12 @@
             data-cy="paymentAmount"
             formControlName="paymentAmount"
           />
+          </div>
         </div>
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.interestRate" for="field_interestRate">Interest Rate</label>
+          <div class="input-group">
           <input
             type="number"
             class="form-control"
@@ -243,10 +254,12 @@
             data-cy="interestRate"
             formControlName="interestRate"
           />
+          </div>
         </div>
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.interestDays" for="field_interestDays">Interest Days</label>
+          <div class="input-group">
           <input
             type="number"
             class="form-control"
@@ -255,12 +268,14 @@
             data-cy="interestDays"
             formControlName="interestDays"
           />
+          </div>
         </div>
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.transactionId" for="field_transactionId"
             >Transaction Id</label
           >
+          <div class="input-group">
           <input
             type="text"
             class="form-control"
@@ -269,10 +284,12 @@
             data-cy="transactionId"
             formControlName="transactionId"
           />
+          </div>
         </div>
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.projectLand" for="field_projectLand">Project Land</label>
+          <div class="input-group">
           <select class="form-control" id="field_projectLand" data-cy="projectLand" name="projectLand" formControlName="projectLand">
             <option *ngIf="editForm.get(['projectLand'])!.value == null" [ngValue]="null" selected></option>
             <option
@@ -284,6 +301,7 @@
               {{ projectLandOption.id }}
             </option>
           </select>
+          </div>
         </div>
         <div
           *ngIf="editForm.get(['projectLand'])!.invalid && (editForm.get(['projectLand'])!.dirty || editForm.get(['projectLand'])!.touched)"
@@ -299,6 +317,7 @@
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.survey" for="field_survey">Survey</label>
+          <div class="input-group">
           <select class="form-control" id="field_survey" data-cy="survey" name="survey" formControlName="survey">
             <option *ngIf="editForm.get(['survey'])!.value == null" [ngValue]="null" selected></option>
             <option
@@ -308,6 +327,7 @@
               {{ surveyOption.id }}
             </option>
           </select>
+          </div>
         </div>
         <div *ngIf="editForm.get(['survey'])!.invalid && (editForm.get(['survey'])!.dirty || editForm.get(['survey'])!.touched)">
           <small class="form-text text-danger" *ngIf="editForm.get(['survey'])?.errors?.required" jhiTranslate="entity.validation.required">
@@ -315,11 +335,10 @@
           </small>
         </div>
       </div>
-
+    </div>
+  </div>
       <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-        </button>
+       
 
         <button
           type="submit"
@@ -333,4 +352,7 @@
       </div>
     </form>
   </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
 </div>

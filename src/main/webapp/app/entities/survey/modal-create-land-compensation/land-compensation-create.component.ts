@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -22,9 +22,12 @@ export class LandCompensationCreateComponent implements OnInit {
   isSaving = false;
   hissaTypeValues = Object.keys(HissaType);
   compensationStatusValues = Object.keys(CompensationStatus);
-
+  
   projectLandsCollection: IProjectLand[] = [];
   surveysCollection: ISurvey[] = [];
+
+  @Input() survey!:ISurvey;
+
 
   editForm = this.fb.group({
     id: [],
@@ -57,10 +60,23 @@ export class LandCompensationCreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ landCompensation }) => {
-      this.updateForm(landCompensation);
-      this.loadRelationshipsOptions();
-    });
+      if(this.survey.id !=null){
+        const landCompensation : ILandCompensation = {
+          hissaType:this.survey.hissaType,
+          area: this.survey.area,
+          landMarketValue: this.survey.landMarketValue,
+          structuralCompensation: this.survey.structuralValue,
+          horticultureCompensation: this.survey.horticultureValue,
+          forestCompensation: this.survey.forestValue,
+          projectLand: this.survey.projectLand,
+          survey: this.survey
+        }
+        this.updateForm(landCompensation);
+        this.loadRelationshipsOptions();
+      }else{
+        this.activeModal.close();
+      }
+     
   }
 
   previousState(): void {
@@ -93,7 +109,7 @@ export class LandCompensationCreateComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
-    this.previousState();
+    this.activeModal.close();
   }
 
   protected onSaveError(): void {
@@ -164,7 +180,7 @@ export class LandCompensationCreateComponent implements OnInit {
       forestCompensation: this.editForm.get(['forestCompensation'])!.value,
       solatiumMoney: this.editForm.get(['solatiumMoney'])!.value,
       additionalCompensation: this.editForm.get(['additionalCompensation'])!.value,
-      compensationStatus: this.editForm.get(['compensationStatus'])!.value,
+      compensationStatus: this.editForm.get(['status'])!.value,
       orderDate: this.editForm.get(['orderDate'])!.value,
       paymentAmount: this.editForm.get(['paymentAmount'])!.value,
       interestRate: this.editForm.get(['interestRate'])!.value,

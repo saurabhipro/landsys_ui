@@ -79,8 +79,8 @@ export class CreateSurveyLandCompensationComponent implements OnInit {
   }
 
   createCompensation(survey: ISurvey): void{
-    const modalRef = this.modalService.open(LandCompensationCreateComponent);
-   // modalRef.componentInstance.name = 'World';
+    const modalRef = this.modalService.open(LandCompensationCreateComponent, { size: 'xl', backdropClass: 'light-blue-backdrop' }); 
+    modalRef.componentInstance.survey = survey;
    // this.loadPage();
   }
 
