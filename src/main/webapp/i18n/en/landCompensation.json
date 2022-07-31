@@ -4,7 +4,7 @@
       "home": {
         "title": "Land Compensations",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Land Compensation",
+        "createLabel": "Create Compensation",
         "createOrEditLabel": "Create or edit a Land Compensation",
         "notFound": "No Land Compensations found"
       },

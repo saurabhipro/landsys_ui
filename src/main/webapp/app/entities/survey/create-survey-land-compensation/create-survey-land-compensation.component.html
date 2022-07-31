@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="SurveyHeading">
-    <span >Create Land Compensation</span>
+    <span>Create Land Compensation</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
@@ -23,7 +23,7 @@
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col" jhiSortBy="id">
-            <span jhiTranslate="global.field.id">ID</span>
+            <span jhiTranslate="global.field.id">Survey ID</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="surveyor">
@@ -105,15 +105,15 @@
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
               </button>
 
-              <button type="submit" [routerLink]="['/survey', survey.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-              </button>
+              <!--              <button type="submit" [routerLink]="['/survey', survey.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">-->
+              <!--                <fa-icon icon="pencil-alt"></fa-icon>-->
+              <!--                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>-->
+              <!--              </button>-->
 
-                         <button type="submit" (click)="createCompensation(survey)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                           <fa-icon icon="eye"></fa-icon>
-                           <span class="d-none d-md-inline" jhiTranslate="jhipsterApp.landCompensation.home.createLabel">Create</span>
-                       </button> 
+              <button type="submit" (click)="createCompensation(survey)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="add"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="jhipsterApp.landCompensation.home.createLabel">Create</span>
+              </button>
             </div>
           </td>
         </tr>
