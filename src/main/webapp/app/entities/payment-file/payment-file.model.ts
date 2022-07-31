@@ -17,6 +17,7 @@ export interface IPaymentFile {
   khatedarIfscCode?: string | null;
   paymentFileDate?: dayjs.Dayjs | null;
   paymentFileStatus?: PaymentStatus;
+  paymentStatus?: PaymentStatus;
   paymentMode?: PaymentAdviceType;
   khatedar?: IKhatedar;
   paymentAdvice?: IPaymentAdvice;
@@ -26,6 +27,8 @@ export interface IPaymentFile {
   bankBranch?: IBankBranch;
   landCompensation?: ILandCompensation;
   paymentFileHeader?: IPaymentFileHeader;
+  bankName?: string;
+  ifscCode?: string
 }
 
 export class PaymentFile implements IPaymentFile {

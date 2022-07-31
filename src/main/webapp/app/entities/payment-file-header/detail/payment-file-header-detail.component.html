@@ -52,10 +52,10 @@
           <tr *ngFor="let x of paymentFileHeader.paymentFiles" data-cy="entityTable">
             <td>{{ x.id }}</td>
             <td>{{ x.paymentFileId }}</td>
-            <td>{{ x.khatedarIfscCode }}</td>
+            <td>{{ x.ifscCode }}</td>
             <td>{{ x.paymentFileDate }}</td>
             <td>{{ x.totalPaymentAmount }}</td>
-            <td>{{ x.paymentFileStatus }}</td>
+            <td>{{ x.paymentStatus }}</td>
           </tr>
         </table>
       </div>
