@@ -10,5 +10,6 @@ import { PaymentFileRoutingModule } from './route/payment-file-routing.module';
   imports: [SharedModule, PaymentFileRoutingModule],
   declarations: [PaymentFileComponent, PaymentFileDetailComponent, PaymentFileUpdateComponent, PaymentFileDeleteDialogComponent],
   entryComponents: [PaymentFileDeleteDialogComponent],
+  exports: [PaymentFileComponent],
 })
 export class PaymentFileModule {}

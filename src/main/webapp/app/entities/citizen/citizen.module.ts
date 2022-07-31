@@ -10,5 +10,6 @@ import { CitizenRoutingModule } from './route/citizen-routing.module';
   imports: [SharedModule, CitizenRoutingModule],
   declarations: [CitizenComponent, CitizenDetailComponent, CitizenUpdateComponent, CitizenDeleteDialogComponent],
   entryComponents: [CitizenDeleteDialogComponent],
+  exports: [CitizenComponent],
 })
 export class CitizenModule {}

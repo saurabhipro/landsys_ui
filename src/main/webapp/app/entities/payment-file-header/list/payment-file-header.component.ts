@@ -3,9 +3,7 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { IPaymentFileHeader } from '../payment-file-header.model';
-
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { PaymentFileHeaderService } from '../service/payment-file-header.service';
 import { PaymentFileHeaderDeleteDialogComponent } from '../delete/payment-file-header-delete-dialog.component';
