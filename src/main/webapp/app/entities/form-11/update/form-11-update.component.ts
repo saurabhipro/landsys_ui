@@ -83,29 +83,21 @@ export class Form11UpdateComponent implements OnInit {
 
   public downloadForm11(): void {
     this.loaderService.show(true);
-    //Form11: IForm11
-    
-    this.form11Service.downloadForm11( {
-      "projectName": "जेवर अंतरराष्ट्रीय हवाई अड्डा",
-      "village": "रोहि",
-      "subDistrict": "JEWAR",
-      "district": "गौतमबुद्ध नगर"
-    })
-    .subscribe((res:any) => {
-      res
-      this.loaderService.show(false);
-      
-    },error=>{
-      this.loaderService.show(false);
-    });
-
-    // {{host}}/api/form11/download
-    // {
-    //   "projectName": "जेवर अंतरराष्ट्रीय हवाई अड्डा",
-    //   "village": "रोहि",
-    //   "subDistrict": "JEWAR",
-    //   "district": "गौतमबुद्ध नगर"
-    // }
+    this.form11Service
+      .downloadForm11({
+        projectName: 'जेवर अंतरराष्ट्रीय हवाई अड्डा',
+        village: 'रोहि',
+        subDistrict: 'JEWAR',
+        district: 'गौतमबुद्ध नगर',
+      })
+      .subscribe(data => {
+        this.loaderService.show(false);
+        const fileURL = window.URL.createObjectURL(data);
+        const link = document.createElement('a');
+        link.href = fileURL;
+        link.download = 'Form11';
+        link.click();
+      });
   }
 
   previousState(): void {
@@ -161,6 +153,4 @@ export class Form11UpdateComponent implements OnInit {
       village: this.editForm.get(['village'])!.value,
     };
   }
-
-
 }
