@@ -57,4 +57,10 @@ export class Form11Service {
     }
     return form11Collection;
   }
+ 
+  downloadForm11(form11: IForm11): Observable<Blob> {
+    const url =  this.applicationConfigService.getEndpointFor('api/form11/download');
+    return this.http.post(url, form11, { responseType: 'blob' });
+  }
+
 }

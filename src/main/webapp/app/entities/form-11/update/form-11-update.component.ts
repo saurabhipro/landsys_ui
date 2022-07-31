@@ -15,6 +15,7 @@ import { SubDistrictService } from '../../sub-district/service/sub-district.serv
 import { VillageService } from '../../village/service/village.service';
 import { ISubDistrict } from '../../sub-district/sub-district.model';
 import { IVillage } from '../../village/village.model';
+import { LoaderService } from 'app/loader.service';
 
 @Component({
   selector: 'jhi-form-11-update',
@@ -42,7 +43,8 @@ export class Form11UpdateComponent implements OnInit {
     private projectService: ProjectService,
     private districtService: DistrictService,
     private subDistrictService: SubDistrictService,
-    private vilalgeService: VillageService
+    private vilalgeService: VillageService,
+    private loaderService: LoaderService
   ) {}
 
   ngOnInit(): void {
@@ -77,6 +79,33 @@ export class Form11UpdateComponent implements OnInit {
 
   trackProjectById(_index: number, item: IProject): number {
     return item.id!;
+  }
+
+  public downloadForm11(): void {
+    this.loaderService.show(true);
+    //Form11: IForm11
+    
+    this.form11Service.downloadForm11( {
+      "projectName": "जेवर अंतरराष्ट्रीय हवाई अड्डा",
+      "village": "रोहि",
+      "subDistrict": "JEWAR",
+      "district": "गौतमबुद्ध नगर"
+    })
+    .subscribe((res:any) => {
+      res
+      this.loaderService.show(false);
+      
+    },error=>{
+      this.loaderService.show(false);
+    });
+
+    // {{host}}/api/form11/download
+    // {
+    //   "projectName": "जेवर अंतरराष्ट्रीय हवाई अड्डा",
+    //   "village": "रोहि",
+    //   "subDistrict": "JEWAR",
+    //   "district": "गौतमबुद्ध नगर"
+    // }
   }
 
   previousState(): void {
@@ -133,13 +162,5 @@ export class Form11UpdateComponent implements OnInit {
     };
   }
 
-  protected downloadForm11(): void {
-    // {{host}}/api/form11/download
-    // {
-    //   "projectName": "जेवर अंतरराष्ट्रीय हवाई अड्डा",
-    //   "village": "रोहि",
-    //   "subDistrict": "JEWAR",
-    //   "district": "गौतमबुद्ध नगर"
-    // }
-  }
+
 }
