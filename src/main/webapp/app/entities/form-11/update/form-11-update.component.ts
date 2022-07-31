@@ -9,16 +9,24 @@ import { IForm11, Form11 } from '../form-11.model';
 import { Form11Service } from '../service/form-11.service';
 import { IProject } from 'app/entities/project/project.model';
 import { ProjectService } from 'app/entities/project/service/project.service';
+import { DistrictService } from 'app/entities/district/service/district.service';
+import { IDistrict } from '../../district/district.model';
+import { SubDistrictService } from '../../sub-district/service/sub-district.service';
+import { VillageService } from '../../village/service/village.service';
+import { ISubDistrict } from '../../sub-district/sub-district.model';
+import { IVillage } from '../../village/village.model';
 
 @Component({
   selector: 'jhi-form-11-update',
   templateUrl: './form-11-update.component.html',
 })
 export class Form11UpdateComponent implements OnInit {
-
   // todo project
   isSaving = false;
   projectsSharedCollection: IProject[] = [];
+  districtSharedCollection: IProject[] = [];
+  subDistrictSharedCollection: IProject[] = [];
+  villageSharedCollection: IProject[] = [];
   editForm = this.fb.group({
     id: [],
     projectName: [],
@@ -27,22 +35,49 @@ export class Form11UpdateComponent implements OnInit {
     village: [],
   });
 
-  constructor(protected form11Service: Form11Service, protected activatedRoute: ActivatedRoute, protected fb: FormBuilder, private projectService: ProjectService) {}
+  constructor(
+    protected form11Service: Form11Service,
+    protected activatedRoute: ActivatedRoute,
+    protected fb: FormBuilder,
+    private projectService: ProjectService,
+    private districtService: DistrictService,
+    private subDistrictService: SubDistrictService,
+    private vilalgeService: VillageService
+  ) {}
 
   ngOnInit(): void {
     this.projectService
       .query()
       .pipe(map((res: HttpResponse<IProject[]>) => res.body ?? []))
       .subscribe((projects: IProject[]) => {
-        this.projectsSharedCollection = projects});
-  }
+        this.projectsSharedCollection = projects;
+      });
 
+    this.districtService
+      .query()
+      .pipe(map((res: HttpResponse<IDistrict[]>) => res.body ?? []))
+      .subscribe((districts: IDistrict[]) => {
+        this.districtSharedCollection = districts;
+      });
+
+    this.subDistrictService
+      .query()
+      .pipe(map((res: HttpResponse<ISubDistrict[]>) => res.body ?? []))
+      .subscribe((subDistricts: ISubDistrict[]) => {
+        this.subDistrictSharedCollection = subDistricts;
+      });
+
+    this.vilalgeService
+      .query()
+      .pipe(map((res: HttpResponse<IVillage[]>) => res.body ?? []))
+      .subscribe((villages: IVillage[]) => {
+        this.villageSharedCollection = villages;
+      });
+  }
 
   trackProjectById(_index: number, item: IProject): number {
     return item.id!;
   }
-
-  
 
   previousState(): void {
     window.history.back();
@@ -96,5 +131,15 @@ export class Form11UpdateComponent implements OnInit {
       subDistrict: this.editForm.get(['subDistrict'])!.value,
       village: this.editForm.get(['village'])!.value,
     };
+  }
+
+  protected downloadForm11() {
+    // {{host}}/api/form11/download
+    // {
+    //   "projectName": "जेवर अंतरराष्ट्रीय हवाई अड्डा",
+    //   "village": "रोहि",
+    //   "subDistrict": "JEWAR",
+    //   "district": "गौतमबुद्ध नगर"
+    // }
   }
 }

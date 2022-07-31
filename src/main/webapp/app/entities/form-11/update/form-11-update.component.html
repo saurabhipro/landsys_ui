@@ -1,9 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-form-11-heading" data-cy="Form11CreateUpdateHeading" >
-       Download Form 11
-      </h2>
+      <h2 id="jhi-form-11-heading" data-cy="Form11CreateUpdateHeading">Download Form 11</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
@@ -11,10 +9,7 @@
           <label class="form-label" jhiTranslate="jhipsterApp.form11.projectName" for="field_projectName">Project Name</label>
           <select class="form-control" id="field_projectName" data-cy="projectName" name="projectName" formControlName="projectName">
             <option *ngIf="!editForm.get('projectName')!.value" [ngValue]="null" selected></option>
-            <option
-              [ngValue]="projectOption"
-              *ngFor="let projectOption of projectsSharedCollection; trackBy: trackProjectById"
-            >
+            <option [ngValue]="projectOption" *ngFor="let projectOption of projectsSharedCollection; trackBy: trackProjectById">
               {{ projectOption.name }}
             </option>
           </select>
@@ -22,24 +17,32 @@
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.form11.district" for="field_district">District</label>
-          <input type="text" class="form-control" name="district" id="field_district" data-cy="district" formControlName="district" />
+          <select class="form-control" id="field_district" data-cy="district" name="district" formControlName="district">
+            <option *ngIf="!editForm.get('district')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="districtOption" *ngFor="let districtOption of districtSharedCollection">
+              {{ districtOption.name }}
+            </option>
+          </select>
         </div>
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.form11.subDistrict" for="field_subDistrict">Sub District</label>
-          <input
-            type="text"
-            class="form-control"
-            name="subDistrict"
-            id="field_subDistrict"
-            data-cy="subDistrict"
-            formControlName="subDistrict"
-          />
+          <select class="form-control" id="field_subDistrict" data-cy="subDistrict" name="subDistrict" formControlName="subDistrict">
+            <option *ngIf="!editForm.get('subDistrict')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="subDistrictOption" *ngFor="let subDistrictOption of subDistrictSharedCollection">
+              {{ subDistrictOption.name }}
+            </option>
+          </select>
         </div>
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.form11.village" for="field_village">Village</label>
-          <input type="text" class="form-control" name="village" id="field_village" data-cy="village" formControlName="village" />
+          <select class="form-control" id="field_village" data-cy="subDistrict" name="village" formControlName="villagel">
+            <option *ngIf="!editForm.get('village')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="villageOption" *ngFor="let villageOption of villageSharedCollection">
+              {{ villageOption.name }}
+            </option>
+          </select>
         </div>
       </div>
 
@@ -55,7 +58,7 @@
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
         >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+          <fa-icon icon="download"></fa-icon>&nbsp;<span jhiTranslate="entity.action.download">Download Form 11</span>
         </button>
       </div>
     </form>

@@ -40,8 +40,10 @@ import {
   faDownload,
   // jhipster-needle-add-icon-import
 } from '@fortawesome/free-solid-svg-icons';
+import { faProcedures } from '@fortawesome/free-solid-svg-icons/faProcedures';
 
 export const fontAwesomeIcons = [
+  faProcedures,
   faDownload,
   faArrowLeft,
   faAsterisk,
