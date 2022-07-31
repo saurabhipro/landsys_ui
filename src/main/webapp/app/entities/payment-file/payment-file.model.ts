@@ -14,9 +14,9 @@ export interface IPaymentFile {
   id?: number;
   paymentFileId?: number;
   totalPaymentAmount?: number;
+  khatedarIfscCode?: string | null;
   paymentFileDate?: dayjs.Dayjs | null;
   paymentFileStatus?: PaymentStatus;
-  khatedarIfscCode?: string | null;
   paymentMode?: PaymentAdviceType;
   khatedar?: IKhatedar;
   paymentAdvice?: IPaymentAdvice;

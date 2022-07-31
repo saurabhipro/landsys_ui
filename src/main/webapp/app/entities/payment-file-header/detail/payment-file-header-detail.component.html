@@ -39,19 +39,20 @@
         <dt><span jhiTranslate="jhipsterApp.paymentFileHeader.projectLand">Project Land</span></dt>
       </dl>
 
-      <table>
-        <thead>
-          <th>ID</th>
-          <th>
-            Payment File Id
-          </th>
-        </thead>
-        <tr *ngFor="let x of paymentFileHeader.paymentFiles;" data-cy="entityTable">
-          <td>x.id</td>
-          <td>x.paymentFileId</td>
-        </tr>
-      </table>
-
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <th>ID</th>
+            <th>Payment File ID</th>
+          </thead>
+          <tr *ngFor="let x of paymentFileHeader.paymentFiles" data-cy="entityTable">
+            <td>{{ x.id }}</td>
+            <td>{{ x.paymentFileId }}</td>
+            <td>{{ x.khatedarIfscCode }}</td>
+            <td>{{ x.paymentFileDate }}</td>
+          </tr>
+        </table>
+      </div>
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
       </button>
