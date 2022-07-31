@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
-    <form name="editForm" role="form" novalidate  [formGroup]="editForm">
+    <form name="editForm" role="form" novalidate [formGroup]="editForm">
       <h2 id="jhi-form-11-heading" data-cy="Form11CreateUpdateHeading">Download Form 11</h2>
 
       <div>
@@ -37,7 +37,7 @@
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.form11.village" for="field_village">Village</label>
-          <select class="form-control" id="field_village" data-cy="subDistrict" name="village" formControlName="villagel">
+          <select class="form-control" id="field_village" data-cy="subDistrict" name="village" formControlName="village">
             <option *ngIf="!editForm.get('village')!.value" [ngValue]="null" selected></option>
             <option [ngValue]="villageOption" *ngFor="let villageOption of villageSharedCollection">
               {{ villageOption.name }}
