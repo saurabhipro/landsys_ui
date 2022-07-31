@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal,NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ISurvey } from '../survey.model';
 
@@ -10,6 +10,7 @@ import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants
 import { SurveyService } from '../service/survey.service';
 import { SurveyDeleteDialogComponent } from '../delete/survey-delete-dialog.component';
 import { LoaderService } from 'app/loader.service';
+import { LandCompensationCreateComponent } from '../modal-create-land-compensation/land-compensation-create.component';
 
 @Component({
   selector: 'jhi-create-survey-land-compensation',
@@ -75,6 +76,12 @@ export class CreateSurveyLandCompensationComponent implements OnInit {
         this.loadPage();
       }
     });
+  }
+
+  createCompensation(survey: ISurvey): void{
+    const modalRef = this.modalService.open(LandCompensationCreateComponent);
+   // modalRef.componentInstance.name = 'World';
+   // this.loadPage();
   }
 
   protected sort(): string[] {
