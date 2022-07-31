@@ -133,7 +133,7 @@ export class Form11UpdateComponent implements OnInit {
     };
   }
 
-  protected downloadForm11() {
+  protected downloadForm11(): void {
     // {{host}}/api/form11/download
     // {
     //   "projectName": "जेवर अंतरराष्ट्रीय हवाई अड्डा",
