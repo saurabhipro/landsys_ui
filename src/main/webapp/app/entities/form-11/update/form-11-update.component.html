@@ -51,13 +51,7 @@
           <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
 
-        <button
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
-          [disabled]="editForm.invalid || isSaving"
-          class="btn btn-primary"
-          (click)="downloadForm11()"
-        >
+        <button id="save-entity" data-cy="entityCreateSaveButton" class="btn btn-primary" (click)="downloadForm11()">
           <fa-icon icon="download"></fa-icon>&nbsp;<span jhiTranslate="entity.action.download">Download Form 11</span>
         </button>
       </div>

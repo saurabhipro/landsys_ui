@@ -4,6 +4,9 @@
       <h2 data-cy="paymentFileHeaderDetailsHeading">
         <span jhiTranslate="jhipsterApp.paymentFileHeader.detail.title">Payment File Header</span>
       </h2>
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
 
       <hr />
 
@@ -59,9 +62,6 @@
           </tr>
         </table>
       </div>
-      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
-      </button>
     </div>
   </div>
 </div>
