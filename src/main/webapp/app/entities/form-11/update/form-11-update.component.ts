@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
@@ -29,11 +29,11 @@ export class Form11UpdateComponent implements OnInit {
   subDistrictSharedCollection: IProject[] = [];
   villageSharedCollection: IProject[] = [];
   editForm = this.fb.group({
-    id: [],
-    projectName: [],
-    district: [],
-    subDistrict: [],
-    village: [],
+    id: ['', Validators.required],
+    projectName: ['', Validators.required],
+    district: ['', Validators.required],
+    subDistrict:['', Validators.required],
+    village:['', Validators.required]
   });
 
   constructor(
@@ -85,10 +85,10 @@ export class Form11UpdateComponent implements OnInit {
     this.loaderService.show(true);
     this.form11Service
       .downloadForm11({
-        projectName: 'जेवर अंतरराष्ट्रीय हवाई अड्डा',
-        village: 'रोहि',
-        subDistrict: 'JEWAR',
-        district: 'गौतमबुद्ध नगर',
+        projectName: this.editForm.get(['projectName'])!.value,
+        village: this.editForm.get(['village'])!.value,
+        subDistrict: this.editForm.get(['subDistrict'])!.value,
+        district: this.editForm.get(['district'])!.value
       })
       .subscribe(data => {
         this.loaderService.show(false);
