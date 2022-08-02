@@ -32,8 +32,8 @@ export class Form11UpdateComponent implements OnInit {
     id: ['', Validators.required],
     projectName: ['', Validators.required],
     district: ['', Validators.required],
-    subDistrict:['', Validators.required],
-    village:['', Validators.required]
+    subDistrict: ['', Validators.required],
+    village: ['', Validators.required],
   });
 
   constructor(
@@ -85,10 +85,10 @@ export class Form11UpdateComponent implements OnInit {
     this.loaderService.show(true);
     this.form11Service
       .downloadForm11({
-        projectName: this.editForm.get(['projectName'])!.value,
-        village: this.editForm.get(['village'])!.value,
-        subDistrict: this.editForm.get(['subDistrict'])!.value,
-        district: this.editForm.get(['district'])!.value
+        projectName: this.editForm.get(['projectName'])!.value.name,
+        village: this.editForm.get(['village'])!.value.name,
+        subDistrict: this.editForm.get(['subDistrict'])!.value.name,
+        district: this.editForm.get(['district'])!.value.name,
       })
       .subscribe(data => {
         this.loaderService.show(false);
