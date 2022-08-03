@@ -18,6 +18,7 @@
         "title": "Payment Advice"
       },
       "id": "ID",
+      "paymentAdviceId": "Payment Advice Id",
       "accountHolderName": "Account Holder Name",
       "accountHolderBankName": "Account Holder Bank Name",
       "paymentAmount": "Payment Amount",

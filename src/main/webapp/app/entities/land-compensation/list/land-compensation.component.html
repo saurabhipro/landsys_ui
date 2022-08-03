@@ -33,7 +33,7 @@
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col" jhiSortBy="id">
-            <span jhiTranslate="global.field.id">ID</span>
+            <span jhiTranslate="jhipsterApp.landCompensation.compensationId">ID</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="projectLand.id">
@@ -69,14 +69,14 @@
             <span jhiTranslate="jhipsterApp.landCompensation.forestCompensation">Forest</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="solatiumMoney">
+          <!-- <th scope="col" jhiSortBy="solatiumMoney">
             <span jhiTranslate="jhipsterApp.landCompensation.solatiumMoney">Solatium Money</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="additionalCompensation">
             <span jhiTranslate="jhipsterApp.landCompensation.additionalCompensation">Additional Compensation</span>
             <fa-icon icon="sort"></fa-icon>
-          </th>
+          </th> -->
           <th scope="col" jhiSortBy="paymentAmount">
             <span jhiTranslate="jhipsterApp.landCompensation.paymentAmount">Payment Amount</span>
             <fa-icon icon="sort"></fa-icon>
@@ -114,8 +114,8 @@
           <td>{{ landCompensation.structuralCompensation | currency: '&#8377;' }}</td>
           <td>{{ landCompensation.horticultureCompensation | currency: '&#8377;' }}</td>
           <td>{{ landCompensation.forestCompensation | currency: '&#8377;' }}</td>
-          <td>{{ landCompensation.solatiumMoney | currency: '&#8377;' }}</td>
-          <td>{{ landCompensation.additionalCompensation | currency: '&#8377;' }}</td>
+          <!-- <td>{{ landCompensation.solatiumMoney | currency: '&#8377;' }}</td>
+          <td>{{ landCompensation.additionalCompensation | currency: '&#8377;' }}</td> -->
           <!--          <td jhiTranslate="{{ 'jhipsterApp.status.' + landCompensation.status }}">{{ landCompensation.status }}</td>-->
           <!--          <td>{{ landCompensation.orderDate | formatMediumDate }}</td>-->
           <td>{{ landCompensation.paymentAmount | currency: '&#8377;' }}</td>

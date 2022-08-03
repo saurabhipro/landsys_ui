@@ -18,6 +18,7 @@
         "title": "Land Compensation"
       },
       "id": "ID",
+      "compensationId": "Compensation ID",
       "hissaType": "Hissa Type",
       "area": "Area",
       "sharePercentage": "Share %",

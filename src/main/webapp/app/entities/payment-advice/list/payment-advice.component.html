@@ -33,7 +33,7 @@
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col" jhiSortBy="id">
-            <span jhiTranslate="global.field.id">ID</span>
+            <span jhiTranslate="jhipsterApp.paymentAdvice.paymentAdviceId">ID</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="accountHolderName">
@@ -99,7 +99,7 @@
           </td>
           <td>{{ paymentAdvice.accountHolderName }}</td>
           <td>{{ paymentAdvice.accountHolderBankName }}</td>
-          <td>{{ paymentAdvice.paymentAmount }}</td>
+          <td>{{ paymentAdvice.paymentAmount | currency: '&#8377;' }}</td>
           <td>{{ paymentAdvice.bankName }}</td>
           <td>{{ paymentAdvice.accountNumber }}</td>
           <td>{{ paymentAdvice.ifscCode }}</td>
