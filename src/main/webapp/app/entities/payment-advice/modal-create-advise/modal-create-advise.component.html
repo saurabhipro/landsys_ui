@@ -1,0 +1,381 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-payment-advice-heading"
+        data-cy="PaymentAdviceCreateUpdateHeading"
+        jhiTranslate="jhipsterApp.paymentAdvice.home.createOrEditLabel"
+      >
+        Create or edit a Payment Advice
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.accountHolderName" for="field_accountHolderName"
+            >Account Holder Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="accountHolderName"
+            id="field_accountHolderName"
+            data-cy="accountHolderName"
+            formControlName="accountHolderName"
+          />
+          <div
+            *ngIf="
+              editForm.get('accountHolderName')!.invalid &&
+              (editForm.get('accountHolderName')!.dirty || editForm.get('accountHolderName')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('accountHolderName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.accountHolderBankName" for="field_accountHolderBankName"
+            >Account Holder Bank Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="accountHolderBankName"
+            id="field_accountHolderBankName"
+            data-cy="accountHolderBankName"
+            formControlName="accountHolderBankName"
+          />
+          <div
+            *ngIf="
+              editForm.get('accountHolderBankName')!.invalid &&
+              (editForm.get('accountHolderBankName')!.dirty || editForm.get('accountHolderBankName')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('accountHolderBankName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.paymentAmount" for="field_paymentAmount">Payment Amount</label>
+          <input
+            type="number"
+            class="form-control"
+            name="paymentAmount"
+            id="field_paymentAmount"
+            data-cy="paymentAmount"
+            formControlName="paymentAmount"
+          />
+          <div
+            *ngIf="
+              editForm.get('paymentAmount')!.invalid && (editForm.get('paymentAmount')!.dirty || editForm.get('paymentAmount')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('paymentAmount')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('paymentAmount')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.bankName" for="field_bankName">Bank Name</label>
+          <input type="text" class="form-control" name="bankName" id="field_bankName" data-cy="bankName" formControlName="bankName" />
+          <div *ngIf="editForm.get('bankName')!.invalid && (editForm.get('bankName')!.dirty || editForm.get('bankName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('bankName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.accountNumber" for="field_accountNumber">Account Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="accountNumber"
+            id="field_accountNumber"
+            data-cy="accountNumber"
+            formControlName="accountNumber"
+          />
+          <div
+            *ngIf="
+              editForm.get('accountNumber')!.invalid && (editForm.get('accountNumber')!.dirty || editForm.get('accountNumber')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('accountNumber')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.ifscCode" for="field_ifscCode">Ifsc Code</label>
+          <input type="text" class="form-control" name="ifscCode" id="field_ifscCode" data-cy="ifscCode" formControlName="ifscCode" />
+          <div *ngIf="editForm.get('ifscCode')!.invalid && (editForm.get('ifscCode')!.dirty || editForm.get('ifscCode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('ifscCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.checkNumber" for="field_checkNumber">Check Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="checkNumber"
+            id="field_checkNumber"
+            data-cy="checkNumber"
+            formControlName="checkNumber"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.micrCode" for="field_micrCode">Micr Code</label>
+          <input type="text" class="form-control" name="micrCode" id="field_micrCode" data-cy="micrCode" formControlName="micrCode" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.paymentAdviceType" for="field_paymentAdviceType"
+            >Payment Advice Type</label
+          >
+          <select
+            class="form-control"
+            name="paymentAdviceType"
+            formControlName="paymentAdviceType"
+            id="field_paymentAdviceType"
+            data-cy="paymentAdviceType"
+          >
+            <option [ngValue]="null">{{ 'jhipsterApp.PaymentAdviceType.null' | translate }}</option>
+            <option *ngFor="let paymentAdviceType of paymentAdviceTypeValues" [value]="paymentAdviceType">
+              {{ 'jhipsterApp.PaymentAdviceType.' + paymentAdviceType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.referenceNumber" for="field_referenceNumber"
+            >Reference Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="referenceNumber"
+            id="field_referenceNumber"
+            data-cy="referenceNumber"
+            formControlName="referenceNumber"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.paymentStatus" for="field_paymentStatus">Payment Status</label>
+          <select
+            class="form-control"
+            name="paymentStatus"
+            formControlName="paymentStatus"
+            id="field_paymentStatus"
+            data-cy="paymentStatus"
+          >
+            <option [ngValue]="null">{{ 'jhipsterApp.PaymentStatus.null' | translate }}</option>
+            <option *ngFor="let paymentStatus of paymentStatusValues" [value]="paymentStatus">
+              {{ 'jhipsterApp.PaymentStatus.' + paymentStatus | translate }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('paymentStatus')!.invalid && (editForm.get('paymentStatus')!.dirty || editForm.get('paymentStatus')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('paymentStatus')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.hissaType" for="field_hissaType">Hissa Type</label>
+          <select class="form-control" name="hissaType" formControlName="hissaType" id="field_hissaType" data-cy="hissaType">
+            <option [ngValue]="null">{{ 'jhipsterApp.HissaType.null' | translate }}</option>
+            <option *ngFor="let hissaType of hissaTypeValues" [value]="hissaType">
+              {{ 'jhipsterApp.HissaType.' + hissaType | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('hissaType')!.invalid && (editForm.get('hissaType')!.dirty || editForm.get('hissaType')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('hissaType')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.khatedar" for="field_khatedar">Khatedar</label>
+          <select class="form-control" id="field_khatedar" data-cy="khatedar" name="khatedar" formControlName="khatedar">
+            <option *ngIf="editForm.get(['khatedar'])!.value == null" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="khatedarOption.id === editForm.get('khatedar')!.value?.id ? editForm.get('khatedar')!.value : khatedarOption"
+              *ngFor="let khatedarOption of khatedarsCollection; trackBy: trackKhatedarById"
+            >
+              {{ khatedarOption.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['khatedar'])!.invalid && (editForm.get(['khatedar'])!.dirty || editForm.get(['khatedar'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['khatedar'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.landCompensation" for="field_landCompensation"
+            >Land Compensation</label
+          >
+          <select
+            class="form-control"
+            id="field_landCompensation"
+            data-cy="landCompensation"
+            name="landCompensation"
+            formControlName="landCompensation"
+          >
+            <option *ngIf="!editForm.get('landCompensation')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                landCompensationOption.id === editForm.get('landCompensation')!.value?.id
+                  ? editForm.get('landCompensation')!.value
+                  : landCompensationOption
+              "
+              *ngFor="let landCompensationOption of landCompensationsSharedCollection; trackBy: trackLandCompensationById"
+            >
+              {{ landCompensationOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['landCompensation'])!.invalid &&
+            (editForm.get(['landCompensation'])!.dirty || editForm.get(['landCompensation'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['landCompensation'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.projectLand" for="field_projectLand">Project Land</label>
+          <select class="form-control" id="field_projectLand" data-cy="projectLand" name="projectLand" formControlName="projectLand">
+            <option *ngIf="!editForm.get('projectLand')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                projectLandOption.id === editForm.get('projectLand')!.value?.id ? editForm.get('projectLand')!.value : projectLandOption
+              "
+              *ngFor="let projectLandOption of projectLandsSharedCollection; trackBy: trackProjectLandById"
+            >
+              {{ projectLandOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['projectLand'])!.invalid && (editForm.get(['projectLand'])!.dirty || editForm.get(['projectLand'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['projectLand'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.survey" for="field_survey">Survey</label>
+          <select class="form-control" id="field_survey" data-cy="survey" name="survey" formControlName="survey">
+            <option *ngIf="!editForm.get('survey')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="surveyOption.id === editForm.get('survey')!.value?.id ? editForm.get('survey')!.value : surveyOption"
+              *ngFor="let surveyOption of surveysSharedCollection; trackBy: trackSurveyById"
+            >
+              {{ surveyOption.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['survey'])!.invalid && (editForm.get(['survey'])!.dirty || editForm.get(['survey'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['survey'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="activeModal.close('Close click')">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

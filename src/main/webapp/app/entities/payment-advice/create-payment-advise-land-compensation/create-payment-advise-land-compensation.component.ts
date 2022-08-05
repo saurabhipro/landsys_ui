@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { ILandCompensation } from 'app/entities/land-compensation/land-compensation.model';
 import { LandCompensationService } from 'app/entities/land-compensation/service/land-compensation.service';
+import { ModalCreatePaymentAdviceComponent } from '../modal-create-advise/modal-create-advise.component';
 
 
 @Component({
@@ -53,6 +54,12 @@ export class CreatePaymentLandCompensationComponent implements OnInit {
           this.onError();
         },
       });
+  }
+
+  createAdvise(landCompensation: ILandCompensation): void{
+    const modalRef = this.modalService.open(ModalCreatePaymentAdviceComponent, { size: 'xl', backdropClass: 'light-blue-backdrop' }); 
+    modalRef.componentInstance.landCompensation = landCompensation;
+   // this.loadPage();
   }
 
   ngOnInit(): void {
