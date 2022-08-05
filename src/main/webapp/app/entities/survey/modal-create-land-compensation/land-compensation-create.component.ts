@@ -33,7 +33,6 @@ export class LandCompensationCreateComponent implements OnInit {
     id: [],
     hissaType: [null, [Validators.required]],
     area: [null, [Validators.required]],
-    sharePercentage: [null, [Validators.required]],
     landMarketValue: [null, [Validators.required]],
     structuralCompensation: [],
     horticultureCompensation: [],
@@ -86,9 +85,8 @@ export class LandCompensationCreateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const landCompensation = this.createFromForm();
-    if (landCompensation.id !== undefined) {
-      this.subscribeToSaveResponse(this.landCompensationService.update(landCompensation));
-    } else {
+    if ( ! (landCompensation.id !== undefined)) {
+
       this.subscribeToSaveResponse(this.landCompensationService.create(landCompensation));
     }
   }
@@ -173,7 +171,6 @@ export class LandCompensationCreateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       hissaType: this.editForm.get(['hissaType'])!.value,
       area: this.editForm.get(['area'])!.value,
-      sharePercentage: this.editForm.get(['sharePercentage'])!.value,
       landMarketValue: this.editForm.get(['landMarketValue'])!.value,
       structuralCompensation: this.editForm.get(['structuralCompensation'])!.value,
       horticultureCompensation: this.editForm.get(['horticultureCompensation'])!.value,
