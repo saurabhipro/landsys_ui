@@ -7,6 +7,7 @@ import { PaymentAdviceDetailComponent } from '../detail/payment-advice-detail.co
 import { PaymentAdviceUpdateComponent } from '../update/payment-advice-update.component';
 import { PaymentAdviceRoutingResolveService } from './payment-advice-routing-resolve.service';
 import { CreatePaymentComponent } from '../create-payment/create-payment.component';
+import { CreatePaymentLandCompensationComponent } from '../create-payment-advise-land-compensation/create-payment-advise-land-compensation.component';
 
 const paymentAdviceRoute: Routes = [
   {
@@ -49,6 +50,17 @@ const paymentAdviceRoute: Routes = [
     },
     canActivate: [UserRouteAccessService],
   },
+
+  {
+    path: 'create-payment-advise-land-compensation',
+    component: CreatePaymentLandCompensationComponent,
+    data: {
+      defaultSort: 'id,asc',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+
+  
 
 ];
 
