@@ -28,7 +28,7 @@
           <dl class="row-md jh-entity-details">
             <dt><span jhiTranslate="jhipsterApp.paymentAdvice.paymentAmount">Payment Amount</span></dt>
             <dd>
-              <span>{{ paymentAdvice.paymentAmount }}</span>
+              <span>{{ paymentAdvice.paymentAmount | currency: '&#8377;' }}</span>
             </dd>
           </dl>
         </div>
@@ -157,6 +157,74 @@
           </dl>
         </div>
       </div>
+
+      <div class="p-1 mb-2 bg-success text-white">Primary Owner Section</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Primary Owner Name</th>
+            <th scope="col">Title in Bank</th>
+            <th scope="col">Aadhar No</th>
+            <th scope="col">Account No</th>
+            <th scope="col">IFSC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>राजवीर</td>
+            <td>राजवीर</td>
+            <td>458736521238</td>
+            <td>335501502484</td>
+            <td>SBI00008370</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="p-1 mb-2 bg-secondary text-white">Compensation Details Section</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Compensation ID</th>
+            <th scope="col">Compensation Amount</th>
+            <th scope="col">Compensation Date</th>
+            <th scope="col">Khasra Id</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>152</td>
+            <td class="font-weight-bold text-primary">3339172.43 &#8377;</td>
+            <td>01-Aug-2022</td>
+            <td>419</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="p-1 mb-2 bg-secondary text-white">Co Owner(s) Section</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Co Owner Name</th>
+            <th scope="col">Hissa Type</th>
+            <th scope="col">Date</th>
+            <th scope="col">Khasra</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>कुनाल,राजवीर,रामपाल,सत्यवती</td>
+            <td>JOINT</td>
+            <td>01-AUG-2022</td>
+            <td>419</td>
+          </tr>
+        </tbody>
+      </table>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
