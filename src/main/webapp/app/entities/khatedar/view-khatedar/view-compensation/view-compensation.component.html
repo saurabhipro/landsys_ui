@@ -16,10 +16,6 @@
             <dd>
               <span>{{ landCompensation.area }}</span>
             </dd>
-            <dt><span jhiTranslate="jhipsterApp.landCompensation.sharePercentage">Share Percentage</span></dt>
-            <dd>
-              <span>{{ landCompensation.sharePercentage }}</span>
-            </dd>
             <dt><span jhiTranslate="jhipsterApp.landCompensation.landMarketValue">Land Market Value</span></dt>
             <dd>
               <span>{{ landCompensation.landMarketValue }}</span>
@@ -75,17 +71,6 @@
               <span>{{ landCompensation.transactionId }}</span>
             </dd>
             <dt><span jhiTranslate="jhipsterApp.landCompensation.projectLand">Project Land</span></dt>
-            <dd>
-              <div *ngIf="landCompensation.projectLand">
-                <a [routerLink]="['/project-land', landCompensation.projectLand?.id, 'view']">{{ landCompensation.projectLand?.id }}</a>
-              </div>
-            </dd>
-            <dt><span jhiTranslate="jhipsterApp.landCompensation.survey">Survey</span></dt>
-            <dd>
-              <div *ngIf="landCompensation.survey">
-                <a [routerLink]="['/survey', landCompensation.survey?.id, 'view']">{{ landCompensation.survey?.id }}</a>
-              </div>
-            </dd>
           </dl>
         </div>
       </div>
