@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -25,6 +25,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './modal-create-advise.component.html',
 })
 export class ModalCreatePaymentAdviceComponent implements OnInit {
+  @Input() landCompensation!: ILandCompensation
   isSaving = false;
   paymentAdviceTypeValues = Object.keys(PaymentAdviceType);
   paymentStatusValues = Object.keys(PaymentStatus);
@@ -67,11 +68,17 @@ export class ModalCreatePaymentAdviceComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ paymentAdvice }) => {
+    if(this.landCompensation.id){
+      const paymentAdvice: IPaymentAdvice = {
+        survey : this.landCompensation.survey ,
+        projectLand : this.landCompensation.projectLand,
+        landCompensation : this.landCompensation
+      }
       this.updateForm(paymentAdvice);
-
       this.loadRelationshipsOptions();
-    });
+    }else {
+      this.activeModal.close();
+    }
   }
 
   previousState(): void {
