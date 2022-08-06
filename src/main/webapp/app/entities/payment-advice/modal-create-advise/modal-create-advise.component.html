@@ -6,7 +6,7 @@
         data-cy="PaymentAdviceCreateUpdateHeading"
         jhiTranslate="jhipsterApp.paymentAdvice.home.createOrEditLabel"
       >
-        Create or edit a Payment Advice
+        Create or edit a Payment Advice...
       </h2>
 
       <div>
@@ -362,7 +362,13 @@
       </div>
 
       <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="activeModal.close('Close click')">
+        <button
+          type="button"
+          id="cancel-save"
+          data-cy="entityCreateCancelButton"
+          class="btn btn-secondary"
+          (click)="activeModal.close('Close click')"
+        >
           <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
 
