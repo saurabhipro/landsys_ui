@@ -1,94 +1,162 @@
-<div class="d-flex justify-content-center">
-  <div class="col-8">
+<div>
+  <div class="col-12">
     <div *ngIf="paymentAdvice">
       <h2 data-cy="paymentAdviceDetailsHeading"><span jhiTranslate="jhipsterApp.paymentAdvice.detail.title">Payment Advice</span></h2>
-
       <hr />
-
       <jhi-alert-error></jhi-alert-error>
-
       <jhi-alert></jhi-alert>
 
-      <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="global.field.id">ID</span></dt>
-        <dd>
-          <span>{{ paymentAdvice.id }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderName">Account Holder Name</span></dt>
-        <dd>
-          <span>{{ paymentAdvice.accountHolderName }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderBankName">Account Holder Bank Name</span></dt>
-        <dd>
-          <span>{{ paymentAdvice.accountHolderBankName }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.paymentAmount">Payment Amount</span></dt>
-        <dd>
-          <span>{{ paymentAdvice.paymentAmount }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.bankName">Bank Name</span></dt>
-        <dd>
-          <span>{{ paymentAdvice.bankName }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.accountNumber">Account Number</span></dt>
-        <dd>
-          <span>{{ paymentAdvice.accountNumber }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.ifscCode">Ifsc Code</span></dt>
-        <dd>
-          <span>{{ paymentAdvice.ifscCode }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.checkNumber">Check Number</span></dt>
-        <dd>
-          <span>{{ paymentAdvice.checkNumber }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.micrCode">Micr Code</span></dt>
-        <dd>
-          <span>{{ paymentAdvice.micrCode }}</span>
-        </dd>
-        <dt><span>Payment Advice Type</span></dt>
-        <dd>
-          <span>{{ paymentAdvice.paymentAdviceType }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.referenceNumber">Reference Number</span></dt>
-        <dd>
-          <span>{{ paymentAdvice.referenceNumber }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.paymentStatus">Payment Status</span></dt>
-        <dd>
-          <span>{{ paymentAdvice.paymentStatus }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.hissaType">Hissa Type</span></dt>
-        <dd>
-          <span jhiTranslate="{{ 'jhipsterApp.HissaType.' + paymentAdvice.hissaType }}">{{ paymentAdvice.hissaType }}</span>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.khatedar">Khatedar</span></dt>
-        <dd>
-          <div *ngIf="paymentAdvice.khatedar">
-            <a [routerLink]="['/khatedar', paymentAdvice.khatedar?.id, 'view']">{{ paymentAdvice.khatedar?.id }}</a>
-          </div>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.landCompensation">Land Compensation</span></dt>
-        <dd>
-          <div *ngIf="paymentAdvice.landCompensation">
-            <a [routerLink]="['/land-compensation', paymentAdvice.landCompensation?.id, 'view']">{{
-              paymentAdvice.landCompensation?.id
-            }}</a>
-          </div>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</span></dt>
-        <dd>
-          <div *ngIf="paymentAdvice.projectLand">
-            <a [routerLink]="['/project-land', paymentAdvice.projectLand?.id, 'view']">{{ paymentAdvice.projectLand?.id }}</a>
-          </div>
-        </dd>
-        <dt><span jhiTranslate="jhipsterApp.paymentAdvice.survey">Survey</span></dt>
-        <dd>
-          <div *ngIf="paymentAdvice.survey">
-            <a [routerLink]="['/survey', paymentAdvice.survey?.id, 'view']">{{ paymentAdvice.survey?.id }}</a>
-          </div>
-        </dd>
-      </dl>
+      <div class="row">
+        <div class="col-md-3">
+          <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderName">Account Holder Name</span></dt>
+            <dd>
+              <span>{{ paymentAdvice.accountHolderName }}</span>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-md-3">
+          <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderBankName">Account Holder Bank Name</span></dt>
+            <dd>
+              <span>{{ paymentAdvice.accountHolderBankName }}</span>
+            </dd>
+          </dl>
+        </div>
+
+        <div class="col-md-3">
+          <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="jhipsterApp.paymentAdvice.paymentAmount">Payment Amount</span></dt>
+            <dd>
+              <span>{{ paymentAdvice.paymentAmount }}</span>
+            </dd>
+          </dl>
+        </div>
+
+        <div class="col-md-3">
+          <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderBankName">Account Holder Bank Name</span></dt>
+            <dd>
+              <span>{{ paymentAdvice.accountHolderBankName }}</span>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="jhipsterApp.paymentAdvice.accountNumber">Account Number</span></dt>
+            <dd>
+              <span>{{ paymentAdvice.accountNumber }}</span>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-md-3">
+          <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="jhipsterApp.paymentAdvice.ifscCode">Ifsc Code</span></dt>
+            <dd>
+              <span>{{ paymentAdvice.ifscCode }}</span>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-md-3">
+          <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="jhipsterApp.paymentAdvice.checkNumber">Check Number</span></dt>
+            <dd>
+              <span>{{ paymentAdvice.checkNumber }}</span>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-md-3">
+          <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="jhipsterApp.paymentAdvice.micrCode">Micr Code</span></dt>
+            <dd>
+              <span>{{ paymentAdvice.micrCode }}</span>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <dl class="row-md jh-entity-details">
+            <dt><span>Payment Advice Type</span></dt>
+            <dd>
+              <span>{{ paymentAdvice.paymentAdviceType }}</span>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-md-3">
+          <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="jhipsterApp.paymentAdvice.referenceNumber">Reference Number</span></dt>
+            <dd>
+              <span>{{ paymentAdvice.referenceNumber }}</span>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-md-3">
+          <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="jhipsterApp.paymentAdvice.paymentStatus">Payment Status</span></dt>
+            <dd>
+              <span>{{ paymentAdvice.paymentStatus }}</span>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-md-3">
+          <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="jhipsterApp.paymentAdvice.hissaType">Hissa Type</span></dt>
+            <dd>
+              <span jhiTranslate="{{ 'jhipsterApp.HissaType.' + paymentAdvice.hissaType }}">{{ paymentAdvice.hissaType }}</span>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="jhipsterApp.paymentAdvice.khatedar">Khatedar</span></dt>
+            <dd>
+              <div *ngIf="paymentAdvice.khatedar">
+                <a [routerLink]="['/khatedar', paymentAdvice.khatedar?.id, 'view']">{{ paymentAdvice.khatedar?.id }}</a>
+              </div>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-md-3">
+          <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="jhipsterApp.paymentAdvice.landCompensation">Land Compensation</span></dt>
+            <dd>
+              <div *ngIf="paymentAdvice.landCompensation">
+                <a [routerLink]="['/land-compensation', paymentAdvice.landCompensation?.id, 'view']">{{
+                  paymentAdvice.landCompensation?.id
+                }}</a>
+              </div>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-md-3">
+          <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</span></dt>
+            <dd>
+              <div *ngIf="paymentAdvice.projectLand">
+                <a [routerLink]="['/project-land', paymentAdvice.projectLand?.id, 'view']">{{ paymentAdvice.projectLand?.id }}</a>
+              </div>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-md-3">
+          <dl class="row-md jh-entity-details">
+            <dt><span jhiTranslate="jhipsterApp.paymentAdvice.survey">Survey</span></dt>
+            <dd>
+              <div *ngIf="paymentAdvice.survey">
+                <a [routerLink]="['/survey', paymentAdvice.survey?.id, 'view']">{{ paymentAdvice.survey?.id }}</a>
+              </div>
+            </dd>
+          </dl>
+        </div>
+      </div>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
