@@ -1,18 +1,22 @@
 <div class="d-flex justify-content-lg-start">
-  <div class="col-12">
+  <div class="col-md-12 pt-3">
     <div *ngIf="citizen">
       <div class="row">
-        <div class="col-4">
+        <div class="col-md-6">
           <dl class="row-md jh-entity-details">
             <dt><span jhiTranslate="jhipsterApp.citizen.name" [ngbTooltip]="'jhipsterApp.citizen.help.name' | translate">Name</span></dt>
+
             <dd>
               <span>{{ citizen.name }}</span>
             </dd>
+
             <dt>
-              <span jhiTranslate="jhipsterApp.citizen.address" [ngbTooltip]="'jhipsterApp.citizen.help.address' | translate">Address</span>
+              <span jhiTranslate="jhipsterApp.citizen.successorName" [ngbTooltip]="'jhipsterApp.citizen.help.successorName' | translate"
+                >Successor Name</span
+              >
             </dt>
             <dd>
-              <span>{{ citizen.address }}</span>
+              <span>{{ citizen.successorName }}</span>
             </dd>
             <dt>
               <span jhiTranslate="jhipsterApp.citizen.fatherName" [ngbTooltip]="'jhipsterApp.citizen.help.fatherName' | translate"
@@ -23,16 +27,15 @@
               <span>{{ citizen.fatherName }}</span>
             </dd>
             <dt>
-              <span jhiTranslate="jhipsterApp.citizen.successorName" [ngbTooltip]="'jhipsterApp.citizen.help.successorName' | translate"
-                >Successor Name</span
-              >
+              <span jhiTranslate="jhipsterApp.citizen.address" [ngbTooltip]="'jhipsterApp.citizen.help.address' | translate">Address</span>
             </dt>
             <dd>
-              <span>{{ citizen.successorName }}</span>
+              <span>{{ citizen.address }}</span>
             </dd>
           </dl>
         </div>
-        <div class="col-4">
+
+        <div class="col-md-6">
           <dl class="row-md jh-entity-details">
             <dt>
               <span jhiTranslate="jhipsterApp.citizen.aadhar" [ngbTooltip]="'jhipsterApp.citizen.help.aadhar' | translate">Aadhar</span>
