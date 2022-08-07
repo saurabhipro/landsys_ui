@@ -8,6 +8,8 @@ import { PaymentAdviceUpdateComponent } from '../update/payment-advice-update.co
 import { PaymentAdviceRoutingResolveService } from './payment-advice-routing-resolve.service';
 import { CreatePaymentComponent } from '../create-payment/create-payment.component';
 import { CreatePaymentLandCompensationComponent } from '../create-payment-advise-land-compensation/create-payment-advise-land-compensation.component';
+import { CreatePaymentAdviceCustomComponent } from '../create-advise-custom/create-advise-custom..component';
+import { LandCompensationRoutingResolveService } from 'app/entities/land-compensation/route/land-compensation-routing-resolve.service';
 
 const paymentAdviceRoute: Routes = [
   {
@@ -59,8 +61,14 @@ const paymentAdviceRoute: Routes = [
     },
     canActivate: [UserRouteAccessService],
   },
-
-  
+  {
+    path: ':id/create-payment-advise',
+    component: CreatePaymentAdviceCustomComponent,
+    resolve: {
+      landCompensation: LandCompensationRoutingResolveService,
+    },
+    canActivate: [UserRouteAccessService],
+  },
 
 ];
 

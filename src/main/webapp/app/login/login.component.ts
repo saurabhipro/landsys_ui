@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { LoginService } from 'app/login/login.service';
 import { AccountService } from 'app/core/auth/account.service';
+import { LoaderService } from 'app/loader.service';
 
 @Component({
   selector: 'jhi-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private accountService: AccountService,
     private loginService: LoginService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private loaderService:LoaderService
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +44,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   login(): void {
+    this.loaderService.show(true);
     this.loginService
       .login({
         username: this.loginForm.get('username')!.value,
@@ -50,13 +53,17 @@ export class LoginComponent implements OnInit, AfterViewInit {
       })
       .subscribe({
         next: () => {
+          this.loaderService.show(false);
           this.authenticationError = false;
           if (!this.router.getCurrentNavigation()) {
             // There were no routing during login (eg from navigationToStoredUrl)
             this.router.navigate(['']);
           }
         },
-        error: () => (this.authenticationError = true),
+        error: () => {
+          this.authenticationError = true
+          this.loaderService.show(false);},
+        
       });
   }
 }

@@ -1,0 +1,149 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-payment-advice-heading"
+        data-cy="PaymentAdviceCreateUpdateHeading"
+        jhiTranslate="jhipsterApp.paymentAdvice.home.createLabel"
+      >
+        Create a Payment Advice...
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+        <div class="row">
+          <div class="col-3 col-sm-6 mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.hissaType" for="field_hissaType">Hissa Type</label>
+          <select class="form-control" name="hissaType" formControlName="hissaType" id="field_hissaType" data-cy="hissaType">
+            <option [ngValue]="null">{{ 'jhipsterApp.HissaType.null' | translate }}</option>
+            <option *ngFor="let hissaType of hissaTypeValues" [value]="hissaType">
+              {{ 'jhipsterApp.HissaType.' + hissaType | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('hissaType')!.invalid && (editForm.get('hissaType')!.dirty || editForm.get('hissaType')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('hissaType')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+        <div class="col-3 col-sm-6 mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.landCompensation" for="field_landCompensation"
+            >Land Compensation</label
+          >
+          <select
+            class="form-control"
+            id="field_landCompensation"
+            data-cy="landCompensation"
+            name="landCompensation"
+            formControlName="landCompensation"
+          >
+            <option *ngIf="!editForm.get('landCompensation')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                landCompensationOption.id === editForm.get('landCompensation')!.value?.id
+                  ? editForm.get('landCompensation')!.value
+                  : landCompensationOption
+              "
+              *ngFor="let landCompensationOption of landCompensationsSharedCollection; trackBy: trackLandCompensationById"
+            >
+              {{ landCompensationOption.id }}
+            </option>
+          </select>
+      
+        <div
+          *ngIf="
+            editForm.get(['landCompensation'])!.invalid &&
+            (editForm.get(['landCompensation'])!.dirty || editForm.get(['landCompensation'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['landCompensation'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+        <div class="col-3 col-sm-6 mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.projectLand" for="field_projectLand">Project Land</label>
+          <select class="form-control" id="field_projectLand" data-cy="projectLand" name="projectLand" formControlName="projectLand">
+            <option *ngIf="!editForm.get('projectLand')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                projectLandOption.id === editForm.get('projectLand')!.value?.id ? editForm.get('projectLand')!.value : projectLandOption
+              "
+              *ngFor="let projectLandOption of projectLandsSharedCollection; trackBy: trackProjectLandById"
+            >
+              {{ projectLandOption.id }}
+            </option>
+          </select>
+       
+        <div
+          *ngIf="editForm.get(['projectLand'])!.invalid && (editForm.get(['projectLand'])!.dirty || editForm.get(['projectLand'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['projectLand'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+        <div class="col-3 col-sm-6 mb-3">
+          <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.survey" for="field_survey">Survey</label>
+          <select class="form-control" id="field_survey" data-cy="survey" name="survey" formControlName="survey">
+            <option *ngIf="!editForm.get('survey')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="surveyOption.id === editForm.get('survey')!.value?.id ? editForm.get('survey')!.value : surveyOption"
+              *ngFor="let surveyOption of surveysSharedCollection; trackBy: trackSurveyById"
+            >
+              {{ surveyOption.id }}
+            </option>
+          </select>
+      
+        <div *ngIf="editForm.get(['survey'])!.invalid && (editForm.get(['survey'])!.dirty || editForm.get(['survey'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['survey'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      </div>
+<!-- Add citizen/ Khatedar  -->
+      
+      <div>
+
+      </div>
+
+      <div>
+        <button
+          type="button"
+          id="cancel-save"
+          data-cy="entityCreateCancelButton"
+          class="btn btn-secondary"
+         (click)="previousState()"
+        >
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+      </div>
+    </form>
+  </div>
+</div>
