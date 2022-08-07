@@ -1,0 +1,143 @@
+
+<div class="modal-header">
+  <h4 class="modal-title" jhiTranslate="jhipsterApp.citizen.home.title">Citizens</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div>
+  <h2 id="page-heading" data-cy="CitizenHeading">
+  
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterApp.citizen.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-citizen"
+        [routerLink]="['/citizen/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterApp.citizen.home.createLabel"> Create a new Citizen </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="citizens?.length === 0">
+    <span jhiTranslate="jhipsterApp.citizen.home.notFound">No citizens found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="citizens && citizens.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id">
+            <span jhiTranslate="global.field.id">ID</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <span jhiTranslate="jhipsterApp.citizen.name">Name</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="aadhar">
+            <span jhiTranslate="jhipsterApp.citizen.aadhar">Aadhar</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="fatherName">
+            <span jhiTranslate="jhipsterApp.citizen.fatherName">Father Name</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="address">
+            <span jhiTranslate="jhipsterApp.citizen.address">Address</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="mobileNumber">
+            <span jhiTranslate="jhipsterApp.citizen.mobileNumber">Mobile Number</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dob">
+            <span jhiTranslate="jhipsterApp.citizen.dob">Dob</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <!-- <th scope="col" jhiSortBy="accountName">
+            <span jhiTranslate="jhipsterApp.citizen.nameInBank">Name in Bank</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="accountNumber">
+            <span jhiTranslate="jhipsterApp.citizen.accountNumber">Account Number</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th> -->
+
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let citizen of citizens; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <input type="checkbox" name="citizen{{citizen.id}}" id="{{citizen.id}}">
+          </td>
+          <td>
+            <a [routerLink]="['/citizen', citizen.id, 'view']">{{ citizen.id }}</a>
+          </td>
+          <!--          <td>-->
+          <!--            <a *ngIf="citizen.photo" (click)="openFile(citizen.photo, citizen.photoContentType)">-->
+          <!--              <img [src]="'data:' + citizen.photoContentType + ';base64,' + citizen.photo" style="max-height: 30px" alt="citizen image" />-->
+          <!--            </a>-->
+          <!--            <span *ngIf="citizen.photo">{{ citizen.photoContentType }}, {{ byteSize(citizen.photo) }}</span>-->
+          <!--          </td>-->
+          <td>{{ citizen.name }}</td>
+          <td>{{ citizen.aadhar }}</td>
+          <td>{{ citizen.fatherName }}</td>
+          <td>{{ citizen.address }}</td>
+          <td>{{ citizen.mobileNumber }}</td>
+          <td>{{ citizen.dob | formatMediumDate }}</td>
+          <!-- <td>{{ citizen.nameInBank }}</td>
+          <td>{{ citizen.accountNumber }}</td> -->
+
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/citizen', citizen.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+            
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="citizens && citizens.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="close()">Close</button>
+</div>
