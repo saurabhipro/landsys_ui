@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="LandCompensationHeading">
-    <span jhiTranslate="jhipsterApp.landCompensation.home.title">Land Compensations</span>
+    <span>Create Payment Advice</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
@@ -8,15 +8,15 @@
         <span jhiTranslate="jhipsterApp.landCompensation.home.refreshListLabel">Refresh List</span>
       </button>
 
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-land-compensation"
-       
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Payment Advise File </span>
-      </button>
+      <!--      <button-->
+      <!--        id="jh-create-entity"-->
+      <!--        data-cy="entityCreateButton"-->
+      <!--        class="btn btn-primary jh-create-entity create-land-compensation"-->
+
+      <!--      >-->
+      <!--        <fa-icon icon="plus"></fa-icon>-->
+      <!--        <span> Create a new Payment Advise File </span>-->
+      <!--      </button>-->
     </div>
   </h2>
 
@@ -69,7 +69,7 @@
             <span jhiTranslate="jhipsterApp.landCompensation.forestCompensation">Forest</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-      
+
           <th scope="col" jhiSortBy="paymentAmount">
             <span jhiTranslate="jhipsterApp.landCompensation.paymentAmount">Payment Amount</span>
             <fa-icon icon="sort"></fa-icon>
@@ -122,10 +122,14 @@
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
               </button>
 
-              <button type="submit" 
-              [routerLink]="['/payment-advice', landCompensation.id, 'create-payment-advise']"  class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button
+                type="submit"
+                [routerLink]="['/payment-advice', landCompensation.id, 'create-payment-advise']"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
                 <fa-icon icon="add"></fa-icon>
-                <span class="d-none d-md-inline" >Create Advise </span>
+                <span class="d-none d-md-inline">Create Advise </span>
               </button>
               <!-- (click)="createAdvise(landCompensation)" -->
             </div>

@@ -1,7 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="PaymentAdviceHeading">
-    <span>Create Payment file for Pending Advices</span>
-
+    <span>Create Payment File(s) '&#8377;' </span>
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
@@ -64,10 +63,6 @@
             <span jhiTranslate="jhipsterApp.paymentAdvice.ifscCode">Ifsc Code</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="paymentAdviceType">
-            <span jhiTranslate="jhipsterApp.paymentAdvice.paymentAdviceType">Payment Advice Type</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col" jhiSortBy="referenceNumber">
             <span jhiTranslate="jhipsterApp.paymentAdvice.referenceNumber">Reference Number</span>
             <fa-icon icon="sort"></fa-icon>
@@ -110,11 +105,7 @@
           <td>{{ paymentAdvice.bankName }}</td>
           <td>{{ paymentAdvice.accountNumber }}</td>
           <td>{{ paymentAdvice.ifscCode }}</td>
-          <td>
-            {{ paymentAdvice.paymentAdviceType }}
-          </td>
           <td>{{ paymentAdvice.referenceNumber }}</td>
-
           <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + paymentAdvice.hissaType }}">{{ paymentAdvice.hissaType }}</td>
           <td>
             <div *ngIf="paymentAdvice.khatedar">

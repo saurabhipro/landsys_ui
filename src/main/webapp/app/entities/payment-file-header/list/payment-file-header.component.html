@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="PaymentFileHeaderHeading">
-    <span jhiTranslate="jhipsterApp.paymentFileHeader.home.title">Payment File Headers</span>
+    <span>Download Payment File(s)</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
@@ -8,15 +8,15 @@
         <span jhiTranslate="jhipsterApp.paymentFileHeader.home.refreshListLabel">Refresh List</span>
       </button>
 
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-payment-file-header"
-        [routerLink]="['/payment-file-header/new']"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="jhipsterApp.paymentFileHeader.home.createLabel"> Create a new Payment File Header </span>
-      </button>
+      <!--      <button-->
+      <!--        id="jh-create-entity"-->
+      <!--        data-cy="entityCreateButton"-->
+      <!--        class="btn btn-primary jh-create-entity create-payment-file-header"-->
+      <!--        [routerLink]="['/payment-file-header/new']"-->
+      <!--      >-->
+      <!--        <fa-icon icon="plus"></fa-icon>-->
+      <!--        <span jhiTranslate="jhipsterApp.paymentFileHeader.home.createLabel"> Create a new Payment File Header </span>-->
+      <!--      </button>-->
       <div style="margin-left: 10px"></div>
     </div>
   </h2>

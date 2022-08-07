@@ -1,6 +1,7 @@
 <div>
   <h2 id="page-heading" data-cy="LandCompensationHeading">
-    <span jhiTranslate="jhipsterApp.landCompensation.home.title">Land Compensations</span>
+    <!--    <span jhiTranslate="jhipsterApp.landCompensation.home.">Land Compensations</span>-->
+    <span>Search Land Compensations</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
@@ -8,15 +9,15 @@
         <span jhiTranslate="jhipsterApp.landCompensation.home.refreshListLabel">Refresh List</span>
       </button>
 
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-land-compensation"
-        [routerLink]="['/land-compensation/new']"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="jhipsterApp.landCompensation.home.createLabel"> Create a new Land Compensation </span>
-      </button>
+      <!--      <button-->
+      <!--        id="jh-create-entity"-->
+      <!--        data-cy="entityCreateButton"-->
+      <!--        class="btn btn-primary jh-create-entity create-land-compensation"-->
+      <!--        [routerLink]="['/land-compensation/new']"-->
+      <!--      >-->
+      <!--        <fa-icon icon="plus"></fa-icon>-->
+      <!--        <span jhiTranslate="jhipsterApp.landCompensation.home.createLabel"> Create a new Land Compensation </span>-->
+      <!--      </button>-->
     </div>
   </h2>
 
@@ -133,15 +134,15 @@
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
               </button>
 
-              <button
-                type="submit"
-                [routerLink]="['/land-compensation', landCompensation.id, 'edit']"
-                class="btn btn-primary btn-sm"
-                data-cy="entityEditButton"
-              >
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-              </button>
+              <!--              <button-->
+              <!--                type="submit"-->
+              <!--                [routerLink]="['/land-compensation', landCompensation.id, 'edit']"-->
+              <!--                class="btn btn-primary btn-sm"-->
+              <!--                data-cy="entityEditButton"-->
+              <!--              >-->
+              <!--                <fa-icon icon="pencil-alt"></fa-icon>-->
+              <!--                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>-->
+              <!--              </button>-->
             </div>
           </td>
         </tr>
