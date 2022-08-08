@@ -18,6 +18,8 @@ import { SurveyService } from 'app/entities/survey/service/survey.service';
 import { PaymentAdviceType } from 'app/entities/enumerations/payment-advice-type.model';
 import { PaymentStatus } from 'app/entities/enumerations/payment-status.model';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
+import { ModalCitizenListComponent } from '../modal-citizen-list/modal-citizen-list.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'jhi-create-advise-custom.',
@@ -33,6 +35,7 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
   landCompensationsSharedCollection: ILandCompensation[] = [];
   projectLandsSharedCollection: IProjectLand[] = [];
   surveysSharedCollection: ISurvey[] = [];
+  khatedars: any[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -62,6 +65,7 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
     protected surveyService: SurveyService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder,
+    private modalService: NgbModal
     
   ) {}
 
@@ -118,6 +122,11 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
   trackSurveyById(_index: number, item: ISurvey): number {
     return item.id!;
   }
+
+  addCitizen(): void{
+    const modalRef = this.modalService.open(ModalCitizenListComponent, { size: 'xl', backdropClass: 'light-blue-backdrop' });
+ 
+   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPaymentAdvice>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({

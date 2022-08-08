@@ -9,10 +9,11 @@ import { CreatePaymentComponent } from './create-payment/create-payment.componen
 import { CreatePaymentLandCompensationComponent } from './create-payment-advise-land-compensation/create-payment-advise-land-compensation.component';
 import { ModalCreatePaymentAdviceComponent } from './modal-create-advise/modal-create-advise.component';
 import { CreatePaymentAdviceCustomComponent } from './create-advise-custom/create-advise-custom..component';
+import { ModalCitizenListComponent } from './modal-citizen-list/modal-citizen-list.component';
 
 @NgModule({
   imports: [SharedModule, PaymentAdviceRoutingModule],
-  declarations: [PaymentAdviceComponent, PaymentAdviceDetailComponent, PaymentAdviceUpdateComponent, PaymentAdviceDeleteDialogComponent, CreatePaymentComponent, CreatePaymentLandCompensationComponent, ModalCreatePaymentAdviceComponent, CreatePaymentAdviceCustomComponent],
+  declarations: [PaymentAdviceComponent, PaymentAdviceDetailComponent, PaymentAdviceUpdateComponent, PaymentAdviceDeleteDialogComponent, CreatePaymentComponent, CreatePaymentLandCompensationComponent, ModalCreatePaymentAdviceComponent, CreatePaymentAdviceCustomComponent, ModalCitizenListComponent],
   entryComponents: [PaymentAdviceDeleteDialogComponent, ModalCreatePaymentAdviceComponent],
 })
 export class PaymentAdviceModule {}

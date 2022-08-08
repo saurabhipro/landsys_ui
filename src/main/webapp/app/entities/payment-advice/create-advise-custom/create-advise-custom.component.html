@@ -119,7 +119,33 @@
 <!-- Add citizen/ Khatedar  -->
       
       <div>
-
+        
+        <button
+        type="button"
+        id="save-entity"
+        data-cy="entityCreateSaveButton"
+        [disabled]="editForm.get('hissaType')!.invalid || (editForm.get('hissaType')!.value == 'SINGLE_OWNER' && khatedars.length>0) "
+        class="btn btn-primary"
+        (click)="addCitizen()"
+      >
+        <fa-icon icon="save"></fa-icon>&nbsp;<span >Add Khatedars</span>
+      </button>
+      </div>
+      <div>
+       <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let khaterdar of khatedars">
+            <td>
+              {{khaterdar.name}}
+            </td>
+          </tr>
+        </tbody>
+       </table>
       </div>
 
       <div>
