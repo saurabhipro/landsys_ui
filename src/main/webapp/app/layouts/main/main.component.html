@@ -9,11 +9,11 @@
 </div>
 
 <div class="container-fluid" style="padding: 0">
-  <div class="card jh-card" style="min-height: 500px; margin-top: 0; background: #efefef; padding-bottom: 40px">
+  <div class="card jh-card" style="min-height: 500px; margin-top: 0; padding-bottom: 40px">
     <router-outlet></router-outlet>
   </div>
 
-  <jhi-footer *ngIf="isFooter"></jhi-footer>
+  <jhi-footer></jhi-footer>
   <div class="loaderCen flex-center" *ngIf="loaderService.currentStatus">
     <div class="lds-spinner">
       <div></div>
