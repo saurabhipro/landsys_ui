@@ -13,7 +13,9 @@ import { LoaderService } from 'app/loader.service';
   
 })
 export class MainComponent implements OnInit {
+
   private renderer: Renderer2;
+ 
 
   constructor(
     private accountService: AccountService,
@@ -29,7 +31,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     // try to log in automatically
     this.accountService.identity().subscribe();
-
+    
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.updateTitle();
@@ -41,6 +43,10 @@ export class MainComponent implements OnInit {
       dayjs.locale(langChangeEvent.lang);
       this.renderer.setAttribute(document.querySelector('html'), 'lang', langChangeEvent.lang);
     });
+  }
+
+  get isFooter(): boolean{
+    return this.accountService.isAuthenticated()
   }
 
   private getPageTitle(routeSnapshot: ActivatedRouteSnapshot): string {
