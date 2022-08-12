@@ -36,6 +36,7 @@ export class KhatedarService {
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
+    console.log('Inside Khatedar Service: Query...');
     const options = createRequestOption(req);
     return this.http.get<IKhatedar[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
@@ -83,6 +84,8 @@ export class KhatedarService {
     // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
     // const url = '/api/khatedar/projectIdprojectId/' + contextProject.id + '/' + filterBy + '/' + filterString;
     //http://localhost:9000/api/khatedars?projectLandId.equals=20
+    console.log('FILTER ... In Khatedar Service ..');
+
     const url = `${this.resourceUrl}?projectLandId.equals=20`;
     // eslint-disable-next-line no-console
     console.log(url);

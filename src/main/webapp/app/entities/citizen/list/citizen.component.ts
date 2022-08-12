@@ -10,6 +10,7 @@ import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants
 import { CitizenService } from '../service/citizen.service';
 import { CitizenDeleteDialogComponent } from '../delete/citizen-delete-dialog.component';
 import { DataUtils } from 'app/core/util/data-util.service';
+import { faUnderline } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'jhi-citizen',
@@ -24,6 +25,9 @@ export class CitizenComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  filterString!: string;
+  filterBy = 'Name';
+  searchString!: string;
 
   constructor(
     protected citizenService: CitizenService,
@@ -57,6 +61,60 @@ export class CitizenComponent implements OnInit {
 
   ngOnInit(): void {
     this.handleNavigation();
+  }
+
+  searchFor(searchString: string): void {
+    console.log('Searching for Khatedar...');
+    //  this.handleNavigation();
+    //  this.originaKhatedars= this.khatedars;
+    // console.log(this.originaKhatedars);
+
+    function checkForSearchString(citizen: ICitizen): ICitizen | undefined {
+      console.log('SEARCHING ...');
+      /*
+      if (khatedar.citizen && ((khatedar.citizen as Citizen).name as string).toLowerCase().includes(searchString.toLowerCase())) {
+        return khatedar;
+      }
+      if (khatedar.id!.toString().toLowerCase().includes(searchString.toLowerCase())) {
+        return khatedar;
+      }
+      if ((khatedar.caseFileNo as string).toLowerCase().includes(searchString.toLowerCase())) {
+        return khatedar;
+      }
+      if (khatedar.citizen && ((khatedar.citizen as Citizen).aadhar as string).toLowerCase().includes(searchString.toLowerCase())) {
+        return khatedar;
+      }
+      if (khatedar.citizen && ((khatedar.citizen as Citizen).pan as string).toLowerCase().includes(searchString.toLowerCase())) {
+        return khatedar;
+      }
+      if (
+        khatedar.projectLand &&
+        ((khatedar.projectLand as ProjectLand).land?.khasraNumber as string).toLowerCase().includes(searchString.toLowerCase())
+      ) {
+        return khatedar;
+      }
+      return undefined;
+    }
+
+    if (searchString !== '') {
+      this.khatedars = this.khatedars?.filter(checkForSearchString);
+    } 
+    else {
+      this.handleNavigation();
+    }
+    */
+      return undefined;
+    }
+  }
+
+  filter(): void {
+    // this.khatedarService.filter(this.filterBy, this.filterString, this.contextProject).subscribe(data => {
+    /*
+      console.log("FILTERING DATA....:");
+    this.khatedarService.filter().subscribe(data => {
+      this.khatedars = data;
+     
+    }); */
   }
 
   trackId(_index: number, item: ICitizen): number {

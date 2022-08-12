@@ -140,9 +140,13 @@ export class KhatedarComponent implements OnInit {
   }
 
   searchFor(searchString: string): void {
-    this.khatedars = this.originaKhatedars;
+    console.log('Searching for Khatedar...');
+    //  this.handleNavigation();
+    this.originaKhatedars = this.khatedars;
+    // console.log(this.originaKhatedars);
 
     function checkForSearchString(khatedar: IKhatedar): IKhatedar | undefined {
+      console.log('SEARCHING ...');
       if (khatedar.citizen && ((khatedar.citizen as Citizen).name as string).toLowerCase().includes(searchString.toLowerCase())) {
         return khatedar;
       }
@@ -169,11 +173,14 @@ export class KhatedarComponent implements OnInit {
 
     if (searchString !== '') {
       this.khatedars = this.khatedars?.filter(checkForSearchString);
+    } else {
+      this.handleNavigation();
     }
   }
 
   filter(): void {
     // this.khatedarService.filter(this.filterBy, this.filterString, this.contextProject).subscribe(data => {
+    console.log('FILTERING DATA....:');
     this.khatedarService.filter().subscribe(data => {
       this.khatedars = data;
     });
@@ -205,11 +212,17 @@ export class KhatedarComponent implements OnInit {
       const sort = (params.get(SORT) ?? data['defaultSort']).split(',');
       const predicate = sort[0];
       const ascending = sort[1] === ASC;
+      /*
       if (pageNumber !== this.page || predicate !== this.predicate || ascending !== this.ascending) {
         this.predicate = predicate;
         this.ascending = ascending;
         this.loadPage(pageNumber, true);
       }
+      */
+
+      this.predicate = predicate;
+      this.ascending = ascending;
+      this.loadPage(pageNumber, true);
     });
   }
 
@@ -226,6 +239,7 @@ export class KhatedarComponent implements OnInit {
       });
     }
     this.khatedars = data ?? [];
+    console.log(this.khatedars);
     this.ngbPaginationPage = this.page;
   }
 
