@@ -1,23 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="CitizenHeading">
     <span jhiTranslate="jhipsterApp.citizen.home.title">Citizens</span>
-
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="jhipsterApp.citizen.home.refreshListLabel">Refresh List</span>
-      </button>
-
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-citizen"
-        [routerLink]="['/citizen/new']"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="jhipsterApp.citizen.home.createLabel"> Create a new Citizen </span>
-      </button>
-    </div>
   </h2>
 
   <jhi-alert-error></jhi-alert-error>
@@ -69,17 +52,17 @@
           <div ngbDropdown class="d-inline-block">
             <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
               <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-              <span jhiTranslate="jhipsterApp.khatedar.home.refreshListLabel">Refresh List</span>
+              <span jhiTranslate="jhipsterApp.citizen.home.refreshListLabel">Refresh List</span>
             </button>
 
             <button
               id="jh-create-entity"
               data-cy="entityCreateButton"
-              class="btn btn-primary jh-create-entity create-khatedar"
-              [routerLink]="['/khatedar/new']"
+              class="btn btn-primary jh-create-entity create-citizen"
+              [routerLink]="['/citizen/new']"
             >
               <fa-icon icon="plus"></fa-icon>
-              <span jhiTranslate="jhipsterApp.khatedar.home.createLabel"> Create a new Khatedar </span>
+              <span jhiTranslate="jhipsterApp.citizen.home.createLabel"> Create a new Citizen </span>
             </button>
           </div>
         </div>
