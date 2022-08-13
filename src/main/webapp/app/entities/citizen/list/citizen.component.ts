@@ -60,31 +60,71 @@ export class CitizenComponent implements OnInit {
       });
   }
 
+  searchFilter(page?: number, dontNavigate?: boolean, filterString?: string, filterBy?: string): void {
+    this.isLoading = true;
+    const pageToLoad: number = page ?? this.page ?? 1;
+
+    let reqObj: any;
+    if (filterBy === 'aadhar') {
+      reqObj = {
+        page: pageToLoad - 1,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+        'aadhar.contains': filterString,
+      };
+    }
+
+    this.citizenService.query(reqObj).subscribe({
+      next: (res: HttpResponse<ICitizen[]>) => {
+        this.isLoading = false;
+        this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+      },
+      error: () => {
+        this.isLoading = false;
+        this.onError();
+      },
+    });
+  }
+
   ngOnInit(): void {
     this.handleNavigation();
   }
 
   searchFor(searchString: string): void {
-    this.origCitizens = this.citizens;
+    this.citizens = this.origCitizens;
 
     function checkForSearchString(citizen: ICitizen): ICitizen | undefined {
       console.log('SEARCHING ...');
 
-      if (citizen.aadhar!.toString().toLowerCase().includes(searchString.toLowerCase())) {
+      if (
+        citizen.aadhar!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        citizen.pan!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        citizen.mobileNumber!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        citizen.accountNumber!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        citizen.name!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        citizen.fatherName!.toString().toLowerCase().includes(searchString.toLowerCase())
+      ) {
         return citizen;
       }
-
       return undefined;
     }
 
     if (searchString !== '') {
       this.citizens = this.citizens?.filter(checkForSearchString);
+      console.log(this.citizens?.length);
+      if (this.citizens?.length === 0) {
+        this.handleSearch('aadhar', searchString);
+      }
     } else {
       this.handleNavigation();
     }
   }
 
   filter(): void {
+    console.log('INSIDE FILTER...');
+    console.log(this.filterBy);
+    console.log(this.filter);
+    console.log(this.filterString);
     //
   }
 
@@ -138,6 +178,19 @@ export class CitizenComponent implements OnInit {
     });
   }
 
+  protected handleSearch(filterString?: string, filterBy?: string): void {
+    combineLatest([this.activatedRoute.data, this.activatedRoute.queryParamMap]).subscribe(([data, params]) => {
+      const page = params.get('page');
+      const pageNumber = +(page ?? 1);
+      const sort = (params.get(SORT) ?? data['defaultSort']).split(',');
+      const predicate = sort[0];
+      const ascending = sort[1] === ASC;
+      this.predicate = predicate;
+      this.ascending = ascending;
+      this.searchFilter(pageNumber, true, filterBy, filterString);
+    });
+  }
+
   protected onSuccess(data: ICitizen[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.page = page;
@@ -151,6 +204,8 @@ export class CitizenComponent implements OnInit {
       });
     }
     this.citizens = data ?? [];
+    //console.log(this.citizens);
+    this.origCitizens = data ?? [];
     this.ngbPaginationPage = this.page;
   }
 

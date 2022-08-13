@@ -9,42 +9,16 @@
   <div class="row">
     <div class="col-12 row">
       <div class="col-12 row">
-        <div class="col-4">
+        <div class="col-9">
           <div class="input-group">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search..."
-              [(ngModel)]="searchString"
-              (ngModelChange)="searchFor(searchString)"
-            />
-            <!--<button class="btn btn-outline-secondary" type="button" [disabled]="!searchString" (click)="searchFor(searchString)">
-            <fa-icon icon="search"></fa-icon>
-          </button>-->
-          </div>
-        </div>
-        <div class="col-5">
-          <div class="input-group">
-            <input type="text" class="form-control" [placeholder]="filterBy" [(ngModel)]="filterString" />
-            <div class="btn-group me-2">
-              <button type="button" class="btn btn-outline-secondary" (click)="filter()">
-                <span jhiTranslate="jhipsterApp.khatedar.home.filter"></span>
-              </button>
-              <div class="btn-group" ngbDropdown role="group">
-                <button type="button" class="btn btn-outline-secondary dropdown-toggle-split" ngbDropdownToggle></button>
-                <div class="dropdown-menu" ngbDropdownMenu>
-                  <button ngbDropdownItem (click)="filterBy = 'mobileNumber'">
-                    <span jhiTranslate="jhipsterApp.khatedar.home.mobile"></span>
-                  </button>
-                  <button ngbDropdownItem (click)="filterBy = 'aadhar'">
-                    <span jhiTranslate="jhipsterApp.khatedar.home.aadhar"></span>
-                  </button>
-                  <button ngbDropdownItem (click)="filterBy = 'pan'"><span jhiTranslate="jhipsterApp.khatedar.home.pan"></span></button>
-                  <button ngbDropdownItem (click)="filterBy = 'khasraNumber'">
-                    <span jhiTranslate="jhipsterApp.land.khasraNumber"></span>
-                  </button>
-                </div>
-              </div>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search..."
+                [(ngModel)]="searchString"
+                (ngModelChange)="searchFor(searchString)"
+              />
             </div>
           </div>
         </div>
