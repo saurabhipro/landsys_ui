@@ -28,6 +28,7 @@ export class CitizenComponent implements OnInit {
   filterString!: string;
   filterBy = 'Name';
   searchString!: string;
+  origCitizens: ICitizen[] | undefined;
 
   constructor(
     protected citizenService: CitizenService,
@@ -64,57 +65,27 @@ export class CitizenComponent implements OnInit {
   }
 
   searchFor(searchString: string): void {
-    console.log('Searching for Khatedar...');
-    //  this.handleNavigation();
-    //  this.originaKhatedars= this.khatedars;
-    // console.log(this.originaKhatedars);
+    this.origCitizens = this.citizens;
 
     function checkForSearchString(citizen: ICitizen): ICitizen | undefined {
       console.log('SEARCHING ...');
-      /*
-      if (khatedar.citizen && ((khatedar.citizen as Citizen).name as string).toLowerCase().includes(searchString.toLowerCase())) {
-        return khatedar;
+
+      if (citizen.aadhar!.toString().toLowerCase().includes(searchString.toLowerCase())) {
+        return citizen;
       }
-      if (khatedar.id!.toString().toLowerCase().includes(searchString.toLowerCase())) {
-        return khatedar;
-      }
-      if ((khatedar.caseFileNo as string).toLowerCase().includes(searchString.toLowerCase())) {
-        return khatedar;
-      }
-      if (khatedar.citizen && ((khatedar.citizen as Citizen).aadhar as string).toLowerCase().includes(searchString.toLowerCase())) {
-        return khatedar;
-      }
-      if (khatedar.citizen && ((khatedar.citizen as Citizen).pan as string).toLowerCase().includes(searchString.toLowerCase())) {
-        return khatedar;
-      }
-      if (
-        khatedar.projectLand &&
-        ((khatedar.projectLand as ProjectLand).land?.khasraNumber as string).toLowerCase().includes(searchString.toLowerCase())
-      ) {
-        return khatedar;
-      }
+
       return undefined;
     }
 
     if (searchString !== '') {
-      this.khatedars = this.khatedars?.filter(checkForSearchString);
-    } 
-    else {
+      this.citizens = this.citizens?.filter(checkForSearchString);
+    } else {
       this.handleNavigation();
-    }
-    */
-      return undefined;
     }
   }
 
   filter(): void {
-    // this.khatedarService.filter(this.filterBy, this.filterString, this.contextProject).subscribe(data => {
-    /*
-      console.log("FILTERING DATA....:");
-    this.khatedarService.filter().subscribe(data => {
-      this.khatedars = data;
-     
-    }); */
+    //
   }
 
   trackId(_index: number, item: ICitizen): number {
@@ -155,11 +126,15 @@ export class CitizenComponent implements OnInit {
       const sort = (params.get(SORT) ?? data['defaultSort']).split(',');
       const predicate = sort[0];
       const ascending = sort[1] === ASC;
-      if (pageNumber !== this.page || predicate !== this.predicate || ascending !== this.ascending) {
+      /*  if (pageNumber !== this.page || predicate !== this.predicate || ascending !== this.ascending) {
         this.predicate = predicate;
         this.ascending = ascending;
         this.loadPage(pageNumber, true);
       }
+  */
+      this.predicate = predicate;
+      this.ascending = ascending;
+      this.loadPage(pageNumber, true);
     });
   }
 
