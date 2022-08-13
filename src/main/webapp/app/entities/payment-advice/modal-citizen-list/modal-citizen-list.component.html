@@ -5,22 +5,20 @@
 </div>
 <div>
   <h2 id="page-heading" data-cy="CitizenHeading">
-  
-
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span jhiTranslate="jhipsterApp.citizen.home.refreshListLabel">Refresh List</span>
       </button>
-
+      <button type="button"  [disabled]="selectedCitizen.length === 0" class="btn btn-primary jh-create-entity create-citizen mr-2" (click)="addCitizen()">Add Selected Khatedars </button>
       <button
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-citizen"
         [routerLink]="['/citizen/new']"
-      >
+        (click)="activeModal.dismiss('Cross click')">
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="jhipsterApp.citizen.home.createLabel"> Create a new Citizen </span>
+        <span > Add a new Citizen </span>
       </button>
     </div>
   </h2>
@@ -28,6 +26,8 @@
   <jhi-alert-error></jhi-alert-error>
 
   <jhi-alert></jhi-alert>
+  
+  <span *ngIf="selectedCitizen.length !== 0 && !multipleKhaterdars" class="mx-3 text text-danger">No Multiple selection allowed, Only Single Onwner</span>
 
   <div class="alert alert-warning" id="no-result" *ngIf="citizens?.length === 0">
     <span jhiTranslate="jhipsterApp.citizen.home.notFound">No citizens found</span>
@@ -65,14 +65,7 @@
             <span jhiTranslate="jhipsterApp.citizen.dob">Dob</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-          <!-- <th scope="col" jhiSortBy="accountName">
-            <span jhiTranslate="jhipsterApp.citizen.nameInBank">Name in Bank</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="accountNumber">
-            <span jhiTranslate="jhipsterApp.citizen.accountNumber">Account Number</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th> -->
+      
 
           <th scope="col"></th>
         </tr>
@@ -80,25 +73,19 @@
       <tbody>
         <tr *ngFor="let citizen of citizens; trackBy: trackId" data-cy="entityTable">
           <td>
-            <input type="checkbox" name="citizen{{citizen.id}}" id="{{citizen.id}}">
+            <input type="checkbox" (click)="OnClick( $event, citizen)" name="citizen{{citizen.id}}" id="{{citizen.id}}">
           </td>
           <td>
             <a [routerLink]="['/citizen', citizen.id, 'view']">{{ citizen.id }}</a>
           </td>
-          <!--          <td>-->
-          <!--            <a *ngIf="citizen.photo" (click)="openFile(citizen.photo, citizen.photoContentType)">-->
-          <!--              <img [src]="'data:' + citizen.photoContentType + ';base64,' + citizen.photo" style="max-height: 30px" alt="citizen image" />-->
-          <!--            </a>-->
-          <!--            <span *ngIf="citizen.photo">{{ citizen.photoContentType }}, {{ byteSize(citizen.photo) }}</span>-->
-          <!--          </td>-->
+
           <td>{{ citizen.name }}</td>
           <td>{{ citizen.aadhar }}</td>
           <td>{{ citizen.fatherName }}</td>
           <td>{{ citizen.address }}</td>
           <td>{{ citizen.mobileNumber }}</td>
           <td>{{ citizen.dob | formatMediumDate }}</td>
-          <!-- <td>{{ citizen.nameInBank }}</td>
-          <td>{{ citizen.accountNumber }}</td> -->
+       
 
           <td class="text-end">
             <div class="btn-group">
@@ -139,5 +126,6 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="close()">Close</button>
+  <button [disabled]="selectedCitizen.length === 0" type="button" class="btn btn-outline-dark" (click)="addCitizen()">Add Selected Khatedars </button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Close</button>
 </div>
