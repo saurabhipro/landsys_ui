@@ -102,6 +102,7 @@ export class CitizenComponent implements OnInit {
         citizen.mobileNumber!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
         citizen.accountNumber!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
         citizen.name!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        citizen.address!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
         citizen.fatherName!.toString().toLowerCase().includes(searchString.toLowerCase())
       ) {
         return citizen;
