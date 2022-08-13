@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ASC, DESC, ITEMS_PER_PAGE } from 'app/config/pagination.constants';
+import { ASC, DESC } from 'app/config/pagination.constants';
 import { DataUtils } from 'app/core/util/data-util.service';
 import { ICitizen } from 'app/entities/citizen/citizen.model';
 import { CitizenService } from 'app/entities/citizen/service/citizen.service';
@@ -13,14 +13,16 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './modal-citizen-list.component.html',
 })
 export class ModalCitizenListComponent implements OnInit {
+  multipleKhaterdars = false;
   citizens?: ICitizen[];
   isLoading = false;
   totalItems = 0;
-  itemsPerPage = ITEMS_PER_PAGE;
+  itemsPerPage = 10;
   page = 1;
   predicate = "id";
   ascending!: boolean;
   ngbPaginationPage = 1;
+  selectedCitizen: ICitizen[] = [];
 
   constructor(
     protected citizenService: CitizenService,
@@ -30,9 +32,27 @@ export class ModalCitizenListComponent implements OnInit {
     public activeModal: NgbActiveModal
   ) {}
 
+  OnClick(event:any, citizen: ICitizen ): void {
+    
+    if (citizen.id) {
+      const index = this.selectedCitizen.findIndex( sc=> sc.id === citizen.id);
+      if (index === -1) {
+        if(this.selectedCitizen.length === 0 || this.multipleKhaterdars ){
+          this.selectedCitizen.push(citizen);
+        } else {
+          event.target.checked = false;
+        }
+      } else {
+        this.selectedCitizen.splice(index, 1);
+      }
+    } else {
+      event.target.checked = false;
+    }
+  }
+
   loadPage(page?: number): void {
     this.isLoading = true;
-    const pageToLoad: number = this.page;
+    const pageToLoad: number = page ?? this.page;
 
     this.citizenService
       .query({
@@ -53,7 +73,7 @@ export class ModalCitizenListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadPage();
+    this.loadPage(this.page);
   }
 
   trackId(_index: number, item: ICitizen): number {
@@ -68,9 +88,16 @@ export class ModalCitizenListComponent implements OnInit {
     return this.dataUtils.openFile(base64String, contentType);
   }
 
-  close() : void{
-    this.activeModal.close('Close click')
+  addCitizen() : void{
+    this.activeModal.close({
+      citizens: this.selectedCitizen
+    })
   }
+
+  close() : void{
+    this.activeModal.dismiss();
+  }
+
 
   protected sort(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? ASC : DESC)];

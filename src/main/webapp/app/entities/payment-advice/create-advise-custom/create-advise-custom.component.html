@@ -124,7 +124,7 @@
         type="button"
         id="save-entity"
         data-cy="entityCreateSaveButton"
-        [disabled]="editForm.get('hissaType')!.invalid || (editForm.get('hissaType')!.value == 'SINGLE_OWNER' && khatedars.length>0) "
+        [disabled]="editForm.get('hissaType')!.invalid"
         class="btn btn-primary"
         (click)="addCitizen()"
       >
@@ -132,17 +132,38 @@
       </button>
       </div>
       <div>
-       <table>
+       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Name</th>
+            <th scope="col">
+              <span jhiTranslate="jhipsterApp.citizen.name">Name</span>
+             
+            </th>
+            <th scope="col">
+              <span jhiTranslate="jhipsterApp.citizen.aadhar">Aadhar</span>
+             
+            </th>
+            <th scope="col" >
+              <span jhiTranslate="jhipsterApp.citizen.fatherName">Father Name</span>
+             
+            </th>
+            
+            <th scope="col" >
+              <span jhiTranslate="jhipsterApp.citizen.mobileNumber">Mobile Number</span>
+             
+            </th>
+            <th scope="col" >
+              <span >Share %</span>
+            </th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let khaterdar of khatedars">
-            <td>
-              {{khaterdar.name}}
-            </td>
+            <td>{{ khaterdar.name }}</td>
+          <td>{{ khaterdar.aadhar }}</td>
+          <td>{{ khaterdar.fatherName }}</td>
+          <td>{{ khaterdar.mobileNumber }}</td>
+          <td>  <input type="number" class="form-control" [(ngModel)]="khaterdar.share" name="{{khaterdar.mobileNumber}}" id="{{khaterdar.mobileNumber }}"> </td>
           </tr>
         </tbody>
        </table>

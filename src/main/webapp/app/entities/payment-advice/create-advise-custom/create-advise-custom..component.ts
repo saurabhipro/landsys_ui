@@ -125,6 +125,21 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
 
   addCitizen(): void{
     const modalRef = this.modalService.open(ModalCitizenListComponent, { size: 'xl', backdropClass: 'light-blue-backdrop' });
+    modalRef.componentInstance.multipleKhaterdars = this.editForm.get(['hissaType'])!.value  === 'SINGLE_OWNER' ? false : true;
+    modalRef.result.then(res=>{
+      const citizens =  res.citizens.filter((ct:any) => !(this.khatedars.some(kh=>kh.citizenId === ct.id )));
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      citizens.forEach((ct:any) => {
+       this.khatedars.push( {...ct,
+          id: "",
+          citizenId : ct.id,
+          share:''
+        })
+      })
+      
+    }).catch(err=>{
+      console.log(err);
+    })
  
    }
 
