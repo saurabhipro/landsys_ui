@@ -55,6 +55,7 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
     landCompensation: [null, Validators.required],
     projectLand: [null, Validators.required],
     survey: [null, Validators.required],
+    comments:[]
   });
 
   constructor(
@@ -133,14 +134,25 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
        this.khatedars.push( {...ct,
           id: "",
           citizenId : ct.id,
-          share:''
+          share:0,
+          isPrimary:false
+
         })
-      })
+      });
+
+      if(this.khatedars.length>0 && this.editForm.get(['hissaType'])!.value  === 'SINGLE_OWNER'){
+        this.khatedars[0].share = 100;
+        this.khatedars[0].isPrimary = true;
+      }
       
     }).catch(err=>{
       console.log(err);
     })
  
+   }
+
+   removeKhatedar(index:number):void{
+    this.khatedars.splice(index,1);
    }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPaymentAdvice>>): void {
@@ -181,6 +193,7 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
       landCompensation: paymentAdvice.landCompensation,
       projectLand: paymentAdvice.projectLand,
       survey: paymentAdvice.survey,
+      comments:''
     });
 
     this.khatedarsCollection = this.khatedarService.addKhatedarToCollectionIfMissing(this.khatedarsCollection, paymentAdvice.khatedar);
@@ -256,6 +269,7 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
       landCompensation: this.editForm.get(['landCompensation'])!.value,
       projectLand: this.editForm.get(['projectLand'])!.value,
       survey: this.editForm.get(['survey'])!.value,
+      comments:this.editForm.get(['comments'])!.value,
     };
   }
 }

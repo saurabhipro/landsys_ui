@@ -3,14 +3,32 @@
   <h4 class="modal-title" jhiTranslate="jhipsterApp.citizen.home.title">Citizens</h4>
   <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 </div>
-<div>
+
+<div *ngIf="isLoading" class="d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<div [hidden]="isLoading">
   <h2 id="page-heading" data-cy="CitizenHeading">
-    <div class="d-flex justify-content-end">
+    <div class="row">
+    <div class="col-9 d-flex justify-content-between">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search..."
+            [(ngModel)]="searchString"
+          />
+      <button class="btn btn-info me-2" (click)="searchFor()" [disabled]="isLoading">
+        Search
+      </button>
+    </div>
+    <div class="col-3 d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span jhiTranslate="jhipsterApp.citizen.home.refreshListLabel">Refresh List</span>
       </button>
-      <button type="button"  [disabled]="selectedCitizen.length === 0" class="btn btn-primary jh-create-entity create-citizen mr-2" (click)="addCitizen()">Add Selected Khatedars </button>
+      <button type="button"  [disabled]="selectedCitizen.length === 0" class="btn btn-primary jh-create-entity create-citizen mx-2" (click)="addCitizen()">Add Selected Khatedars </button>
       <button
         id="jh-create-entity"
         data-cy="entityCreateButton"
@@ -20,6 +38,7 @@
         <fa-icon icon="plus"></fa-icon>
         <span > Add a new Citizen </span>
       </button>
+    </div>
     </div>
   </h2>
 

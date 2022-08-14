@@ -30,6 +30,8 @@ export interface IPaymentAdvice {
   paymentFileRecon?: IPaymentFileRecon | null;
   paymentFile?: IPaymentFile | null;
   paymentAdviceDetails?: IPaymentAdviceDetails[] | null;
+  comments?: string | null;
+  
 }
 
 export interface ICreatePaymentFileAdvices {

@@ -12,7 +12,7 @@
       <div>
         <jhi-alert-error></jhi-alert-error>
         <div class="row">
-          <div class="col-3 col-sm-6 mb-3">
+          <div class="col-3 col-sm-3 mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.hissaType" for="field_hissaType">Hissa Type</label>
           <select class="form-control" name="hissaType" formControlName="hissaType" id="field_hissaType" data-cy="hissaType">
             <option [ngValue]="null">{{ 'jhipsterApp.HissaType.null' | translate }}</option>
@@ -30,12 +30,12 @@
             </small>
           </div>
         </div>
-        <div class="col-3 col-sm-6 mb-3">
+        <div class="col-3 col-sm-3 mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.landCompensation" for="field_landCompensation"
             >Land Compensation</label
           >
-          <select
-            class="form-control"
+          <select [disabled]="true"
+            class="form-control readonly"
             id="field_landCompensation"
             data-cy="landCompensation"
             name="landCompensation"
@@ -69,9 +69,9 @@
           </small>
         </div>
       </div>
-        <div class="col-3 col-sm-6 mb-3">
+        <div class="col-3 col-sm-3 mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.projectLand" for="field_projectLand">Project Land</label>
-          <select class="form-control" id="field_projectLand" data-cy="projectLand" name="projectLand" formControlName="projectLand">
+          <select  [disabled]="true" class="form-control readonly" id="field_projectLand" data-cy="projectLand" name="projectLand" formControlName="projectLand">
             <option *ngIf="!editForm.get('projectLand')!.value" [ngValue]="null" selected></option>
             <option
               [ngValue]="
@@ -96,9 +96,9 @@
         </div>
       </div>
 
-        <div class="col-3 col-sm-6 mb-3">
+        <div class="col-3 col-sm-3 mb-3">
           <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.survey" for="field_survey">Survey</label>
-          <select class="form-control" id="field_survey" data-cy="survey" name="survey" formControlName="survey">
+          <select class="form-control readonly" id="field_survey" data-cy="survey" name="survey" formControlName="survey">
             <option *ngIf="!editForm.get('survey')!.value" [ngValue]="null" selected></option>
             <option
               [ngValue]="surveyOption.id === editForm.get('survey')!.value?.id ? editForm.get('survey')!.value : surveyOption"
@@ -115,6 +115,12 @@
         </div>
       </div>
 
+      <div class="col-3 col-sm-3 mb-3">
+        <label class="form-label"  for="field_comments">Comments</label>
+        <input  class="form-control" id="field_comments" data-cy="comments" name="comments" formControlName="comments" />
+     
+    </div>
+
       </div>
 <!-- Add citizen/ Khatedar  -->
       
@@ -124,7 +130,7 @@
         type="button"
         id="save-entity"
         data-cy="entityCreateSaveButton"
-        [disabled]="editForm.get('hissaType')!.invalid"
+        [disabled]="editForm.get('hissaType')!.invalid || (editForm.get(['hissaType'])!.value  === 'SINGLE_OWNER' && this.khatedars.length == 1)"
         class="btn btn-primary"
         (click)="addCitizen()"
       >
@@ -135,6 +141,7 @@
        <table class="table table-striped">
         <thead>
           <tr>
+            <th *ngIf="editForm.get(['hissaType'])!.value  !== 'SINGLE_OWNER'"> IS Primary </th>
             <th scope="col">
               <span jhiTranslate="jhipsterApp.citizen.name">Name</span>
              
@@ -152,18 +159,22 @@
               <span jhiTranslate="jhipsterApp.citizen.mobileNumber">Mobile Number</span>
              
             </th>
-            <th scope="col" >
+            <th *ngIf="editForm.get(['hissaType'])!.value  !== 'SINGLE_OWNER'" scope="col" >
               <span >Share %</span>
             </th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let khaterdar of khatedars">
-            <td>{{ khaterdar.name }}</td>
+          <tr *ngFor="let khaterdar of khatedars; let index = index">
+            <td *ngIf="editForm.get(['hissaType'])!.value  !== 'SINGLE_OWNER'">  <input type="radio" [(ngModel)]="khaterdar.isPrimary" name="isPrimary" id="radio{{index}}"> </td>
+
+          <td>{{ khaterdar.name }}</td>
           <td>{{ khaterdar.aadhar }}</td>
           <td>{{ khaterdar.fatherName }}</td>
           <td>{{ khaterdar.mobileNumber }}</td>
-          <td>  <input type="number" class="form-control" [(ngModel)]="khaterdar.share" name="{{khaterdar.mobileNumber}}" id="{{khaterdar.mobileNumber }}"> </td>
+          <td *ngIf="editForm.get(['hissaType'])!.value  !== 'SINGLE_OWNER'">  <input type="number"  class="form-control" [(ngModel)]="khaterdar.share" name="share{{index}}" id="share{{index }}"> </td>
+          <td> <button (click)="removeKhatedar(index)">Remove</button> </td>
           </tr>
         </tbody>
        </table>

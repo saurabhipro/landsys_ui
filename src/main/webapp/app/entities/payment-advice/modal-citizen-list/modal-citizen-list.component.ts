@@ -7,6 +7,7 @@ import { DataUtils } from 'app/core/util/data-util.service';
 import { ICitizen } from 'app/entities/citizen/citizen.model';
 import { CitizenService } from 'app/entities/citizen/service/citizen.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoaderService } from 'app/loader.service';
 
 @Component({
   selector: 'jhi-modal-citizen-list',
@@ -23,13 +24,15 @@ export class ModalCitizenListComponent implements OnInit {
   ascending!: boolean;
   ngbPaginationPage = 1;
   selectedCitizen: ICitizen[] = [];
+  searchString = "";
 
   constructor(
     protected citizenService: CitizenService,
     protected activatedRoute: ActivatedRoute,
     protected dataUtils: DataUtils,
     protected router: Router,
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    private loaderService: LoaderService
   ) {}
 
   OnClick(event:any, citizen: ICitizen ): void {
@@ -50,22 +53,31 @@ export class ModalCitizenListComponent implements OnInit {
     }
   }
 
-  loadPage(page?: number): void {
+  searchFor(): void {
+
+        this.loadPage(1, this.searchString.trim());
+  }
+
+  loadPage(page?: number, searchString?: string): void {
+    this.loaderService.show(true);
     this.isLoading = true;
     const pageToLoad: number = page ?? this.page;
-
+   
     this.citizenService
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
+        'aadhar.contains': searchString ? searchString : "",
       })
       .subscribe({
         next: (res: HttpResponse<ICitizen[]>) => {
+          this.loaderService.show(false);
           this.isLoading = false;
           this.onSuccess(res.body, res.headers);
         },
         error: () => {
+          this.loaderService.show(false);
           this.isLoading = false;
           this.onError();
         },
@@ -97,6 +109,8 @@ export class ModalCitizenListComponent implements OnInit {
   close() : void{
     this.activeModal.dismiss();
   }
+
+
 
 
   protected sort(): string[] {
