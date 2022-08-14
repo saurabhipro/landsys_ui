@@ -6,9 +6,9 @@
   <jhi-alert-error></jhi-alert-error>
 
   <jhi-alert></jhi-alert>
-  <div class="row">
-    <div class="col-12 row">
-      <div class="col-12 row">
+ 
+  
+      <div class="row">
         <div class="col-9">
           <div class="input-group">
             <div class="input-group">
@@ -22,7 +22,7 @@
             </div>
           </div>
         </div>
-        <div class="col-3 d-flex justify-content-around">
+        <div class="col-3 d-flex justify-content-end">
           <div ngbDropdown class="d-inline-block">
             <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
               <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
@@ -40,7 +40,8 @@
             </button>
           </div>
         </div>
-        <div>
+        </div>
+        <div class="row">
           <jhi-alert-error></jhi-alert-error>
 
           <jhi-alert></jhi-alert>
@@ -49,7 +50,7 @@
           </div>
 
           <div class="table-responsive" id="entities" *ngIf="citizens && citizens.length > 0">
-            <table class="table table-striped" aria-describedby="page-heading">
+            <table class="table  table-striped table-fixed" aria-describedby="page-heading">
               <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
                   <th scope="col" jhiSortBy="id">
@@ -162,8 +163,6 @@
               ></ngb-pagination>
             </div>
           </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+

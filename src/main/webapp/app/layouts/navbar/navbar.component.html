@@ -1,4 +1,4 @@
-<nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md fixed-top" style="background: #1b1c1c">
+<nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md" style="background: #1b1c1c">
   <div class="container-fluid">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
       <span class="logo-img"></span>
@@ -90,7 +90,7 @@
     </div>
   </div>
 </nav>
-<nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md" style="background: #4c4c4c; display: grid; padding-top: 66.38px">
+<nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md" style="background: #4c4c4c; display: grid;">
   <div class="container-fluid">
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="account !== null">
       <ul class="navbar-nav ms-auto">

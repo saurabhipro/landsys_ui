@@ -15,6 +15,7 @@ import { faUnderline } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'jhi-citizen',
   templateUrl: './citizen.component.html',
+  styleUrls: [ './citizen.component.scss']
 })
 export class CitizenComponent implements OnInit {
   citizens?: ICitizen[];
