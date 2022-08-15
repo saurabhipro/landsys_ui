@@ -36,6 +36,7 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
   projectLandsSharedCollection: IProjectLand[] = [];
   surveysSharedCollection: ISurvey[] = [];
   khatedars: any[] = [];
+  landCompensation! : ILandCompensation;
 
   editForm = this.fb.group({
     id: [],
@@ -55,7 +56,9 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
     landCompensation: [null, Validators.required],
     projectLand: [null, Validators.required],
     survey: [null, Validators.required],
-    comments:[]
+    comments:[],
+    photo:[],
+    photoContentType:[]
   });
 
   constructor(
@@ -79,6 +82,7 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
     
       // eslint-disable-next-line no-console
       console.log(landCompensation);
+     this.landCompensation = landCompensation;
       const paymentAdvice: IPaymentAdvice = {
         survey :landCompensation.survey ,
         projectLand : landCompensation.projectLand,
@@ -143,6 +147,8 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
       if(this.khatedars.length>0 && this.editForm.get(['hissaType'])!.value  === 'SINGLE_OWNER'){
         this.khatedars[0].share = 100;
         this.khatedars[0].isPrimary = true;
+
+        this.updatePrimary( this.khatedars[0].name, this.khatedars[0].accountNumber,  this.khatedars[0].bankBranch.ifsc,  this.khatedars[0].photo,  this.khatedars[0].photoContentType );
       }
       
     }).catch(err=>{
@@ -152,7 +158,28 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
    }
 
    removeKhatedar(index:number):void{
+    if(this.khatedars[index].isPrimary){
+      this.updatePrimary('', 0, '', '', '');
+
+    }
     this.khatedars.splice(index,1);
+   }
+
+   onChangePrimary(khaterdar:any, index:number): void {
+    this.updatePrimary(khaterdar.name, khaterdar.accountNumber,  khaterdar.bankBranch.ifsc, khaterdar.photo, khaterdar.photoContentType);
+    this.khatedars[index].isPrimary = true;
+    //
+   }
+
+   updatePrimary(name:string,accountNumber:number,ifscCode:string,photo:string, photoContentType:string ): void{
+
+    this.editForm.patchValue({
+       accountHolderName: name,
+       accountNumber,
+       ifscCode,
+       photoContentType,
+       photo
+    })
    }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPaymentAdvice>>): void {
