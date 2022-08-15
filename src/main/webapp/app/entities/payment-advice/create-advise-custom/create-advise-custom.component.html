@@ -160,7 +160,7 @@
             <td *ngIf="editForm.get(['hissaType'])!.value !== 'SINGLE_OWNER'">
               <input type="number" class="form-control" [(ngModel)]="khaterdar.share" name="share{{ index }}" id="share{{ index }}" />
             </td>
-            <td><button (click)="removeKhatedar(index)">Remove</button></td>
+            <td><button type="button" class="btn btn-danger" (click)="removeKhatedar(index)">Remove</button></td>
           </tr>
         </tbody>
       </table>
@@ -171,11 +171,12 @@
       </button>
 
       <button
-        type="submit"
+        type="button"
         id="save-entity"
         data-cy="entityCreateSaveButton"
         [disabled]="editForm.invalid || isSaving"
         class="btn btn-primary"
+        (click)="save()"
       >
         <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
       </button>

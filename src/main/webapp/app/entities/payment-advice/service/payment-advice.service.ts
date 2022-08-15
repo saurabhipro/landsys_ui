@@ -78,4 +78,8 @@ export class PaymentAdviceService {
   // downloadPaymentFile(): Observable<Blob> {
   //   return this.http.get(`${this.resourceUrl}/downloadTemplate`, { responseType: 'blob' });
   // }
+
+  createCustomAdvise(paymentAdvice: any): Observable<any> {
+    return this.http.post<any>(this.resourceUrl, paymentAdvice, { observe: 'response' });
+  }
 }

@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
-import { IPaymentAdvice, PaymentAdvice } from '../payment-advice.model';
+import { IPaymentAdvice } from '../payment-advice.model';
 import { PaymentAdviceService } from '../service/payment-advice.service';
 import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
 import { KhatedarService } from 'app/entities/khatedar/service/khatedar.service';
@@ -39,23 +39,10 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
   landCompensation! : ILandCompensation;
 
   editForm = this.fb.group({
-    id: [],
     accountHolderName: [null, [Validators.required]],
-    accountHolderBankName: [null, [Validators.required]],
-    paymentAmount: [null, [Validators.required]],
-    bankName: [null, [Validators.required]],
     accountNumber: [null, [Validators.required]],
     ifscCode: [null, [Validators.required]],
-    checkNumber: [],
-    micrCode: [],
-    paymentAdviceType: [],
-    referenceNumber: [],
-    paymentStatus: [null, [Validators.required]],
     hissaType: [null, [Validators.required]],
-    khatedar: [null, Validators.required],
-    landCompensation: [null, Validators.required],
-    projectLand: [null, Validators.required],
-    survey: [null, Validators.required],
     comments:[],
     photo:[],
     photoContentType:[]
@@ -74,14 +61,8 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-   // combineLatest([this.activatedRoute.data, this.activatedRoute.queryParamMap]).subscribe(([data, params]) => {
-    //  const page = params.get('page');
     
     this.activatedRoute.data.subscribe(({ landCompensation }) => {
-    
-      // eslint-disable-next-line no-console
-      console.log(landCompensation);
      this.landCompensation = landCompensation;
       const paymentAdvice: IPaymentAdvice = {
         survey :landCompensation.survey ,
@@ -89,7 +70,6 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
         landCompensation
       }
       this.updateForm(paymentAdvice);
-
       this.loadRelationshipsOptions();
     });
    
@@ -104,12 +84,19 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
 
   save(): void {
     this.isSaving = true;
-    const paymentAdvice = this.createFromForm();
-    if (paymentAdvice.id !== undefined) {
-      this.subscribeToSaveResponse(this.paymentAdviceService.update(paymentAdvice));
-    } else {
-      this.subscribeToSaveResponse(this.paymentAdviceService.create(paymentAdvice));
+    this.createCustomAdvise();
+  
+  }
+
+
+  createCustomAdvise(): void {
+    const khats = this.khatedars.map(kh=>({"id": kh.citizenId,  "isPrimary": kh.isPrimary, "sharePercentage":kh.share}));
+    const paymentAdvice = {
+      "hissaType": this.editForm.get(['hissaType'])!.value,
+    "landCompensationId": this.landCompensation.id,
+    "khatedars": khats
     }
+    this.subscribeToSaveResponse(this.paymentAdviceService.createCustomAdvise(paymentAdvice));
   }
 
   trackKhatedarById(_index: number, item: IKhatedar): number {
@@ -203,36 +190,14 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
 
   protected updateForm(paymentAdvice: IPaymentAdvice): void {
     this.editForm.patchValue({
-      id: paymentAdvice.id,
       accountHolderName: paymentAdvice.accountHolderName,
-      accountHolderBankName: paymentAdvice.accountHolderBankName,
-      paymentAmount: paymentAdvice.paymentAmount,
-      bankName: paymentAdvice.bankName,
       accountNumber: paymentAdvice.accountNumber,
       ifscCode: paymentAdvice.ifscCode,
-      checkNumber: paymentAdvice.checkNumber,
-      micrCode: paymentAdvice.micrCode,
-      paymentAdviceType: paymentAdvice.paymentAdviceType,
-      referenceNumber: paymentAdvice.referenceNumber,
       paymentStatus: paymentAdvice.paymentStatus,
       hissaType: paymentAdvice.hissaType,
-      khatedar: paymentAdvice.khatedar,
-      landCompensation: paymentAdvice.landCompensation,
-      projectLand: paymentAdvice.projectLand,
       survey: paymentAdvice.survey,
       comments:''
     });
-
-    this.khatedarsCollection = this.khatedarService.addKhatedarToCollectionIfMissing(this.khatedarsCollection, paymentAdvice.khatedar);
-    this.landCompensationsSharedCollection = this.landCompensationService.addLandCompensationToCollectionIfMissing(
-      this.landCompensationsSharedCollection,
-      paymentAdvice.landCompensation
-    );
-    this.projectLandsSharedCollection = this.projectLandService.addProjectLandToCollectionIfMissing(
-      this.projectLandsSharedCollection,
-      paymentAdvice.projectLand
-    );
-    this.surveysSharedCollection = this.surveyService.addSurveyToCollectionIfMissing(this.surveysSharedCollection, paymentAdvice.survey);
   }
 
   protected loadRelationshipsOptions(): void {
@@ -241,7 +206,7 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
       .pipe(map((res: HttpResponse<IKhatedar[]>) => res.body ?? []))
       .pipe(
         map((khatedars: IKhatedar[]) =>
-          this.khatedarService.addKhatedarToCollectionIfMissing(khatedars, this.editForm.get('khatedar')!.value)
+          this.khatedarService.addKhatedarToCollectionIfMissing(khatedars)
         )
       )
       .subscribe((khatedars: IKhatedar[]) => (this.khatedarsCollection = khatedars));
@@ -252,8 +217,7 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
       .pipe(
         map((landCompensations: ILandCompensation[]) =>
           this.landCompensationService.addLandCompensationToCollectionIfMissing(
-            landCompensations,
-            this.editForm.get('landCompensation')!.value
+            landCompensations
           )
         )
       )
@@ -264,7 +228,7 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
       .pipe(map((res: HttpResponse<IProjectLand[]>) => res.body ?? []))
       .pipe(
         map((projectLands: IProjectLand[]) =>
-          this.projectLandService.addProjectLandToCollectionIfMissing(projectLands, this.editForm.get('projectLand')!.value)
+          this.projectLandService.addProjectLandToCollectionIfMissing(projectLands)
         )
       )
       .subscribe((projectLands: IProjectLand[]) => (this.projectLandsSharedCollection = projectLands));
@@ -272,31 +236,11 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
     this.surveyService
       .query()
       .pipe(map((res: HttpResponse<ISurvey[]>) => res.body ?? []))
-      .pipe(map((surveys: ISurvey[]) => this.surveyService.addSurveyToCollectionIfMissing(surveys, this.editForm.get('survey')!.value)))
+      .pipe(map((surveys: ISurvey[]) => this.surveyService.addSurveyToCollectionIfMissing(surveys)))
       .subscribe((surveys: ISurvey[]) => (this.surveysSharedCollection = surveys));
   }
 
-  protected createFromForm(): IPaymentAdvice {
-    return {
-      ...new PaymentAdvice(),
-      id: this.editForm.get(['id'])!.value,
-      accountHolderName: this.editForm.get(['accountHolderName'])!.value,
-      accountHolderBankName: this.editForm.get(['accountHolderBankName'])!.value,
-      paymentAmount: this.editForm.get(['paymentAmount'])!.value,
-      bankName: this.editForm.get(['bankName'])!.value,
-      accountNumber: this.editForm.get(['accountNumber'])!.value,
-      ifscCode: this.editForm.get(['ifscCode'])!.value,
-      checkNumber: this.editForm.get(['checkNumber'])!.value,
-      micrCode: this.editForm.get(['micrCode'])!.value,
-      paymentAdviceType: this.editForm.get(['paymentAdviceType'])!.value,
-      referenceNumber: this.editForm.get(['referenceNumber'])!.value,
-      paymentStatus: this.editForm.get(['paymentStatus'])!.value,
-      hissaType: this.editForm.get(['hissaType'])!.value,
-      khatedar: this.editForm.get(['khatedar'])!.value,
-      landCompensation: this.editForm.get(['landCompensation'])!.value,
-      projectLand: this.editForm.get(['projectLand'])!.value,
-      survey: this.editForm.get(['survey'])!.value,
-      comments:this.editForm.get(['comments'])!.value,
-    };
-  }
+   
+    
+ 
 }
