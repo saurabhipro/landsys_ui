@@ -1,6 +1,7 @@
 import dayjs from 'dayjs/esm';
 import { IBankBranch } from 'app/entities/bank-branch/bank-branch.model';
 import { IKhatedar } from 'app/entities/khatedar/khatedar.model';
+import { ICitizenInfo } from './citizeninfo.model';
 
 export interface ICitizen {
   id?: number;
@@ -26,6 +27,7 @@ export interface ICitizen {
   accNoImage?: string | null;
   bankBranch?: IBankBranch | null;
   khatedars?: IKhatedar[] | null;
+  citizenInfo?: ICitizenInfo | null;
 }
 
 export class Citizen implements ICitizen {

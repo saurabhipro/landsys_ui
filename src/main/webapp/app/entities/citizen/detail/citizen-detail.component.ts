@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ICitizen } from '../citizen.model';
+import { ICitizenInfo } from '../citizeninfo.model';
 import { DataUtils } from 'app/core/util/data-util.service';
 
 @Component({
@@ -10,12 +11,14 @@ import { DataUtils } from 'app/core/util/data-util.service';
 })
 export class CitizenDetailComponent implements OnInit {
   citizen: ICitizen | null = null;
+  citizenInfo?: ICitizenInfo[];
 
   constructor(protected dataUtils: DataUtils, protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ citizen }) => {
-      this.citizen = citizen;
+      this.citizen = citizen.citizen;
+      this.citizenInfo = citizen.citizenInfo;
     });
   }
 

@@ -1,24 +1,19 @@
 <div class="row">
   <div class="d-flex justify-content-center">
-    <div class="col-8">
+    <div class="col-md-12">
+      <h2 data-cy="citizenDetailsHeading"><span jhiTranslate="jhipsterApp.citizen.detail.title">Citizen</span></h2>
+      <hr />
       <div *ngIf="citizen">
-        <h2 data-cy="citizenDetailsHeading"><span jhiTranslate="jhipsterApp.citizen.detail.title">Citizen</span></h2>
-        <hr />
-
-        <jhi-alert-error></jhi-alert-error>
-
-        <jhi-alert></jhi-alert>
-
         <div class="row">
-          <div class="col-6">
-            <dl class="row-md jh-entity-details">
+          <div class="col-md-2">
+            <dl class="row-md">
               <dd>
-                <div *ngIf="citizen.photo">
+                <div *ngIf="citizen.photo" class="text-center">
                   <a (click)="openFile(citizen.photo, citizen.photoContentType)">
                     <img
                       [src]="'data:' + citizen.photoContentType + ';base64,' + citizen.photo"
-                      style="max-width: 30%"
-                      class="rounded"
+                      style="width: 125px"
+                      class="rounded-circle img-fluid"
                       alt="citizen image"
                     />
                   </a>
@@ -26,113 +21,107 @@
               </dd>
             </dl>
           </div>
-          <div class="col-6">
-            <dl class="row-md jh-entity-details">
-              <dt><span jhiTranslate="jhipsterApp.citizen.name">Name</span></dt>
-              <dd>
-                <span>{{ citizen.name }}</span>
-              </dd>
-            </dl>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-6">
-            <dl class="row-md jh-entity-details">
-              <dt><span jhiTranslate="jhipsterApp.citizen.mobileNumber">Mobile Number</span></dt>
-              <dd>
-                <span>{{ citizen.mobileNumber }}</span>
-              </dd>
-            </dl>
-          </div>
-          <div class="col-6">
-            <dl class="row-md jh-entity-details">
-              <dt><span jhiTranslate="jhipsterApp.citizen.dob">Dob</span></dt>
-              <dd>
-                <span>{{ citizen.dob | formatMediumDate }}</span>
-              </dd>
-            </dl>
-          </div>
-        </div>
+          <div class="col-md-10">
+            <jhi-alert-error></jhi-alert-error>
 
-        <div class="row">
-          <div class="col-6">
-            <dl class="row-md jh-entity-details">
-              <dt><span jhiTranslate="jhipsterApp.citizen.nameInBank">Account Name</span></dt>
-              <dd>
-                <span>{{ citizen.nameInBank }}</span>
-              </dd>
-            </dl>
-          </div>
-          <div class="col-6">
-            <dl class="row-md jh-entity-details">
-              <dt><span jhiTranslate="jhipsterApp.citizen.accountNumber">Account Number</span></dt>
-              <dd>
-                <span>{{ citizen.accountNumber }}</span>
-              </dd>
-            </dl>
-          </div>
-        </div>
+            <jhi-alert></jhi-alert>
 
-        <div class="row">
-          <div class="col-6">
-            <dl class="row-md jh-entity-details">
-              <dt><span jhiTranslate="jhipsterApp.citizen.fatherName">Father Name</span></dt>
-              <dd>
-                <span>{{ citizen.fatherName }}</span>
-              </dd>
-            </dl>
-          </div>
-          <div class="col-6">
-            <dl class="row-md jh-entity-details">
-              <dt><span jhiTranslate="jhipsterApp.citizen.accountNo">Account No</span></dt>
-              <dd>
-                <span>{{ citizen.accountNumber }}</span>
-              </dd>
-            </dl>
-          </div>
-        </div>
+            <div class="row">
+              <div class="col-md-3">
+                <dl class="row-md jh-entity-details">
+                  <dt><span jhiTranslate="jhipsterApp.citizen.name">Name</span></dt>
+                  <dd>
+                    <span>{{ citizen.name }}</span>
+                  </dd>
+                </dl>
+              </div>
+              <div class="col-md-3">
+                <dl class="row-md jh-entity-details">
+                  <dt><span jhiTranslate="jhipsterApp.citizen.mobileNumber">Mobile</span></dt>
+                  <dd>
+                    <span>{{ citizen.mobileNumber }}</span>
+                  </dd>
+                </dl>
+              </div>
+              <div class="col-md-3">
+                <dl class="row-md jh-entity-details">
+                  <dt><span jhiTranslate="jhipsterApp.citizen.dob">Dob</span></dt>
+                  <dd>
+                    <span>{{ citizen.dob | formatMediumDate }}</span>
+                  </dd>
+                </dl>
+              </div>
 
-        <div class="row">
-          <div class="col-6">
-            <dl class="row-md jh-entity-details">
-              <dt><span jhiTranslate="jhipsterApp.citizen.successorName">Successor Name</span></dt>
-              <dd>
-                <span>{{ citizen.successorName }}</span>
-              </dd>
-            </dl>
-          </div>
-          <div class="col-6">
-            <dl class="row-md jh-entity-details">
-              <dt><span jhiTranslate="jhipsterApp.citizen.aadhar">Aadhar</span></dt>
-              <dd>
-                <span>{{ citizen.aadhar }}</span>
-              </dd>
-            </dl>
-          </div>
-        </div>
+              <div class="col-md-3">
+                <dl class="row-md jh-entity-details">
+                  <dt><span jhiTranslate="jhipsterApp.citizen.fatherName">Father Name</span></dt>
+                  <dd>
+                    <span>{{ citizen.fatherName }}</span>
+                  </dd>
+                </dl>
+              </div>
+            </div>
 
-        <div class="row">
-          <div class="col-6">
-            <dl class="row-md jh-entity-details">
-              <dt><span jhiTranslate="jhipsterApp.citizen.pan">Pan</span></dt>
-              <dd>
-                <span>{{ citizen.pan }}</span>
-              </dd>
-            </dl>
-          </div>
-          <div class="col-6">
-            <dl class="row-md jh-entity-details">
-              <dt><span jhiTranslate="jhipsterApp.citizen.bankBranch">Bank Branch</span></dt>
-              <dd>
-                <div *ngIf="citizen.bankBranch">
-                  <a [routerLink]="['/bank-branch', citizen.bankBranch?.id, 'view']">{{ citizen.bankBranch?.name }}</a>
-                </div>
-              </dd>
-            </dl>
-          </div>
-        </div>
+            <div class="row">
+              <div class="col-md-3">
+                <dl class="row-md jh-entity-details">
+                  <dt><span jhiTranslate="jhipsterApp.citizen.nameInBank">Account Name</span></dt>
+                  <dd>
+                    <span>{{ citizen.nameInBank }}</span>
+                  </dd>
+                </dl>
+              </div>
 
+              <div class="col-md-3">
+                <dl class="row-md jh-entity-details">
+                  <dt><span jhiTranslate="jhipsterApp.citizen.accountNo">Account</span></dt>
+                  <dd>
+                    <span>{{ citizen.accountNumber }}</span>
+                  </dd>
+                </dl>
+              </div>
+
+              <div class="col-md-3">
+                <dl class="row-md jh-entity-details">
+                  <dt><span jhiTranslate="jhipsterApp.citizen.bankBranch">Bank Branch</span></dt>
+                  <dd>
+                    <div *ngIf="citizen.bankBranch">
+                      <a [routerLink]="['/bank-branch', citizen.bankBranch?.id, 'view']">{{ citizen.bankBranch?.name }}</a>
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <dl class="row-md jh-entity-details">
+                  <dt><span jhiTranslate="jhipsterApp.citizen.successorName">Successor Name</span></dt>
+                  <dd>
+                    <span>{{ citizen.successorName }}</span>
+                  </dd>
+                </dl>
+              </div>
+              <div class="col-md-3">
+                <dl class="row-md jh-entity-details">
+                  <dt><span jhiTranslate="jhipsterApp.citizen.aadhar">Aadhar</span></dt>
+                  <dd>
+                    <span>{{ citizen.aadhar }}</span>
+                  </dd>
+                </dl>
+              </div>
+              <div class="col-md-3">
+                <dl class="row-md jh-entity-details">
+                  <dt><span jhiTranslate="jhipsterApp.citizen.pan">Pan</span></dt>
+                  <dd>
+                    <span>{{ citizen.pan }}</span>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+
+            <!--
         <div class="row">
           <div class="col-12">
             <dl class="row-md jh-entity-details">
@@ -145,7 +134,7 @@
         </div>
 
         <div class="row">
-          <div class="col-6">
+          <div class="col-md-3">
             <dl class="row-md jh-entity-details">
               <dt><span jhiTranslate="jhipsterApp.citizen.aadharImage">Aadhar Image</span></dt>
               <dd>
@@ -156,7 +145,7 @@
               </dd>
             </dl>
           </div>
-          <div class="col-6">
+          <div class="col-md-3">
             <dl class="row-md jh-entity-details">
               <dt><span jhiTranslate="jhipsterApp.citizen.panImage">Pan Image</span></dt>
               <dd>
@@ -168,7 +157,7 @@
             </dl>
           </div>
         </div>
-
+    
         <dl class="row-md jh-entity-details">
           <dt><span jhiTranslate="jhipsterApp.citizen.accNoImage">Acc No Image</span></dt>
           <dd>
@@ -184,6 +173,301 @@
             </div>
           </dd>
         </dl>
+          --></div>
+        </div>
+
+        <div class="row" *ngIf="citizenInfo && citizenInfo.length > 0">
+          <div *ngFor="let citizen of citizenInfo" class="table-responsive" id="entities">
+            <table class="table" aria-describedby="page-heading">
+              <thead class="thead-dark">
+                <tr class="table-primary">
+                  <th colspan="10">{{ citizen.projectName }}</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+
+              <!---------------------------------- LAND DETAILS STARTS --------------------------------------->
+              <thead>
+                <tr>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.land.id">Land ID</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.land.khasraNumber">Khasra Number</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.land.khatauni">Khatauni</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.land.landType">Land Type</span>
+                  </th>
+
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.land.area">Area</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.land.landMarketValue">Land Market Value</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.land.structuralValue">Structural Value</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.land.horticultureValue">Horticulture Value</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.land.forestValue">Forest Value</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.land.village">Village</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    {{ citizen.land!.id }}
+                  </td>
+                  <td>{{ citizen.land!.khasraNumber }}</td>
+                  <td>
+                    {{ citizen.land!.khatauni }}
+                  </td>
+                  <td>
+                    <span class="btn btn-primary btn-sm"> {{ citizen.land!.landType!.name }} </span>
+                  </td>
+
+                  <td>{{ citizen.land!.area }}</td>
+                  <td>{{ citizen.land!.landMarketValue | currency: '&#8377;' }}</td>
+                  <td>{{ citizen.land!.structuralValue | currency: '&#8377;' }}</td>
+                  <td>{{ citizen.land!.horticultureValue | currency: '&#8377;' }}</td>
+                  <td>{{ citizen.land!.forestValue | currency: '&#8377;' }}</td>
+                  <td>{{ citizen.land!.village!.name }}</td>
+                </tr>
+
+                <tr *ngIf="!citizen.land">
+                  <td colspan="10" class="text-center text-danger font-weight-bold">Land details are not available for the Project</td>
+                </tr>
+              </tbody>
+              <!---------------------------------- LAND DETAILS ENDS --------------------------------------->
+
+              <!------------- SURVEY STARTS  ----------------->
+              <thead>
+                <tr>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.survey.surveyId">ID</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.survey.surveyor">Surveyor</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.survey.hissaType">Hissa Type</span>
+                  </th>
+
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.survey.area">Area</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.survey.landMarketValue">Land Market Value</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.survey.structuralValue">Structural Value</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.survey.horticultureValue">Horticulture Value</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.survey.forestValue">Forest Value</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.survey.status">Status</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.survey.remarks">Remarks</span>
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>
+                    {{ citizen.survey!.id }}
+                  </td>
+                  <td>{{ citizen.survey!.surveyor }}</td>
+                  <td>
+                    <span *ngIf="citizen.survey!.hissaType == 'SINGLE_OWNER'" class="btn btn-primary btn-sm"
+                      >{{ citizen.survey!.hissaType }}
+                    </span>
+
+                    <span *ngIf="citizen.survey!.hissaType == 'DIVIDED'" class="btn btn-info btn-sm">{{ citizen.survey!.hissaType }} </span>
+
+                    <span *ngIf="citizen.survey!.hissaType == 'JOINT_OWNER'" class="btn btn-success btn-sm"
+                      >{{ citizen.survey!.hissaType }}
+                    </span>
+                  </td>
+
+                  <td>{{ citizen.survey!.area }}</td>
+                  <td>{{ citizen.survey!.landMarketValue | currency: '&#8377;' }}</td>
+                  <td>{{ citizen.survey!.structuralValue | currency: '&#8377;' }}</td>
+                  <td>{{ citizen.survey!.horticultureValue | currency: '&#8377;' }}</td>
+                  <td>{{ citizen.survey!.forestValue | currency: '&#8377;' }}</td>
+
+                  <td>
+                    <span *ngIf="citizen.survey!.surveyStatus == 'OPEN'" class="btn btn-primary btn-sm"
+                      >{{ citizen.survey!.surveyStatus }}
+                    </span>
+
+                    <span *ngIf="citizen.survey!.surveyStatus == 'CLOSED'" class="btn btn-success btn-sm"
+                      >{{ citizen.survey!.surveyStatus }}
+                    </span>
+                  </td>
+                  <td>{{ citizen.survey!.remarks }}</td>
+                </tr>
+
+                <tr *ngIf="!citizen.survey">
+                  <td colspan="10" class="text-center text-danger font-weight-bold">Survey details are not available for the Project</td>
+                </tr>
+              </tbody>
+
+              <!------------- SURVEY ENDS  ----------------->
+              <!---------------------------------- COMPENSATION  STARTS --------------------------------------->
+              <thead>
+                <tr>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.landCompensation.compensationId">Compensation ID</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.landCompensation.hissaType">Hissa Type</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.landCompensation.area">Area</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.landCompensation.landMarketValue">Land Market Value</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.landCompensation.structuralCompensation">Structura</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.landCompensation.horticultureCompensation">Horticulture</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.landCompensation.forestCompensation">Forest</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.landCompensation.solatiumMoney">Solatium Money</span>
+                  </th>
+
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.landCompensation.paymentAmount">Payment Amount</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.landCompensation.compensationStatus">Status</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ citizen.compensation!.id }}</td>
+                  <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + citizen.compensation!.hissaType }}">
+                    {{ citizen.compensation!.hissaType }}
+                  </td>
+                  <td>{{ citizen.compensation!.area }}</td>
+                  <td>{{ citizen.compensation!.landMarketValue | currency: '&#8377;' }}</td>
+                  <td>{{ citizen.compensation!.structuralCompensation | currency: '&#8377;' }}</td>
+                  <td>{{ citizen.compensation!.horticultureCompensation | currency: '&#8377;' }}</td>
+                  <td>{{ citizen.compensation!.forestCompensation | currency: '&#8377;' }}</td>
+                  <td>{{ citizen.compensation!.solatiumMoney | currency: '&#8377;' }}</td>
+                  <td>{{ citizen.compensation!.paymentAmount | currency: '&#8377;' }}</td>
+                  <td>{{ citizen.compensation!.compensationStatus }}</td>
+                </tr>
+
+                <tr *ngIf="!citizen.compensation">
+                  <td colspan="10" class="text-center text-danger font-weight-bold">
+                    Compensation Details Are Not Available for the Project
+                  </td>
+                </tr>
+              </tbody>
+              <!---------------------------------- COMPENSATION  ENDS --------------------------------------->
+
+              <!---------------------------------- PAYMENT ADVICE STARTS --------------------------------------->
+              <thead>
+                <tr>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.paymentAdvice.paymentAdviceId">ID</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderName">Account Holder Name</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderBankName">Account Holder Bank Name</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.paymentAdvice.paymentAmount">Amount</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.paymentAdvice.bankName">Bank Name</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.paymentAdvice.accountNumber">Account Number</span>
+                  </th>
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.paymentAdvice.ifscCode">IFSC</span>
+                  </th>
+
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.paymentAdvice.referenceNumber">Reference Number</span>
+                  </th>
+
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.paymentAdvice.hissaType">HISSA Type</span>
+                  </th>
+
+                  <th scope="col">
+                    <span jhiTranslate="jhipsterApp.paymentAdvice.paymentStatus">Status</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="citizen.paymentAdvice">
+                  <td>
+                    {{ citizen.paymentAdvice!.id }}
+                  </td>
+                  <td>{{ citizen.paymentAdvice!.accountHolderName }}</td>
+                  <td>{{ citizen.paymentAdvice!.accountHolderBankName }}</td>
+                  <td>{{ citizen.paymentAdvice!.paymentAmount | currency: '&#8377;' }}</td>
+                  <td>{{ citizen.paymentAdvice!.bankName }}</td>
+                  <td>{{ citizen.paymentAdvice!.accountNumber }}</td>
+                  <td>{{ citizen.paymentAdvice!.ifscCode }}</td>
+                  <td>{{ citizen.paymentAdvice!.referenceNumber }}</td>
+                  <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + citizen.paymentAdvice!.hissaType }}">
+                    {{ citizen.paymentAdvice!.hissaType }}
+                  </td>
+                  <td>{{ citizen.paymentAdvice!.paymentStatus }}</td>
+                </tr>
+                <tr *ngIf="!citizen.paymentAdvice">
+                  <td colspan="10" class="text-center text-danger font-weight-bold">Payment Advice Not Available for the Project</td>
+                </tr>
+              </tbody>
+
+              <!---------------------------------- PAYMENT ADVICE ENDS --------------------------------------->
+              <!--
+                 <tbody>
+                  <tr>
+                    <td> {{ citizen.projectName }}</td>                     
+                  </tr>
+                  <tr>
+                    <td> {{ citizen.land | json }}</td>                     
+                  </tr>
+                  <tr>
+                    <td> {{ citizen.survey | json }}</td>                     
+                  </tr>
+                  <tr>
+                    <td> {{ citizen.land!.khasraNumber }}</td>                     
+                  </tr>
+                </tbody>
+              -->
+            </table>
+          </div>
+        </div>
 
         <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
           <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
