@@ -39,7 +39,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getProjectStatus(): void{
     this.homeService.query(2).subscribe(res=>{
-      this.project = res;
+      if(res.body){
+        this.project = res.body;
+      }
+ 
     },err=>{
       // consoles
     })
