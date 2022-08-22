@@ -59,7 +59,7 @@ export class CitizenUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ citizen }) => {
-      this.updateForm(citizen);
+      this.updateForm(citizen.citizen);
 
       this.loadRelationshipsOptions();
     });
