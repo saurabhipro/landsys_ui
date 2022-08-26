@@ -13,6 +13,8 @@ import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
 import { IBankBranch } from 'app/entities/bank-branch/bank-branch.model';
 import { BankBranchService } from 'app/entities/bank-branch/service/bank-branch.service';
 
+import dayjs from 'dayjs/esm';
+
 @Component({
   selector: 'jhi-citizen-update',
   templateUrl: './citizen-update.component.html',
@@ -59,6 +61,7 @@ export class CitizenUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ citizen }) => {
+      //  console.log(citizen);
       this.updateForm(citizen.citizen);
 
       this.loadRelationshipsOptions();
@@ -135,7 +138,7 @@ export class CitizenUpdateComponent implements OnInit {
       name: citizen.name,
       address: citizen.address,
       mobileNumber: citizen.mobileNumber,
-      dob: citizen.dob,
+      dob: dayjs(citizen.dob).format('YYYY-MM-DD'),
       nameInBank: citizen.nameInBank,
       accountNumber: citizen.accountNumber,
       fatherName: citizen.fatherName,
