@@ -194,21 +194,21 @@
           </div>
 
           <div class="mb-3">
-            <label class="form-label" jhiTranslate="jhipsterApp.land.state" for="field_state">State</label>
-            <select class="form-control" id="field_state" data-cy="state" name="state" formControlName="state">
-              <option *ngIf="!editForm.get('state')!.value" [ngValue]="null" selected></option>
+            <label class="form-label" jhiTranslate="jhipsterApp.district.home.title" for="field_district">District</label>
+            <select class="form-control" id="field_district" data-cy="district" name="district" formControlName="district">
+              <option *ngIf="!editForm.get('district')!.value" [ngValue]="null" selected></option>
               <option
-                [ngValue]="stateOption.id === editForm.get('state')!.value?.id ? editForm.get('state')!.value : stateOption"
-                *ngFor="let stateOption of statesSharedCollection; trackBy: trackStateById"
+                [ngValue]="districtOption.id === editForm.get('district')!.value?.id ? editForm.get('district')!.value : districtOption"
+                *ngFor="let districtOption of districtsSharedCollection"
               >
-                {{ stateOption.name }}
+                {{ districtOption.name }}
               </option>
             </select>
           </div>
-          <div *ngIf="editForm.get(['state'])!.invalid && (editForm.get(['state'])!.dirty || editForm.get(['state'])!.touched)">
+          <div *ngIf="editForm.get(['district'])!.invalid && (editForm.get(['district'])!.dirty || editForm.get(['district'])!.touched)">
             <small
               class="form-text text-danger"
-              *ngIf="editForm.get(['state'])?.errors?.required"
+              *ngIf="editForm.get(['district'])?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
               This field is required.

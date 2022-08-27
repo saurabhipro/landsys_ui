@@ -13,8 +13,8 @@ import { IUnit } from 'app/entities/unit/unit.model';
 import { UnitService } from 'app/entities/unit/service/unit.service';
 import { ILandType } from 'app/entities/land-type/land-type.model';
 import { LandTypeService } from 'app/entities/land-type/service/land-type.service';
-import { IState } from 'app/entities/state/state.model';
-import { StateService } from 'app/entities/state/service/state.service';
+import { IDistrict } from 'app/entities/district/district.model';
+import { DistrictService } from 'app/entities/district/service/district.service';
 
 @Component({
   selector: 'jhi-land-update',
@@ -26,7 +26,7 @@ export class LandUpdateComponent implements OnInit {
   villagesSharedCollection: IVillage[] = [];
   unitsSharedCollection: IUnit[] = [];
   landTypesSharedCollection: ILandType[] = [];
-  statesSharedCollection: IState[] = [];
+  districtsSharedCollection: IDistrict[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -43,7 +43,7 @@ export class LandUpdateComponent implements OnInit {
     village: [null, Validators.required],
     unit: [null, Validators.required],
     landType: [null, Validators.required],
-    state: [null, Validators.required],
+    district: [null, Validators.required],
   });
 
   constructor(
@@ -51,7 +51,7 @@ export class LandUpdateComponent implements OnInit {
     protected villageService: VillageService,
     protected unitService: UnitService,
     protected landTypeService: LandTypeService,
-    protected stateService: StateService,
+    protected districtService: DistrictService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -72,8 +72,10 @@ export class LandUpdateComponent implements OnInit {
     this.isSaving = true;
     const land = this.createFromForm();
     if (land.id !== undefined) {
+      console.log('UPDATING LAND..');
       this.subscribeToSaveResponse(this.landService.update(land));
     } else {
+      console.log('CREATING LAND');
       this.subscribeToSaveResponse(this.landService.create(land));
     }
   }
@@ -90,7 +92,7 @@ export class LandUpdateComponent implements OnInit {
     return item.id!;
   }
 
-  trackStateById(_index: number, item: IState): number {
+  trackDistrictById(_index: number, item: IDistrict): number {
     return item.id!;
   }
 
@@ -107,6 +109,7 @@ export class LandUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     // Api for inheritance.
+    this.isSaving = false;
   }
 
   protected onSaveFinalize(): void {
@@ -129,13 +132,13 @@ export class LandUpdateComponent implements OnInit {
       village: land.village,
       unit: land.unit,
       landType: land.landType,
-      state: land.state,
+      district: land.district,
     });
 
     this.villagesSharedCollection = this.villageService.addVillageToCollectionIfMissing(this.villagesSharedCollection, land.village);
     this.unitsSharedCollection = this.unitService.addUnitToCollectionIfMissing(this.unitsSharedCollection, land.unit);
     this.landTypesSharedCollection = this.landTypeService.addLandTypeToCollectionIfMissing(this.landTypesSharedCollection, land.landType);
-    this.statesSharedCollection = this.stateService.addStateToCollectionIfMissing(this.statesSharedCollection, land.state);
+    this.districtsSharedCollection = this.districtService.addDistrictToCollectionIfMissing(this.districtsSharedCollection, land.district);
   }
 
   protected loadRelationshipsOptions(): void {
@@ -163,11 +166,15 @@ export class LandUpdateComponent implements OnInit {
       )
       .subscribe((landTypes: ILandType[]) => (this.landTypesSharedCollection = landTypes));
 
-    this.stateService
+    this.districtService
       .query()
-      .pipe(map((res: HttpResponse<IState[]>) => res.body ?? []))
-      .pipe(map((states: IState[]) => this.stateService.addStateToCollectionIfMissing(states, this.editForm.get('state')!.value)))
-      .subscribe((states: IState[]) => (this.statesSharedCollection = states));
+      .pipe(map((res: HttpResponse<IDistrict[]>) => res.body ?? []))
+      .pipe(
+        map((districts: IDistrict[]) =>
+          this.districtService.addDistrictToCollectionIfMissing(districts, this.editForm.get('district')!.value)
+        )
+      )
+      .subscribe((districts: IDistrict[]) => (this.districtsSharedCollection = districts));
   }
 
   protected createFromForm(): ILand {
@@ -187,7 +194,7 @@ export class LandUpdateComponent implements OnInit {
       village: this.editForm.get(['village'])!.value,
       unit: this.editForm.get(['unit'])!.value,
       landType: this.editForm.get(['landType'])!.value,
-      state: this.editForm.get(['state'])!.value,
+      district: this.editForm.get(['district'])!.value,
     };
   }
 }

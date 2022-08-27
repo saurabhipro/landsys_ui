@@ -3,6 +3,7 @@ import { IUnit } from 'app/entities/unit/unit.model';
 import { ILandType } from 'app/entities/land-type/land-type.model';
 import { IState } from 'app/entities/state/state.model';
 import { IProjectLand } from 'app/entities/project-land/project-land.model';
+import { IDistrict } from '../district/district.model';
 
 export interface ILand {
   id?: number;
@@ -19,6 +20,7 @@ export interface ILand {
   village?: IVillage;
   unit?: IUnit;
   landType?: ILandType;
+  district?: IDistrict;
   state?: IState;
   projectLands?: IProjectLand[] | null;
 }
@@ -39,7 +41,8 @@ export class Land implements ILand {
     public village?: IVillage,
     public unit?: IUnit,
     public landType?: ILandType,
-    public state?: IState,
+    district?: IDistrict,
+    state?: IState,
     public projectLands?: IProjectLand[] | null
   ) {}
 }

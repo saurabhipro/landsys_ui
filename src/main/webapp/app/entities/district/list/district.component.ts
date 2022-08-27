@@ -61,6 +61,10 @@ export class DistrictComponent implements OnInit {
     return item.id!;
   }
 
+  trackDistrictById(_index: number, item: IDistrict): number {
+    return item.id!;
+  }
+
   delete(district: IDistrict): void {
     const modalRef = this.modalService.open(DistrictDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.district = district;
