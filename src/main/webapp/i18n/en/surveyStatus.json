@@ -3,7 +3,8 @@
     "SurveyStatus": {
       "null": "",
       "OPEN": "OPEN",
-      "CLOSED": "CLOSED"
+      "CLOSED": "CLOSED",
+      "NEW": "NEW"
     }
   }
 }

@@ -140,7 +140,7 @@ export class SurveyUpdateComponent implements OnInit {
       forestValue: this.editForm.get(['forestValue'])!.value,
       distanceFromCity: this.editForm.get(['distanceFromCity'])!.value,
       remarks: this.editForm.get(['remarks'])!.value,
-      surveyStatus: this.editForm.get(['surveyStatus'])!.value,
+      surveyStatus: this.editForm.get(['status'])!.value,
       projectLand: this.editForm.get(['projectLand'])!.value,
     };
   }
