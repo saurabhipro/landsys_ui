@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2 id="jhi-land-heading" data-cy="LandCreateUpdateHeading" jhiTranslate="jhipsterApp.land.home.createOrEditLabel">
-        Create or edit a Land
+        Create or Edit a Land Details
       </h2>
 
       <div class="row pt-5">
@@ -15,7 +15,7 @@
           </div>
 
           <div class="mb-3">
-            <label class="form-label" jhiTranslate="jhipsterApp.land.ulpin" for="field_ulpin">Ulpin</label>
+            <label class="form-label" jhiTranslate="jhipsterApp.land.ulpin" for="field_ulpin">ULPIN</label>
             <input type="text" class="form-control" name="ulpin" id="field_ulpin" data-cy="ulpin" formControlName="ulpin" />
           </div>
 
@@ -53,84 +53,8 @@
             <label class="form-label" jhiTranslate="jhipsterApp.land.area" for="field_area">Area</label>
             <input type="number" class="form-control" name="area" id="field_area" data-cy="area" formControlName="area" />
           </div>
-
-          <div class="mb-3">
-            <label class="form-label" jhiTranslate="jhipsterApp.land.landMarketValue" for="field_landMarketValue">Land Market Value</label>
-            <input
-              type="number"
-              class="form-control"
-              name="landMarketValue"
-              id="field_landMarketValue"
-              data-cy="landMarketValue"
-              formControlName="landMarketValue"
-            />
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label" jhiTranslate="jhipsterApp.land.structuralValue" for="field_structuralValue">Structural Value</label>
-            <input
-              type="number"
-              class="form-control"
-              name="structuralValue"
-              id="field_structuralValue"
-              data-cy="structuralValue"
-              formControlName="structuralValue"
-            />
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label" jhiTranslate="jhipsterApp.land.horticultureValue" for="field_horticultureValue"
-              >Horticulture Value</label
-            >
-            <input
-              type="number"
-              class="form-control"
-              name="horticultureValue"
-              id="field_horticultureValue"
-              data-cy="horticultureValue"
-              formControlName="horticultureValue"
-            />
-          </div>
         </div>
         <div class="col-md-6">
-          <div class="mb-3">
-            <label class="form-label" jhiTranslate="jhipsterApp.land.forestValue" for="field_forestValue">Forest Value</label>
-            <input
-              type="number"
-              class="form-control"
-              name="forestValue"
-              id="field_forestValue"
-              data-cy="forestValue"
-              formControlName="forestValue"
-            />
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label" jhiTranslate="jhipsterApp.land.distanceFromCity" for="field_distanceFromCity"
-              >Distance From City</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              name="distanceFromCity"
-              id="field_distanceFromCity"
-              data-cy="distanceFromCity"
-              formControlName="distanceFromCity"
-            />
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label" jhiTranslate="jhipsterApp.land.totalLandValue" for="field_totalLandValue">Total Land Value</label>
-            <input
-              type="number"
-              class="form-control"
-              name="totalLandValue"
-              id="field_totalLandValue"
-              data-cy="totalLandValue"
-              formControlName="totalLandValue"
-            />
-          </div>
-
           <div class="mb-3">
             <label class="form-label" jhiTranslate="jhipsterApp.land.village" for="field_village">Village</label>
             <select class="form-control" id="field_village" data-cy="village" name="village" formControlName="village">
@@ -204,15 +128,6 @@
                 {{ districtOption.name }}
               </option>
             </select>
-          </div>
-          <div *ngIf="editForm.get(['district'])!.invalid && (editForm.get(['district'])!.dirty || editForm.get(['district'])!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get(['district'])?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
           </div>
         </div>
       </div>
