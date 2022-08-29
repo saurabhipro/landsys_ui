@@ -12,8 +12,8 @@
             
             <div class="mb-3">
               <label class="form-label" jhiTranslate="jhipsterApp.survey.selectedProject" for="field_surveyor">Surveyor</label>
-              <p *ngIf="!selectedProject">No Projecet selected</p>
-              <p *ngIf="selectedProject">{{selectedProject?.name}}</p>
+              <p *ngIf="!selectedProject" style="color: red;">No Project selected</p>
+              <p *ngIf="selectedProject" style="color: green;">{{selectedProject?.name}}</p>
             </div>
 
             <div class="mb-3" [hidden]="editForm.get('id')!.value == null">
