@@ -58,7 +58,8 @@
         "database": "डेटाबेस",
         "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
       },
-      "language": "भाषा"
+      "language": "भाषा",
+      "project": "परियोजना"
     },
     "form": {
       "username.label": "उपयोगकर्ता नाम",

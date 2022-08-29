@@ -11,6 +11,8 @@ import { IProjectLand } from 'app/entities/project-land/project-land.model';
 import { ProjectLandService } from 'app/entities/project-land/service/project-land.service';
 import { HissaType } from 'app/entities/enumerations/hissa-type.model';
 import { SurveyStatus } from 'app/entities/enumerations/survey-status.model';
+import { IProject } from 'app/entities/project/project.model';
+import { SessionStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'jhi-survey-update',
@@ -20,10 +22,11 @@ export class SurveyUpdateComponent implements OnInit {
   isSaving = false;
   hissaTypeValues = Object.keys(HissaType);
   surveyStatusValues = Object.keys(SurveyStatus);
-
+  selectedProject: IProject | null = null;
   projectLandsCollection: IProjectLand[] = [];
 
   editForm = this.fb.group({
+    selectedProject: this.selectedProject?.name,
     id: [],
     surveyor: [null, [Validators.required]],
     hissaType: [null, [Validators.required]],
@@ -43,8 +46,9 @@ export class SurveyUpdateComponent implements OnInit {
     protected surveyService: SurveyService,
     protected projectLandService: ProjectLandService,
     protected activatedRoute: ActivatedRoute,
-    protected fb: FormBuilder
-  ) {}
+    protected fb: FormBuilder,
+    private sessionStorageService: SessionStorageService
+  ) { }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ survey }) => {
@@ -52,6 +56,8 @@ export class SurveyUpdateComponent implements OnInit {
 
       this.loadRelationshipsOptions();
     });
+    this.selectedProject = this.sessionStorageService.retrieve("ContextProject");
+    this.sessionStorageService.observe("ContextProject").subscribe(project => (this.selectedProject = project as IProject));
   }
 
   previousState(): void {
@@ -106,6 +112,7 @@ export class SurveyUpdateComponent implements OnInit {
       remarks: survey.remarks,
       status: survey.surveyStatus,
       projectLand: survey.projectLand,
+      selectedProject: this.selectedProject?.name
     });
 
     this.projectLandsCollection = this.projectLandService.addProjectLandToCollectionIfMissing(

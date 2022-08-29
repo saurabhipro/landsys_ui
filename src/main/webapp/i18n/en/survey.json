@@ -18,6 +18,7 @@
         "title": "Survey"
       },
       "id": "ID",
+      "selectedProject": "Selected Project",
       "surveyId": "Survey ID",
       "surveyor": "Surveyor",
       "hissaType": "Hissa Type",

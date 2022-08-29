@@ -10,6 +10,8 @@ import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants
 import { SurveyService } from '../service/survey.service';
 import { SurveyDeleteDialogComponent } from '../delete/survey-delete-dialog.component';
 import { LoaderService } from 'app/loader.service';
+import { SessionStorageService } from 'ngx-webstorage';
+import { IProject } from 'app/entities/project/project.model';
 
 @Component({
   selector: 'jhi-survey',
@@ -24,14 +26,15 @@ export class SurveyComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  selectedProject: IProject | null = null;
 
   constructor(
     protected surveyService: SurveyService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected modalService: NgbModal,
-    private loaderService: LoaderService
-  ) {}
+    private loaderService: LoaderService,
+  ) { }
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
