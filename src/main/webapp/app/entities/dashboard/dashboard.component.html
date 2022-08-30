@@ -1,0 +1,425 @@
+<h2>
+  <span class="badge bg-primary w-100 text-truncate">Project Dashboard for {{ project?.project }}</span>
+</h2>
+<img style="top: 0px" src="content/images/banner_image_large.jpg" width="100%" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+<div class="container1">
+  <hr />
+  <div class="row">
+    <div class="col-lg-2 col-sm-6">
+      <div class="card-box bg-orange">
+        <div class="inner">
+          <h3>100</h3>
+          <p>Villages</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-sm-6">
+      <div class="card-box bg-blue">
+        <div class="inner">
+          <h3>1000</h3>
+          <p>Lands</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-sm-6">
+      <div class="card-box bg-green">
+        <div class="inner">
+          <h3>61</h3>
+          <p>Citizens</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-sm-6">
+      <div class="card-box bg-yellow">
+        <div class="inner">
+          <h3>100</h3>
+          <p>Villages</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-sm-6">
+      <div class="card-box bg-orange">
+        <div class="inner">
+          <h3>1</h3>
+          <p>Districts</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-sm-6">
+      <div class="card-box bg-blue">
+        <div class="inner">
+          <h3>2</h3>
+          <p>Sub Districts</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h2>
+    <span class="badge bg-secondary w-100 text-truncate">Project Summary for {{ project?.project }}</span>
+  </h2>
+  <div class="row">
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-blue">
+        <div class="inner">
+          <h3>{{ project?.totalBudget | currency: '&#8377;' }}</h3>
+          <p>Project Budget</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-yellow">
+        <div class="inner">
+          <h3>{{ project?.totalPaid | currency: '&#8377;' }}</h3>
+          <p>Total Amount Paid</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-green">
+        <div class="inner">
+          <h3>{{ project?.budgetRemaining | currency: '&#8377;' }}</h3>
+          <p>Budget Remaning</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-check"></i>
+        </div>
+        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-orange">
+        <div class="inner">
+          <h3>2%</h3>
+          <p>Interest %</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-check"></i>
+        </div>
+        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+  </div>
+  <h2>
+    <span class="badge bg-secondary w-100 text-truncate">Surveys for {{ project?.project }}</span>
+  </h2>
+  <div class="row">
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-blue">
+        <div class="inner">
+          <h3>{{ project?.openSurvey }}</h3>
+          <p>Open Surveys</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-yellow">
+        <div class="inner">
+          <h3>{{ project?.closedSurvey }}</h3>
+          <p>Closed Surveys</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-green">
+        <div class="inner">
+          <h3>17</h3>
+          <p>Total Surveys</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-check"></i>
+        </div>
+        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-orange">
+        <div class="inner">
+          <h3>0</h3>
+          <p>Surveys Assigned to Me</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-check"></i>
+        </div>
+        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+  </div>
+  <h2>
+    <span class="badge bg-secondary w-100 text-truncate">Compensations for {{ project?.project }}</span>
+  </h2>
+  <div class="row">
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-blue">
+        <div class="inner">
+          <h3>{{ project?.openCompensation }}</h3>
+          <p>Open Compensations</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-yellow">
+        <div class="inner">
+          <h3>{{ project?.closedCompensation }}</h3>
+          <p>Closed Compensations</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-green">
+        <div class="inner">
+          <h3>17</h3>
+          <p>Total Compensations Created</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-check"></i>
+        </div>
+        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-orange">
+        <div class="inner">
+          <h3>0</h3>
+          <p>Compensations Assigned to Me</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-check"></i>
+        </div>
+        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+  </div>
+  <h2>
+    <span class="badge bg-secondary w-100 text-truncate">Payment Advices for {{ project?.project }}</span>
+  </h2>
+  <div class="row">
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-blue">
+        <div class="inner">
+          <h3>{{ project?.openCompensation }}</h3>
+          <p>Open Compensation(s)</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-yellow">
+        <div class="inner">
+          <h3>{{ project?.closedCompensation }}</h3>
+          <p>Closed Advices</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-green">
+        <div class="inner">
+          <h3>17</h3>
+          <p>Total Payment Advices</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-check"></i>
+        </div>
+        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-orange">
+        <div class="inner">
+          <h3>17</h3>
+          <p>Payment Advices Assigned to Me</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-check"></i>
+        </div>
+        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+  </div>
+  <h2>
+    <span class="badge bg-secondary w-100 text-truncate">Payment Paid {{ project?.project }}</span>
+  </h2>
+  <div class="row">
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-blue">
+        <div class="inner">
+          <h3>{{ project?.pendingPaymentCount }}</h3>
+          <p>Pending Payment</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-yellow">
+        <div class="inner">
+          <h3>{{ project?.pendingPaymentCount }}</h3>
+          <p>Pending Payment Count</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-box bg-green">
+        <div class="inner">
+          <h3>17</h3>
+          <p>Total Surveys</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-check"></i>
+        </div>
+        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!--  <div class="row">-->
+  <!--    <div class="col-4" style="padding: 0px 15px">-->
+  <!--      <div class="cardHolder">-->
+  <!--        <h6>Survey Details</h6>-->
+  <!--        <hr/>-->
+  <!--        <div class="row">-->
+  <!--          <div class="col-lg-12 col-sm-12">-->
+  <!--            <div class="card-box bg-orange">-->
+  <!--              <div class="inner">-->
+  <!--                <h3>{{project?.openSurvey}}</h3>-->
+  <!--                <p>Survey Awaited</p>-->
+  <!--              </div>-->
+  <!--              <div class="icon">-->
+  <!--                <i class="fa fa-pencil-square-o"></i>-->
+  <!--              </div>-->
+  <!--              <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="col-lg-12 col-sm-12">-->
+  <!--            <div class="card-box bg-blue">-->
+  <!--              <div class="inner">-->
+  <!--                <h3>{{project?.closedSurvey}}</h3>-->
+  <!--                <p>Survey Approved</p>-->
+  <!--              </div>-->
+  <!--              <div class="icon">-->
+  <!--                <i class="fa fa-check" aria-hidden="true"></i>-->
+  <!--              </div>-->
+  <!--              <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div class="col-4" style="padding: 0px 15px">-->
+  <!--      <div class="cardHolder">-->
+  <!--        <h6>Compensation Details</h6>-->
+  <!--        <hr/>-->
+  <!--        <div class="row">-->
+  <!--          <div class="col-lg-12 col-sm-12">-->
+  <!--            <div class="card-box bg-yellow">-->
+  <!--              <div class="inner">-->
+  <!--                <h3>{{project?.openCompensation}}</h3>-->
+  <!--                <p>Waiting Approval</p>-->
+  <!--              </div>-->
+  <!--              <div class="icon">-->
+  <!--                <i class="fa fa-pencil-square-o"></i>-->
+  <!--              </div>-->
+  <!--              <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="col-lg-12 col-sm-12">-->
+  <!--            <div class="card-box bg-blue">-->
+  <!--              <div class="inner">-->
+  <!--                <h3>{{project?.closedCompensation}}</h3>-->
+  <!--                <p>Compensation Approved</p>-->
+  <!--              </div>-->
+  <!--              <div class="icon">-->
+  <!--                <i class="fa fa-check" aria-hidden="true"></i>-->
+  <!--              </div>-->
+  <!--              <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div class="col-4" style="padding: 0px 15px">-->
+  <!--      <div class="cardHolder">-->
+  <!--        <h6>Payment Details</h6>-->
+  <!--        <hr/>-->
+  <!--        <div class="row">-->
+  <!--          <div class="col-lg-12 col-sm-12">-->
+  <!--            <div class="card-box bg-yellow">-->
+  <!--              <div class="inner">-->
+  <!--                <h3>{{project?.pendingPaymentCount}}</h3>-->
+  <!--                <p>Waiting Payment Advise</p>-->
+  <!--              </div>-->
+  <!--              <div class="icon">-->
+  <!--                <i class="fa fa-pencil-square-o"></i>-->
+  <!--              </div>-->
+  <!--              <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="col-lg-12 col-sm-12">-->
+  <!--            <div class="card-box bg-green">-->
+  <!--              <div class="inner">-->
+  <!--                <h3>{{project?.paymentPaidCount}}</h3>-->
+  <!--                <p>Payment Done</p>-->
+  <!--              </div>-->
+  <!--              <div class="icon">-->
+  <!--                <i class="fa fa-check" aria-hidden="true"></i>-->
+  <!--              </div>-->
+  <!--              <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+</div>

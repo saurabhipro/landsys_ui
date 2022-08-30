@@ -144,6 +144,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'jhipsterApp.form11.home.title' },
         loadChildren: () => import('./form-11/form-11.module').then(m => m.Form11Module),
       },
+      {
+        path: 'dashboard',
+        data: { pageTitle: 'jhipsterApp.dashboard.home.title' },
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

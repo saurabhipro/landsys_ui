@@ -5,21 +5,31 @@
       <span jhiTranslate="global.title" class="navbar-title">Land Acquisitions System</span>
       <!-- <span class="navbar-version">{{ version }}</span> -->
     </a>
-    <a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse"
-      data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-      aria-label="Toggle navigation" (click)="toggleNavbar()">
+    <a
+      class="navbar-toggler d-lg-none"
+      href="javascript:void(0);"
+      data-toggle="collapse"
+      data-target="#navbarResponsive"
+      aria-controls="navbarResponsive"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      (click)="toggleNavbar()"
+    >
       <fa-icon icon="bars"></fa-icon>
     </a>
     <div *ngIf="account" style="color: yellow">
-      <strong>{{selectedProject?.name}}</strong>
+      <strong>{{ selectedProject?.name }}</strong>
     </div>
-    <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed"
-      [ngSwitch]="account !== null">
+    <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="account !== null">
       <ul class="navbar-nav ms-auto">
-        <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu"
-            data-cy="accountMenu">
+        <li
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu" data-cy="accountMenu">
             <span *ngIf="!account?.imageUrl">
               <span jhiTranslate="global.menu.account.main">Account</span>
             </span>
@@ -29,14 +39,24 @@
           </a>
           <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="account-menu">
             <li *ngSwitchCase="true">
-              <a class="dropdown-item" routerLink="account/settings" routerLinkActive="active"
-                (click)="collapseNavbar()" data-cy="settings">
+              <a
+                class="dropdown-item"
+                routerLink="account/settings"
+                routerLinkActive="active"
+                (click)="collapseNavbar()"
+                data-cy="settings"
+              >
                 <span jhiTranslate="global.menu.account.settings">Settings</span>
               </a>
             </li>
             <li *ngSwitchCase="true">
-              <a class="dropdown-item" routerLink="account/password" routerLinkActive="active"
-                (click)="collapseNavbar()" data-cy="passwordItem">
+              <a
+                class="dropdown-item"
+                routerLink="account/password"
+                routerLinkActive="active"
+                (click)="collapseNavbar()"
+                data-cy="passwordItem"
+              >
                 <span jhiTranslate="global.menu.account.password">Password</span>
               </a>
             </li>
@@ -52,8 +72,13 @@
               </a>
             </li>
             <li *ngSwitchCase="false">
-              <a class="dropdown-item" routerLink="account/register" routerLinkActive="active"
-                (click)="collapseNavbar()" data-cy="register">
+              <a
+                class="dropdown-item"
+                routerLink="account/register"
+                routerLinkActive="active"
+                (click)="collapseNavbar()"
+                data-cy="register"
+              >
                 <fa-icon icon="user-plus" [fixedWidth]="true"></fa-icon>
                 <span jhiTranslate="global.menu.account.register">Register</span>
               </a>
@@ -66,8 +91,7 @@
 </nav>
 <nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md navSub" style="background: #4c4c4c; display: grid">
   <div class="container-fluid">
-    <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed"
-      [ngSwitch]="account !== null">
+    <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="account !== null">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
@@ -78,60 +102,105 @@
         </li>
 
         <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-        <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" display="dynamic"
-          routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu"
-            data-cy="entity">
+        <li
+          *ngSwitchCase="true"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
             <span>
               <span jhiTranslate="global.menu.masters">Masters</span>
             </span>
           </a>
           <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
             <li>
-              <a class="dropdown-item" routerLink="state" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="state"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <span jhiTranslate="global.menu.entities.state">State</span>
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="district" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="district"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <span jhiTranslate="global.menu.entities.district">District</span>
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="sub-district" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="sub-district"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <span jhiTranslate="global.menu.entities.subDistrict">Sub District</span>
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="village" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="village"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <span jhiTranslate="global.menu.entities.village">Village</span>
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="unit" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="unit"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <span jhiTranslate="global.menu.entities.unit">Unit</span>
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="land-type" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="land-type"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <span jhiTranslate="global.menu.entities.landType">Land Type</span>
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="land" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="land"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <span jhiTranslate="global.menu.entities.land">Land</span>
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="project" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="project"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <span jhiTranslate="global.menu.entities.project">Project</span>
               </a>
             </li>
@@ -161,14 +230,24 @@
             <!--            </li>-->
 
             <li>
-              <a class="dropdown-item" routerLink="bank" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="bank"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <span jhiTranslate="global.menu.entities.bank">Bank</span>
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="bank-branch" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="bank-branch"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <span jhiTranslate="global.menu.entities.bankBranch">Bank Branch</span>
               </a>
             </li>
@@ -178,10 +257,15 @@
         </li>
 
         <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-        <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" display="dynamic"
-          routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu"
-            data-cy="entity">
+        <li
+          *ngSwitchCase="true"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
             <span>
               <span jhiTranslate="global.menu.transactions">Survey</span>
             </span>
@@ -189,21 +273,36 @@
 
           <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
             <li>
-              <a class="dropdown-item" routerLink="citizen" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="citizen"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <span jhiTranslate="global.menu.entities.citizen">Citizen</span>
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="khatedar" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="khatedar"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <span jhiTranslate="global.menu.entities.khatedar">Khatedar</span>
               </a>
             </li>
 
             <li>
-              <a class="dropdown-item" routerLink="survey" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="survey"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <span jhiTranslate="global.menu.entities.createSurvey">Create/Search Survey</span>
               </a>
             </li>
@@ -223,10 +322,15 @@
           </ul>
         </li>
 
-        <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" display="dynamic"
-          routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu"
-            data-cy="entity">
+        <li
+          *ngSwitchCase="true"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
             <span>
               <span jhiTranslate="global.menu.payments">Payments</span>
             </span>
@@ -234,8 +338,13 @@
 
           <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
             <li>
-              <a class="dropdown-item" routerLink="payment-advice/create-payment-advise-land-compensation"
-                routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="payment-advice/create-payment-advise-land-compensation"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <span jhiTranslate="global.menu.entities.createPaymentAdvice">Create Payment Advice</span>
               </a>
             </li>
@@ -259,8 +368,13 @@
             <!--            </li>-->
 
             <li>
-              <a class="dropdown-item" routerLink="payment-advice/create-payment-file" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="payment-advice/create-payment-file"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <span jhiTranslate="global.menu.entities.createPaymentFile">Create Payment File</span>
               </a>
             </li>
@@ -293,8 +407,13 @@
             <!--            searchPaymentFile-->
 
             <li>
-              <a class="dropdown-item" routerLink="payment-file-header" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="payment-file-header"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <!--                <span jhiTranslate="global.menu.entities.searchPaymentFile">Search Payment File</span>-->
                 <span>Download Payment File</span>
               </a>
@@ -316,10 +435,15 @@
           </ul>
         </li>
 
-        <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" display="dynamic"
-          routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu"
-            data-cy="entity">
+        <li
+          *ngSwitchCase="true"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
             <span>
               <span jhiTranslate="global.menu.reports">Reports</span>
             </span>
@@ -369,27 +493,45 @@
             </li>
 
             <li>
-              <a class="dropdown-item" routerLink="notification-template" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+              <a
+                class="dropdown-item"
+                routerLink="notification-template"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
                 <span jhiTranslate="global.menu.entities.notificationTemplate">Notification</span>
+              </a>
+            </li>
+
+            <!-- DASHBOARD-->
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+              <a class="nav-link" routerLink="dashboard" (click)="collapseNavbar()">
+                <span>
+                  <span jhiTranslate="global.menu.dashboard">Dashboard</span>
+                </span>
               </a>
             </li>
             <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
           </ul>
         </li>
 
-        <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic"
-          routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu"
-            data-cy="adminMenu">
+        <li
+          *jhiHasAnyAuthority="'ROLE_ADMIN'"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu" data-cy="adminMenu">
             <span>
               <span jhiTranslate="global.menu.admin.main">Administration</span>
             </span>
           </a>
           <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
             <li>
-              <a class="dropdown-item" routerLink="admin/user-management" routerLinkActive="active"
-                (click)="collapseNavbar()">
+              <a class="dropdown-item" routerLink="admin/user-management" routerLinkActive="active" (click)="collapseNavbar()">
                 <span jhiTranslate="global.menu.admin.userManagement">User management</span>
               </a>
             </li>
@@ -404,8 +546,7 @@
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="admin/configuration" routerLinkActive="active"
-                (click)="collapseNavbar()">
+              <a class="dropdown-item" routerLink="admin/configuration" routerLinkActive="active" (click)="collapseNavbar()">
                 <span jhiTranslate="global.menu.admin.configuration">Configuration</span>
               </a>
             </li>
@@ -431,8 +572,13 @@
           </a>
           <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="languagesnavBarDropdown">
             <li *ngFor="let language of languages">
-              <a class="dropdown-item" [jhiActiveMenu]="language" href="javascript:void(0);"
-                (click)="changeLanguage(language); collapseNavbar()">{{ language | findLanguageFromKey }}</a>
+              <a
+                class="dropdown-item"
+                [jhiActiveMenu]="language"
+                href="javascript:void(0);"
+                (click)="changeLanguage(language); collapseNavbar()"
+                >{{ language | findLanguageFromKey }}</a
+              >
             </li>
           </ul>
         </li>

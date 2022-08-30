@@ -9,6 +9,7 @@
       "transactions": "Transactions",
       "payments": "Payments",
       "reports": "Reports",
+      "dashboard": "Dashboard",
 
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {

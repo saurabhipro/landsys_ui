@@ -1,0 +1,84 @@
+body {
+  background: #eee;
+}
+.container {
+  margin-top: 10px;
+}
+.container h1 {
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+.card-box {
+  position: relative;
+  color: #fff;
+  padding: 0px 10px 40px;
+  margin: 0 0 20px 0px;
+  border-radius: 0.25rem;
+}
+.card-box:hover {
+  text-decoration: none;
+  color: #f1f1f1;
+}
+.card-box:hover .icon i {
+  font-size: 50px;
+  transition: 1s;
+  -webkit-transition: 1s;
+}
+.card-box .inner {
+  padding: 5px 10px 0 10px;
+}
+.card-box h3 {
+  font-size: 35px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+  white-space: nowrap;
+  padding: 0;
+  text-align: left;
+}
+.card-box p {
+  font-size: 15px;
+}
+.card-box .icon {
+  position: absolute;
+  top: 10px;
+  bottom: 5px;
+  right: 20px;
+  z-index: 0;
+  font-size: 40px;
+  color: rgba(0, 0, 0, 0.15);
+}
+.card-box .card-box-footer {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  text-align: center;
+  padding: 3px 0;
+  color: rgba(255, 255, 255, 1);
+  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  text-decoration: none;
+  font-weight: 500;
+}
+.card-box:hover .card-box-footer {
+  background: rgba(0, 0, 0, 0.3);
+}
+.cardHolder {
+  padding: 10px 15px;
+  background-color: #fff;
+  border-radius: 0.25rem;
+}
+.bg-orange {
+  background-color: #ff783d !important;
+}
+.bg-blue {
+  background-color: #17a2b8 !important;
+}
+.bg-green {
+  background-color: #28a745 !important;
+}
+.bg-yellow {
+  background-color: #ffc107 !important;
+}
+.bg-red {
+  background-color: #dc3545 !important;
+}
