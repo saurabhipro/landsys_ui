@@ -22,6 +22,18 @@
     </div>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="account !== null">
       <ul class="navbar-nav ms-auto">
+        <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" *ngSwitchCase="true">
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="projectsnavBarDropdown">
+            <span>
+              <span jhiTranslate="global.menu.project">Projects</span>
+            </span>
+          </a>
+          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="projectsnavBarDropdown">
+            <li *ngFor="let project of projectList">
+              <a class="dropdown-item" href="javascript:void(0);" (click)="setProject(project)">{{ project.name }}</a>
+            </li>
+          </ul>
+        </li>
         <li
           ngbDropdown
           class="nav-item dropdown pointer"
@@ -579,19 +591,6 @@
                 (click)="changeLanguage(language); collapseNavbar()"
                 >{{ language | findLanguageFromKey }}</a
               >
-            </li>
-          </ul>
-        </li>
-
-        <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" *ngSwitchCase="true">
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="projectsnavBarDropdown">
-            <span>
-              <span jhiTranslate="global.menu.project">Projects</span>
-            </span>
-          </a>
-          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="projectsnavBarDropdown">
-            <li *ngFor="let project of projectList">
-              <a class="dropdown-item" href="javascript:void(0);" (click)="setProject(project)">{{ project.name }}</a>
             </li>
           </ul>
         </li>
