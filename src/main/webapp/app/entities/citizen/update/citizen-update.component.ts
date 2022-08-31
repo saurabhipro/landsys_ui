@@ -138,7 +138,7 @@ export class CitizenUpdateComponent implements OnInit {
       name: citizen.name,
       address: citizen.address,
       mobileNumber: citizen.mobileNumber,
-      dob: dayjs(citizen.dob).format('YYYY-MM-DD'),
+      dob: dayjs(citizen.dob),
       nameInBank: citizen.nameInBank,
       accountNumber: citizen.accountNumber,
       fatherName: citizen.fatherName,
