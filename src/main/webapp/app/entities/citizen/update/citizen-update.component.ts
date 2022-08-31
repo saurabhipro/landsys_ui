@@ -61,9 +61,14 @@ export class CitizenUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ citizen }) => {
-      //  console.log(citizen);
-      this.updateForm(citizen.citizen);
+      if (citizen.citizen.id !== undefined) {
+        this.updateForm(citizen.citizen);
+      }
 
+      this.bankBranchesSharedCollection = this.bankBranchService.addBankBranchToCollectionIfMissing(
+        this.bankBranchesSharedCollection,
+        citizen.bankBranch
+      );
       this.loadRelationshipsOptions();
     });
   }
@@ -100,7 +105,7 @@ export class CitizenUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const citizen = this.createFromForm();
-    if (citizen.id !== undefined) {
+    if (citizen.id != null) {
       this.subscribeToSaveResponse(this.citizenService.update(citizen));
     } else {
       this.subscribeToSaveResponse(this.citizenService.create(citizen));
@@ -131,6 +136,7 @@ export class CitizenUpdateComponent implements OnInit {
   }
 
   protected updateForm(citizen: ICitizen): void {
+    console.log(citizen);
     this.editForm.patchValue({
       id: citizen.id,
       photo: citizen.photo,
