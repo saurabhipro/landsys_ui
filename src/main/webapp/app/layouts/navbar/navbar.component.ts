@@ -53,14 +53,15 @@ export class NavbarComponent implements OnInit {
 
     this.accountService.getAuthenticationState().subscribe(account => {
       this.account = account;
-      this.projectService.query().subscribe((response1) => {
+      this.projectService.query().subscribe(response1 => {
         this.projectList = response1.body as IProject[];
         console.log(this.projectList);
       });
     });
 
-    this.selectedProject = this.sessionStorageService.retrieve("ContextProject");
-
+    this.selectedProject = this.sessionStorageService.retrieve('ContextProject');
+    console.log('Selected Project from NavBar:');
+    console.log(this.selectedProject);
   }
 
   changeLanguage(languageKey: string): void {
@@ -87,6 +88,7 @@ export class NavbarComponent implements OnInit {
   }
 
   setProject(project: IProject): void {
+    console.log('SETTING PROEJCT');
     this.selectedProject = project;
     this.sessionStorageService.store('ContextProject', project);
   }

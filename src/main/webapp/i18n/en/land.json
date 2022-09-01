@@ -18,7 +18,7 @@
         "title": "Land"
       },
       "id": "Land ID",
-      "ulpin": "Ulpin",
+      "project": "Selected Project",
       "khasraNumber": "Khasra Number",
       "khatauni": "Khatauni",
       "area": "Area",

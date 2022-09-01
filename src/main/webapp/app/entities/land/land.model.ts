@@ -7,9 +7,9 @@ import { IDistrict } from '../district/district.model';
 
 export interface ILand {
   id?: number;
-  ulpin?: string | null;
   khasraNumber?: string;
   khatauni?: string | null;
+  project?: string | null;
   area?: number | null;
   landMarketValue?: number | null;
   structuralValue?: number | null;
@@ -18,7 +18,7 @@ export interface ILand {
   distanceFromCity?: string | null;
   totalLandValue?: number | null;
   village?: IVillage;
-  unit?: IUnit;
+  landUnit?: IUnit;
   landType?: ILandType;
   district?: IDistrict;
   state?: IState;
@@ -28,9 +28,9 @@ export interface ILand {
 export class Land implements ILand {
   constructor(
     public id?: number,
-    public ulpin?: string | null,
     public khasraNumber?: string,
     public khatauni?: string | null,
+    public project?: string | null,
     public area?: number | null,
     public landMarketValue?: number | null,
     public structuralValue?: number | null,
@@ -39,7 +39,7 @@ export class Land implements ILand {
     public distanceFromCity?: string | null,
     public totalLandValue?: number | null,
     public village?: IVillage,
-    public unit?: IUnit,
+    public landUnit?: IUnit,
     public landType?: ILandType,
     district?: IDistrict,
     state?: IState,

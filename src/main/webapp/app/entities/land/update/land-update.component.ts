@@ -5,8 +5,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
+import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+
 import { ILand, Land } from '../land.model';
 import { LandService } from '../service/land.service';
+import { IProject } from 'app/entities/project/project.model';
 import { IVillage } from 'app/entities/village/village.model';
 import { VillageService } from 'app/entities/village/service/village.service';
 import { IUnit } from 'app/entities/unit/unit.model';
@@ -27,10 +30,11 @@ export class LandUpdateComponent implements OnInit {
   unitsSharedCollection: IUnit[] = [];
   landTypesSharedCollection: ILandType[] = [];
   districtsSharedCollection: IDistrict[] = [];
+  selectedProject: IProject | null = null;
 
   editForm = this.fb.group({
     id: [],
-    ulpin: [],
+    project: [],
     khasraNumber: [null, [Validators.required]],
     khatauni: [],
     area: [],
@@ -41,7 +45,7 @@ export class LandUpdateComponent implements OnInit {
     distanceFromCity: [],
     totalLandValue: [],
     village: [null, Validators.required],
-    unit: [null, Validators.required],
+    landUnit: [null, Validators.required],
     landType: [null, Validators.required],
     district: [null, Validators.required],
   });
@@ -53,10 +57,12 @@ export class LandUpdateComponent implements OnInit {
     protected landTypeService: LandTypeService,
     protected districtService: DistrictService,
     protected activatedRoute: ActivatedRoute,
+    private sessionStorageService: SessionStorageService,
     protected fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
+    this.selectedProject = this.sessionStorageService.retrieve('ContextProject').name;
     this.activatedRoute.data.subscribe(({ land }) => {
       this.updateForm(land);
 
@@ -117,9 +123,11 @@ export class LandUpdateComponent implements OnInit {
   }
 
   protected updateForm(land: ILand): void {
+    console.log('Selected Project:');
+    console.log(this.selectedProject);
     this.editForm.patchValue({
       id: land.id,
-      ulpin: land.ulpin,
+      project: this.selectedProject,
       khasraNumber: land.khasraNumber,
       khatauni: land.khatauni,
       area: land.area,
@@ -130,13 +138,13 @@ export class LandUpdateComponent implements OnInit {
       distanceFromCity: land.distanceFromCity,
       totalLandValue: land.totalLandValue,
       village: land.village,
-      unit: land.unit,
+      landUnit: land.landUnit,
       landType: land.landType,
       district: land.district,
     });
 
     this.villagesSharedCollection = this.villageService.addVillageToCollectionIfMissing(this.villagesSharedCollection, land.village);
-    this.unitsSharedCollection = this.unitService.addUnitToCollectionIfMissing(this.unitsSharedCollection, land.unit);
+    this.unitsSharedCollection = this.unitService.addUnitToCollectionIfMissing(this.unitsSharedCollection, land.landUnit);
     this.landTypesSharedCollection = this.landTypeService.addLandTypeToCollectionIfMissing(this.landTypesSharedCollection, land.landType);
     this.districtsSharedCollection = this.districtService.addDistrictToCollectionIfMissing(this.districtsSharedCollection, land.district);
   }
@@ -153,7 +161,7 @@ export class LandUpdateComponent implements OnInit {
     this.unitService
       .query()
       .pipe(map((res: HttpResponse<IUnit[]>) => res.body ?? []))
-      .pipe(map((units: IUnit[]) => this.unitService.addUnitToCollectionIfMissing(units, this.editForm.get('unit')!.value)))
+      .pipe(map((units: IUnit[]) => this.unitService.addUnitToCollectionIfMissing(units, this.editForm.get('landUnit')!.value)))
       .subscribe((units: IUnit[]) => (this.unitsSharedCollection = units));
 
     this.landTypeService
@@ -181,7 +189,7 @@ export class LandUpdateComponent implements OnInit {
     return {
       ...new Land(),
       id: this.editForm.get(['id'])!.value,
-      ulpin: this.editForm.get(['ulpin'])!.value,
+      project: this.editForm.get(['project'])!.value,
       khasraNumber: this.editForm.get(['khasraNumber'])!.value,
       khatauni: this.editForm.get(['khatauni'])!.value,
       area: this.editForm.get(['area'])!.value,
@@ -192,7 +200,7 @@ export class LandUpdateComponent implements OnInit {
       distanceFromCity: this.editForm.get(['distanceFromCity'])!.value,
       totalLandValue: this.editForm.get(['totalLandValue'])!.value,
       village: this.editForm.get(['village'])!.value,
-      unit: this.editForm.get(['unit'])!.value,
+      landUnit: this.editForm.get(['landUnit'])!.value,
       landType: this.editForm.get(['landType'])!.value,
       district: this.editForm.get(['district'])!.value,
     };

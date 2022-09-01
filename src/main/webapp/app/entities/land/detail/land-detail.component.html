@@ -16,7 +16,7 @@
         </dd>
         <dt><span jhiTranslate="jhipsterApp.land.ulpin">Ulpin</span></dt>
         <dd>
-          <span>{{ land.ulpin }}</span>
+          <span>{{ selectedProject }}</span>
         </dd>
         <dt><span jhiTranslate="jhipsterApp.land.khasraNumber">Khasra Number</span></dt>
         <dd>
@@ -38,8 +38,8 @@
         </dd>
         <dt><span jhiTranslate="jhipsterApp.land.unit">Unit</span></dt>
         <dd>
-          <div *ngIf="land.unit">
-            <a [routerLink]="['/unit', land.unit?.id, 'view']">{{ land.unit?.name }}</a>
+          <div *ngIf="land.landUnit">
+            <a [routerLink]="['/unit', land.landUnit?.id, 'view']">{{ land.landUnit?.name }}</a>
           </div>
         </dd>
         <dt><span jhiTranslate="jhipsterApp.land.landType">Land Type</span></dt>

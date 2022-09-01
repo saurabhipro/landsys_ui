@@ -15,8 +15,8 @@
           </div>
 
           <div class="mb-3">
-            <label class="form-label" jhiTranslate="jhipsterApp.land.ulpin" for="field_ulpin">ULPIN</label>
-            <input type="text" class="form-control" name="ulpin" id="field_ulpin" data-cy="ulpin" formControlName="ulpin" />
+            <label class="form-label" jhiTranslate="jhipsterApp.land.project" for="field_project">Selected Project</label>
+            <input type="text" class="form-control" name="project" id="field_project" data-cy="project" formControlName="project" />
           </div>
 
           <div class="mb-3">
@@ -78,24 +78,6 @@
           </div>
 
           <div class="mb-3">
-            <label class="form-label" jhiTranslate="jhipsterApp.land.unit" for="field_unit">Unit</label>
-            <select class="form-control" id="field_unit" data-cy="unit" name="unit" formControlName="unit">
-              <option *ngIf="!editForm.get('unit')!.value" [ngValue]="null" selected></option>
-              <option
-                [ngValue]="unitOption.id === editForm.get('unit')!.value?.id ? editForm.get('unit')!.value : unitOption"
-                *ngFor="let unitOption of unitsSharedCollection; trackBy: trackUnitById"
-              >
-                {{ unitOption.name }}
-              </option>
-            </select>
-          </div>
-          <div *ngIf="editForm.get(['unit'])!.invalid && (editForm.get(['unit'])!.dirty || editForm.get(['unit'])!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get(['unit'])?.errors?.required" jhiTranslate="entity.validation.required">
-              This field is required.
-            </small>
-          </div>
-
-          <div class="mb-3">
             <label class="form-label" jhiTranslate="jhipsterApp.land.landType" for="field_landType">Land Type</label>
             <select class="form-control" id="field_landType" data-cy="landType" name="landType" formControlName="landType">
               <option *ngIf="!editForm.get('landType')!.value" [ngValue]="null" selected></option>
@@ -128,6 +110,26 @@
                 {{ districtOption.name }}
               </option>
             </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" jhiTranslate="jhipsterApp.land.unit" for="field_unit">Unit</label>
+            <select class="form-control" id="field_unit" data-cy="landUnit" name="landUnit" formControlName="landUnit">
+              <option *ngIf="!editForm.get('landUnit')!.value" [ngValue]="null" selected></option>
+              <option
+                [ngValue]="unitOption.id === editForm.get('landUnit')!.value?.id ? editForm.get('landUnit')!.value : unitOption"
+                *ngFor="let unitOption of unitsSharedCollection; trackBy: trackUnitById"
+              >
+                {{ unitOption.name }}
+              </option>
+            </select>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get(['landUnit'])?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
           </div>
         </div>
       </div>
