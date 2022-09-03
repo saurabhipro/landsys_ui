@@ -69,8 +69,8 @@
           <td>
             <a [routerLink]="['/land', land.id, 'view']">{{ land.id }}</a>
           </td>
-          <td>{{ land.district?.name }}</td>
           <td>{{ land.district?.state?.name }}</td>
+          <td>{{ land.district?.name }}</td>
           <td>
             <div *ngIf="land.village">
               <a [routerLink]="['/village', land.village?.id, 'view']">{{ land.village?.name }}</a>

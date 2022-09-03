@@ -194,17 +194,7 @@
                 <span jhiTranslate="global.menu.entities.landType">Land Type</span>
               </a>
             </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="land"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <span jhiTranslate="global.menu.entities.land">Land</span>
-              </a>
-            </li>
+
             <li>
               <a
                 class="dropdown-item"
@@ -282,7 +272,6 @@
               <span jhiTranslate="global.menu.transactions">Survey</span>
             </span>
           </a>
-
           <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
             <li>
               <a
@@ -298,12 +287,12 @@
             <li>
               <a
                 class="dropdown-item"
-                routerLink="khatedar"
+                routerLink="land"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
                 (click)="collapseNavbar()"
               >
-                <span jhiTranslate="global.menu.entities.khatedar">Khatedar</span>
+                <span jhiTranslate="global.menu.entities.land">Land</span>
               </a>
             </li>
 
@@ -513,6 +502,18 @@
                 (click)="collapseNavbar()"
               >
                 <span jhiTranslate="global.menu.entities.notificationTemplate">Notification</span>
+              </a>
+            </li>
+
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="khatedar"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <span jhiTranslate="global.menu.entities.khatedar">Khatedar</span>
               </a>
             </li>
 
