@@ -55,6 +55,7 @@ export class NavbarComponent implements OnInit {
       this.account = account;
       this.projectService.query().subscribe(response1 => {
         this.projectList = response1.body as IProject[];
+        this.setProject(this.projectList[0]);
         console.log(this.projectList);
       });
     });
