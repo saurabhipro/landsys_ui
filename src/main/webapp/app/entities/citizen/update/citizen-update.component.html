@@ -163,14 +163,6 @@
             <input type="text" class="form-control" name="pan" id="field_pan" data-cy="pan" formControlName="pan" />
             <div *ngIf="editForm.get('pan')!.invalid && (editForm.get('pan')!.dirty || editForm.get('pan')!.touched)"></div>
           </div>
-
-          <div class="col-sm">
-            <label class="form-label" jhiTranslate="jhipsterApp.citizen.accountNo" for="field_accountNo">Account No</label>
-            <input type="text" class="form-control" name="accountNo" id="field_accountNo" data-cy="accountNo" formControlName="accountNo" />
-            <div
-              *ngIf="editForm.get('accountNo')!.invalid && (editForm.get('accountNo')!.dirty || editForm.get('accountNo')!.touched)"
-            ></div>
-          </div>
         </div>
 
         <div class="row mb-3">
