@@ -9,18 +9,24 @@
         <div class="row pt-5">
           <div class="col-md-6">
             <jhi-alert-error></jhi-alert-error>
-            
+
             <div class="mb-3">
               <label class="form-label" jhiTranslate="jhipsterApp.survey.selectedProject" for="field_surveyor">Surveyor</label>
-              <p *ngIf="!selectedProject" style="color: red;">No Project selected</p>
-              <p *ngIf="selectedProject" style="color: green;">{{selectedProject?.name}}</p>
+              <input
+                type="text"
+                class="form-control"
+                name="project"
+                id="field_project"
+                value="{{ selectedProject?.name }}"
+                formControlName="project"
+                readonly
+              />
             </div>
 
             <div class="mb-3" [hidden]="editForm.get('id')!.value == null">
               <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
               <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
             </div>
-
 
             <div class="mb-3">
               <label class="form-label" jhiTranslate="jhipsterApp.survey.surveyor" for="field_surveyor">Surveyor</label>
