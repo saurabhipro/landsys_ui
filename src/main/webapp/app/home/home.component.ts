@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -11,10 +11,11 @@ import { HomeService } from './services/home.service';
   selector: 'jhi-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
-  project:any;
+  project: any;
   private readonly destroy$ = new Subject<void>();
 
   constructor(private accountService: AccountService, private router: Router, private homeService: HomeService) {}
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .getAuthenticationState()
       .pipe(takeUntil(this.destroy$))
       .subscribe(account => (this.account = account));
-      
+
     this.getProjectStatus();
   }
 
@@ -37,14 +38,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  getProjectStatus(): void{
-    this.homeService.query(2).subscribe(res=>{
-      if(res.body){
-        this.project = res.body;
+  getProjectStatus(): void {
+    this.homeService.query(2).subscribe(
+      res => {
+        if (res.body) {
+          this.project = res.body;
+        }
+      },
+      err => {
+        // consoles
       }
- 
-    },err=>{
-      // consoles
-    })
+    );
   }
 }
