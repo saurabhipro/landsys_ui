@@ -6,18 +6,16 @@ import dayjs from 'dayjs/esm';
 import { AccountService } from 'app/core/auth/account.service';
 import { LoaderService } from 'app/loader.service';
 import { SessionStorageService } from 'ngx-webstorage';
+import { CommonModule } from '@angular/common';
 import { IProject } from 'app/entities/project/project.model';
 
 @Component({
   selector: 'jhi-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
-
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-
   private renderer: Renderer2;
-
 
   constructor(
     private accountService: AccountService,
@@ -45,12 +43,10 @@ export class MainComponent implements OnInit {
       dayjs.locale(langChangeEvent.lang);
       this.renderer.setAttribute(document.querySelector('html'), 'lang', langChangeEvent.lang);
     });
-
-
   }
 
-  get isFooter(): boolean {
-    return this.accountService.isAuthenticated()
+  get isAuthenticated(): boolean {
+    return this.accountService.isAuthenticated();
   }
 
   private getPageTitle(routeSnapshot: ActivatedRouteSnapshot): string {

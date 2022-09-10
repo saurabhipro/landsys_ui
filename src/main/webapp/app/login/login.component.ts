@@ -9,6 +9,7 @@ import { LoaderService } from 'app/loader.service';
 @Component({
   selector: 'jhi-login',
   templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit, AfterViewInit {
   @ViewChild('username', { static: false })
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private loginService: LoginService,
     private router: Router,
     private fb: FormBuilder,
-    private loaderService:LoaderService
+    private loaderService: LoaderService
   ) {}
 
   ngOnInit(): void {
@@ -61,9 +62,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
           }
         },
         error: () => {
-          this.authenticationError = true
-          this.loaderService.show(false);},
-        
+          this.authenticationError = true;
+          this.loaderService.show(false);
+        },
       });
   }
 }

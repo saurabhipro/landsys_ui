@@ -1,108 +1,100 @@
-<div style="background-color: #fff; padding: 10px 0">
-  <div class="d-flex justify-content-center">
-    <!--    <div class="col-lg-7 col-md-7 col-sm-10">-->
-    <!--      <div class="static_content">-->
-    <!--        &lt;!&ndash; <h4><span class="logo-img"></span></h4> &ndash;&gt;-->
-    <!--&lt;!&ndash;        <h2 class="text-center">Welcome to Land Acquisition System</h2>&ndash;&gt;-->
-    <!--        &lt;!&ndash; <p>The Logistics Super App to Power your <br>D2C Growth</p> &ndash;&gt;-->
-    <!--&lt;!&ndash;        <div class="image_bg text-center">&ndash;&gt;-->
-    <!--&lt;!&ndash;          <img src="../../content/images/signUp.png" alt="" style="width: 370px" class="img-responsive" />&ndash;&gt;-->
-    <!--&lt;!&ndash;        </div>&ndash;&gt;-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-4">
-        <div class="image_bg">
-          <img src="../../content/images/signUp.png" alt="" style="width: 100%" class="img-responsive" />
-        </div>
-      </div>
-      <div class="col-md-4">
-        <h2 class="text-center">Welcome to <br />Land Acquisition System</h2>
-        <br />
-        <h2 class="text-center"></h2>
-        <div>
-          <div style="padding: 10px 20px; box-shadow: 0px 0px 25px #c3c3c3; border-radius: 8px">
-            <h3 class="text-center" jhiTranslate="login.title" data-cy="loginTitle">Sign in</h3>
-            <div
-              class="alert alert-danger"
-              *ngIf="authenticationError"
-              jhiTranslate="login.messages.error.authentication"
-              data-cy="loginError"
-            >
-              <strong>Failed to sign in!</strong> Please check your credentials and try again.
+<div class="">
+  <div class="row align-items-stretch no-gutters h-100 p-5 m-5">
+    <div class="col-md-6 image_bg">
+      <!-- <div class="image_bg">
+      
+          <img src="../../content/images/signUp.png" alt="" style="width: 100%" class="img-responsive" /> 
+     
+        </div>   -->
+    </div>
+    <div class="col-md-6">
+      <h2 class="text-center">Welcome to <br />Land Acquisition System</h2>
+      <br />
+      <h2 class="text-center"></h2>
+      <div>
+        <div style="padding: 10px 20px; box-shadow: 0px 0px 25px #c3c3c3; border-radius: 8px">
+          <h3 class="text-center" jhiTranslate="login.title" data-cy="loginTitle">Sign in</h3>
+          <div
+            class="alert alert-danger"
+            *ngIf="authenticationError"
+            jhiTranslate="login.messages.error.authentication"
+            data-cy="loginError"
+          >
+            <strong>Failed to sign in!</strong> Please check your credentials and try again.
+          </div>
+          <form class="form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
+            <div class="mb-3">
+              <!-- <label class="username-label" for="username" jhiTranslate="global.form.username.label">Login</label> -->
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                id="username"
+                placeholder="{{ 'global.form.username.placeholder' | translate }}"
+                formControlName="username"
+                #username
+                data-cy="username"
+              />
             </div>
-            <form class="form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
-              <div class="mb-3">
-                <!-- <label class="username-label" for="username" jhiTranslate="global.form.username.label">Login</label> -->
-                <input
-                  type="text"
-                  class="form-control"
-                  name="username"
-                  id="username"
-                  placeholder="{{ 'global.form.username.placeholder' | translate }}"
-                  formControlName="username"
-                  #username
-                  data-cy="username"
-                />
-              </div>
 
-              <div class="mb-3">
-                <!-- <label for="password" jhiTranslate="login.form.password">Password</label> -->
-                <input
-                  type="password"
-                  class="form-control"
-                  name="password"
-                  id="password"
-                  placeholder="{{ 'login.form.password.placeholder' | translate }}"
-                  formControlName="password"
-                  data-cy="password"
-                />
-              </div>
+            <div class="mb-3">
+              <!-- <label for="password" jhiTranslate="login.form.password">Password</label> -->
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                id="password"
+                placeholder="{{ 'login.form.password.placeholder' | translate }}"
+                formControlName="password"
+                data-cy="password"
+              />
+            </div>
 
-              <!-- <div class="form-check">
+            <!-- <div class="form-check">
               <label class="form-check-label" for="rememberMe">
                 <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" formControlName="rememberMe" />
                 <span jhiTranslate="login.form.rememberme">Remember me</span>
               </label>
             </div> -->
 
-              <div class="text-center">
-                <small>Forgot your password? </small>
-                <a
-                  class="alert-link"
-                  routerLink="/account/reset/request"
-                  jhiTranslate="login.password.forgot"
-                  data-cy="forgetYourPasswordSelector"
-                  >Click Here</a
-                >
-              </div>
-              <button
-                type="submit"
-                style="
-                  background: transparent linear-gradient(283deg, #464646 0%, #b5b5b5 100%) 0% 0% no-repeat padding-box !important;
-                  width: 100%;
-                  color: #fff;
-                  border-color: #000;
-                "
-                class="btn btn-primary mt-3 mb-3"
-                jhiTranslate="login.form.button"
-                data-cy="submit"
-              >
-                Sign in
-              </button>
-            </form>
-
-            <div class="mb-3 text-center">
-              <small jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</small>
-              <a class="alert-link" routerLink="/account/register" jhiTranslate="global.messages.info.register.link"
-                >Register a new account</a
+            <div class="text-center">
+              <small>Forgot your password? </small>
+              <a
+                class="alert-link"
+                routerLink="/account/reset/request"
+                jhiTranslate="login.password.forgot"
+                data-cy="forgetYourPasswordSelector"
+                >Click Here</a
               >
             </div>
+            <button
+              type="submit"
+              style="
+                background: transparent linear-gradient(283deg, #464646 0%, #b5b5b5 100%) 0% 0% no-repeat padding-box !important;
+                width: 100%;
+                color: #fff;
+                border-color: #000;
+              "
+              class="btn btn-primary mt-3 mb-3"
+              jhiTranslate="login.form.button"
+              data-cy="submit"
+            >
+              Sign in
+            </button>
+          </form>
+
+          <div class="mb-3 text-center">
+            <small jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</small>
+            <a class="alert-link" routerLink="/account/register" jhiTranslate="global.messages.info.register.link"
+              >Register a new account</a
+            >
           </div>
         </div>
       </div>
-      <div class="col-md-2"></div>
     </div>
   </div>
+</div>
+<div class="deznav-scroll ps">
+  <div class="ps__rail-x" style="left: 0px; bottom: 0px"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px"></div></div>
+  <div class="ps__rail-y" style="top: 0px; right: 0px"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px"></div></div>
 </div>

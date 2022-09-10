@@ -1,0 +1,14 @@
+.image_bg {
+  background: url('../../content/images/signUp.png');
+  position: relative;
+  min-height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  background-position: center right;
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
