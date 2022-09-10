@@ -8,6 +8,24 @@ body {
   font-size: 1.8rem;
   font-weight: 400;
 }
+.jh-card {
+  padding: 0px !important;
+}
+.container1 {
+  padding: 1.5%;
+}
+.headingBanner {
+  margin-bottom: 0;
+  background: #3e8acc;
+  border-bottom: 4px solid #fff;
+}
+:host {
+  ::ng-deep {
+    .mat-tab-group.mat- primary .mat-ink-bar {
+      background-color: green;
+    }
+  }
+}
 .card-box {
   position: relative;
   color: #fff;
