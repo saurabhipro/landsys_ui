@@ -22,12 +22,11 @@ export class LandCompensationCreateComponent implements OnInit {
   isSaving = false;
   hissaTypeValues = Object.keys(HissaType);
   compensationStatusValues = Object.keys(CompensationStatus);
-  
+
   projectLandsCollection: IProjectLand[] = [];
   surveysCollection: ISurvey[] = [];
 
-  @Input() survey!:ISurvey;
-
+  @Input() survey!: ISurvey;
 
   editForm = this.fb.group({
     id: [],
@@ -59,23 +58,22 @@ export class LandCompensationCreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      if(this.survey.id !=null){
-        const landCompensation : ILandCompensation = {
-          hissaType:this.survey.hissaType,
-          area: this.survey.area,
-          landMarketValue: this.survey.landMarketValue,
-          structuralCompensation: this.survey.structuralValue,
-          horticultureCompensation: this.survey.horticultureValue,
-          forestCompensation: this.survey.forestValue,
-          projectLand: this.survey.projectLand,
-          survey: this.survey
-        }
-        this.updateForm(landCompensation);
-        this.loadRelationshipsOptions();
-      }else{
-        this.activeModal.close();
-      }
-     
+    if (this.survey.id != null) {
+      const landCompensation: ILandCompensation = {
+        hissaType: this.survey.hissaType,
+        area: this.survey.area,
+        landMarketValue: this.survey.landMarketValue,
+        structuralCompensation: this.survey.structuralValue,
+        horticultureCompensation: this.survey.horticultureValue,
+        forestCompensation: this.survey.forestValue,
+        projectLand: this.survey.projectLand,
+        survey: this.survey,
+      };
+      this.updateForm(landCompensation);
+      this.loadRelationshipsOptions();
+    } else {
+      this.activeModal.close();
+    }
   }
 
   previousState(): void {
@@ -85,8 +83,7 @@ export class LandCompensationCreateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const landCompensation = this.createFromForm();
-    if ( ! (landCompensation.id !== undefined)) {
-
+    if (!(landCompensation.id !== undefined)) {
       this.subscribeToSaveResponse(this.landCompensationService.create(landCompensation));
     }
   }
@@ -177,7 +174,7 @@ export class LandCompensationCreateComponent implements OnInit {
       forestCompensation: this.editForm.get(['forestCompensation'])!.value,
       solatiumMoney: this.editForm.get(['solatiumMoney'])!.value,
       additionalCompensation: this.editForm.get(['additionalCompensation'])!.value,
-      compensationStatus: this.editForm.get(['status'])!.value,
+      compensationStatus: CompensationStatus.OPEN,
       orderDate: this.editForm.get(['orderDate'])!.value,
       paymentAmount: this.editForm.get(['paymentAmount'])!.value,
       interestRate: this.editForm.get(['interestRate'])!.value,

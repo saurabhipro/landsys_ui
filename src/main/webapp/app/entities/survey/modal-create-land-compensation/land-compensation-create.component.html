@@ -305,22 +305,6 @@
           </div>
           <div class="col-md-4">
             <div class="row mb-3">
-              <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.compensationStatus" for="field_status">Status</label>
-              <div class="input-group">
-                <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
-                  <option [ngValue]="null">{{ 'jhipsterApp.CompensationStatus.null' | translate }}</option>
-                  <option *ngFor="let compensationStatus of compensationStatusValues" [value]="compensationStatus">
-                    {{ 'jhipsterApp.CompensationStatus.' + compensationStatus | translate }}
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="row mb-3">
               <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.paymentAmount" for="field_paymentAmount"
                 >Payment Amount</label
               >
@@ -336,7 +320,10 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
             <div class="row mb-3">
               <label class="form-label" jhiTranslate="jhipsterApp.landCompensation.comments" for="field_paymentAmount">comments</label>
               <div class="input-group">
