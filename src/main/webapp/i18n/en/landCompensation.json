@@ -37,7 +37,8 @@
       "projectLand": "Project Land",
       "survey": "Survey",
       "paymentAdvice": "Payment Advice",
-      "paymentFile": "Payment File"
+      "paymentFile": "Payment File",
+      "comments": "Comments"
     }
   }
 }
