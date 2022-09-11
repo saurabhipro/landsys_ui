@@ -130,6 +130,11 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./payment-file-header/payment-file-header.module').then(m => m.PaymentFileHeaderModule),
       },
       {
+        path: 'payment-file-recon',
+        data: { pageTitle: 'jhipsterApp.paymentFileHeader.home.title' },
+        loadChildren: () => import('./payment-file-recon/payment-file-recon.module').then(m => m.PaymentFileReconModule),
+      },
+      {
         path: 'sequence-generator',
         data: { pageTitle: 'jhipsterApp.sequenceGenerator.home.title' },
         loadChildren: () => import('./sequence-generator/sequence-generator.module').then(m => m.SequenceGeneratorModule),
