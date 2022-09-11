@@ -1,12 +1,5 @@
-body {
-  margin-left: 100px !important;
-  margin-right: 100px !important;
-  border: black;
-  border-style: solid;
-  border-width: thin;
-}
 .container-fluid {
-  padding-right: 10px !important;
+  padding-right: 0 !important;
   padding-left: 0 !important;
 }
 .logo-img {

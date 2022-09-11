@@ -2,51 +2,51 @@
   <div class="row align-items-stretch no-gutters h-100 p-5 m-5">
     <div class="col-md-6 image_bg">
       <!-- <div class="image_bg">
-      
-          <img src="../../content/images/signUp.png" alt="" style="width: 100%" class="img-responsive" /> 
-     
+
+          <img src="../../content/images/signUp.png" alt="" style="width: 100%" class="img-responsive" />
+
         </div>   -->
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
       <h2 class="text-center fs-1 fw-bolder">Welcome to <br />Land Acquisition System</h2>
       <br />
       <h2 class="text-center"></h2>
       <div>
         <div style="padding: 10px 20px; box-shadow: 0px 0px 25px #c3c3c3; border-radius: 8px">
-          <h3 class="text-center" jhiTranslate="login.title" data-cy="loginTitle">Sign in</h3>
+          <h3 class="text-center" data-cy="loginTitle" jhiTranslate="login.title">Sign in</h3>
           <div
-            class="alert alert-danger"
             *ngIf="authenticationError"
-            jhiTranslate="login.messages.error.authentication"
+            class="alert alert-danger"
             data-cy="loginError"
+            jhiTranslate="login.messages.error.authentication"
           >
             <strong>Failed to sign in!</strong> Please check your credentials and try again.
           </div>
-          <form class="form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
+          <form (ngSubmit)="login()" [formGroup]="loginForm" class="form" role="form">
             <div class="mb-3">
               <!-- <label class="username-label" for="username" jhiTranslate="global.form.username.label">Login</label> -->
               <input
-                type="text"
-                class="form-control"
-                name="username"
-                id="username"
-                placeholder="{{ 'global.form.username.placeholder' | translate }}"
-                formControlName="username"
                 #username
+                class="form-control"
                 data-cy="username"
+                formControlName="username"
+                id="username"
+                name="username"
+                placeholder="{{ 'global.form.username.placeholder' | translate }}"
+                type="text"
               />
             </div>
 
             <div class="mb-3">
               <!-- <label for="password" jhiTranslate="login.form.password">Password</label> -->
               <input
-                type="password"
                 class="form-control"
-                name="password"
-                id="password"
-                placeholder="{{ 'login.form.password.placeholder' | translate }}"
-                formControlName="password"
                 data-cy="password"
+                formControlName="password"
+                id="password"
+                name="password"
+                placeholder="{{ 'login.form.password.placeholder' | translate }}"
+                type="password"
               />
             </div>
 
@@ -61,40 +61,31 @@
               <small>Forgot your password? </small>
               <a
                 class="alert-link"
-                routerLink="/account/reset/request"
-                jhiTranslate="login.password.forgot"
                 data-cy="forgetYourPasswordSelector"
+                jhiTranslate="login.password.forgot"
+                routerLink="/account/reset/request"
                 >Click Here</a
               >
             </div>
             <button
-              type="submit"
-              style="
-                background: transparent linear-gradient(283deg, #464646 0%, #b5b5b5 100%) 0% 0% no-repeat padding-box !important;
-                width: 100%;
-                color: #fff;
-                border-color: #000;
-              "
-              class="btn btn-primary mt-3 mb-3"
-              jhiTranslate="login.form.button"
+              class="btn btn-secondary mt-3 mb-3"
               data-cy="submit"
+              jhiTranslate="login.form.button"
+              style="width: 100%; color: #fff; border-color: #000"
+              type="submit"
             >
               Sign in
             </button>
           </form>
 
-          <div class="mb-3 text-center">
-            <small jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</small>
-            <a class="alert-link" routerLink="/account/register" jhiTranslate="global.messages.info.register.link"
-              >Register a new account</a
-            >
-          </div>
+          <!--          <div class="mb-3 text-center">-->
+          <!--            <small jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</small>-->
+          <!--            <a class="alert-link" routerLink="/account/register" jhiTranslate="global.messages.info.register.link"-->
+          <!--              >Register a new account</a-->
+          <!--            >-->
+          <!--          </div>-->
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="deznav-scroll ps">
-  <div class="ps__rail-x" style="left: 0px; bottom: 0px"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px"></div></div>
-  <div class="ps__rail-y" style="top: 0px; right: 0px"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px"></div></div>
 </div>
