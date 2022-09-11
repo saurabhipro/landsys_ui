@@ -519,8 +519,8 @@
             </li>
 
             <!-- DASHBOARD-->
-            <li [routerLinkActiveOptions]="{ exact: true }" class="nav-item" routerLinkActive="active">
-              <a (click)="collapseNavbar()" class="nav-link" routerLink="dashboard">
+            <li [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">
+              <a (click)="collapseNavbar()" class="dropdown-item" routerLink="dashboard">
                 <span>
                   <span jhiTranslate="global.menu.dashboard">Dashboard</span>
                 </span>
