@@ -1,3 +1,7 @@
+body {
+  width: 90%;
+  margin: 0 auto !important;
+}
 .container-fluid {
   padding-right: 0 !important;
   padding-left: 0 !important;
@@ -29,9 +33,9 @@
 @media (min-width: 768px) {
   .navSub .dropdown-menu.show {
     margin: 0 -70em 0 -0.1em !important;
-    min-width: 75em;
+    min-width: 71em;
     padding: 0;
-    transform: translate(40px, 46px) !important;
+    transform: translate(40px, 43px) !important;
   }
   .navSub .dropdown-menu.show li {
     display: inline-block;

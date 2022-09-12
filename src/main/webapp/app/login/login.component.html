@@ -1,19 +1,27 @@
-<div class="">
-  <div class="row align-items-stretch no-gutters h-100 p-5 m-5">
-    <div class="col-md-6 image_bg">
-      <!-- <div class="image_bg">
+<div>
+  <div class="row align-items-stretch h-100">
+    <div class="col-md-4 p-5" style="padding-left: 0 !important">
+      <h2 class="sideHeading">Get more things done with Loggin platform.</h2>
+      <p class="subHead">Access to the most powerfull tool in the<br />entire design and web industry.</p>
+      <img src="signUp.png" class="img-responsive" style="width: 335px" />
+      <!--<div class="image_bg">
       
           <img src="../../content/images/signUp.png" alt="" style="width: 100%" class="img-responsive" /> 
      
         </div>   -->
     </div>
-    <div class="col-md-6">
+    <div class="col-md-8 text-center p-5" style="background: #44c97d; margin: 0 auto; color: #fff">
+      <img src="logo-jhipster.png" style="width: 70px" />
       <h2 class="text-center">Welcome to <br />Land Acquisition System</h2>
       <br />
       <h2 class="text-center"></h2>
       <div>
-        <div style="padding: 10px 20px; box-shadow: 0px 0px 25px #c3c3c3; border-radius: 8px">
-          <h3 class="text-center" jhiTranslate="login.title" data-cy="loginTitle">Sign in</h3>
+        <div class="formContent">
+          <!-- <h3 class="text-center" jhiTranslate="login.title" data-cy="loginTitle">Sign in</h3> -->
+          <a class="alert-link">Login</a>
+          <a class="alert-link" style="margin-left: 20px" routerLink="/account/register" jhiTranslate="global.messages.info.register.link"
+            >Register</a
+          >
           <div
             class="alert alert-danger"
             *ngIf="authenticationError"
@@ -22,7 +30,7 @@
           >
             <strong>Failed to sign in!</strong> Please check your credentials and try again.
           </div>
-          <form class="form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
+          <form class="form" style="margin-top: 20px" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
             <div class="mb-3">
               <!-- <label class="username-label" for="username" jhiTranslate="global.form.username.label">Login</label> -->
               <input
@@ -51,44 +59,32 @@
             </div>
 
             <!-- <div class="form-check">
-              <label class="form-check-label" for="rememberMe">
-                <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" formControlName="rememberMe" />
-                <span jhiTranslate="login.form.rememberme">Remember me</span>
-              </label>
-            </div> -->
+                <label class="form-check-label" for="rememberMe">
+                  <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" formControlName="rememberMe" />
+                  <span jhiTranslate="login.form.rememberme">Remember me</span>
+                </label>
+              </div> -->
 
-            <div class="text-center">
-              <small>Forgot your password? </small>
+            <div>
+              <!-- <small>Forgot your password? </small> -->
+              <button type="submit" class="btn btn-primary mt-3 mb-3 login" jhiTranslate="login.form.button" data-cy="submit">
+                Sign in
+              </button>
               <a
                 class="alert-link"
                 routerLink="/account/reset/request"
                 jhiTranslate="login.password.forgot"
                 data-cy="forgetYourPasswordSelector"
-                >Click Here</a
+                >Forget Password?</a
               >
+              <br /><br />
             </div>
-            <button
-              type="submit"
-              style="
-                background: transparent linear-gradient(283deg, #464646 0%, #b5b5b5 100%) 0% 0% no-repeat padding-box !important;
-                width: 100%;
-                color: #fff;
-                border-color: #000;
-              "
-              class="btn btn-primary mt-3 mb-3"
-              jhiTranslate="login.form.button"
-              data-cy="submit"
-            >
-              Sign in
-            </button>
           </form>
 
-          <div class="mb-3 text-center">
-            <small jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</small>
-            <a class="alert-link" routerLink="/account/register" jhiTranslate="global.messages.info.register.link"
-              >Register a new account</a
-            >
-          </div>
+          <!-- <div class="mb-3 text-center">
+              <small jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</small>
+              <a class="alert-link" routerLink="/account/register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
+            </div> -->
         </div>
       </div>
     </div>
