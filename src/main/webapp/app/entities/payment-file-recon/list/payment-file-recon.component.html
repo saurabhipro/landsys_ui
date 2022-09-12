@@ -2,14 +2,47 @@
   <h2 id="page-heading" data-cy="PaymentFileReconHeading">
     <span jhiTranslate="jhipsterApp.paymentFileRecon.home.title">Payment File Recons</span>
 
-    <div class="d-flex justify-content-end">
-      <!--
+    <div class="col-12 row p-3">
+      <div class="col-8">
+        <!-- 
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search..."
+          />
+         
+        </div>
+        -->
+      </div>
+      <div class="col-4 d-flex justify-content-end">
+        <!--
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span jhiTranslate="jhipsterApp.paymentFileRecon.home.refreshListLabel">Refresh List</span>
       </button>
       -->
-
+        <div ngbDropdown class="d-inline-block dropdown">
+          <button
+            type="button"
+            class="btn btn-outline-primary dropdown-toggle"
+            ngbDropdownToggle
+            jhiTranslate="jhipsterApp.khatedar.home.upload"
+          >
+            Upload
+          </button>
+          <div ngbDropdownMenu>
+            <button ngbDropdownItem jhiTranslate="jhipsterApp.khatedar.home.upload" (click)="clickFileUpload()">Upload Excel</button>
+            <input
+              type="file"
+              #fileUpload
+              hidden
+              (change)="uploadFile()"
+              accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            />
+          </div>
+        </div>
+        <!--
       <button
         id="jh-create-entity"
         data-cy="entityCreateButton"
@@ -19,6 +52,8 @@
         <fa-icon icon="plus"></fa-icon>
         <span jhiTranslate="jhipsterApp.paymentFileRecon.home.createLabel"> Create a new Payment File Recon </span>
       </button>
+    -->
+      </div>
     </div>
   </h2>
 

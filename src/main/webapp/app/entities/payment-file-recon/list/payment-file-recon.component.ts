@@ -61,6 +61,13 @@ export class PaymentFileReconComponent implements OnInit {
     return item.id!;
   }
 
+  clickFileUpload(): void {
+    console.log('CLICK FILE UPLOAD');
+  }
+  uploadFile(): void {
+    console.log('Upload File');
+  }
+
   delete(paymentFileRecon: IPaymentFileRecon): void {
     const modalRef = this.modalService.open(PaymentFileReconDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.paymentFileRecon = paymentFileRecon;

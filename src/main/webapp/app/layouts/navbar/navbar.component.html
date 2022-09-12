@@ -433,6 +433,18 @@
             <!--              </a>-->
             <!--            </li>-->
 
+            <li>
+              <a
+                (click)="collapseNavbar()"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="dropdown-item"
+                routerLink="payment-file-recon"
+                routerLinkActive="active"
+              >
+                <span>Payment Recon</span>
+              </a>
+            </li>
+
             <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
           </ul>
         </li>
@@ -519,8 +531,8 @@
             </li>
 
             <!-- DASHBOARD-->
-            <li [routerLinkActiveOptions]="{ exact: true }" class="nav-item" routerLinkActive="active">
-              <a (click)="collapseNavbar()" class="nav-link" routerLink="dashboard">
+            <li [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">
+              <a (click)="collapseNavbar()" class="dropdown-item" routerLink="dashboard">
                 <span>
                   <span jhiTranslate="global.menu.dashboard">Dashboard</span>
                 </span>

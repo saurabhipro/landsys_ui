@@ -1,34 +1,35 @@
 <!-- <jhi-page-ribbon></jhi-page-ribbon> -->
-
-<div class="" *ngIf="isAuthenticated">
-  <div class="row" id="header">
-    <div style="width: 110%">
-      <!-- <img src="content/images/header_3.png" style="width: 100%" alt="My image" /> -->
+<div>
+  <div class="" *ngIf="isAuthenticated">
+    <div class="row" id="header">
+      <div style="width: 100%">
+        <!-- <img src="content/images/header_3.png" style="width: 100%" alt="My image" /> -->
+      </div>
     </div>
-  </div>
-  <router-outlet name="navbar"></router-outlet>
-</div>
-
-<div class="container-fluid">
-  <div class="card jh-card" style="height: 100%; margin-top: 0; padding-bottom: 40px">
-    <router-outlet></router-outlet>
+    <router-outlet name="navbar"></router-outlet>
   </div>
 
-  <jhi-footer *ngIf="isAuthenticated"></jhi-footer>
-  <div class="loaderCen flex-center" *ngIf="loaderService.currentStatus">
-    <div class="lds-spinner">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+  <div class="container-fluid">
+    <div class="card jh-card" style="height: 100%; margin-top: 0; padding-bottom: 40px">
+      <router-outlet></router-outlet>
+    </div>
+
+    <jhi-footer *ngIf="isAuthenticated"></jhi-footer>
+    <div class="loaderCen flex-center" *ngIf="loaderService.currentStatus">
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
   </div>
 </div>
