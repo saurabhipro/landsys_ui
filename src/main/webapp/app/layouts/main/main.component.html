@@ -10,7 +10,7 @@
   </div>
 
   <div class="container-fluid">
-    <div class="card jh-card">
+    <div class="card jh-card" [ngClass]="{ 'login-holder': !isAuthenticated }">
       <router-outlet></router-outlet>
     </div>
 
