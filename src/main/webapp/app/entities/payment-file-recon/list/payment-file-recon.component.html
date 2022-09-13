@@ -4,6 +4,9 @@
 
     <div class="col-12 row p-3">
       <div class="col-8">
+        <p>
+          <ngb-progressbar *ngIf="fileBeingUploaded" type="success" [value]="progress" [showValue]="true"></ngb-progressbar>
+        </p>
         <!-- 
         <div class="input-group">
           <input
@@ -32,7 +35,7 @@
             Upload
           </button>
           <div ngbDropdownMenu>
-            <button ngbDropdownItem jhiTranslate="jhipsterApp.khatedar.home.upload" (click)="clickFileUpload()">Upload Excel</button>
+            <button ngbDropdownItem jhiTranslate="jhipsterApp.khatedar.home.upload" (click)="fileUpload.click()">Upload Excel</button>
             <input
               type="file"
               #fileUpload

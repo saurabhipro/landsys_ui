@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import dayjs from 'dayjs/esm';
@@ -16,6 +16,7 @@ export type EntityArrayResponseType = HttpResponse<IPaymentFileRecon[]>;
 @Injectable({ providedIn: 'root' })
 export class PaymentFileReconService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/payment-file-recons');
+  // protected UploadUrl = this.applicationConfigService.getEndpointFor('api/payment-file-recons');
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
@@ -24,6 +25,17 @@ export class PaymentFileReconService {
     return this.http
       .post<IPaymentFileRecon>(this.resourceUrl, copy, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  upload(file: File): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    const req = new HttpRequest('POST', `${this.resourceUrl}/upload`, formData, {
+      reportProgress: true,
+      // responseType: 'blob',
+    });
+    console.log('File uploaded successfully');
+    return this.http.request(req);
   }
 
   update(paymentFileRecon: IPaymentFileRecon): Observable<EntityResponseType> {
