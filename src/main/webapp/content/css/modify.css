@@ -30,8 +30,6 @@ body {
   top: 0;
   left: 0;
   width: 540px !important;
-  min-height: 1000px;
-  height: 100%;
   overflow: hidden;
   background-color: #fff;
   padding: 25px 60px;
