@@ -78,6 +78,12 @@ body {
   background-color: #44c97d !important;
 }
 
+.jh-card {
+  padding: 0 !important;
+  margin-top: 0 !important;
+  border: none !important;
+}
+
 .form-holder .form-content {
   position: relative;
   text-align: center;

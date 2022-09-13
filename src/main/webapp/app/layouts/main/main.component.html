@@ -9,32 +9,8 @@
     <router-outlet name="navbar"></router-outlet>
   </div>
 
-  <div *ngIf="isAuthenticated" class="container-fluid">
-    <div class="card jh-card" style="height: 100%; margin-top: 0; padding-bottom: 40px">
-      <router-outlet></router-outlet>
-    </div>
-
-    <jhi-footer></jhi-footer>
-    <div class="loaderCen flex-center" *ngIf="loaderService.currentStatus">
-      <div class="lds-spinner">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
-  </div>
-  <!-- LOAD IF NOT AUTHENTICATED-->
-  <div *ngIf="!isAuthenticated" class="login-body">
-    <div>
+  <div class="container-fluid">
+    <div class="card jh-card">
       <router-outlet></router-outlet>
     </div>
 
