@@ -1,9 +1,10 @@
 <div>
   <div class="w-100">
     <div class="img-holder">
+      <!-- <img class="logo-size" src="logo-red.jpg" alt="" /> -->
       <h2 class="sideHeading">Get more things done with Loggin platform.</h2>
       <p class="subHead">Access to the most powerfull tool in the<br />entire design and web industry.</p>
-      <img src="signUp.png" class="img-responsive" style="width: 335px" />
+      <img src="signUp.png" class="img-responsive signUpImg" />
       <!--<div class="image_bg">
       
           <img src="../../content/images/signUp.png" alt="" style="width: 100%" class="img-responsive" /> 
@@ -20,9 +21,10 @@
               </div>
             </a>
           </div>
-          <h3>Welcome to Land Acquisition System</h3>
+          <h3 style="font-weight: 400">Smart Land Acquisition System</h3>
           <div class="page-links">
-            <a class="active">Login</a><a routerLink="/account/register" jhiTranslate="global.messages.info.register.link">Register</a>
+            <a class="active alert-link">Login</a
+            ><a class="alert-link" routerLink="/account/register" jhiTranslate="global.messages.info.register.link">Register</a>
           </div>
           <form class="form" style="margin-top: 20px" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
             <input
@@ -55,6 +57,12 @@
                 data-cy="forgetYourPasswordSelector"
                 >Forget Password?</a
               >
+            </div>
+            <div class="social">
+              <span style="margin-right: 10px">Or login with </span>
+              <a href>Facebook</a>
+              <a href>Google</a>
+              <a href>Linkedin</a>
             </div>
           </form>
         </div>

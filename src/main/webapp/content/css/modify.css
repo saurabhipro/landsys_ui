@@ -6,7 +6,9 @@ body {
   padding-right: 0 !important;
   padding-left: 0 !important;
 }
-
+.jh-card {
+  margin-top: 0 !important;
+}
 .container {
   padding-right: 0 !important;
   padding-left: 0 !important;
@@ -32,7 +34,7 @@ body {
   height: 100%;
   overflow: hidden;
   background-color: #fff;
-  padding: 60px;
+  padding: 25px 60px;
   text-align: center;
   z-index: 999;
 }
@@ -78,32 +80,11 @@ body {
   width: 100px;
 }
 
-body {
-  background-color: #44c97d !important;
-}
-
 .login-holder {
   padding: 0 !important;
   margin-top: 0 !important;
   border: none !important;
   position: inherit !important;
-}
-
-.form-holder .form-content {
-  position: relative;
-  text-align: center;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  align-items: center;
-  padding: 60px;
-  min-height: 100%;
-  background-color: #44c97d;
 }
 
 .form-content .form-items {
@@ -164,6 +145,10 @@ body {
 .table {
   background-color: #fff !important;
   border-radius: 4px;
+}
+.footer .col h1,
+.footer .col ul li {
+  color: #fff !important;
 }
 /*@media (min-width: 768px) {*/
 /*  .navSub .dropdown-menu.show {*/
