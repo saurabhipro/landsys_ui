@@ -1,14 +1,12 @@
 <div>
   <div class="w-100">
     <div class="img-holder">
-      <!-- <img class="logo-size" src="logo-red.jpg" alt="" /> -->
-      <h2 class="sideHeading">Get more things done with Loggin platform.</h2>
+      <img alt="" class="logo-size" src="../../content/images/logo.jpg" style="width: 100%" class="img-responsive" />
+      <h2 class="sideHeading">Get more things done with the Smart platform.</h2>
       <p class="subHead">Access to the most powerfull tool in the<br />entire design and web industry.</p>
-      <img src="signUp.png" class="img-responsive signUpImg" />
-      <!--<div class="image_bg">
-      
-          <img src="../../content/images/signUp.png" alt="" style="width: 100%" class="img-responsive" /> 
-     
+      <img class="img-responsive signUpImg" src="signUp.png" />
+      <!--<div class="image_bg"
+          <img src="../../content/images/signUp.png" alt="" style="width: 100%" class="img-responsive" />
         </div>   -->
     </div>
     <div class="form-holder">
@@ -17,44 +15,44 @@
           <div class="website-logo-inside">
             <a href="index.html">
               <div class="logo">
-                <img class="logo-size" src="logo-jhipster.png" alt="" />
+                <img alt="" class="logo/-size" src="../../content/images/logo_1.png" />
               </div>
             </a>
           </div>
           <h3 style="font-weight: 400">Smart Land Acquisition System</h3>
           <div class="page-links">
             <a class="active alert-link">Login</a
-            ><a class="alert-link" routerLink="/account/register" jhiTranslate="global.messages.info.register.link">Register</a>
+            ><a class="alert-link" jhiTranslate="global.messages.info.register.link" routerLink="/account/register">Register</a>
           </div>
-          <form class="form" style="margin-top: 20px" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
+          <form (ngSubmit)="login()" [formGroup]="loginForm" class="form" role="form" style="margin-top: 20px">
             <input
-              type="text"
-              class="form-control"
-              name="username"
-              id="username"
-              placeholder="{{ 'global.form.username.placeholder' | translate }}"
-              formControlName="username"
               #username
+              class="form-control"
               data-cy="username"
+              formControlName="username"
+              id="username"
+              name="username"
+              placeholder="{{ 'global.form.username.placeholder' | translate }}"
+              type="text"
             />
             <input
-              type="password"
               class="form-control"
-              name="password"
-              id="password"
-              placeholder="{{ 'login.form.password.placeholder' | translate }}"
-              formControlName="password"
               data-cy="password"
+              formControlName="password"
+              id="password"
+              name="password"
+              placeholder="{{ 'login.form.password.placeholder' | translate }}"
+              type="password"
             />
             <div class="form-button">
-              <button type="submit" class="btn btn-primary mt-3 mb-3 login" jhiTranslate="login.form.button" data-cy="submit">
+              <button class="btn btn-primary mt-3 mb-3 login" data-cy="submit" jhiTranslate="login.form.button" type="submit">
                 Sign in
               </button>
               <a
                 class="alert-link"
-                routerLink="/account/reset/request"
-                jhiTranslate="login.password.forgot"
                 data-cy="forgetYourPasswordSelector"
+                jhiTranslate="login.password.forgot"
+                routerLink="/account/reset/request"
                 >Forget Password?</a
               >
             </div>
