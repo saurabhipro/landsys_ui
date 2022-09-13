@@ -42,6 +42,10 @@ body {
   flex-shrink: 1 !important;
 }
 
+#page-heading {
+  padding-top: 1.5%;
+}
+
 .form-content .page-links a.active {
   font-weight: 700;
 }
