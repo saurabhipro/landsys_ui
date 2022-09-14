@@ -5,21 +5,22 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-color: #fff;
-  background-position: center right;
+  background-position: center;
 }
 .sideHeading {
   text-align: left;
   font-size: 22px;
   font-weight: 700;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   color: #064e89;
 }
 .subHead {
   font-size: 18px;
   font-weight: 300;
   line-height: 25px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   color: #064e89;
+  text-align: left;
 }
 .no-gutters {
   margin-right: 0;
@@ -28,7 +29,7 @@
 .alert-link {
   color: #fff;
   font-weight: 400;
-  line-height: 3;
+  line-height: 2;
   position: relative;
   text-decoration: none;
 }
@@ -58,7 +59,7 @@
   border: 0;
   padding: 6px 28px;
   background-color: #fff;
-  color: #44c97d;
+  color: #b49b5a;
   font-size: 14px;
   font-weight: 700;
   text-decoration: none;
@@ -81,13 +82,71 @@
   width: 55%;
   margin: 0 auto;
 }
+.social,
+.social a {
+  color: #fff;
+  text-decoration: none;
+  margin-top: 25px;
+}
+.social a {
+  font-weight: 500;
+  margin: 0 5px;
+}
+
+.form-holder .form-content {
+  position: relative;
+  text-align: center;
+  // display: -webkit-box;
+  // display: -moz-box;
+  // display: -ms-flexbox;
+  // display: -webkit-flex;
+  // display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 60px;
+  min-height: 700px;
+  height: 100%;
+  background-color: #db4340;
+}
+.signUpImg {
+  width: 300px;
+  height: 325px;
+}
 @media (max-width: 480px) {
   .formContent {
     width: 100%;
+  }
+  .img-holder {
+    width: 100% !important;
+    position: relative;
+    min-height: auto !important;
+  }
+  .form-holder {
+    width: 100% !important;
+    margin-left: 0;
+  }
+  .signUpImg {
+    width: 300px;
+    height: 325px;
   }
 }
 @media (min-width: 481px) and (max-width: 767px) {
   .formContent {
     width: 100%;
+  }
+  .img-holder {
+    width: 100% !important;
+    position: relative;
+    min-height: auto !important;
+  }
+  .form-holder {
+    width: 100% !important;
+    margin-left: 0;
+  }
+  .signUpImg {
+    width: 300px;
+    height: 325px;
   }
 }
