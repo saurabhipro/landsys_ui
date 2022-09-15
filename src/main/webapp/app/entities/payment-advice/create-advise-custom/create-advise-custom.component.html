@@ -1,4 +1,7 @@
 <div class="d-flex justify-content-center">
+<!-- .........................Old code UI...................................... -->
+
+<!--<div class="d-flex justify-content-center">
   <div class="col-12">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2
@@ -19,7 +22,7 @@
             <span>:{{ landCompensation?.id }}</span>
           </div>
           <div class="col-3 col-sm-3 mb-3">
-            <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</label>
+              <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</label>
             <span> : {{ landCompensation.projectLand?.id }}</span>
           </div>
 
@@ -100,7 +103,7 @@
             <input class="form-control" id="field_comments" data-cy="comments" name="comments" formControlName="comments" />
           </div>
         </div>
-        <!-- Add citizen/ Khatedar  -->
+        Add citizen/ Khatedar 
 
         <div>
           <button
@@ -182,4 +185,154 @@
       </button>
     </div>
   </div>
-</div>
+</div> -->
+ <!-- ...................old code UI end.................................. -->
+
+<!-- ///////////////////////////New code Ui start/////////////////// -->
+<div class="col-md-12 p-4">
+  <div>
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-payment-advice-heading" class="text-center" data-cy="PaymentAdviceCreateUpdateHeading"
+        jhiTranslate="jhipsterApp.paymentAdvice.home.createLabel">
+        Create a Payment Advice...
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+        <jhi-alert></jhi-alert>
+        <div class="col-md-12"></div>
+        <div class="row">
+          <div class="p-2 mb-2 bg-secondary text-white text-center">Survey Details</div>
+        </div>
+        <div class="row">
+          <!-- <div class="col-md-4"> -->
+          <div class="input-group" [hidden]="editForm.get('id')!.value == null">
+            <!-- <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.landCompensation" for="field_landCompensation"
+              >Land Compensation</label> -->
+            <div class="mb-12 input-group">
+              <span class="form-control border-2 border-secondary me-2">Solatium</span>
+              <input type="number" class="form-control me-4 border-2 border-secondary me-2" name="id" id="field_id"
+                data-cy="id" formControlName="id" [readonly]="true" value={{landCompensation?.id}} />
+
+              <span class="form-control border me-2 border-2 border-secondary me-2">Interest Rate</span>
+              <input type="number" class="form-control me-4 border-2 border-secondary me-2" name="Rate" id="field_Rate"
+                data-cy="Rate" formControlName="Rate" [readonly]="true" value={{landCompensation?.id}} />
+
+              <span class="form-control border me-2 border-2 border-secondary me-2">Interest Days</span>
+              <input type="number" class="form-control me-4 border-2 border-secondary me-2" name="Day" id="field_Day"
+                data-cy="Day" formControlName="Day" [readonly]="true" value={{landCompensation?.id}} />
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mb-12 mt-4 input-group">
+              <span class="form-control border me-2 border-2 border-secondary me-2">Order Date</span>
+              <input type="number" class="form-control me-4 border-2 border-secondary me-2" name="id" id="field_id"
+                data-cy="id" formControlName="id" [readonly]="true" value={{landCompensation?.id}} />
+
+              <span class="form-control border me-2 border-2 border-secondary me-2">Additional</span>
+              <input type="number" class="form-control me-4 border-2 border-secondary me-2" name="Rate" id="field_Rate"
+                data-cy="Rate" formControlName="Rate" [readonly]="true" value={{landCompensation?.id}} />
+
+              <span class="form-control border me-2 border-2 border-secondary me-2">Comp Status</span>
+              <input type="number" class="form-control me-4 border-2 border-secondary me-2" name="Day" id="field_Day"
+                data-cy="Day" formControlName="Day" [readonly]="true" value={{landCompensation?.id}} />
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mb-12 mt-4 input-group">
+              <span class="form-control border me-2 border-2 border-secondary me-2 font-weight-bold">Final Amount</span>
+              <input type="number" class="form-control me-4 vw-30 border-2 border-secondary me-2" name="amount"
+                id="field_amount" data-cy="amount" formControlName="amount" [readonly]="true"
+                value={{landCompensation?.id}} />
+
+              <span class="form-control border me-2 border-2 border-secondary me-2">Comments</span>
+              <input type="number" class="form-control vw-30 border-2 border-secondary me-2" name="Rate" id="field_Rate"
+                data-cy="Rate" formControlName="Rate" [readonly]="true" value={{landCompensation?.id}} />
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="p-2 mb-2 mt-4 bg-secondary text-white text-center">Add Land Owners</div>
+          </div>
+
+          <div class="row">
+            <div class="mb-12 mt-4 input-group">
+              <span class="form-control border me-2 border-2 border-secondary">Hissa Type</span>
+              <span class="form-control border me-2 border-2 border-secondary">JOINT</span>
+              <button type="button" class="btn border me-2 btn-primary text-white">Select Owners</button>
+              <button type="button" class="btn border me-2 btn-primary text-white">Add Beneficiary Account</button>
+            </div>
+          </div>
+
+
+          <table class="table table-bordered mb-9 mt-4">
+            <thead class="border border-2 border-secondary">
+              <tr class="border border-2 border-secondary">
+                <th scope="col">Sr</th>
+                <th scope="col">Name</th>
+                <th scope="col">Aadhar</th>
+                <th scope="col">Father</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border border-2 border-secondary">
+                <th scope="row">1</th>
+                <td>Sube Singh</td>
+                <td>1234</td>
+                <td>ABC</td>
+                <td>999980766</td>
+                <td><button type="button" class="btn btn-danger">Remove</button></td>
+              </tr>
+              <tr class="border border-2 border-secondary">
+                <th scope="row">2</th>
+                <td>Sonbir</td>
+                <td>1234</td>
+                <td>ABC</td>
+                <td>999980766</td>
+                <td><button type="button" class="btn btn-danger">Remove</button></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="row">
+            <div class="p-2 mb-2 mt-4 bg-secondary text-white text-center">Beneficiary Details (Payment will be made to
+              this account)</div>
+          </div>
+
+          <table class="table table-bordered mb-9 mt-4">
+            <thead class="border border-2 border-secondary">
+              <tr>
+                <th scope="col">Bank Title</th>
+                <th scope="col">Bank</th>
+                <th scope="col">Branch</th>
+                <th scope="col">Bank Address</th>
+                <th scope="col">IFSC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">sube,Sonbir</th>
+                <td>HDFC</td>
+                <td>Delhi</td>
+                <td>South Delhi</td>
+                <td>HDFC001</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+          <div class="row">
+            <div class="mb-12 mt-4 input-group">
+              <button type="button" class="btn border me-2 btn-primary text-white">Create Payment Advice</button>
+              <button type="button" class="btn border me-2 btn-primary text-white">Close</button>
+            </div>    
+          </div>
+
+         
