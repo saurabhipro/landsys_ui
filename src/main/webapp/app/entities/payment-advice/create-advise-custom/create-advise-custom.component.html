@@ -1,337 +1,217 @@
-<!-- .........................Old code UI...................................... -->
-
-<!--<div class="d-flex justify-content-center">
-  <div class="col-12">
+<div class="col-md-12 p-4">
+  <div>
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2
         id="jhi-payment-advice-heading"
+        class="text-center"
         data-cy="PaymentAdviceCreateUpdateHeading"
         jhiTranslate="jhipsterApp.paymentAdvice.home.createLabel"
       >
         Create a Payment Advice...
       </h2>
 
-      <div>
+      <div class="col-md-12">
         <jhi-alert-error></jhi-alert-error>
+        <jhi-alert></jhi-alert>
         <div class="row">
-          <div class="col-3 col-sm-3 mb-3">
-            <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.landCompensation" for="field_landCompensation"
-              >Land Compensation</label
-            >
-            <span>:{{ landCompensation?.id }}</span>
-          </div>
-          <div class="col-3 col-sm-3 mb-3">
-              <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</label>
-            <span> : {{ landCompensation.projectLand?.id }}</span>
-          </div>
-
-          <div class="col-3 col-sm-3 mb-3">
-            <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.survey" for="field_survey">Survey</label>
-            <span>:{{ landCompensation?.survey?.id }}</span>
-          </div>
-          <div class="col-3 col-sm-3 mb-3">
-            <label class="form-label" for="field_survey">Land Market Value </label>
-            <span>:{{ landCompensation.landMarketValue | currency: '&#8377;' }}</span>
-          </div>
-          <div class="col-3 col-sm-3 mb-3">
-            <label class="form-label" for="field_survey"> Structural </label>
-            <span>:{{ landCompensation.structuralCompensation | currency: '&#8377;' }}</span>
-          </div>
-          <div class="col-3 col-sm-3 mb-3">
-            <label class="form-label" for="field_survey"> Horticulture</label>
-            <span>:{{ landCompensation.horticultureCompensation | currency: '&#8377;' }}</span>
-          </div>
-          <div class="col-3 col-sm-3 mb-3">
-            <label class="form-label" for="field_survey"> Forest</label>
-            <span>:{{ landCompensation.forestCompensation | currency: '&#8377;' }}</span>
-          </div>
-          <div class="col-3 col-sm-3 mb-3">
-            <label class="form-label" for="field_survey"> Khasra </label>
-            <span>:{{ landCompensation.projectLand?.land?.khasraNumber }}</span>
-          </div>
-          <div class="col-3 col-sm-3 mb-3">
-            <label class="form-label" for="field_survey">Area </label>
-            <span>:{{ landCompensation.area }}</span>
-          </div>
-          <div class="col-3 col-sm-3 mb-3">
-            <label class="form-label" for="field_survey">Account Holder Name </label>
-            <span>:{{ editForm.get('accountHolderName')!.value }}</span>
-          </div>
-          <div class="col-3 col-sm-3 mb-3">
-            <label class="form-label" for="field_survey">Account Number </label>
-            <span>:{{ editForm.get('accountNumber')!.value }}</span>
-          </div>
-          <div class="col-3 col-sm-3 mb-3">
-            <label class="form-label" for="field_survey">Ifsc Code</label>
-            <span>:{{ editForm.get('ifscCode')!.value }}</span>
-          </div>
-
-          <div class="col-3 col-sm-3 mb-3">
-            <label class="form-label" for="field_survey">Photo</label>
-            <span>           <img
-              *ngIf="editForm.get('photo')!.value"
-              [src]="'data:' + editForm.get('photoContentType')!.value + ';base64,' + editForm.get('photo')!.value"
-              style="height: 200px; width: 200px"
-              alt="citizen image"
+          <div class="p-2 mb-2 bg-secondary text-white text-center">Compensation Details</div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <label class="form-label" for="field_solatium">Solatium</label>
+            <input
+              type="number"
+              class="form-control"
+              name="id"
+              id="field_solatium"
+              data-cy="solatium"
+              formControlName="solatium"
+              [readonly]="true"
+              [value]="100000"
             />
-            <img *ngIf="!editForm.get('photo')!.value" src="content/images/jhipster_family_member_1_head-192.png" class="card-img-top" alt="..." />
-      </span>
           </div>
-
-
-          <div class="col-3 col-sm-3 mb-3">
-            <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.hissaType" for="field_hissaType">Hissa Type</label>
-            <select class="form-control" name="hissaType" formControlName="hissaType" id="field_hissaType" data-cy="hissaType">
-              <option [ngValue]="null">{{ 'jhipsterApp.HissaType.null' | translate }}</option>
-              <option *ngFor="let hissaType of hissaTypeValues" [value]="hissaType">
-                {{ 'jhipsterApp.HissaType.' + hissaType | translate }}
-              </option>
-            </select>
-            <div *ngIf="editForm.get('hissaType')!.invalid && (editForm.get('hissaType')!.dirty || editForm.get('hissaType')!.touched)">
-              <small
-                class="form-text text-danger"
-                *ngIf="editForm.get('hissaType')?.errors?.required"
-                jhiTranslate="entity.validation.required"
-              >
-                This field is required.
-              </small>
-            </div>
+          <div class="col-md-4">
+            <label class="form-label" for="field_id">Interest Rate</label>
+            <input
+              type="number"
+              class="form-control"
+              name="id"
+              id="field_id"
+              data-cy="id"
+              formControlName="id"
+              [readonly]="true"
+              [value]="2"
+            />
           </div>
-          <div class="col-3 col-sm-3 mb-3">
-            <label class="form-label" for="field_comments">Comments</label>
-            <input class="form-control" id="field_comments" data-cy="comments" name="comments" formControlName="comments" />
+          <div class="col-md-4">
+            <label class="form-label" for="field_id">Interest Days</label>
+            <input
+              type="number"
+              class="form-control"
+              name="id"
+              id="field_id"
+              data-cy="id"
+              formControlName="id"
+              [readonly]="true"
+              [value]="365"
+            />
           </div>
         </div>
-        Add citizen/ Khatedar 
+        <div class="row">
+          <div class="col-md-4">
+            <label class="form-label" for="field_solatium">Order Date</label>
+            <input
+              type="text"
+              class="form-control"
+              name="id"
+              id="field_solatium"
+              data-cy="solatium"
+              formControlName="solatium"
+              [readonly]="true"
+              [value]="orderDate"
+            />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label" for="field_id">Additional</label>
+            <input
+              type="number"
+              class="form-control"
+              name="id"
+              id="field_id"
+              data-cy="id"
+              formControlName="id"
+              [readonly]="true"
+              [value]="10000000"
+            />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label" for="field_status">Comp Status</label>
+            <input
+              type="text"
+              class="form-control"
+              name="status"
+              id="field_status"
+              data-cy="status"
+              formControlName="status"
+              [readonly]="true"
+              [value]="compStatus"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label class="form-label" for="field_solatium">Final Amount</label>
+            <input
+              type="number"
+              class="form-control"
+              name="finalAmt"
+              id="field_finalAmt"
+              data-cy="finalAmt"
+              formControlName="finalAmt"
+              [readonly]="true"
+              [value]=""
+            />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="field_id">Comments</label>
+            <input
+              type="number"
+              class="form-control"
+              name="finalAmt"
+              id="field_id"
+              data-cy="finalAmt"
+              formControlName="finalAmt"
+              [readonly]="true"
+              [value]=""
+            />
+          </div>
+        </div>
 
-        <div>
-          <button
-            type="button"
-            id="save-entity"
-            data-cy="entityCreateSaveButton"
-            [disabled]="
-              editForm.get('hissaType')!.invalid || (editForm.get(['hissaType'])!.value === 'SINGLE_OWNER' && this.khatedars.length == 1)
-            "
-            class="btn btn-primary"
-            (click)="addCitizen()"
-          >
-            <fa-icon icon="save"></fa-icon>&nbsp;<span>Add Khatedars</span>
-          </button>
+        <div class="row">
+          <div class="p-2 mb-2 mt-4 bg-secondary text-white text-center">Add Land Owners</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <label class="form-label" for="field_solatium">Hissa Type</label>
+            <input
+              type="number"
+              class="form-control mb-1"
+              name="id"
+              id="field_solatium"
+              data-cy="solatium"
+              formControlName="solatium"
+              [readonly]="true"
+              [value]="hissaType"
+            />
+
+            <button type="button" class="btn border me-2 btn-primary text-white pull-right">Select Owners</button>
+            <button type="button" class="btn border me-2 btn-primary text-white pull-right">Add Beneficiary Account</button>
+          </div>
+        </div>
+        <table class="table table-bordered mb-9 mt-4">
+          <thead class="border border-2 border-secondary">
+            <tr class="border border-2 border-secondary">
+              <th scope="col">Sr</th>
+              <th scope="col">Name</th>
+              <th scope="col">Aadhar</th>
+              <th scope="col">Father</th>
+              <th scope="col">Mobile</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border border-2 border-secondary">
+              <th scope="row">1</th>
+              <td>Sube Singh</td>
+              <td>1234</td>
+              <td>ABC</td>
+              <td>999980766</td>
+              <td><button type="button" class="btn btn-danger">Remove</button></td>
+            </tr>
+            <tr class="border border-2 border-secondary">
+              <th scope="row">2</th>
+              <td>Sonbir</td>
+              <td>1234</td>
+              <td>ABC</td>
+              <td>999980766</td>
+              <td><button type="button" class="btn btn-danger">Remove</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="row">
+          <div class="p-2 mb-2 mt-4 bg-secondary text-white text-center">Beneficiary Details (Payment will be made to this account)</div>
+        </div>
+
+        <table class="table table-bordered mb-9 mt-4">
+          <thead class="border border-2 border-secondary">
+            <tr>
+              <th scope="col">Bank Title</th>
+              <th scope="col">Bank</th>
+              <th scope="col">Branch</th>
+              <th scope="col">Bank Address</th>
+              <th scope="col">IFSC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">sube,Sonbir</th>
+              <td>HDFC</td>
+              <td>Delhi</td>
+              <td>South Delhi</td>
+              <td>HDFC001</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn border me-2 btn-primary text-white pull-right">Create Payment Advice</button>
+            <button type="button" class="btn border me-2 btn-primary text-white pull-right">Close</button>
+          </div>
         </div>
       </div>
     </form>
-    <div>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th *ngIf="editForm.get(['hissaType'])!.value !== 'SINGLE_OWNER'">IS Primary</th>
-            <th scope="col">
-              <span jhiTranslate="jhipsterApp.citizen.name">Name</span>
-            </th>
-            <th scope="col">
-              <span jhiTranslate="jhipsterApp.citizen.aadhar">Aadhar</span>
-            </th>
-            <th scope="col">
-              <span jhiTranslate="jhipsterApp.citizen.fatherName">Father Name</span>
-            </th>
-
-            <th scope="col">
-              <span jhiTranslate="jhipsterApp.citizen.mobileNumber">Mobile Number</span>
-            </th>
-            <th *ngIf="editForm.get(['hissaType'])!.value !== 'SINGLE_OWNER'" scope="col">
-              <span>Share %</span>
-            </th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let khaterdar of khatedars; let index = index">
-            <td *ngIf="editForm.get(['hissaType'])!.value !== 'SINGLE_OWNER'">
-              <input
-                type="radio"
-                (change)="onChangePrimary(khaterdar, index)"
-                name="isPrimary"
-                id="radioisPrimary{{ index }}"
-              />
-            </td>
-
-            <td>{{ khaterdar.name }}</td>
-            <td>{{ khaterdar.aadhar }}</td>
-            <td>{{ khaterdar.fatherName }}</td>
-            <td>{{ khaterdar.mobileNumber }}</td>
-            <td *ngIf="editForm.get(['hissaType'])!.value !== 'SINGLE_OWNER'">
-              <input type="number" class="form-control" [(ngModel)]="khaterdar.share" name="share{{ index }}" id="share{{ index }}" />
-            </td>
-            <td><button type="button" class="btn btn-danger" (click)="removeKhatedar(index)">Remove</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div>
-      <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-      </button>
-
-      <button
-        type="button"
-        id="save-entity"
-        data-cy="entityCreateSaveButton"
-        [disabled]="editForm.invalid || isSaving"
-        class="btn btn-primary"
-        (click)="save()"
-      >
-        <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-      </button>
-    </div>
   </div>
-</div> -->
- <!-- ...................old code UI end.................................. -->
-
-<!-- ///////////////////////////New code Ui start/////////////////// -->
-<div class="col-md-12 p-4">
-  <div>
-    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-payment-advice-heading" class="text-center" data-cy="PaymentAdviceCreateUpdateHeading"
-        jhiTranslate="jhipsterApp.paymentAdvice.home.createLabel">
-        Create a Payment Advice...
-      </h2>
-
-      <div>
-        <jhi-alert-error></jhi-alert-error>
-        <jhi-alert></jhi-alert>
-        <div class="col-md-12"></div>
-        <div class="row">
-          <div class="p-2 mb-2 bg-secondary text-white text-center">Survey Details</div>
-        </div>
-        <div class="row">
-          <!-- <div class="col-md-4"> -->
-          <div class="input-group" [hidden]="editForm.get('id')!.value == null">
-            <!-- <label class="form-label" jhiTranslate="jhipsterApp.paymentAdvice.landCompensation" for="field_landCompensation"
-              >Land Compensation</label> -->
-            <div class="mb-12 input-group">
-              <span class="form-control border-2 border-secondary me-2">Solatium</span>
-              <input type="number" class="form-control me-4 border-2 border-secondary me-2" name="id" id="field_id"
-                data-cy="id" formControlName="id" [readonly]="true" value={{landCompensation?.id}} />
-
-              <span class="form-control border me-2 border-2 border-secondary me-2">Interest Rate</span>
-              <input type="number" class="form-control me-4 border-2 border-secondary me-2" name="Rate" id="field_Rate"
-                data-cy="Rate" formControlName="Rate" [readonly]="true" value={{landCompensation?.id}} />
-
-              <span class="form-control border me-2 border-2 border-secondary me-2">Interest Days</span>
-              <input type="number" class="form-control me-4 border-2 border-secondary me-2" name="Day" id="field_Day"
-                data-cy="Day" formControlName="Day" [readonly]="true" value={{landCompensation?.id}} />
-
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="mb-12 mt-4 input-group">
-              <span class="form-control border me-2 border-2 border-secondary me-2">Order Date</span>
-              <input type="number" class="form-control me-4 border-2 border-secondary me-2" name="id" id="field_id"
-                data-cy="id" formControlName="id" [readonly]="true" value={{landCompensation?.id}} />
-
-              <span class="form-control border me-2 border-2 border-secondary me-2">Additional</span>
-              <input type="number" class="form-control me-4 border-2 border-secondary me-2" name="Rate" id="field_Rate"
-                data-cy="Rate" formControlName="Rate" [readonly]="true" value={{landCompensation?.id}} />
-
-              <span class="form-control border me-2 border-2 border-secondary me-2">Comp Status</span>
-              <input type="number" class="form-control me-4 border-2 border-secondary me-2" name="Day" id="field_Day"
-                data-cy="Day" formControlName="Day" [readonly]="true" value={{landCompensation?.id}} />
-
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="mb-12 mt-4 input-group">
-              <span class="form-control border me-2 border-2 border-secondary me-2 font-weight-bold">Final Amount</span>
-              <input type="number" class="form-control me-4 vw-30 border-2 border-secondary me-2" name="amount"
-                id="field_amount" data-cy="amount" formControlName="amount" [readonly]="true"
-                value={{landCompensation?.id}} />
-
-              <span class="form-control border me-2 border-2 border-secondary me-2">Comments</span>
-              <input type="number" class="form-control vw-30 border-2 border-secondary me-2" name="Rate" id="field_Rate"
-                data-cy="Rate" formControlName="Rate" [readonly]="true" value={{landCompensation?.id}} />
-
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="p-2 mb-2 mt-4 bg-secondary text-white text-center">Add Land Owners</div>
-          </div>
-
-          <div class="row">
-            <div class="mb-12 mt-4 input-group">
-              <span class="form-control border me-2 border-2 border-secondary">Hissa Type</span>
-              <span class="form-control border me-2 border-2 border-secondary">JOINT</span>
-              <button type="button" class="btn border me-2 btn-primary text-white">Select Owners</button>
-              <button type="button" class="btn border me-2 btn-primary text-white">Add Beneficiary Account</button>
-            </div>
-          </div>
-
-
-          <table class="table table-bordered mb-9 mt-4">
-            <thead class="border border-2 border-secondary">
-              <tr class="border border-2 border-secondary">
-                <th scope="col">Sr</th>
-                <th scope="col">Name</th>
-                <th scope="col">Aadhar</th>
-                <th scope="col">Father</th>
-                <th scope="col">Mobile</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="border border-2 border-secondary">
-                <th scope="row">1</th>
-                <td>Sube Singh</td>
-                <td>1234</td>
-                <td>ABC</td>
-                <td>999980766</td>
-                <td><button type="button" class="btn btn-danger">Remove</button></td>
-              </tr>
-              <tr class="border border-2 border-secondary">
-                <th scope="row">2</th>
-                <td>Sonbir</td>
-                <td>1234</td>
-                <td>ABC</td>
-                <td>999980766</td>
-                <td><button type="button" class="btn btn-danger">Remove</button></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="row">
-            <div class="p-2 mb-2 mt-4 bg-secondary text-white text-center">Beneficiary Details (Payment will be made to
-              this account)</div>
-          </div>
-
-          <table class="table table-bordered mb-9 mt-4">
-            <thead class="border border-2 border-secondary">
-              <tr>
-                <th scope="col">Bank Title</th>
-                <th scope="col">Bank</th>
-                <th scope="col">Branch</th>
-                <th scope="col">Bank Address</th>
-                <th scope="col">IFSC</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">sube,Sonbir</th>
-                <td>HDFC</td>
-                <td>Delhi</td>
-                <td>South Delhi</td>
-                <td>HDFC001</td>
-              </tr>
-            </tbody>
-          </table>
-
-
-          <div class="row">
-            <div class="mb-12 mt-4 input-group">
-              <button type="button" class="btn border me-2 btn-primary text-white">Create Payment Advice</button>
-              <button type="button" class="btn border me-2 btn-primary text-white">Close</button>
-            </div>    
-          </div>
-
-         
+</div>

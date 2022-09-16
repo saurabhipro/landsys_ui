@@ -36,16 +36,19 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
   projectLandsSharedCollection: IProjectLand[] = [];
   surveysSharedCollection: ISurvey[] = [];
   khatedars: any[] = [];
-  landCompensation! : ILandCompensation;
+  landCompensation!: ILandCompensation;
+  compStatus = 'CLOSED';
+  orderDate = '01-01-2021';
+  hissaType = 'JOINT';
 
   editForm = this.fb.group({
     accountHolderName: [null, [Validators.required]],
     accountNumber: [null, [Validators.required]],
     ifscCode: [null, [Validators.required]],
     hissaType: [null, [Validators.required]],
-    comments:[],
-    photo:[],
-    photoContentType:[]
+    comments: [],
+    photo: [],
+    photoContentType: [],
   });
 
   constructor(
@@ -57,25 +60,19 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder,
     private modalService: NgbModal
-    
   ) {}
 
   ngOnInit(): void {
-    
     this.activatedRoute.data.subscribe(({ landCompensation }) => {
-     this.landCompensation = landCompensation;
+      this.landCompensation = landCompensation;
       const paymentAdvice: IPaymentAdvice = {
-        survey :landCompensation.survey ,
-        projectLand : landCompensation.projectLand,
-        landCompensation
-      }
+        survey: landCompensation.survey,
+        projectLand: landCompensation.projectLand,
+        landCompensation,
+      };
       this.updateForm(paymentAdvice);
       this.loadRelationshipsOptions();
     });
-   
-      
-     
-    
   }
 
   previousState(): void {
@@ -85,17 +82,15 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     this.createCustomAdvise();
-  
   }
 
-
   createCustomAdvise(): void {
-    const khats = this.khatedars.map(kh=>({"id": kh.citizenId,  "isPrimary": kh.isPrimary, "sharePercentage":kh.share}));
+    const khats = this.khatedars.map(kh => ({ id: kh.citizenId, isPrimary: kh.isPrimary, sharePercentage: kh.share }));
     const paymentAdvice = {
-      "hissaType": this.editForm.get(['hissaType'])!.value,
-    "landCompensationId": this.landCompensation.id,
-    "khatedars": khats
-    }
+      hissaType: this.editForm.get(['hissaType'])!.value,
+      landCompensationId: this.landCompensation.id,
+      khatedars: khats,
+    };
     this.subscribeToSaveResponse(this.paymentAdviceService.createCustomAdvise(paymentAdvice));
   }
 
@@ -115,59 +110,57 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
     return item.id!;
   }
 
-  addCitizen(): void{
+  addCitizen(): void {
     const modalRef = this.modalService.open(ModalCitizenListComponent, { size: 'xl', backdropClass: 'light-blue-backdrop' });
-    modalRef.componentInstance.multipleKhaterdars = this.editForm.get(['hissaType'])!.value  === 'SINGLE_OWNER' ? false : true;
-    modalRef.result.then(res=>{
-      const citizens =  res.citizens.filter((ct:any) => !(this.khatedars.some(kh=>kh.citizenId === ct.id )));
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      citizens.forEach((ct:any) => {
-       this.khatedars.push( {...ct,
-          id: "",
-          citizenId : ct.id,
-          share:0,
-          isPrimary:false
+    modalRef.componentInstance.multipleKhaterdars = this.editForm.get(['hissaType'])!.value === 'SINGLE_OWNER' ? false : true;
+    modalRef.result
+      .then(res => {
+        const citizens = res.citizens.filter((ct: any) => !this.khatedars.some(kh => kh.citizenId === ct.id));
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+        citizens.forEach((ct: any) => {
+          this.khatedars.push({ ...ct, id: '', citizenId: ct.id, share: 0, isPrimary: false });
+        });
 
-        })
+        if (this.khatedars.length > 0 && this.editForm.get(['hissaType'])!.value === 'SINGLE_OWNER') {
+          this.khatedars[0].share = 100;
+          this.khatedars[0].isPrimary = true;
+
+          this.updatePrimary(
+            this.khatedars[0].name,
+            this.khatedars[0].accountNumber,
+            this.khatedars[0].bankBranch.ifsc,
+            this.khatedars[0].photo,
+            this.khatedars[0].photoContentType
+          );
+        }
+      })
+      .catch(err => {
+        console.log(err);
       });
+  }
 
-      if(this.khatedars.length>0 && this.editForm.get(['hissaType'])!.value  === 'SINGLE_OWNER'){
-        this.khatedars[0].share = 100;
-        this.khatedars[0].isPrimary = true;
-
-        this.updatePrimary( this.khatedars[0].name, this.khatedars[0].accountNumber,  this.khatedars[0].bankBranch.ifsc,  this.khatedars[0].photo,  this.khatedars[0].photoContentType );
-      }
-      
-    }).catch(err=>{
-      console.log(err);
-    })
- 
-   }
-
-   removeKhatedar(index:number):void{
-    if(this.khatedars[index].isPrimary){
+  removeKhatedar(index: number): void {
+    if (this.khatedars[index].isPrimary) {
       this.updatePrimary('', 0, '', '', '');
-
     }
-    this.khatedars.splice(index,1);
-   }
+    this.khatedars.splice(index, 1);
+  }
 
-   onChangePrimary(khaterdar:any, index:number): void {
-    this.updatePrimary(khaterdar.name, khaterdar.accountNumber,  khaterdar.bankBranch.ifsc, khaterdar.photo, khaterdar.photoContentType);
+  onChangePrimary(khaterdar: any, index: number): void {
+    this.updatePrimary(khaterdar.name, khaterdar.accountNumber, khaterdar.bankBranch.ifsc, khaterdar.photo, khaterdar.photoContentType);
     this.khatedars[index].isPrimary = true;
     //
-   }
+  }
 
-   updatePrimary(name:string,accountNumber:number,ifscCode:string,photo:string, photoContentType:string ): void{
-
+  updatePrimary(name: string, accountNumber: number, ifscCode: string, photo: string, photoContentType: string): void {
     this.editForm.patchValue({
-       accountHolderName: name,
-       accountNumber,
-       ifscCode,
-       photoContentType,
-       photo
-    })
-   }
+      accountHolderName: name,
+      accountNumber,
+      ifscCode,
+      photoContentType,
+      photo,
+    });
+  }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPaymentAdvice>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
@@ -196,7 +189,7 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
       paymentStatus: paymentAdvice.paymentStatus,
       hissaType: paymentAdvice.hissaType,
       survey: paymentAdvice.survey,
-      comments:''
+      comments: '',
     });
   }
 
@@ -204,11 +197,7 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
     this.khatedarService
       .query({ 'paymentAdviceId.specified': 'false' })
       .pipe(map((res: HttpResponse<IKhatedar[]>) => res.body ?? []))
-      .pipe(
-        map((khatedars: IKhatedar[]) =>
-          this.khatedarService.addKhatedarToCollectionIfMissing(khatedars)
-        )
-      )
+      .pipe(map((khatedars: IKhatedar[]) => this.khatedarService.addKhatedarToCollectionIfMissing(khatedars)))
       .subscribe((khatedars: IKhatedar[]) => (this.khatedarsCollection = khatedars));
 
     this.landCompensationService
@@ -216,9 +205,7 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
       .pipe(map((res: HttpResponse<ILandCompensation[]>) => res.body ?? []))
       .pipe(
         map((landCompensations: ILandCompensation[]) =>
-          this.landCompensationService.addLandCompensationToCollectionIfMissing(
-            landCompensations
-          )
+          this.landCompensationService.addLandCompensationToCollectionIfMissing(landCompensations)
         )
       )
       .subscribe((landCompensations: ILandCompensation[]) => (this.landCompensationsSharedCollection = landCompensations));
@@ -226,11 +213,7 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
     this.projectLandService
       .query()
       .pipe(map((res: HttpResponse<IProjectLand[]>) => res.body ?? []))
-      .pipe(
-        map((projectLands: IProjectLand[]) =>
-          this.projectLandService.addProjectLandToCollectionIfMissing(projectLands)
-        )
-      )
+      .pipe(map((projectLands: IProjectLand[]) => this.projectLandService.addProjectLandToCollectionIfMissing(projectLands)))
       .subscribe((projectLands: IProjectLand[]) => (this.projectLandsSharedCollection = projectLands));
 
     this.surveyService
@@ -239,8 +222,4 @@ export class CreatePaymentAdviceCustomComponent implements OnInit {
       .pipe(map((surveys: ISurvey[]) => this.surveyService.addSurveyToCollectionIfMissing(surveys)))
       .subscribe((surveys: ISurvey[]) => (this.surveysSharedCollection = surveys));
   }
-
-   
-    
- 
 }
