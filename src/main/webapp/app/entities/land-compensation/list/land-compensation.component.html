@@ -1,7 +1,21 @@
 <div>
   <h2 id="page-heading" data-cy="LandCompensationHeading">
     <!--    <span jhiTranslate="jhipsterApp.landCompensation.home.">Land Compensations</span>-->
-    <span>Search Land Compensations</span>
+    <span>Compensations</span>
+
+    <!-- <div class="col-12">
+      <div class="input-group">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search..."
+            [(ngModel)]="searchString"
+            (ngModelChange)="searchFor(searchString)"
+          />
+        </div>
+      </div>
+    </div> -->
 
     <div class="d-flex justify-content-end">
       <!--
@@ -60,7 +74,7 @@
             <span jhiTranslate="jhipsterApp.landCompensation.landMarketValue">Land Market Value</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="structuralCompensation">
+          <!-- <th scope="col" jhiSortBy="structuralCompensation">
             <span jhiTranslate="jhipsterApp.landCompensation.structuralCompensation">Structura</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
@@ -71,7 +85,7 @@
           <th scope="col" jhiSortBy="forestCompensation">
             <span jhiTranslate="jhipsterApp.landCompensation.forestCompensation">Forest</span>
             <fa-icon icon="sort"></fa-icon>
-          </th>
+          </th> -->
           <!-- <th scope="col" jhiSortBy="solatiumMoney">
             <span jhiTranslate="jhipsterApp.landCompensation.solatiumMoney">Solatium Money</span>
             <fa-icon icon="sort"></fa-icon>
@@ -114,9 +128,9 @@
 
           <td>{{ landCompensation.area }}</td>
           <td>{{ landCompensation.landMarketValue | currency: '&#8377;' }}</td>
-          <td>{{ landCompensation.structuralCompensation | currency: '&#8377;' }}</td>
-          <td>{{ landCompensation.horticultureCompensation | currency: '&#8377;' }}</td>
-          <td>{{ landCompensation.forestCompensation | currency: '&#8377;' }}</td>
+          <!-- <td>{{ landCompensation.structuralCompensation | currency: '&#8377;' }}</td> -->
+          <!-- <td>{{ landCompensation.horticultureCompensation | currency: '&#8377;' }}</td> -->
+          <!-- <td>{{ landCompensation.forestCompensation | currency: '&#8377;' }}</td> -->
           <!-- <td>{{ landCompensation.solatiumMoney | currency: '&#8377;' }}</td>
           <td>{{ landCompensation.additionalCompensation | currency: '&#8377;' }}</td> -->
           <!--          <td jhiTranslate="{{ 'jhipsterApp.status.' + landCompensation.status }}">{{ landCompensation.status }}</td>-->
@@ -130,10 +144,33 @@
                 type="submit"
                 [routerLink]="['/land-compensation', landCompensation.id, 'view']"
                 class="btn btn-info btn-sm"
+                *ngIf="landCompensation.compensationStatus == 'OPEN'"
+                data-cy="entityDetailsButton"
+                disabled
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/land-compensation', landCompensation.id, 'view']"
+                class="btn btn-info btn-sm"
+                *ngIf="landCompensation.compensationStatus == 'CLOSED'"
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/land-compensation', landCompensation.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="add"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.viewsurvey">View Survey</span>
               </button>
 
               <!--              <button-->
@@ -145,6 +182,27 @@
               <!--                <fa-icon icon="pencil-alt"></fa-icon>-->
               <!--                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>-->
               <!--              </button>-->
+              <button
+                type="submit"
+                (click)="createCompensation(landCompensation)"
+                *ngIf="landCompensation.compensationStatus == 'OPEN'"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
+                <fa-icon icon="add"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="jhipsterApp.landCompensation.home.createLabel">Create</span>
+              </button>
+              <button
+                type="submit"
+                (click)="createCompensation(landCompensation)"
+                *ngIf="landCompensation.compensationStatus == 'CLOSED'"
+                disabled
+                class="btn btn-secondary btn-sm"
+                data-cy="entityDeleteButton"
+              >
+                <fa-icon icon="add"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="jhipsterApp.landCompensation.home.createLabel">Create</span>
+              </button>
             </div>
           </td>
         </tr>

@@ -8,7 +8,9 @@ import { ILandCompensation } from '../land-compensation.model';
 
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { LandCompensationService } from '../service/land-compensation.service';
+import { CreateSurveyLandCompensationComponent } from '../../survey/create-survey-land-compensation/create-survey-land-compensation.component';
 import { LandCompensationDeleteDialogComponent } from '../delete/land-compensation-delete-dialog.component';
+import { LandCompensationCreateComponent } from '../../survey/modal-create-land-compensation/land-compensation-create.component';
 
 @Component({
   selector: 'jhi-land-compensation',
@@ -70,6 +72,12 @@ export class LandCompensationComponent implements OnInit {
         this.loadPage();
       }
     });
+  }
+
+  createCompensation(landCompensation: ILandCompensation): void {
+    const modalRef = this.modalService.open(LandCompensationCreateComponent, { size: 'xl', backdropClass: 'light-blue-backdrop' });
+    modalRef.componentInstance.survey = landCompensation;
+    // this.loadPage();
   }
 
   protected sort(): string[] {

@@ -31,7 +31,7 @@
         "citizen": "Citizen",
         "landCompensation": "Land Compensation",
         "createLandCompensation": "Create Land Compensation",
-        "searchLandCompensation": "Search Land Compensation",
+        "searchLandCompensation": "Compensation",
         "paymentAdvice": "Payment Advice",
         "createPaymentAdvice": "Create Payment Advice",
         "searchPaymentAdvices": "Search Payment Advices",
@@ -143,7 +143,8 @@
       "open": "Open",
       "save": "Save",
       "download": "Download",
-      "view": "View"
+      "view": "View",
+      "viewsurvey": "View Survey"
     },
     "detail": {
       "field": "Field",

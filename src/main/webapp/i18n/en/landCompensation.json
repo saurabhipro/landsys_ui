@@ -2,9 +2,9 @@
   "jhipsterApp": {
     "landCompensation": {
       "home": {
-        "title": "Land Compensations",
+        "title": "Compensations",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create Compensation",
+        "createLabel": "Compensation",
         "createOrEditLabel": "Create or edit a Land Compensation",
         "notFound": "No Land Compensations found"
       },
