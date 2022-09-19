@@ -165,11 +165,11 @@
 
               <button
                 type="submit"
-                [routerLink]="['/land-compensation', landCompensation.id, 'view']"
+                [routerLink]="['/survey', landCompensation?.survey?.id, 'view']"
                 class="btn btn-info btn-sm"
                 data-cy="entityDetailsButton"
               >
-                <fa-icon icon="add"></fa-icon>
+                <fa-icon icon="bars"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.viewsurvey">View Survey</span>
               </button>
 
