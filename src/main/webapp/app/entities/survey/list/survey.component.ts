@@ -19,6 +19,7 @@ import { IProject } from 'app/entities/project/project.model';
 })
 export class SurveyComponent implements OnInit {
   surveys?: ISurvey[];
+  origSurveys: ISurvey[] | undefined;
   isLoading = false;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -27,14 +28,15 @@ export class SurveyComponent implements OnInit {
   ascending!: boolean;
   ngbPaginationPage = 1;
   selectedProject: IProject | null = null;
+  searchString!: string;
 
   constructor(
     protected surveyService: SurveyService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected modalService: NgbModal,
-    private loaderService: LoaderService,
-  ) { }
+    private loaderService: LoaderService
+  ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
@@ -62,6 +64,38 @@ export class SurveyComponent implements OnInit {
 
   ngOnInit(): void {
     this.handleNavigation();
+  }
+
+  searchFor(searchString: string): void {
+    this.surveys = this.origSurveys;
+
+    function checkForSearchString(surveys: ISurvey): ISurvey | undefined {
+      console.log('SEARCHING ...');
+      console.log(surveys);
+
+      if (
+        surveys.id!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        surveys.surveyor!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        surveys.projectLand!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        surveys.hissaType!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        surveys.area!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        surveys.projectLand!.land!.khasraNumber!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        surveys.surveyStatus!.toString().toLowerCase().includes(searchString.toLowerCase())
+      ) {
+        return surveys;
+      }
+      return undefined;
+    }
+
+    if (searchString !== '') {
+      this.surveys = this.surveys?.filter(checkForSearchString);
+      console.log(this.surveys?.length);
+      if (this.surveys?.length === 0) {
+        // this.handleSearch('khasra', searchString);
+      }
+    } else {
+      this.handleNavigation();
+    }
   }
 
   trackId(_index: number, item: ISurvey): number {
@@ -115,6 +149,7 @@ export class SurveyComponent implements OnInit {
       });
     }
     this.surveys = data ?? [];
+    this.origSurveys = data ?? [];
     this.ngbPaginationPage = this.page;
   }
 

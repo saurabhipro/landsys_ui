@@ -2,22 +2,35 @@
   <h2 id="page-heading" data-cy="LandHeading">
     <span jhiTranslate="jhipsterApp.land.home.title">Lands</span>
 
-    <div class="d-flex justify-content-end">
-      <!--
+    <div class="col-12">
+      <div class="input-group">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search..."
+            [(ngModel)]="searchString"
+            (ngModelChange)="searchFor(searchString)"
+          />
+          <div class="d-flex justify-content-end">
+            <!--
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span jhiTranslate="jhipsterApp.land.home.refreshListLabel">Refresh List</span>
       </button>
       -->
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-land"
-        [routerLink]="['/land/new']"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="jhipsterApp.land.home.createLabel"> Create a new Land </span>
-      </button>
+            <button
+              id="jh-create-entity"
+              data-cy="entityCreateButton"
+              class="btn btn-primary jh-create-entity create-land"
+              [routerLink]="['/land/new']"
+            >
+              <fa-icon icon="plus"></fa-icon>
+              <span jhiTranslate="jhipsterApp.land.home.createLabel"> Create a new Land </span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </h2>
 

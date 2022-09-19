@@ -16,6 +16,7 @@ import { LandDeleteDialogComponent } from '../delete/land-delete-dialog.componen
 })
 export class LandComponent implements OnInit {
   lands?: ILand[];
+  origlands: ILand[] | undefined;
   isLoading = false;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -23,6 +24,7 @@ export class LandComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  searchString!: string;
 
   constructor(
     protected landService: LandService,
@@ -55,6 +57,38 @@ export class LandComponent implements OnInit {
 
   ngOnInit(): void {
     this.handleNavigation();
+  }
+
+  searchFor(searchString: string): void {
+    this.lands = this.origlands;
+
+    function checkForSearchString(lands: ILand): ILand | undefined {
+      console.log('SEARCHING ...');
+      console.log(lands);
+
+      if (
+        lands.id!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        lands.district!.state!.name!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        lands.district!.name!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        lands.village!.name!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        lands.khasraNumber!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        lands.khatauni!.toString().toLowerCase().includes(searchString.toLowerCase()) ||
+        lands.area!.toString().toLowerCase().includes(searchString.toLowerCase())
+      ) {
+        return lands;
+      }
+      return undefined;
+    }
+
+    if (searchString !== '') {
+      this.lands = this.lands?.filter(checkForSearchString);
+      console.log(this.lands?.length);
+      if (this.lands?.length === 0) {
+        // this.handleSearch('khasra', searchString);
+      }
+    } else {
+      this.handleNavigation();
+    }
   }
 
   trackId(_index: number, item: ILand): number {
@@ -108,6 +142,7 @@ export class LandComponent implements OnInit {
       });
     }
     this.lands = data ?? [];
+    this.origlands = data ?? [];
     this.ngbPaginationPage = this.page;
   }
 
