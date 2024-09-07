@@ -1,5 +1,5 @@
 body {
-  width: 90%;
+  width: 100%;
   margin: 0 auto !important;
 }
 .container-fluid {
@@ -43,7 +43,7 @@ body {
 }
 
 #page-heading {
-  padding: 1.5%;
+  padding: 1%;
 }
 
 .form-content .page-links a.active {

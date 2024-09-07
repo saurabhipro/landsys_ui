@@ -1,130 +1,265 @@
-<h2 class="headingBanner">
-  <span class="badge bg-primary w-100 text-truncate" jhiTranslate="home.title"></span>
-</h2>
-<img style="top: 0px" src="content/images/banner_image_large.jpg" width="100%" />
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
-<div class="container1">
-  <hr />
-  <div class="row">
-    <div class="col-lg-2 col-sm-6">
-      <div class="card-box bg-orange">
-        <div class="inner">
-          <h3>100</h3>
-          <p>Villages</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Layout</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <style>
+      /* Card box padding and layout */
+      .card-box {
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Increased shadow */
+        border: 1px solid rgba(0, 0, 0, 0.1); /* Added border */
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .card-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3); /* Hover shadow effect */
+      }
+      .card-box .inner {
+        padding: 10px;
+        text-align: center;
+      }
+      .card-box h3 {
+        font-size: 36px;
+        margin: 0;
+        padding: 0;
+        font-weight: 600;
+      }
+      .card-box p {
+        font-size: 18px;
+        margin-bottom: 0;
+      }
+      .card-box .icon {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        z-index: 0;
+        font-size: 48px;
+        opacity: 0.2;
+      }
+      .card-box-footer {
+        display: block;
+        text-align: center;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.05);
+        color: #fff;
+        border-radius: 0 0 5px 5px;
+      }
+
+      /* Color palette using Material Design */
+      .bg-orange {
+        background-color: #ff7043; /* Deep Orange */
+      }
+      .bg-blue {
+        background-color: #42a5f5; /* Light Blue */
+      }
+      .bg-green {
+        background-color: #66bb6a; /* Light Green */
+      }
+      .bg-yellow {
+        background-color: #ffee58; /* Yellow */
+        color: #333; /* Darker text for contrast */
+      }
+
+      /* Text and Heading Styles */
+      .headingBanner {
+        background-color: #3c4f5f; /* Material Design blue */
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+        font-size: 24px;
+      }
+
+      /* Uniform padding between boxes */
+      .row > [class*='col-'] {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 class="headingBanner">Welcome to Land Acquisition System</h2>
+
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Responsive Cards (1st Row) -->
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+          <div class="card-box bg-orange">
+            <div class="inner">
+              <h3>1</h3>
+              <p>Villages</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-home" aria-hidden="true"></i>
+            </div>
+          </div>
         </div>
-        <div class="icon">
-          <i class="fa fa-file" aria-hidden="true"></i>
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+          <div class="card-box bg-blue">
+            <div class="inner">
+              <h3>6</h3>
+              <p>Lands</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-map" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+          <div class="card-box bg-green">
+            <div class="inner">
+              <h3>4</h3>
+              <p>Citizens</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-users" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+          <div class="card-box bg-yellow">
+            <div class="inner">
+              <h3>1</h3>
+              <p>Villages</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-home" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+          <div class="card-box bg-orange">
+            <div class="inner">
+              <h3>1</h3>
+              <p>Districts</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-building" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+          <div class="card-box bg-blue">
+            <div class="inner">
+              <h3>1</h3>
+              <p>Sub Districts</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-sitemap" aria-hidden="true"></i>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-lg-2 col-sm-6">
-      <div class="card-box bg-blue">
-        <div class="inner">
-          <h3>1000</h3>
-          <p>Lands</p>
+      <h1 class="headingBanner">Project Summary for महाल कियोड़ी हदबस्त</h1>
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+          <div class="card-box bg-orange">
+            <div class="inner">
+              <h3>6</h3>
+              <p>Total Compensations</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-file" aria-hidden="true"></i>
+            </div>
+          </div>
         </div>
-        <div class="icon">
-          <i class="fa fa-file" aria-hidden="true"></i>
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+          <div class="card-box bg-blue">
+            <div class="inner">
+              <h3>6</h3>
+              <p>Surveys</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-file" aria-hidden="true"></i>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-lg-2 col-sm-6">
-      <div class="card-box bg-green">
-        <div class="inner">
-          <h3>61</h3>
-          <p>Citizens</p>
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+          <div class="card-box bg-green">
+            <div class="inner">
+              <h3>4</h3>
+              <p>Payment Advices</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-file" aria-hidden="true"></i>
+            </div>
+          </div>
         </div>
-        <div class="icon">
-          <i class="fa fa-file" aria-hidden="true"></i>
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+          <div class="card-box bg-yellow">
+            <div class="inner">
+              <h3>0</h3>
+              <p>Payment Files</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-file" aria-hidden="true"></i>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-lg-2 col-sm-6">
-      <div class="card-box bg-yellow">
-        <div class="inner">
-          <h3>100</h3>
-          <p>Villages</p>
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+          <div class="card-box bg-blue">
+            <div class="inner">
+              <h3>{{ project?.totalBudget | currency: '&#8377;' }}</h3>
+              <p>Project Budget</p>
+              <p>20,00,000 INR</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-file" aria-hidden="true"></i>
+            </div>
+          </div>
         </div>
-        <div class="icon">
-          <i class="fa fa-file" aria-hidden="true"></i>
+
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+          <div class="card-box bg-yellow">
+            <div class="inner">
+              <h3>{{ project?.totalPaid | currency: '&#8377;' }}</h3>
+              <p>Total Amount Paid</p>
+              <p>0 INR</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-file" aria-hidden="true"></i>
+            </div>
+            <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-lg-2 col-sm-6">
-      <div class="card-box bg-orange">
-        <div class="inner">
-          <h3>1</h3>
-          <p>Districts</p>
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+          <div class="card-box bg-green">
+            <div class="inner">
+              <h3>{{ project?.budgetRemaining | currency: '&#8377;' }}</h3>
+              <p>Budget Remaining</p>
+              <p>2,000,000 INR</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </div>
+            <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
         </div>
-        <div class="icon">
-          <i class="fa fa-file" aria-hidden="true"></i>
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+          <div class="card-box bg-orange">
+            <div class="inner">
+              <p>Interest %</p>
+              <p>2</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </div>
+            <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-lg-2 col-sm-6">
-      <div class="card-box bg-blue">
-        <div class="inner">
-          <h3>2</h3>
-          <p>Sub Districts</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-file" aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-  <h2>
-    <span class="badge bg-secondary w-100 text-truncate">Project Summary for {{ project?.project }}</span>
-  </h2>
-  <div class="row">
-    <div class="col-lg-3 col-sm-6">
-      <div class="card-box bg-blue">
-        <div class="inner">
-          <h3>{{ project?.totalBudget | currency: '&#8377;' }}</h3>
-          <p>Project Budget</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-file" aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-sm-6">
-      <div class="card-box bg-yellow">
-        <div class="inner">
-          <h3>{{ project?.totalPaid | currency: '&#8377;' }}</h3>
-          <p>Total Amount Paid</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-file" aria-hidden="true"></i>
-        </div>
-        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
 
-    <div class="col-lg-3 col-sm-6">
-      <div class="card-box bg-green">
-        <div class="inner">
-          <h3>{{ project?.budgetRemaining | currency: '&#8377;' }}</h3>
-          <p>Budget Remaning</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-check"></i>
-        </div>
-        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-
-    <div class="col-lg-3 col-sm-6">
-      <div class="card-box bg-orange">
-        <div class="inner">
-          <h3>2%</h3>
-          <p>Interest %</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-check"></i>
-        </div>
-        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-  </div>
-</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
