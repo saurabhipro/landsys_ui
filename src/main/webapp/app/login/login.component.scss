@@ -109,7 +109,18 @@
   min-height: 800px;
   height: 100%;
   background-color: #db4340;
+  height: 100vh;
+  display: flex;
 }
+
+.img-holder{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .signUpImg {
   padding-top: 20px;
   width: 400px;

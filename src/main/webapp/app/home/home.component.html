@@ -1,15 +1,12 @@
-<h2 class="headingBanner">
-  <span class="badge w-100 text-truncate" style="background-color: #4587d5" jhiTranslate="home.title"></span>
-</h2>
-<img style="top: 0px" src="content/images/banner_image_large.jpg" width="100%" />
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
-<div class="container1">
-  <hr />
+<h2 class="headingBanner">Welcome to Land Acquisition System</h2>
+
+<div class="container-fluid">
   <div class="row">
-    <div class="col-lg-2 col-sm-6">
+    <!-- Responsive Cards (1st Row) -->
+    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
       <div class="card-box bg-orange">
         <div class="inner">
-          <h3>100</h3>
+          <h3>1</h3>
           <p>Villages</p>
         </div>
         <div class="icon">
@@ -17,10 +14,10 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-2 col-sm-6">
+    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
       <div class="card-box bg-blue">
         <div class="inner">
-          <h3>1000</h3>
+          <h3>6</h3>
           <p>Lands</p>
         </div>
         <div class="icon">
@@ -28,10 +25,10 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-2 col-sm-6">
+    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
       <div class="card-box bg-green">
         <div class="inner">
-          <h3>61</h3>
+          <h3>4</h3>
           <p>Citizens</p>
         </div>
         <div class="icon">
@@ -39,10 +36,10 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-2 col-sm-6">
+    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
       <div class="card-box bg-yellow">
         <div class="inner">
-          <h3>100</h3>
+          <h3>1</h3>
           <p>Villages</p>
         </div>
         <div class="icon">
@@ -50,7 +47,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-2 col-sm-6">
+    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
       <div class="card-box bg-orange">
         <div class="inner">
           <h3>1</h3>
@@ -61,10 +58,10 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-2 col-sm-6">
+    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
       <div class="card-box bg-blue">
         <div class="inner">
-          <h3>2</h3>
+          <h3>1</h3>
           <p>Sub Districts</p>
         </div>
         <div class="icon">
@@ -73,14 +70,57 @@
       </div>
     </div>
   </div>
-  <h2>
-    <span class="badge bg-secondary w-100 text-truncate">Project Summary for {{ project?.project }}</span>
-  </h2>
+  <h1 class="headingBanner">Project Summary for  महाल कियोड़ी हदबस्त</h1>
   <div class="row">
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+      <div class="card-box bg-orange">
+        <div class="inner">
+          <h3>6</h3>
+          <p>Total Compensations</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
       <div class="card-box bg-blue">
         <div class="inner">
-          <h3>{{ project?.totalBudget | currency: '&#8377;' }}</h3>
+          <h3>6</h3>
+          <p>Surveys</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+      <div class="card-box bg-green">
+        <div class="inner">
+          <h3>4</h3>
+          <p>Payment Advices</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+      <div class="card-box bg-yellow">
+        <div class="inner">
+          <h3>0</h3>
+          <p>Payment Files</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+      <div class="card-box bg-blue">
+        <div class="inner">
+          <h3>₹ 20,00,000</h3>
+          <p>{{ project?.totalBudget | currency: '&#8377;' }}</p>
           <p>Project Budget</p>
         </div>
         <div class="icon">
@@ -88,42 +128,40 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
+
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
       <div class="card-box bg-yellow">
         <div class="inner">
-          <h3>{{ project?.totalPaid | currency: '&#8377;' }}</h3>
+          <h3>₹ 0</h3>
+          <p>{{ project?.totalPaid | currency: '&#8377;' }}</p>
           <p>Total Amount Paid</p>
         </div>
         <div class="icon">
           <i class="fa fa-file" aria-hidden="true"></i>
         </div>
-        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
-
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
       <div class="card-box bg-green">
         <div class="inner">
-          <h3>{{ project?.budgetRemaining | currency: '&#8377;' }}</h3>
-          <p>Budget Remaning</p>
+          <h3>₹ 2,000,000</h3>
+          <p>{{ project?.budgetRemaining | currency: '&#8377;' }}</p>
+          <p>Budget Remaining</p>
         </div>
         <div class="icon">
-          <i class="fa fa-check"></i>
+          <i class="fa fa-check" aria-hidden="true"></i>
         </div>
-        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
-
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
       <div class="card-box bg-orange">
         <div class="inner">
-          <h3>2%</h3>
+          <h3>2</h3>
           <p>Interest %</p>
         </div>
         <div class="icon">
-          <i class="fa fa-check"></i>
+          <i class="fa fa-check" aria-hidden="true"></i>
         </div>
-        <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
   </div>
