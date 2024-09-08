@@ -6,7 +6,7 @@ table {
 }
 
 th {
-    background-color: #4CAF50;
+    background-color: #3e8acc;
     color: white;
     text-align: center;
 }
@@ -25,11 +25,16 @@ tr:last-child {
 }
 
 .total-row {
-    background-color: #FFD700;
+    background-color: #3e8acc;
 }
 
 .btn {
     color: white;
+    background-color: #3e8acc;
+}
+
+.amount, .total{
+    color: white !important;
 }
 
 /* Add horizontal scrolling for smaller screens */

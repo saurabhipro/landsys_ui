@@ -1,5 +1,5 @@
-<div class="mt-5">
-  <h2 class="text-center">Payment File</h2>
+<div class="mt-2">
+  <h2 class="text-left">Payment File</h2>
 
   <!-- Export Button -->
   <button class="btn btn-success" (click)="exportToExcel('paymentFileTable', 'Payment_File')">Download as Excel</button>
@@ -71,8 +71,8 @@
         </tr>
         <!-- Final row for total -->
         <tr class="total-row">
-          <td colspan="8">Total</td>
-          <td data-label="Amount">₹2,191,704</td>
+          <td colspan="8" class="total">Total</td>
+          <td data-label="Amount" class="amount">₹2,191,704</td>
           <td></td>
         </tr>
       </tbody>
