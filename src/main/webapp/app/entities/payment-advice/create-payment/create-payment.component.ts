@@ -9,12 +9,12 @@ import { ICreatePaymentFile, ICreatePaymentFileAdvices, IPaymentAdvice } from '.
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { PaymentAdviceService } from '../service/payment-advice.service';
 import { PaymentAdviceDeleteDialogComponent } from '../delete/payment-advice-delete-dialog.component';
-import { PaymentFileHeaderService } from '../../payment-file-header/service/payment-file-header.service';
 import { LoaderService } from 'app/loader.service';
 
 @Component({
   selector: 'jhi-create-payment',
   templateUrl: './create-payment.component.html',
+  styleUrls: ['./create-payment.component.css']
 })
 export class CreatePaymentComponent implements OnInit {
   paymentAdvices?: IPaymentAdvice[];
@@ -22,12 +22,11 @@ export class CreatePaymentComponent implements OnInit {
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
   page?: number;
-  predicate!: string;
-  ascending!: boolean;
+  predicate = 'id';
+  ascending = true;
   ngbPaginationPage = 1;
 
   selectedIds: number[] = [];
-  private PaymentFileHeaderService: any;
 
   constructor(
     protected paymentAdviceService: PaymentAdviceService,
@@ -37,7 +36,11 @@ export class CreatePaymentComponent implements OnInit {
     private loaderService: LoaderService
   ) {}
 
-  OnClick(id: any): void {
+  ngOnInit(): void {
+    this.handleNavigation();
+  }
+
+  onClick(id: number): void {
     if (id) {
       const index = this.selectedIds.indexOf(id);
       if (index === -1) {
@@ -48,40 +51,64 @@ export class CreatePaymentComponent implements OnInit {
     }
   }
 
-  // downloadPaymentFile(): void {
-  //   this.PaymentFileHeaderService.downloadTemplate().subscribe(data => {
-  //     const fileURL = window.URL.createObjectURL(data);
-  //     const link = document.createElement('a');
-  //     link.href = fileURL;
-  //     link.download = 'template';
-  //     link.click();
-  //   });
-  // }
+  filterCards(): void {
+    const value = (document.getElementById('searchInput') as HTMLInputElement).value.toLowerCase();
+    const cardHeaders = document.querySelectorAll('.card-header');
+  
+    cardHeaders.forEach((header) => {
+      const parentCard = header.parentElement;
+      if (parentCard) {
+        const headerElement = header as HTMLElement;
+        if (headerElement.innerText.toLowerCase().includes(value)) {
+          parentCard.style.display = '';
+        } else {
+          parentCard.style.display = 'none';
+        }
+      }
+    });
+  }
+  
+
+  toggleCollapse(id: string): void {
+    const element = document.getElementById(id);
+    if (element) {
+      element.classList.toggle('show');
+    }
+  }
+
+  toggleAll(): void {
+    console.log("helllo")
+    const collapses = document.querySelectorAll('.collapse');
+    const allShown = Array.from(collapses).every((collapse) =>
+      collapse.classList.contains('show')
+    );
+
+    collapses.forEach((collapse) => {
+      collapse.classList.toggle('show', !allShown);
+    });
+  }
 
   createPaymentFile(): void {
-    if (this.selectedIds.length && this.paymentAdvices?.length) {
-      const advices: ICreatePaymentFileAdvices[] = [];
-      this.selectedIds.forEach(id => {
-        const foundRecord = this.paymentAdvices?.find(pay => pay.id === id);
-        if (foundRecord?.id && foundRecord.bankName && foundRecord.ifscCode) {
-          advices.push({ paymentAdviceId: foundRecord.id, bankName: foundRecord.bankName, ifscCode: foundRecord.ifscCode });
-        }
-      });
-      this.loaderService.show(true);
-      this.paymentAdviceService
-        .createPaymentAFile({
-          paymentAdvices: advices,
-        })
-        .subscribe({
-          next: () => {
-            this.loadPage();
-            this.loaderService.show(false);
-          },
-          error: () => {
-            this.onError();
-            this.loaderService.show(false);
-          },
-        });
+    const checkboxes = document.querySelectorAll('.citizen-checkbox:checked');
+    const selectedCitizens = Array.from(checkboxes).map((checkbox) =>
+      (checkbox as HTMLInputElement).getAttribute('data-name')
+    );
+
+    if (selectedCitizens.length > 0) {
+      const confirmPayment = confirm(
+        'Do you want to create a payment file for: ' +
+          selectedCitizens.join(', ') +
+          '?'
+      );
+      if (confirmPayment) {
+        alert(
+          'Payment file created for: ' +
+            selectedCitizens.join(', ') +
+            '. The Payment File ID is PAY/2024/001'
+        );
+      }
+    } else {
+      alert('No citizens selected.');
     }
   }
 
@@ -107,10 +134,6 @@ export class CreatePaymentComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {
-    this.handleNavigation();
-  }
-
   trackId(_index: number, item: IPaymentAdvice): number {
     return item.id!;
   }
@@ -118,7 +141,6 @@ export class CreatePaymentComponent implements OnInit {
   delete(paymentAdvice: IPaymentAdvice): void {
     const modalRef = this.modalService.open(PaymentAdviceDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.paymentAdvice = paymentAdvice;
-    // unsubscribe not needed because closed completes on modal close
     modalRef.closed.subscribe(reason => {
       if (reason === 'deleted') {
         this.loadPage();

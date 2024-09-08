@@ -1,0 +1,75 @@
+table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    table-layout: auto; /* Allow the table to auto-size columns */
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+}
+
+td, th {
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:last-child {
+    font-weight: bold;
+}
+
+.total-row {
+    background-color: #FFD700;
+}
+
+.btn {
+    color: white;
+}
+
+/* Add horizontal scrolling for smaller screens */
+@media (max-width: 768px) {
+    .table-container {
+        overflow-x: auto; /* Enable horizontal scrolling */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        margin: 0 auto; /* Center the container */
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block; /* Stack table elements for mobile */
+    }
+
+    thead {
+        display: none; /* Hide table headers */
+    }
+
+    tr {
+        margin-bottom: 15px;
+    }
+
+    td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 10px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    /* Handle special styling for total-row */
+    .total-row td {
+        text-align: right;
+    }
+}

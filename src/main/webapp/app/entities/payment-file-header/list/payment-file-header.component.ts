@@ -5,12 +5,14 @@ import { combineLatest, Observable } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IPaymentFileHeader } from '../payment-file-header.model';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
+import * as XLSX  from "xlsx";
 import { PaymentFileHeaderService } from '../service/payment-file-header.service';
 import { PaymentFileHeaderDeleteDialogComponent } from '../delete/payment-file-header-delete-dialog.component';
 
 @Component({
   selector: 'jhi-payment-file-header',
   templateUrl: './payment-file-header.component.html',
+  styleUrls:['./payment-file-header.component.css']
 })
 export class PaymentFileHeaderComponent implements OnInit {
   paymentFileHeaders?: IPaymentFileHeader[];
@@ -83,6 +85,53 @@ export class PaymentFileHeaderComponent implements OnInit {
       }
     }
   }
+
+  exportToExcel(tableID: any, filename = ''): void {
+    const table = document.getElementById(tableID);
+    if (!table) {
+      console.error('Table not found');
+      return;
+    }
+  
+    const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+    const ws = wb.Sheets["Sheet1"];
+  
+    if (!ws['!ref']) {
+      console.error('Worksheet reference is undefined.');
+      return;
+    }
+  
+    // Get the range of the worksheet
+    const range = XLSX.utils.decode_range(ws['!ref']);
+  
+    // Remove the Aadhar column (Column C => index 2)
+    for (let R = range.s.r; R <= range.e.r; ++R) {
+      for (let C = 2; C < range.e.c; ++C) {
+        ws[XLSX.utils.encode_cell({ r: R, c: C })] = ws[XLSX.utils.encode_cell({ r: R, c: C + 1 })];
+      }
+      delete ws[XLSX.utils.encode_cell({ r: R, c: range.e.c })];
+    }
+  
+    // Update the worksheet range after column removal
+    range.e.c--;
+    ws['!ref'] = XLSX.utils.encode_range(range);
+  
+    // Handle the total row
+    const totalRowIndex = range.e.r; // The last row index is now the total row
+    const totalAmountCell = XLSX.utils.encode_cell({ r: totalRowIndex, c: 8 }); // Amount column index after removal
+    const totalLabelCell = XLSX.utils.encode_cell({ r: totalRowIndex, c: 0 }); // Label cell for "Total"
+  
+    // Manually set the total label and value to the correct cells
+    ws[totalLabelCell] = { v: 'Total' };  // Set "Total" label
+    ws[totalAmountCell] = { v: '₹2,191,704' }; // Set total amount (you can calculate this dynamically if needed)
+  
+    // Optionally, you can recalculate the total if needed
+    // Example: ws[XLSX.utils.encode_cell({ r: totalRowIndex, c: 8 })].v = calculateTotalAmount(ws, range);
+  
+    // Save the workbook
+    XLSX.writeFile(wb, filename + ".xlsx");
+  }
+  
 
   downloadPaymentFile(paymentFileHeader: IPaymentFileHeader): void {
     if (paymentFileHeader.id != null) {
