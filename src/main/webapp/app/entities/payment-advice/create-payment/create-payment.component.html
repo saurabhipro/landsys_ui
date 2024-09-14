@@ -1,256 +1,174 @@
-<div class="mt-2">
-  <h2 class="text-left">Create Bank Payment File</h2>
+<div>
+  <h2 id="page-heading" data-cy="PaymentAdviceHeading">
+    <span>Create Payment File(s) '&#8377;' </span>
+    <div class="d-flex justify-content-end">
+      <!-- 
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterApp.paymentAdvice.home.refreshListLabel">Refresh List</span>
+      </button>
+    -->
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-payment-advice"
+        [disabled]="selectedIds.length === 0"
+        (click)="createPaymentFile()"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Payment file </span>
+      </button>
+    </div>
+  </h2>
 
-  <!-- Search Filter -->
-  <div class="form-group">
-    <input type="text" class="form-control" id="searchInput" placeholder="Search by citizen name or land details" (keyup)="filterCards()" />
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="paymentAdvices?.length === 0">
+    <span jhiTranslate="jhipsterApp.paymentAdvice.home.notFound">No paymentAdvices found</span>
   </div>
 
-  <!-- Button Group: Toggle and Create Payment File -->
-  <div class="btn-group">
-    <button class="btn btn-primary btn-toggle-all" id="toggleAllBtn" (click)="toggleAll()">Expand/Collapse All</button>
-    <button class="btn btn-primary" id="createPaymentFileBtn" (click)="createPaymentFile()">Create Payment File</button>
+  <div class="table-responsive" id="entities" *ngIf="paymentAdvices && paymentAdvices.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col">
+            <span>Select</span>
+          </th>
+          <th scope="col" jhiSortBy="id">
+            <span jhiTranslate="global.field.id">ID</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="accountHolderName">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderName">Account Holder Name</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="accountHolderBankName">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.accountHolderBankName">Account Holder Bank Name</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="paymentAmount">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.paymentAmount">Payment Amount</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="bankName">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.bankName">Bank Name</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="accountNumber">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.accountNumber">Account Number</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="ifscCode">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.ifscCode">Ifsc Code</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="referenceNumber">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.referenceNumber">Reference Number</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+
+          <th scope="col" jhiSortBy="hissaType">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.hissaType">Hissa Type</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="khatedar.id">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.khatedar">Khatedar</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="landCompensation.id">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.landCompensation">Land Compensation</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="projectLand.id">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.projectLand">Project Land</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="paymentStatus">
+            <span jhiTranslate="jhipsterApp.paymentAdvice.paymentStatus">Payment Status</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let paymentAdvice of paymentAdvices; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <input type="checkbox" (click)="OnClick(paymentAdvice.id)" />
+          </td>
+          <td>
+            <a [routerLink]="['/payment-advice', paymentAdvice.id, 'view']">{{ paymentAdvice.id }}</a>
+          </td>
+          <td>{{ paymentAdvice.accountHolderName }}</td>
+          <td>{{ paymentAdvice.accountHolderBankName }}</td>
+          <td>{{ paymentAdvice.paymentAmount }}</td>
+          <td>{{ paymentAdvice.bankName }}</td>
+          <td>{{ paymentAdvice.accountNumber }}</td>
+          <td>{{ paymentAdvice.ifscCode }}</td>
+          <td>{{ paymentAdvice.referenceNumber }}</td>
+          <td jhiTranslate="{{ 'jhipsterApp.HissaType.' + paymentAdvice.hissaType }}">{{ paymentAdvice.hissaType }}</td>
+          <td>
+            <div *ngIf="paymentAdvice.khatedar">
+              <a [routerLink]="['/khatedar', paymentAdvice.khatedar?.id, 'view']">{{ paymentAdvice.khatedar.citizen?.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="paymentAdvice.landCompensation">
+              <a [routerLink]="['/land-compensation', paymentAdvice.landCompensation?.id, 'view']">{{
+                paymentAdvice.landCompensation?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="paymentAdvice.projectLand">
+              <a [routerLink]="['/project-land', paymentAdvice.projectLand?.id, 'view']">{{ paymentAdvice.projectLand?.id }}</a>
+            </div>
+          </td>
+          <td jhiTranslate="{{ 'jhipsterApp.PaymentStatus.' + paymentAdvice.paymentStatus }}">{{ paymentAdvice.paymentStatus }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/payment-advice', paymentAdvice.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/payment-advice', paymentAdvice.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-  <!-- Accordion Structure -->
-  <div id="accordion">
-    <!-- Citizen: अशोक कुमार -->
-    <div class="card">
-      <div class="card-header" (click)="toggleCollapse('collapseAshok')">
-        <div>
-          <span class="serial-number">1.</span>
-          <input type="checkbox" class="checkbox citizen-checkbox" data-name="अशोक कुमार" />
-          <h5 class="mb-0 d-inline">अशोक कुमार</h5>
-        </div>
-        <span class="summary-total">Total: ₹547,926.00 | Area: 341.00 हैक्टर</span>
-      </div>
-      <div id="collapseAshok" class="collapse show">
-        <div class="card-body">
-          <table class="table table-bordered">
-            <thead class="thead-light">
-              <tr>
-                <th>Plot</th>
-                <th>Land Horticulture Value (₹)</th>
-                <th>Land Market Value (₹)</th>
-                <th>Solatium Amount (₹)</th>
-                <th>Land Structural Value (₹)</th>
-                <th>Land Area</th>
-                <th>Per Square Meter Value (₹)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>663</td>
-                <td>₹3149.31</td>
-                <td>₹4824</td>
-                <td>₹4824</td>
-                <td>₹0</td>
-                <td>6</td>
-                <td>₹804</td>
-              </tr>
-              <tr>
-                <td>911/612</td>
-                <td>₹3149.31</td>
-                <td>₹47436</td>
-                <td>₹47436</td>
-                <td>₹0</td>
-                <td>59</td>
-                <td>₹804</td>
-              </tr>
-              <tr>
-                <td>959/608</td>
-                <td>₹3149.33</td>
-                <td>₹41004</td>
-                <td>₹41004</td>
-                <td>₹0</td>
-                <td>51</td>
-                <td>₹804</td>
-              </tr>
-              <tr>
-                <td>961/609</td>
-                <td>₹3149.31</td>
-                <td>₹82008</td>
-                <td>₹82008</td>
-                <td>₹0</td>
-                <td>102</td>
-                <td>₹804</td>
-              </tr>
-              <tr>
-                <td>963/642</td>
-                <td>₹3149.31</td>
-                <td>₹65124</td>
-                <td>₹65124</td>
-                <td>₹0</td>
-                <td>81</td>
-                <td>₹804</td>
-              </tr>
-              <tr>
-                <td>967/661</td>
-                <td>₹3149.31</td>
-                <td>₹33768</td>
-                <td>₹33768</td>
-                <td>₹0</td>
-                <td>42</td>
-                <td>₹804</td>
-              </tr>
-              <tr class="font-weight-bold">
-                <td>Total</td>
-                <td>₹547,926</td>
-                <td>₹274164</td>
-                <td>₹274164</td>
-                <td>₹0</td>
-                <td>341</td>
-                <td>₹4824</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+  <div *ngIf="paymentAdvices && paymentAdvices.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
     </div>
 
-      <!-- Citizen: दिनेश कुमार -->
-      <div class="card">
-        <div class="card-header" data-toggle="collapse" data-target="#collapseDinesh" (click)="toggleCollapse('collapseDinesh')" aria-expanded="false">
-          <div>
-            <span class="serial-number">2.</span>
-            <input type="checkbox" class="checkbox citizen-checkbox" data-name="दिनेश कुमार"> 
-            <h5 class="mb-0 d-inline">दिनेश कुमार</h5>
-          </div>
-          <span class="summary-total">Total: ₹547,926.00 | Area: 341.00 हैक्टर</span>
-        </div>
-        <div id="collapseDinesh" class="collapse" data-parent="#accordion">
-          <div class="card-body">
-            <table class="table table-bordered">
-              <thead class="thead-light">
-                <tr>
-                  <th>Plot</th>
-                  <th>Land Horticulture Value (₹)</th>
-                  <th>Land Market Value (₹)</th>
-                  <th>Solatium Amount (₹)</th>
-                  <th>Land Structural Value (₹)</th>
-                  <th>Land Area</th>
-                  <th>Per Square Meter Value (₹)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>663</td><td>₹3149.31</td><td>₹4824</td><td>₹4824</td><td>₹0</td><td>6</td><td>₹804</td></tr>
-                <tr><td>911/612</td><td>₹3149.31</td><td>₹47436</td><td>₹47436</td><td>₹0</td><td>59</td><td>₹804</td></tr>
-                <tr><td>959/608</td><td>₹3149.33</td><td>₹41004</td><td>₹41004</td><td>₹0</td><td>51</td><td>₹804</td></tr>
-                <tr><td>961/609</td><td>₹3149.31</td><td>₹82008</td><td>₹82008</td><td>₹0</td><td>102</td><td>₹804</td></tr>
-                <tr><td>963/642</td><td>₹3149.31</td><td>₹65124</td><td>₹65124</td><td>₹0</td><td>81</td><td>₹804</td></tr>
-                <tr><td>967/661</td><td>₹3149.31</td><td>₹33768</td><td>₹33768</td><td>₹0</td><td>42</td><td>₹804</td></tr>
-                <tr class="font-weight-bold"><td>Total</td><td>₹547,926</td><td>₹274164</td><td>₹274164</td><td>₹0</td><td>341</td><td>₹4824</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Citizen: नरेश कुमार -->
-      <div class="card">
-        <div class="card-header" data-toggle="collapse" data-target="#collapseNaresh" (click)="toggleCollapse('collapseNaresh')" aria-expanded="false">
-          <div>
-            <span class="serial-number">3.</span>
-            <input type="checkbox" class="checkbox citizen-checkbox" data-name="नरेश कुमार"> 
-            <h5 class="mb-0 d-inline">नरेश कुमार</h5>
-          </div>
-          <span class="summary-total">Total: ₹547,926.00 | Area: 341.00 हैक्टर</span>
-        </div>
-        <div id="collapseNaresh" class="collapse" data-parent="#accordion">
-          <div class="card-body">
-            <table class="table table-bordered">
-              <thead class="thead-light">
-                <tr>
-                  <th>Plot</th>
-                  <th>Land Horticulture Value (₹)</th>
-                  <th>Land Market Value (₹)</th>
-                  <th>Solatium Amount (₹)</th>
-                  <th>Land Structural Value (₹)</th>
-                  <th>Land Area</th>
-                  <th>Per Square Meter Value (₹)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>663</td><td>₹3149.31</td><td>₹4824</td><td>₹4824</td><td>₹0</td><td>6</td><td>₹804</td></tr>
-                <tr><td>911/612</td><td>₹3149.31</td><td>₹46632</td><td>₹46632</td><td>₹0</td><td>58</td><td>₹804</td></tr>
-                <tr><td>959/608</td><td>₹3149.33</td><td>₹41808</td><td>₹41808</td><td>₹0</td><td>52</td><td>₹804</td></tr>
-                <tr><td>961/609</td><td>₹3149.31</td><td>₹82812</td><td>₹82812</td><td>₹0</td><td>103</td><td>₹804</td></tr>
-                <tr><td>963/642</td><td>₹3149.31</td><td>₹64320</td><td>₹64320</td><td>₹0</td><td>80</td><td>₹804</td></tr>
-                <tr><td>967/661</td><td>₹3149.31</td><td>₹32964</td><td>₹32964</td><td>₹0</td><td>41</td><td>₹804</td></tr>
-                <tr class="font-weight-bold"><td>Total</td><td>₹547,926</td><td>₹273360</td><td>₹273360</td><td>₹0</td><td>340</td><td>₹4824</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-    <!-- Citizen: रमेश कुमार -->
-    <div class="card">
-      <div class="card-header" data-toggle="collapse" data-target="#collapseRamesh" (click)="toggleCollapse('collapseRamesh')" >
-        <div>
-          <span class="serial-number">2.</span>
-          <input type="checkbox" class="checkbox citizen-checkbox" data-name="रमेश कुमार" />
-          <h5 class="mb-0 d-inline">रमेश कुमार</h5>
-        </div>
-        <span class="summary-total">Total: ₹823,492.00 | Area: 412.00 हैक्टर</span>
-      </div>
-      <div id="collapseRamesh" class="collapse">
-        <div class="card-body">
-          <table class="table table-bordered">
-            <thead class="thead-light">
-              <tr>
-                <th>Plot</th>
-                <th>Land Horticulture Value (₹)</th>
-                <th>Land Market Value (₹)</th>
-                <th>Solatium Amount (₹)</th>
-                <th>Land Structural Value (₹)</th>
-                <th>Land Area</th>
-                <th>Per Square Meter Value (₹)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>764</td>
-                <td>₹4150.00</td>
-                <td>₹5900</td>
-                <td>₹5900</td>
-                <td>₹500</td>
-                <td>8</td>
-                <td>₹870</td>
-              </tr>
-              <tr>
-                <td>876/613</td>
-                <td>₹4150.00</td>
-                <td>₹60000</td>
-                <td>₹60000</td>
-                <td>₹0</td>
-                <td>80</td>
-                <td>₹850</td>
-              </tr>
-              <tr>
-                <td>968/615</td>
-                <td>₹4200.00</td>
-                <td>₹50000</td>
-                <td>₹50000</td>
-                <td>₹0</td>
-                <td>60</td>
-                <td>₹870</td>
-              </tr>
-              <tr class="font-weight-bold">
-                <td>Total</td>
-                <td>₹823,492</td>
-                <td>₹450000</td>
-                <td>₹450000</td>
-                <td>₹500</td>
-                <td>412</td>
-                <td>₹5000</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
     </div>
-
-    <!-- Add similar sections for other citizens -->
   </div>
 </div>
