@@ -27,7 +27,6 @@ export class CreatePaymentComponent implements OnInit {
   ngbPaginationPage = 1;
 
   selectedIds: number[] = [];
-  private PaymentFileHeaderService: any;
 
   constructor(
     protected paymentAdviceService: PaymentAdviceService,
@@ -37,8 +36,8 @@ export class CreatePaymentComponent implements OnInit {
     private loaderService: LoaderService
   ) {}
 
-  OnClick(id: any): void {
-    if (id) {
+  OnClick(id: number | undefined): void {
+    if (id !== undefined) {
       const index = this.selectedIds.indexOf(id);
       if (index === -1) {
         this.selectedIds.push(id);
@@ -48,15 +47,36 @@ export class CreatePaymentComponent implements OnInit {
     }
   }
 
-  // downloadPaymentFile(): void {
-  //   this.PaymentFileHeaderService.downloadTemplate().subscribe(data => {
-  //     const fileURL = window.URL.createObjectURL(data);
-  //     const link = document.createElement('a');
-  //     link.href = fileURL;
-  //     link.download = 'template';
-  //     link.click();
-  //   });
-  // }
+  isSelected(id: number | undefined): boolean {
+    return id !== undefined && this.selectedIds.includes(id);
+  }
+
+  // Helper to check if all items are selected
+  isAllChecked(): boolean {
+    if (!this.paymentAdvices || this.paymentAdvices.length === 0) {
+      return false;
+    }
+    return this.paymentAdvices.every(paymentAdvice => paymentAdvice.id !== undefined && this.selectedIds.includes(paymentAdvice.id));
+  }
+
+  // Select/Deselect all checkboxes
+  toggleAll(event: any): void {
+    if (!this.paymentAdvices) {
+      return;
+    }
+
+    if (event.target.checked) {
+      // Select all if checked
+      this.paymentAdvices.forEach(paymentAdvice => {
+        if (paymentAdvice.id !== undefined && !this.selectedIds.includes(paymentAdvice.id)) {
+          this.selectedIds.push(paymentAdvice.id);
+        }
+      });
+    } else {
+      // Deselect all if unchecked
+      this.selectedIds = [];
+    }
+  }
 
   createPaymentFile(): void {
     if (this.selectedIds.length && this.paymentAdvices?.length) {
@@ -118,7 +138,6 @@ export class CreatePaymentComponent implements OnInit {
   delete(paymentAdvice: IPaymentAdvice): void {
     const modalRef = this.modalService.open(PaymentAdviceDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.paymentAdvice = paymentAdvice;
-    // unsubscribe not needed because closed completes on modal close
     modalRef.closed.subscribe(reason => {
       if (reason === 'deleted') {
         this.loadPage();

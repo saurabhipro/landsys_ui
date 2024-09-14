@@ -2,12 +2,6 @@
   <h2 id="page-heading" data-cy="PaymentAdviceHeading">
     <span>Create Payment File(s) '&#8377;' </span>
     <div class="d-flex justify-content-end">
-      <!-- 
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="jhipsterApp.paymentAdvice.home.refreshListLabel">Refresh List</span>
-      </button>
-    -->
       <button
         id="jh-create-entity"
         data-cy="entityCreateButton"
@@ -34,6 +28,8 @@
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col">
+            <!-- "Check All" Checkbox -->
+            <input type="checkbox" (change)="toggleAll($event)" [checked]="isAllChecked()" />
             <span>Select</span>
           </th>
           <th scope="col" jhiSortBy="id">
@@ -68,7 +64,6 @@
             <span jhiTranslate="jhipsterApp.paymentAdvice.referenceNumber">Reference Number</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-
           <th scope="col" jhiSortBy="hissaType">
             <span jhiTranslate="jhipsterApp.paymentAdvice.hissaType">Hissa Type</span>
             <fa-icon icon="sort"></fa-icon>
@@ -95,7 +90,8 @@
       <tbody>
         <tr *ngFor="let paymentAdvice of paymentAdvices; trackBy: trackId" data-cy="entityTable">
           <td>
-            <input type="checkbox" (click)="OnClick(paymentAdvice.id)" />
+            <!-- Individual Checkboxes -->
+            <input type="checkbox" (click)="OnClick(paymentAdvice.id!)" [checked]="isSelected(paymentAdvice?.id!)" *ngIf="paymentAdvice?.id" />
           </td>
           <td>
             <a [routerLink]="['/payment-advice', paymentAdvice.id, 'view']">{{ paymentAdvice.id }}</a>
