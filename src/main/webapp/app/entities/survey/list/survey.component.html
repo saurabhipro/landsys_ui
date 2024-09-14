@@ -98,7 +98,7 @@
             <span *ngIf="survey.hissaType == 'JOINT_OWNER'" class="btn btn-success btn-sm">{{ survey.hissaType }} </span>
           </td>
 
-          <td>{{ survey.area }}</td>
+          <td>{{ survey.area | number: '1.2-2' }}</td>
           <td>{{ survey.landMarketValue | currency: '&#8377;' }}</td>
           <td>{{ survey.structuralValue | currency: '&#8377;' }}</td>
           <td>{{ survey.horticultureValue | currency: '&#8377;' }}</td>
