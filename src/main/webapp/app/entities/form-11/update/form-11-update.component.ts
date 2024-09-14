@@ -82,10 +82,22 @@ export class Form11UpdateComponent implements OnInit {
   }
 
   public downloadForm11(): void {
-    const link = document.createElement('a');
-      link.href = 'content/files/FORM_11_HP.xlsx'; // Relative path to your file
-      link.download = 'FORM_11_HP.xlsx'; // File name to download as
-      link.click();
+    this.loaderService.show(true);
+    this.form11Service
+      .downloadForm11({
+        projectName: this.editForm.get(['projectName'])!.value.name,
+        village: this.editForm.get(['village'])!.value.name,
+        subDistrict: this.editForm.get(['subDistrict'])!.value.name,
+        district: this.editForm.get(['district'])!.value.name,
+      })
+      .subscribe(data => {
+        this.loaderService.show(false);
+        const fileURL = window.URL.createObjectURL(data);
+        const link = document.createElement('a');
+        link.href = fileURL;
+        link.download = 'Form11';
+        link.click();
+      });
   }
 
   previousState(): void {
