@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { combineLatest } from 'rxjs';
 
-import { ICreatePaymentFile, ICreatePaymentFileAdvices, IPaymentAdvice } from '../payment-advice.model';
-
-import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
+import { IPaymentAdvice, ICreatePaymentFileAdvices } from '../payment-advice.model';
 import { PaymentAdviceService } from '../service/payment-advice.service';
 import { PaymentAdviceDeleteDialogComponent } from '../delete/payment-advice-delete-dialog.component';
-import { PaymentFileHeaderService } from '../../payment-file-header/service/payment-file-header.service';
+import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { LoaderService } from 'app/loader.service';
 
 @Component({
@@ -27,6 +25,7 @@ export class CreatePaymentComponent implements OnInit {
   ngbPaginationPage = 1;
 
   selectedIds: number[] = [];
+  searchAccountHolderName = '';  // New field to store the search value
 
   constructor(
     protected paymentAdviceService: PaymentAdviceService,
@@ -51,7 +50,6 @@ export class CreatePaymentComponent implements OnInit {
     return id !== undefined && this.selectedIds.includes(id);
   }
 
-  // Helper to check if all items are selected
   isAllChecked(): boolean {
     if (!this.paymentAdvices || this.paymentAdvices.length === 0) {
       return false;
@@ -59,21 +57,18 @@ export class CreatePaymentComponent implements OnInit {
     return this.paymentAdvices.every(paymentAdvice => paymentAdvice.id !== undefined && this.selectedIds.includes(paymentAdvice.id));
   }
 
-  // Select/Deselect all checkboxes
   toggleAll(event: any): void {
     if (!this.paymentAdvices) {
       return;
     }
 
     if (event.target.checked) {
-      // Select all if checked
       this.paymentAdvices.forEach(paymentAdvice => {
         if (paymentAdvice.id !== undefined && !this.selectedIds.includes(paymentAdvice.id)) {
           this.selectedIds.push(paymentAdvice.id);
         }
       });
     } else {
-      // Deselect all if unchecked
       this.selectedIds = [];
     }
   }
@@ -114,6 +109,7 @@ export class CreatePaymentComponent implements OnInit {
         size: this.itemsPerPage,
         sort: this.sort(),
         'paymentStatus.equals': 'PENDING',
+        'accountHolderName.contains': this.searchAccountHolderName // Add this line for search filtering
       })
       .subscribe({
         next: (res: HttpResponse<IPaymentAdvice[]>) => {
@@ -127,6 +123,11 @@ export class CreatePaymentComponent implements OnInit {
       });
   }
 
+  searchByAccountHolderName(): void {
+    this.page = 1;  // Reset to the first page when searching
+    this.loadPage();
+  }
+
   ngOnInit(): void {
     this.handleNavigation();
   }
@@ -138,7 +139,7 @@ export class CreatePaymentComponent implements OnInit {
   delete(paymentAdvice: IPaymentAdvice): void {
     const modalRef = this.modalService.open(PaymentAdviceDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.paymentAdvice = paymentAdvice;
-    modalRef.closed.subscribe(reason => {
+    modalRef.closed.subscribe((reason: string) => {
       if (reason === 'deleted') {
         this.loadPage();
       }
