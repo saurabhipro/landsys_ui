@@ -172,7 +172,7 @@ export class CreatePaymentComponent implements OnInit {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.page = page;
     if (navigate) {
-      this.router.navigate(['/payment-advice'], {
+      this.router.navigate(['/payment-advice/create-payment-file'], {
         queryParams: {
           page: this.page,
           size: this.itemsPerPage,
